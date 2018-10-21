@@ -1,0 +1,17 @@
+body {
+  width: 300px;
+  font-size: 14px;
+}
+
+ul {
+  padding-left: 25px;
+}
+
+li {
+  padding: 5px 0;
+}
+
+a {
+  text-decoration: none;
+  color: #0052cc;
+}

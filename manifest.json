@@ -1,0 +1,29 @@
+  {
+    "name": "Read Later",
+    "version": "1.0",
+    "description": "Read current page later.",
+    "permissions": ["tabs", "storage"],
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+    },
+    "browser_action": {
+      "default_popup": "popup.html",
+      "default_icon": "images/read-later-48.png"
+    },
+    "icons": {
+      "16": "images/read-later-16.png",
+      "32": "images/read-later-32.png",
+      "48": "images/read-later-48.png",
+      "128": "images/read-later-128.png"
+    },
+    "commands": {
+      "read-later": {
+        "description": "Add to reading list.",
+        "suggested_key": {
+          "default": "Alt+Shift+L"
+        }
+      }
+    },
+    "manifest_version": 2
+  }
