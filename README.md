@@ -15,7 +15,7 @@ A Chrome extension focuses on reading later, rather than removing.
 
 ## Feature
 - **Read Later**: Press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd> to add current tab in reading list. 
-- **No delete and close**: The tab will be closed when you add it. The link will be removed when you read it.
+- **No delete or close**: The tab will be closed when you add it. The link will be removed when you read it.
 - **Clear**: A button to remove all the links.
 
 ## Install
