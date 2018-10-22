@@ -1,15 +1,16 @@
   {
     "name": "Read Later",
     "version": "1.0",
-    "description": "Read current page later.",
-    "permissions": ["tabs", "storage"],
+    "description": "Read current tab or selected link later.",
+    "permissions": ["tabs", "storage", "contextMenus"],
     "background": {
       "scripts": ["background.js"],
       "persistent": false
     },
     "browser_action": {
       "default_popup": "popup.html",
-      "default_icon": "images/read-later-48.png"
+      "default_icon": "images/read-later-48.png",
+      "default_title": "Read Later"
     },
     "icons": {
       "16": "images/read-later-16.png",
