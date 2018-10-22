@@ -17,7 +17,9 @@ function addToReadingList() {
   });
 }
 
-chrome.contextMenus.create({"title": "Read later", "contexts": ["link"], "id": "read-later"});
+chrome.runtime.onInstalled.addListener(function() {
+  chrome.contextMenus.create({"title": "Read later", "contexts": ["link"], "id": "read-later"});
+});
 
 chrome.commands.onCommand.addListener(function(command) {
   if (command === "read-later") {
