@@ -35,7 +35,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   document.getElementById('reading-list').addEventListener("click", function (e) {
-    chrome.storage.sync.remove(e.target.href);
+    if (e.target.tagName === "A") {
+      chrome.storage.sync.remove(e.target.href);
+    }
   });
 
   document.getElementById('clear').addEventListener('click', function () {
