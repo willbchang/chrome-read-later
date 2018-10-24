@@ -29,6 +29,10 @@ chrome.commands.onCommand.addListener(function(command) {
 
 chrome.contextMenus.onClicked.addListener(function (info) {
   if (info.menuItemId === "read-later") {
-    connectToPopup(info.linkUrl, info.selectionText);
+    chrome.storage.sync.get([info.linkUrl], function(link) {
+      if (typeof link[info.linkUrl] === 'undefined') {
+        connectToPopup(info.linkUrl, info.selectionText);
+      }
+    });
   }
 });
