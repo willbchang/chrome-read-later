@@ -1,6 +1,6 @@
   {
     "name": "Read Later",
-    "version": "1.0",
+    "version": "1.1.0",
     "description": "Read current tab or selected link later.",
     "permissions": ["tabs", "storage", "contextMenus"],
     "background": {
@@ -22,7 +22,7 @@
       "read-later": {
         "description": "Add to reading list.",
         "suggested_key": {
-          "default": "Alt+Shift+L"
+          "default": "Alt+Shift+S"
         }
       }
     },

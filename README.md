@@ -19,10 +19,7 @@ A Chrome extension focuses on reading later, rather than closing and removing.
 - **Clear**: A button to remove all the links.
 
 ## Installation
-0. Download this repo.
-1. Go to `chrome://extensions/`
-2. Open Developer mode.
-3. Drag the folder to the extensions page.
+- Download and install `Chrome-Read-Later.crx` in newest [release](https://github.com/Will-B-Chang/Chrome-Read-Later/releases).
 
 ## LICENSE
 MIT.
