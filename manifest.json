@@ -1,30 +1,30 @@
-  {
-    "name": "Read Later",
-    "version": "1.1.0",
-    "description": "Read current tab or selected link later.",
-    "permissions": ["tabs", "storage", "contextMenus"],
-    "background": {
-      "scripts": ["background.js"],
-      "persistent": false
-    },
-    "browser_action": {
-      "default_popup": "popup.html",
+{
+   "background": {
+      "persistent": false,
+      "scripts": [ "background.js" ]
+   },
+   "browser_action": {
       "default_icon": "images/read-later-48.png",
+      "default_popup": "popup.html",
       "default_title": "Read Later"
-    },
-    "icons": {
+   },
+   "commands": {
+      "read-later": {
+         "description": "Add to reading list.",
+         "suggested_key": {
+            "default": "Alt+Shift+S"
+         }
+      }
+   },
+   "description": "Read current tab or selected link later.",
+   "icons": {
+      "128": "images/read-later-128.png",
       "16": "images/read-later-16.png",
       "32": "images/read-later-32.png",
-      "48": "images/read-later-48.png",
-      "128": "images/read-later-128.png"
-    },
-    "commands": {
-      "read-later": {
-        "description": "Add to reading list.",
-        "suggested_key": {
-          "default": "Alt+Shift+S"
-        }
-      }
-    },
-    "manifest_version": 2
-  }
+      "48": "images/read-later-48.png"
+   },
+   "manifest_version": 2,
+   "name": "Read Later",
+   "permissions": [ "tabs", "storage", "contextMenus" ],
+   "version": "1.1.0"
+}
