@@ -28,12 +28,6 @@ loadReadingList();
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  chrome.extension.onConnect.addListener(function (port) {
-    port.onMessage.addListener(function (link) {
-      addLinkToPopup(link[0], link[1]);
-    });
-  });
-
   document.getElementById('reading-list').addEventListener("click", function (e) {
     if (e.target.tagName === "A") {
       chrome.storage.sync.remove(e.target.href);
