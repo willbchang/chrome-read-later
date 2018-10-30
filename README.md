@@ -1,3 +1,5 @@
+<p align="center"><img src="images/logotype.png" alt="Proje ismi" height="100px"></p>
+
 # Read Later
 A Chrome extension focuses on reading later, rather than closing and removing.
 
