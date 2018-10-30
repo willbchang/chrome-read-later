@@ -43,9 +43,15 @@ loadReadingList();
 document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('reading-list').addEventListener("click", function (e) {
-    if (e.target.tagName !== "A") return;
+    const href = e.target.href,
+        tag = e.target.tagName;
+
+    if (tag !== "A") return;
     get((urls, times) => {
-      const index = urls.indexOf(e.target.href);
+      const index = urls.indexOf(href);
+      if (href.includes('chrome://') || href.includes('file://')) {
+        chrome.tabs.create({url: href});
+      }
       chrome.storage.sync.remove(times[index]);
     });
   });
