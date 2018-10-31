@@ -4,7 +4,8 @@ body {
 }
 
 ul {
-  padding-left: 25px;
+  list-style: none;
+  padding: 0 15px;
 }
 
 li {
@@ -17,5 +18,12 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+img {
+  vertical-align: middle;
+  padding: 0 5px;
+  width: 16px;
+  height: 16px;
 }

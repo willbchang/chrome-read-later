@@ -1,41 +1,48 @@
-const get = function getChromeStorage(url, title, callback) {
+const get = function getChromeStorage(set, url, title, favIconUrl) {
   chrome.storage.sync.get(data => {
     for (const time in data) {
       if (data[time].url === url) return;
     }
-    callback(url, title);
+    set(url, title, favIconUrl);
   });
 };
 
-const set = function setChromeStorage(url, title) {
+const set = function setChromeStorage(url, title, favIconUrl) {
   chrome.storage.sync.set({
-    [Date.now()]: { title, url }
+    [Date.now()]: { url, title, favIconUrl }
   });
 };
 
-function addToReadingList() {
-  chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
+const query = function getTabsInfo(get, set, remove) {
+  chrome.tabs.query({'active': true, 'currentWindow': true},  tabs => {
     const url = tabs[0].url,
-        title = tabs[0].title;
+        title = tabs[0].title,
+        favIconUrl = tabs[0].favIconUrl || 'images/32x32gray.png',
+        id = tabs[0].id;
 
-    get(url, title, set);
-    chrome.tabs.remove(tabs[0].id);
+    get(set, url, title, favIconUrl);
+    remove(id);
   });
-}
+};
 
-chrome.runtime.onInstalled.addListener(function() {
+const remove = function closeCurrentTab(id) {
+  chrome.tabs.remove(id);
+};
+
+chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({"title": "Read later", "contexts": ["link"], "id": "read-later"});
 });
 
-chrome.commands.onCommand.addListener(function(command) {
-  if (command === "read-later") addToReadingList();
+chrome.commands.onCommand.addListener(command => {
+  if (command === "read-later") query(get, set, remove);
 });
 
-chrome.contextMenus.onClicked.addListener(function (info) {
+chrome.contextMenus.onClicked.addListener(info => {
   if (info.menuItemId !== "read-later") return;
 
   const url = info.linkUrl,
-      title = info.selectionText;
+      title = info.selectionText,
+      favIconUrl = 'images/32x32orange.png';
 
-  get(url, title, set);
+  get(set, url, title, favIconUrl);
 });

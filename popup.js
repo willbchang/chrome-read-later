@@ -1,21 +1,24 @@
 function loadReadingList() {
   chrome.storage.sync.get(data => {
     for (const time in data) {
-      addLinkToPopup(data[time].url, data[time].title, time);
+      addLinkToPopup(data[time].url, data[time].title, time, data[time].favIconUrl);
     }
   });
 }
 
-function addLinkToPopup(url, title, time) {
+function addLinkToPopup(url, title, time, favIconUrl) {
   const ul = document.getElementById('reading-list'),
       li = document.createElement('li'),
-      a = document.createElement('a');
+      a = document.createElement('a'),
+      img = document.createElement('img');
 
+  img.src = favIconUrl;
   a.href = url;
   a.innerText = title;
   a.target = '_blank';
   li.id = time;
 
+  li.appendChild(img);
   li.appendChild(a);
   ul.appendChild(li);
 }
@@ -39,6 +42,10 @@ document.addEventListener('DOMContentLoaded', function () {
       chrome.tabs.create({url: href});
     }
     chrome.storage.sync.remove(time);
+  });
+
+  document.querySelectorAll('img').addEventListener('error', () => {
+    this.src = 'images/32x32gray.png';
   });
 
   document.getElementById('clear').addEventListener('click', function () {

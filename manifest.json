@@ -26,5 +26,5 @@
    "manifest_version": 2,
    "name": "Read Later",
    "permissions": [ "tabs", "storage", "contextMenus" ],
-   "version": "1.2.0"
+   "version": "1.2.1"
 }
