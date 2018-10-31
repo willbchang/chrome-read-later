@@ -44,7 +44,7 @@ chrome.commands.onCommand.addListener(function(command) {
 chrome.contextMenus.onClicked.addListener(function (info) {
   if (info.menuItemId !== "read-later") return;
   get((urls) => {
-    if (!urls.includes(info.linkUrl)) return;
+    if (urls.includes(info.linkUrl)) return;
     set(info.linkUrl, info.selectionText);
   });
 });
