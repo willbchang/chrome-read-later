@@ -44,10 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.sync.remove(time);
   });
 
-  document.querySelectorAll('img').addEventListener('error', () => {
-    this.src = 'images/32x32gray.png';
-  });
-
   document.getElementById('clear').addEventListener('click', function () {
     const audio = new Audio('the-woman-says-a~.mp3');
     audio.play();
