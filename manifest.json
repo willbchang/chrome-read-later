@@ -4,7 +4,7 @@
       "scripts": [ "background.js" ]
    },
    "browser_action": {
-      "default_icon": "images/read-later-48.png",
+      "default_icon": "images/16x16orange.png",
       "default_popup": "popup.html",
       "default_title": "Read Later"
    },
@@ -18,13 +18,13 @@
    },
    "description": "Read current tab or selected link later.",
    "icons": {
-      "128": "images/read-later-128.png",
-      "16": "images/read-later-16.png",
-      "32": "images/read-later-32.png",
-      "48": "images/read-later-48.png"
+      "128": "images/128x128orange.png",
+      "16": "images/16x16orange.png",
+      "32": "images/32x32orange.png",
+      "48": "images/48x48orange.png"
    },
    "manifest_version": 2,
    "name": "Read Later",
    "permissions": [ "tabs", "storage", "contextMenus" ],
-   "version": "1.1.1"
+   "version": "1.2.0"
 }

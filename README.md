@@ -1,19 +1,6 @@
 <p align="center"><img src="images/logotype.png" alt="Proje ismi" height="100px"></p>
 
-# Read Later
 A Chrome extension focuses on reading later, rather than closing and removing.
-
-┏┳━━━━━━━━━━┓<br>
-┃┃██████████┃<br>
-┣┫██████┏━┓█┃<br>
-┃┃██████┃稍┃█┃<br>
-┣┫██████┃后┃█┃<br>
-┃┃██████┃阅┃█┃<br>
-┣┫██████┃读┃█┃<br>
-┃┃██████┗━┛█┃<br>
-┣┫██████████┃<br>
-┃┃██████████┃<br>
-┗┻━━━━━━━━━━┛
 
 ## Features
 - **Read Later**: Press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> or right click and select `Read Later` to add current tab or link in the reading list.
@@ -21,10 +8,17 @@ A Chrome extension focuses on reading later, rather than closing and removing.
 - **Clear**: A button to remove all the links.
 
 ## Installation
-0. Download `Chrome-Read-Later.crx` with the newest [release](https://github.com/Will-B-Chang/Chrome-Read-Later/releases).
-1. Go to `chrome://extensions/`
-2. Open Developer mode.
-3. Drag the extension to the extensions page.
+0. Download [Read-Later.zip](https://github.com/WillBChang/readlater/releases/latest).
+1. Move it to the safe path(you won't delete it accidentally).
+2. Go to `chrome://extensions/`
+3. Open `Developer mode`.
+4. Click `Load unpacked` and select the folder.
+
+## Contributor
+Logo Designer 
+| :---: |
+[![Yasujizr](https://avatars0.githubusercontent.com/u/36993664?s=88&v=4)](https://github.com/Yasujizr) |
+[Yasujizr](https://github.com/Yasujizr) |
 
 ## LICENSE
-MIT.
+[MIT](LICENSE)
