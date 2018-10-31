@@ -1,14 +1,10 @@
-const get = function getChromeStorage(callback) {
+const get = function getChromeStorage(url, callback) {
   chrome.storage.sync.get(data => {
-    const urls = [],times = [],  titles = [];
-
     for (const time in data) {
-      times.push(time);
-      urls.push(data[time].url);
-      titles.push(data[time].title);
+      if (data[time].url === url) return;
     }
 
-    callback(urls, times, titles);
+    callback();
   });
 };
 
@@ -22,11 +18,8 @@ function addToReadingList() {
   chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
     const url = tabs[0].url,
         title = tabs[0].title;
-    get((urls) => {
-      if (urls.includes(url)) return;
-      set(url, title);
-    });
 
+    get(url, set(url, title));
     chrome.tabs.remove(tabs[0].id);
   });
 }
@@ -36,15 +29,14 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.commands.onCommand.addListener(function(command) {
-  if (command === "read-later") {
-    addToReadingList();
-  }
+  if (command === "read-later") addToReadingList();
 });
 
 chrome.contextMenus.onClicked.addListener(function (info) {
   if (info.menuItemId !== "read-later") return;
-  get((urls) => {
-    if (urls.includes(info.linkUrl)) return;
-    set(info.linkUrl, info.selectionText);
-  });
+
+  const url = info.linkUrl,
+      title = info.selectionText;
+
+  get(url, set(url, title));
 });
