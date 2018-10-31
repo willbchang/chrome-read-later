@@ -1,10 +1,9 @@
-const get = function getChromeStorage(url, callback) {
+const get = function getChromeStorage(url, title, callback) {
   chrome.storage.sync.get(data => {
     for (const time in data) {
       if (data[time].url === url) return;
     }
-
-    callback();
+    callback(url, title);
   });
 };
 
@@ -19,7 +18,7 @@ function addToReadingList() {
     const url = tabs[0].url,
         title = tabs[0].title;
 
-    get(url, set(url, title));
+    get(url, title, set);
     chrome.tabs.remove(tabs[0].id);
   });
 }
@@ -38,5 +37,5 @@ chrome.contextMenus.onClicked.addListener(function (info) {
   const url = info.linkUrl,
       title = info.selectionText;
 
-  get(url, set(url, title));
+  get(url, title, set);
 });
