@@ -17,7 +17,7 @@ const set = function setChromeStorage(url, title, favIconUrl) {
 const query = function getTabsInfo(get, set, close) {
   chrome.tabs.query({'active': true, 'currentWindow': true},  tabs => {
     const url = tabs[0].url;
-    const title = tabs[0].title;
+    const title = tabs[0].title || url;
     const favIconUrl = tabs[0].favIconUrl || 'images/32x32gray.png';
     const id = tabs[0].id;
 

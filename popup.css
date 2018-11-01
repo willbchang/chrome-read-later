@@ -1,6 +1,7 @@
 body {
   width: 300px;
   font-size: 14px;
+  word-break: break-all;
 }
 
 ul {
