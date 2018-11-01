@@ -13,7 +13,7 @@ const set = function setChromeStorage(url, title, favIconUrl) {
   });
 };
 
-const query = function getTabsInfo(get, set, remove) {
+const query = function getTabsInfo(get, set, close) {
   chrome.tabs.query({'active': true, 'currentWindow': true},  tabs => {
     const url = tabs[0].url,
         title = tabs[0].title,
@@ -21,11 +21,11 @@ const query = function getTabsInfo(get, set, remove) {
         id = tabs[0].id;
 
     get(set, url, title, favIconUrl);
-    remove(id);
+    close(id);
   });
 };
 
-const remove = function closeCurrentTab(id) {
+const close = function closeCurrentTab(id) {
   chrome.tabs.remove(id);
 };
 
@@ -34,7 +34,7 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.commands.onCommand.addListener(command => {
-  if (command === "read-later") query(get, set, remove);
+  if (command === "read-later") query(get, set, close);
 });
 
 chrome.contextMenus.onClicked.addListener(info => {

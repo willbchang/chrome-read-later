@@ -1,12 +1,12 @@
-function loadReadingList() {
+const get =  function getChromeStorage(add) {
   chrome.storage.sync.get(data => {
     for (const time in data) {
-      addLinkToPopup(data[time].url, data[time].title, time, data[time].favIconUrl);
+      add(data[time].url, data[time].title, data[time].favIconUrl, time);
     }
   });
-}
+};
 
-function addLinkToPopup(url, title, time, favIconUrl) {
+const set = function setReadingListToPopup(url, title, favIconUrl, time) {
   const ul = document.getElementById('reading-list'),
       li = document.createElement('li'),
       a = document.createElement('a'),
@@ -21,18 +21,26 @@ function addLinkToPopup(url, title, time, favIconUrl) {
   li.appendChild(img);
   li.appendChild(a);
   ul.appendChild(li);
-}
+};
 
-function clearReadingList() {
+const clear = function clearChromeStorageAndReadingList() {
   chrome.storage.sync.clear();
   document.getElementById('reading-list').innerHTML = '';
-}
+};
 
-loadReadingList();
+const remove = function removeFromChromeStorage(time) {
+  chrome.storage.sync.remove(time);
+};
 
-document.addEventListener('DOMContentLoaded', function () {
+const play = function playAudio() {
+  const audio = new Audio('audio.mp3');
+  audio.play();
+};
 
-  document.getElementById('reading-list').addEventListener("click", function (e) {
+document.addEventListener('DOMContentLoaded', () => {
+  get(set);
+
+  document.getElementById('reading-list').addEventListener("click", e => {
     if (e.target.tagName !== "A") return;
 
     const href = e.target.href,
@@ -41,12 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (href.includes('chrome://') || href.includes('file://')) {
       chrome.tabs.create({url: href});
     }
-    chrome.storage.sync.remove(time);
+    remove(time);
   });
 
-  document.getElementById('clear').addEventListener('click', function () {
-    const audio = new Audio('the-woman-says-a~.mp3');
-    audio.play();
-    clearReadingList();
+  document.getElementById('clear').addEventListener('click', () => {
+    clear();
+    play();
   });
 }, false);
