@@ -31,7 +31,7 @@ const close = function closeCurrentTab(id) {
 };
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({ 'title': 'Read later', 'contexts': ['link'], 'id': 'read-later', });
+  chrome.contextMenus.create({ title: 'Read later', contexts: ['link'], id: 'read-later', });
 });
 
 chrome.commands.onCommand.addListener(command => {
