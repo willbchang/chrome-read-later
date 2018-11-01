@@ -3,6 +3,7 @@ const get = function getChromeStorage(set, url, title, favIconUrl) {
     for (const time in data) {
       if (data[time].url === url) return;
     }
+
     set(url, title, favIconUrl);
   });
 };
