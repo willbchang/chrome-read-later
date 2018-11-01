@@ -30,15 +30,15 @@ const close = function closeCurrentTab(id) {
 };
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({"title": "Read later", "contexts": ["link"], "id": "read-later"});
+  chrome.contextMenus.create({'title': 'Read later', 'contexts': ['link'], 'id': 'read-later'});
 });
 
 chrome.commands.onCommand.addListener(command => {
-  if (command === "read-later") query(get, set, close);
+  if (command === 'read-later') query(get, set, close);
 });
 
 chrome.contextMenus.onClicked.addListener(info => {
-  if (info.menuItemId !== "read-later") return;
+  if (info.menuItemId !== 'read-later') return;
 
   const url = info.linkUrl,
       title = info.selectionText,

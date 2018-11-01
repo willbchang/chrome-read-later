@@ -40,8 +40,8 @@ const play = function playAudio() {
 document.addEventListener('DOMContentLoaded', () => {
   get(set);
 
-  document.getElementById('reading-list').addEventListener("click", e => {
-    if (e.target.tagName !== "A") return;
+  document.getElementById('reading-list').addEventListener('click', e => {
+    if (e.target.tagName !== 'A') return;
 
     const href = e.target.href,
         time = e.target.parentNode.id;
