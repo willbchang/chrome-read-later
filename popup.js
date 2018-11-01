@@ -7,10 +7,10 @@ const get =  function getChromeStorage(add) {
 };
 
 const set = function setReadingListToPopup(url, title, favIconUrl, time) {
-  const ul = document.getElementById('reading-list'),
-      li = document.createElement('li'),
-      a = document.createElement('a'),
-      img = document.createElement('img');
+  const ul = document.getElementById('reading-list');
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  const img = document.createElement('img');
 
   img.src = favIconUrl;
   a.href = url;
@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('reading-list').addEventListener('click', e => {
     if (e.target.tagName !== 'A') return;
 
-    const href = e.target.href,
-        time = e.target.parentNode.id;
+    const href = e.target.href;
+    const time = e.target.parentNode.id;
 
     if (href.includes('chrome://') || href.includes('file://')) {
       chrome.tabs.create({url: href});

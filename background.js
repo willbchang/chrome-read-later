@@ -15,10 +15,10 @@ const set = function setChromeStorage(url, title, favIconUrl) {
 
 const query = function getTabsInfo(get, set, close) {
   chrome.tabs.query({'active': true, 'currentWindow': true},  tabs => {
-    const url = tabs[0].url,
-        title = tabs[0].title,
-        favIconUrl = tabs[0].favIconUrl || 'images/32x32gray.png',
-        id = tabs[0].id;
+    const url = tabs[0].url;
+    const title = tabs[0].title;
+    const favIconUrl = tabs[0].favIconUrl || 'images/32x32gray.png';
+    const id = tabs[0].id;
 
     get(set, url, title, favIconUrl);
     close(id);
@@ -40,9 +40,9 @@ chrome.commands.onCommand.addListener(command => {
 chrome.contextMenus.onClicked.addListener(info => {
   if (info.menuItemId !== 'read-later') return;
 
-  const url = info.linkUrl,
-      title = info.selectionText,
-      favIconUrl = 'images/32x32orange.png';
+  const url = info.linkUrl;
+  const title = info.selectionText;
+  const favIconUrl = 'images/32x32orange.png';
 
   get(set, url, title, favIconUrl);
 });
