@@ -10,7 +10,7 @@ const get = function getChromeStorage(set, url, title, favIconUrl) {
 
 const set = function setChromeStorage(url, title, favIconUrl) {
   chrome.storage.sync.set({
-    [Date.now()]: { url, title, favIconUrl }
+    [Date.now()]: { url, title, favIconUrl, }
   });
 };
 
@@ -31,7 +31,7 @@ const close = function closeCurrentTab(id) {
 };
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({ 'title': 'Read later', 'contexts': ['link'], 'id': 'read-later' });
+  chrome.contextMenus.create({ 'title': 'Read later', 'contexts': ['link'], 'id': 'read-later', });
 });
 
 chrome.commands.onCommand.addListener(command => {
