@@ -23,6 +23,10 @@ const set = function setReadingListToPopup(url, title, favIconUrl, time) {
   ul.appendChild(li);
 };
 
+const open = function openURLForLocalAccess(href) {
+  chrome.tabs.create({url: href});
+};
+
 const clear = function clearChromeStorageAndReadingList() {
   chrome.storage.sync.clear();
   document.getElementById('reading-list').innerHTML = '';
@@ -41,14 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
   get(set);
 
   document.getElementById('reading-list').addEventListener('click', e => {
-    if (e.target.tagName !== 'A') return;
+    const tag = e.target.tagName;
+    if (tag !== 'A') return;
 
     const href = e.target.href;
     const time = e.target.parentNode.id;
 
     if (href.includes('chrome://') || href.includes('file://')) {
-      chrome.tabs.create({url: href});
+      open(href);
     }
+
     remove(time);
   });
 
