@@ -46,7 +46,7 @@ chrome.contextMenus.onClicked.addListener(info => {
   if (info.menuItemId !== 'read-later') return;
 
   const url = info.linkUrl;
-  const title = info.selectionText;
+  const title = info.selectionText || url;
   const favIconUrl = 'images/32x32orange.png';
 
   get(set, url, title, favIconUrl);
