@@ -28,3 +28,10 @@ img {
   width: 16px;
   height: 16px;
 }
+
+#report-an-issue {
+  color: gray;
+  font-size: 12px;
+  float: right;
+  margin: 3px;
+}
