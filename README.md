@@ -1,4 +1,4 @@
-<p align="center"><img src="images/logotype.png" alt="Proje ismi" height="100px"></p>
+<p align="center"><img src="images/logotype.png" alt="Read Later Logo" height="150px"></p>
 
 <p align="center">A Chrome extension focuses on reading later, rather than closing and removing.</p>
 
@@ -15,6 +15,15 @@
 2. Go to `chrome://extensions/`
 3. Open `Developer mode`.
 4. Click `Load unpacked` and select the folder.
+
+## Special Usage For Mac
+<p align="center"><img src="images/BTT.png" alt="BetterTouchTool Settings"></p>
+
+>A single `R` doesn't trigger in chrome for some reason...
+
+0. Install [BetterTouchTool](https://folivora.ai/).
+1. Copy [my settings](https://gist.github.com/WillBChang/8b8bcb3c46c40792fd16dc1b76236f79) separately.
+2. Open `BetterTouchTool` and paste them to `Trackpads` separately.
 
 ## Contributor
 | Logo Designer |
