@@ -1,12 +1,12 @@
-const get =  function getChromeStorage(add) {
+const get =  function getChromeStorage(set) {
   chrome.storage.sync.get(data => {
     for (const time in data) {
-      add(data[time].url, data[time].title, data[time].favIconUrl, time);
+      set(data[time].url, data[time].title, data[time].favIconUrl, time);
     }
   });
 };
 
-const set = function setReadingListToPopup(url, title, favIconUrl, time) {
+const set = function setReadingList(url, title, favIconUrl, time) {
   const ul = document.getElementById('reading-list');
   const li = document.createElement('li');
   const a = document.createElement('a');
@@ -23,20 +23,19 @@ const set = function setReadingListToPopup(url, title, favIconUrl, time) {
   ul.appendChild(li);
 };
 
-const open = function openURLForLocalAccess(href) {
+const open = function openForAllLinks(href) {
   chrome.tabs.create({url: href});
 };
 
-const clear = function clearChromeStorageAndReadingList() {
+const clear = function clearChromeStorage() {
   chrome.storage.sync.clear();
-  window.close();
 };
 
 const remove = function removeFromChromeStorage(time) {
   chrome.storage.sync.remove(time);
 };
 
-const click = function removeCurrentOrClearAllStorage(e) {
+const click = function clickEvents(e) {
   const tag = e.target.tagName;
 
   if (tag === 'A') {
@@ -49,6 +48,7 @@ const click = function removeCurrentOrClearAllStorage(e) {
 
   if (tag === 'BUTTON') {
     clear();
+    window.close();
   }
 };
 
