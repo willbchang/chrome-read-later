@@ -29,7 +29,7 @@ const open = function openURLForLocalAccess(href) {
 
 const clear = function clearChromeStorageAndReadingList() {
   chrome.storage.sync.clear();
-  document.getElementById('reading-list').innerHTML = '';
+  window.close();
 };
 
 const remove = function removeFromChromeStorage(time) {
@@ -41,25 +41,24 @@ const play = function playAudio() {
   audio.play();
 };
 
+const click = function removeCurrentOrClearAllStorage(e) {
+  const tag = e.target.tagName;
+
+  if (tag === 'A') {
+    const id = e.target.parentNode.id;
+    const href = e.target.href;
+
+    open(href);
+    remove(id);
+  }
+
+  if (tag === 'BUTTON') {
+    play();
+    clear();
+  }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   get(set);
-
-  document.getElementById('reading-list').addEventListener('click', e => {
-    const tag = e.target.tagName;
-    if (tag !== 'A') return;
-
-    const href = e.target.href;
-    const time = e.target.parentNode.id;
-
-    if (href.includes('chrome://') || href.includes('file://')) {
-      open(href);
-    }
-
-    remove(time);
-  });
-
-  document.getElementById('clear').addEventListener('click', () => {
-    clear();
-    play();
-  });
-}, false);
+  document.onclick = click;
+});
