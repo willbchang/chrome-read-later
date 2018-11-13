@@ -36,11 +36,6 @@ const remove = function removeFromChromeStorage(time) {
   chrome.storage.sync.remove(time);
 };
 
-const play = function playAudio() {
-  const audio = new Audio('audio.mp3');
-  audio.play();
-};
-
 const click = function removeCurrentOrClearAllStorage(e) {
   const tag = e.target.tagName;
 
@@ -53,7 +48,6 @@ const click = function removeCurrentOrClearAllStorage(e) {
   }
 
   if (tag === 'BUTTON') {
-    play();
     clear();
   }
 };
