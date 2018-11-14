@@ -20,7 +20,9 @@ const tab = function getCurrentTab() {
     const title = tabs[0].title || url;
     const favIconUrl = tabs[0].favIconUrl || 'images/32x32gray.png';
     const id = tabs[0].id;
+    const newTab = 'chrome://newtab/';
 
+    if (url === newTab) return;
     check(url, title, favIconUrl);
     close(id);
   });
