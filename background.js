@@ -1,4 +1,4 @@
-const get = function getChromeStorage(set, url, title, favIconUrl) {
+const check = function checkDuplicateURL(url, title, favIconUrl) {
   chrome.storage.sync.get(data => {
     for (const time in data) {
       if (data[time].url === url) return;
@@ -14,14 +14,14 @@ const set = function setChromeStorage(url, title, favIconUrl) {
   });
 };
 
-const query = function getTabsInfo(get, set, close) {
+const tab = function getCurrentTab() {
   chrome.tabs.query({'active': true, 'currentWindow': true},  tabs => {
     const url = tabs[0].url;
     const title = tabs[0].title || url;
     const favIconUrl = tabs[0].favIconUrl || 'images/32x32gray.png';
     const id = tabs[0].id;
 
-    get(set, url, title, favIconUrl);
+    check(url, title, favIconUrl);
     close(id);
   });
 };
@@ -43,7 +43,7 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.commands.onCommand.addListener(command => {
-  if (command === 'read-later') query(get, set, close);
+  if (command === 'read-later') tab();
 });
 
 chrome.contextMenus.onClicked.addListener(info => {
@@ -53,5 +53,5 @@ chrome.contextMenus.onClicked.addListener(info => {
   const title = info.selectionText || url;
   const favIconUrl = 'images/32x32orange.png';
 
-  get(set, url, title, favIconUrl);
+  check(url, title, favIconUrl);
 });
