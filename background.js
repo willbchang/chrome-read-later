@@ -30,28 +30,27 @@ const close = function closeCurrentTab(id) {
   chrome.tabs.remove(id);
 };
 
-const click = function rightClickLinkAddToReadingList() {
+const click = function rightClickLinkAddToReadingList(info, tab) {
+  const url = info.linkUrl;
+  const title = info.selectionText || url;
+  const favIconUrl = tab.favIconUrl || 'images/32x32orange.png';
+
+  check(url, title, favIconUrl);
+};
+
+chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     title: 'Read later',
     contexts: ['link'],
     id: 'read-later',
   });
-};
-
-chrome.runtime.onInstalled.addListener(() => {
-  click();
 });
 
 chrome.commands.onCommand.addListener(command => {
   if (command === 'read-later') tab();
 });
 
-chrome.contextMenus.onClicked.addListener(info => {
+chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId !== 'read-later') return;
-
-  const url = info.linkUrl;
-  const title = info.selectionText || url;
-  const favIconUrl = 'images/32x32orange.png';
-
-  check(url, title, favIconUrl);
+  click(info, tab);
 });
