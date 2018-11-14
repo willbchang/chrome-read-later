@@ -24,9 +24,20 @@ const tab = function getCurrentTab() {
 
     if (url === newTab) return;
     check(url, title, favIconUrl);
-    close(id);
+    final(id, newTab);
   });
 };
+
+const final = function updateToNewTabForFinalTab(id, newTab) {
+  chrome.tabs.query({}, tabs => {
+    if (tabs.length === 1 ) {
+      chrome.tabs.update(id, {url: newTab});
+    } else {
+      close(id);
+    }
+  });
+};
+
 
 const close = function closeCurrentTab(id) {
   chrome.tabs.remove(id);
