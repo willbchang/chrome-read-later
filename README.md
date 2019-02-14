@@ -9,6 +9,16 @@
 - **Clear**: A button to remove all the links.
 - **Favicon**: Add sites' favicon in front of the reading list.
 
+## TODO
+- [ ] Refactor
+- Feature
+  - [ ] get website position
+    - reload current page if position in bottom
+  - [ ] get/set video/audio time
+  - [ ] replace website icon with delete button when mouse hove
+- Bug
+  - [ ] `javascript:void()` in link
+
 ## Installation
 0. Download [Read-Later.zip](https://github.com/WillBChang/readlater/releases/latest) from releases.
 1. Move it to the safe path(you won't delete it accidentally).
