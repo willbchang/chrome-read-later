@@ -2,7 +2,7 @@
 
 <p align="center">A Chrome extension focuses on reading later, rather than closing and removing.</p>
 
-## Features & Usage
+## Features
 - **Shortcut**: Press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> to add current tab in the reading list.
 - **Right Click**: Right click(not in the search bar) the link and choose `Read Later` to add it to the reading list.
 - **No delete or close**: The tab will be closed when you add it, the link will be removed when you click it.
@@ -15,7 +15,7 @@
   - [ ] get website position
     - reload current page if position in bottom
   - [ ] get/set video/audio time
-  - [ ] replace website icon with delete button when mouse hove
+  - [ ] replace website icon with delete button when mouse hover
 - Bug
   - [ ] `javascript:void()` in link
 
@@ -26,14 +26,6 @@
 3. Open `Developer mode`.
 4. Click `Load unpacked` and select the folder.
 
-## Special Usage For Mac
-<p align="center"><img src="images/BTT.png" alt="BetterTouchTool Settings"></p>
-
->A single `R` doesn't trigger in chrome for some reason...
-
-0. Install [BetterTouchTool](https://folivora.ai/).
-1. Copy [my settings](https://gist.github.com/WillBChang/8b8bcb3c46c40792fd16dc1b76236f79) separately.
-2. Open `BetterTouchTool` and paste them to `Trackpads` separately.
 
 ## Contributor
 | Logo Designer |
