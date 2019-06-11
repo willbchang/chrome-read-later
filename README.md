@@ -1,31 +1,49 @@
-<p align="center"><img src="images/logotype.png" alt="Read Later Logo" height="150px"></p>
+<p align="center">
+  <img src="images/logotype.png" alt="Read Later Logo" height="150px">
+</p>
 
-<p align="center">A Chrome extension focuses on reading later, rather than closing and removing.</p>
-
-## Features
-- **Shortcut**: Press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> to add current tab in the reading list.
-- **Right Click**: Right click(not in the search bar) the link and choose `Read Later` to add it to the reading list.
-- **No delete or close**: The tab will be closed when you add it, the link will be removed when you click it.
-- **Clear**: A button to remove all the links.
-- **Favicon**: Add sites' favicon in front of the reading list.
-
-## TODO
-- [ ] Refactor
-- Feature
-  - [ ] get website position
-    - reload current page if position in bottom
-  - [ ] get/set video/audio time
-  - [ ] replace website icon with delete button when mouse hover
-- Bug
-  - [ ] `javascript:void()` in link
+<p align="center">  
+  A Chrome extension focuses on reading later, rather than closing and removing.
+</p>
 
 ## Installation
-0. Download [Read-Later.zip](https://github.com/WillBChang/readlater/releases/latest) from releases.
-1. Move it to the safe path(you won't delete it accidentally).
-2. Go to `chrome://extensions/`
-3. Open `Developer mode`.
-4. Click `Load unpacked` and select the folder.
+I haven't publish it to chrome store yet!
+1. Download [Read-Later.zip](https://github.com/WillBChang/readlater/releases/latest) from releases.
+2. Move it to the safe path(you won't delete it accidentally).
+3. Go to `chrome://extensions/`
+4. Open `Developer mode`.
+5. Click `Load unpacked` and select the folder.
 
+## Usages
+I'll refactor the code before 2019/12/13.
+### **Temporary** Reading List
+<kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>s</kbd>
+- [x] Save by hotkey will close current tab.
+  - [x] Avoid duplicated url.
+  - [ ] Check whether url is available.
+  - [x] Add websites' favicon in front of the reading list.
+  - [ ] Get current time of video/audio.
+- [x] Click list item will remove it from the reading list.
+  - [x] Load from current empty tab
+  - [ ] A delete icon will appear when cursor is hovering a favicon.
+  - [ ] Set stored time of video/audio.
+- [x] Right Click link and select read later to save(not in the search bar)
+
+### Permament Reading List
+ <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>c</kbd>
+- [ ] Collect without closing tab.
+- [ ] Click without removing from reading list.
+- [ ] ⭐️: convert list item bewteen temporary and permanent.
+- [ ] 🕹: switch reading list bewteen temporary and permanent.
+- [ ] Right Click link and select read later to save (not in the search bar)
+
+
+### Zoom Out Reading list
+<kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>z</kbd>
+
+- You need to config it on your own for now, from `chrome://extensions/shortcuts`. I'll set it as default laterly. 
+- Browse list items by <kbd>tab</kbd>.
+- Use <kbd>enter</kbd> to open selected item.
 
 ## Contributor
 | Logo Designer |
