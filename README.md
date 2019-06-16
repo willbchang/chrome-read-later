@@ -29,15 +29,6 @@ I'll refactor the code before 2019/12/13.
   - [ ] Set stored time of video/audio.
 - [x] Right Click link and select read later to save(not in the search bar)
 
-### Permament Reading List
- <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>c</kbd>
-- [ ] Collect without closing tab.
-- [ ] Click without removing from reading list.
-- [ ] ⭐️: convert list item bewteen temporary and permanent.
-- [ ] 🕹: switch reading list bewteen temporary and permanent.
-- [ ] Right Click link and select read later to save (not in the search bar)
-
-
 ### Zoom Out Reading list
 <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>z</kbd>
 
