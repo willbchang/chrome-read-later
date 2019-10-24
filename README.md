@@ -44,6 +44,7 @@ or
 
 ```
 npm install --save @types/chrome
+npm install --save @types/jquery
 ```
 
 ## Contributor
