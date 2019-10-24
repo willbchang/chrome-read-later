@@ -36,6 +36,16 @@ I'll refactor the code before 2019/12/13.
 - Browse list items by <kbd>tab</kbd>.
 - Use <kbd>enter</kbd> to open selected item.
 
+## Dependencies
+```
+npm install
+```
+or
+
+```
+npm install --save @types/chrome
+```
+
 ## Contributor
 | Logo Designer |
 | :---: |
