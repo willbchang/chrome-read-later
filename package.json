@@ -1,0 +1,25 @@
+{
+  "name": "chrome-read-later",
+  "version": "1.0.0",
+  "description": "A Chrome extension focuses on reading later, rather than closing and removing.",
+  "main": "popup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willbchang/chrome-read-later.git"
+  },
+  "keywords": [
+    "chrome-extension"
+  ],
+  "author": "Will B Chang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/willbchang/chrome-read-later/issues"
+  },
+  "homepage": "https://github.com/willbchang/chrome-read-later#readme",
+  "dependencies": {
+    "@types/chrome": "0.0.91"
+  }
+}
