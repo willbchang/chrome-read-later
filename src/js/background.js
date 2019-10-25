@@ -10,7 +10,7 @@ const check = function checkDuplicateURL(url, title, favIconUrl) {
 };
 
 const set = function setChromeStorage(url, title, favIconUrl) {
-  chrome.storage.sync.set({
+  storage.set({
     [Date.now()]: { url, title, favIconUrl, }
   });
 };
