@@ -1,11 +1,5 @@
 import * as storage from "./storage.js";
 
-const check = function checkDuplicateURL(url, title, favIconUrl) {
-  storage.filter(url, () => {
-    set(url, title, favIconUrl);
-  });
-};
-
 const set = function setChromeStorage(url, title, favIconUrl) {
   storage.set({
     [Date.now()]: { url, title, favIconUrl, }
@@ -21,7 +15,9 @@ const tab = function getCurrentTab() {
     const newTab = 'chrome://newtab/';
 
     if (url === newTab) return;
-    check(url, title, favIconUrl);
+    storage.filter(url, () => {
+      set(url, title, favIconUrl);
+    });
     final(id, newTab);
   });
 };
@@ -46,7 +42,9 @@ const click = function rightClickLinkAddToReadingList(info, tab) {
   const title = info.selectionText || url;
   const favIconUrl = tab.favIconUrl || 'src/images/32x32orange.png';
 
-  check(url, title, favIconUrl);
+  storage.filter(url, () => {
+    set(url, title, favIconUrl);
+  });
 };
 
 chrome.runtime.onInstalled.addListener(() => {
