@@ -2,20 +2,20 @@ function get(callback) {
   chrome.storage.sync.get(callback)
 }
 
-function set(data) {
-  chrome.storage.sync.set(data)
+function set(page) {
+  chrome.storage.sync.set(page)
 }
 
-function has(data, url) {
-  return Object.values(data).map(x => x.url).includes(url)
+function has(pages, url) {
+  return Object.values(pages).map(x => x.url).includes(url)
 }
 
 function filter(url, set) {
-  get((data) => { if (!has(data, url)) set() })
+  get((pages) => { if (!has(pages, url)) set() })
 }
 
-function uniqueSet(data) {
-  filter(Object.values(data)[0].url, () => { set(data) })
+function uniqueSet(page) {
+  filter(Object.values(page)[0].url, () => { set(page) })
 }
 
 export { get, set, uniqueSet }
