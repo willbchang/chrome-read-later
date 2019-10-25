@@ -6,16 +6,19 @@ function set(page) {
   chrome.storage.sync.set(page)
 }
 
-function has(pages, url) {
-  return Object.values(pages).map(x => x.url).includes(url)
+function has(pages, page) {
+  return Object.values(pages).map(x => x.url)
+  .includes(Object.values(page)[0].url)
 }
 
-function filter(url, set) {
-  get((pages) => { if (!has(pages, url)) set() })
+function filter(page, set) {
+  get((pages) => {
+    if (!has(pages, page)) set()
+  })
 }
 
 function uniqueSet(page) {
-  filter(Object.values(page)[0].url, () => { set(page) })
+  filter(page, () => { set(page) })
 }
 
 export { get, set, uniqueSet }
