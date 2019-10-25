@@ -1,7 +1,8 @@
 import * as storage from "./storage.js";
+import * as tabs from "./tabs.js";
 
 const tab = function getCurrentTab() {
-  chrome.tabs.query({ 'active': true, 'currentWindow': true }, tabs => {
+  tabs.query({ 'active': true, 'currentWindow': true }, tabs => {
     const url = tabs[0].url;
     const pageInfo = {
       url: url,
@@ -18,7 +19,7 @@ const tab = function getCurrentTab() {
 };
 
 const final = function updateToNewTabForFinalTab(id, newTab) {
-  chrome.tabs.query({}, tabs => {
+  tabs.query({}, tabs => {
     if (tabs.length === 1) {
       chrome.tabs.update(id, { url: newTab });
     } else {
