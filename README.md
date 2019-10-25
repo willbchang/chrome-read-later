@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/logotype.png" alt="Read Later Logo" height="150px">
+  <img src="src/images/logotype.png" alt="Read Later Logo" height="150px">
 </p>
 
 <p align="center">  

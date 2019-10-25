@@ -3,7 +3,6 @@ const check = function checkDuplicateURL(url, title, favIconUrl) {
     for (const time in data) {
       if (data[time].url === url) return;
     }
-
     set(url, title, favIconUrl);
   });
 };
@@ -18,7 +17,7 @@ const tab = function getCurrentTab() {
   chrome.tabs.query({'active': true, 'currentWindow': true},  tabs => {
     const url = tabs[0].url;
     const title = tabs[0].title || url;
-    const favIconUrl = tabs[0].favIconUrl || 'images/32x32gray.png';
+    const favIconUrl = tabs[0].favIconUrl || 'src/images/32x32gray.png';
     const id = tabs[0].id;
     const newTab = 'chrome://newtab/';
 
@@ -46,7 +45,7 @@ const close = function closeCurrentTab(id) {
 const click = function rightClickLinkAddToReadingList(info, tab) {
   const url = info.linkUrl;
   const title = info.selectionText || url;
-  const favIconUrl = tab.favIconUrl || 'images/32x32orange.png';
+  const favIconUrl = tab.favIconUrl || 'src/images/32x32orange.png';
 
   check(url, title, favIconUrl);
 };
