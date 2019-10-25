@@ -2,25 +2,25 @@ import * as storage from "./storage.js";
 import * as tabs from "./tabs.js";
 
 const tab = function getCurrentTab() {
-  tabs.query({ 'active': true, 'currentWindow': true }, tabs => {
-    const url = tabs[0].url;
+  tabs.query({ 'active': true, 'currentWindow': true }, aTabs => {
+    const url = aTabs[0].url;
     const pageInfo = {
       url: url,
-      title: tabs[0].title || url,
-      favIconUrl: tabs[0].favIconUrl || 'src/images/32x32gray.png',
+      title: aTabs[0].title || url,
+      favIconUrl: aTabs[0].favIconUrl || 'src/images/32x32gray.png',
     }
 
     if (url === 'chrome://newtab/') return;
     storage.uniqueSet({
       [Date.now()]: { pageInfo }
     });
-    final(tabs[0].id, 'chrome://newtab/');
+    final(aTabs[0].id, 'chrome://newtab/');
   });
 };
 
 const final = function updateToNewTabForFinalTab(id, newTab) {
-  tabs.query({}, tabs => {
-    if (tabs.length === 1) {
+  tabs.query({}, aTabs => {
+    if (aTabs.length === 1) {
       chrome.tabs.update(id, { url: newTab });
     } else {
       close(id);
