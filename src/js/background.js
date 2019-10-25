@@ -2,9 +2,7 @@ import * as storage from "./storage.js";
 
 const check = function checkDuplicateURL(url, title, favIconUrl) {
   storage.get(data => {
-    for (const time in data) {
-      if (data[time].url === url) return;
-    }
+    if (Object.values(data).map(x => x.url).includes(url)) return;
     set(url, title, favIconUrl);
   });
 };
