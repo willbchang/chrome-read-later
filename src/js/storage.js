@@ -15,7 +15,7 @@ function filter(url, set) {
 }
 
 function uniqueSet(data) {
-  filter(data.url, () => { set(data) })
+  filter(Object.values(data)[0].url, () => { set(data) })
 }
 
 export { get, set, uniqueSet }

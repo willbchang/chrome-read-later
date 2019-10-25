@@ -3,17 +3,8 @@ import * as tabs from "./tabs.js";
 
 const tab = function getCurrentTab() {
   tabs.query({ 'active': true, 'currentWindow': true }, aTabs => {
-    const url = aTabs[0].url;
-    const pageInfo = {
-      url: url,
-      title: aTabs[0].title || url,
-      favIconUrl: aTabs[0].favIconUrl || 'src/images/32x32gray.png',
-    }
-
-    if (url === 'chrome://newtab/') return;
-    storage.uniqueSet({
-      [Date.now()]: { pageInfo }
-    });
+    if (aTabs[0].url === 'chrome://newtab/') return;
+    storage.uniqueSet(tabs.get(aTabs[0]));
     final(aTabs[0].id, 'chrome://newtab/');
   });
 };

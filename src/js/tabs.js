@@ -12,4 +12,4 @@ function get(tab) {
   }
 }
 
-export { query }
+export { query, get }
