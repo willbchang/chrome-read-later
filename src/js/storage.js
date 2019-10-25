@@ -11,14 +11,10 @@ function has(pages, page) {
   .includes(Object.values(page)[0].url)
 }
 
-function filter(page, set) {
-  get((pages) => {
-    if (!has(pages, page)) set()
-  })
-}
-
 function uniqueSet(page) {
-  filter(page, () => { set(page) })
+  get((pages) => {
+    if (!has(pages, page)) set(page)
+  })
 }
 
 export { get, set, uniqueSet }
