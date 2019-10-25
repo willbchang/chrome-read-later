@@ -1,5 +1,7 @@
+import * as storage from "./storage.js";
+
 const get =  function getChromeStorage(set) {
-  chrome.storage.sync.get(data => {
+  storage.get(data => {
     for (const time in data) {
       set(data[time].url, data[time].title, data[time].favIconUrl, time);
     }

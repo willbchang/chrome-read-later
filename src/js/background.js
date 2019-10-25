@@ -1,5 +1,7 @@
+import * as storage from "./storage.js";
+
 const check = function checkDuplicateURL(url, title, favIconUrl) {
-  chrome.storage.sync.get(data => {
+  storage.get(data => {
     for (const time in data) {
       if (data[time].url === url) return;
     }
