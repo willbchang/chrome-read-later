@@ -10,10 +10,8 @@ const tab = function getCurrentTab() {
     }
 
     if (url === 'chrome://newtab/') return;
-    storage.filter(url, () => {
-      storage.set({
-        [Date.now()]: { pageInfo }
-      });
+    storage.uniqueSet({
+      [Date.now()]: { pageInfo }
     });
     final(tabs[0].id, 'chrome://newtab/');
   });
@@ -41,10 +39,8 @@ const click = function rightClickLinkAddToReadingList(info, tab) {
     favIconUrl: tab.favIconUrl || 'src/images/32x32orange.png'
   }
 
-  storage.filter(info.linkUrl, () => {
-    storage.set({
-      [Date.now()]: { pageInfo }
-    });
+  storage.uniqueSet({
+    [Date.now()]: { pageInfo }
   });
 };
 

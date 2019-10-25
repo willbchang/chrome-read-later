@@ -14,4 +14,8 @@ function filter(url, set) {
   get((data) => { if (!has(data, url)) set() })
 }
 
-export { get, set, filter }
+function uniqueSet(data) {
+  filter(data.url, () => { set(data) })
+}
+
+export { get, set, uniqueSet }
