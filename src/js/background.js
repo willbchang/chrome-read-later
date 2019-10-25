@@ -1,11 +1,5 @@
 import * as storage from "./storage.js";
 
-const set = function setChromeStorage(pageInfo) {
-  storage.set({
-    [Date.now()]: { pageInfo }
-  });
-};
-
 const tab = function getCurrentTab() {
   chrome.tabs.query({ 'active': true, 'currentWindow': true }, tabs => {
     const url = tabs[0].url;
@@ -17,7 +11,9 @@ const tab = function getCurrentTab() {
 
     if (url === 'chrome://newtab/') return;
     storage.filter(url, () => {
-      set(pageInfo);
+      storage.set({
+        [Date.now()]: { pageInfo }
+      });
     });
     final(tabs[0].id, 'chrome://newtab/');
   });
