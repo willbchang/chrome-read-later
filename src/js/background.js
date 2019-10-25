@@ -1,31 +1,32 @@
 import * as storage from "./storage.js";
 
-const set = function setChromeStorage(url, title, favIconUrl) {
+const set = function setChromeStorage(pageInfo) {
   storage.set({
-    [Date.now()]: { url, title, favIconUrl, }
+    [Date.now()]: { pageInfo }
   });
 };
 
 const tab = function getCurrentTab() {
-  chrome.tabs.query({'active': true, 'currentWindow': true},  tabs => {
+  chrome.tabs.query({ 'active': true, 'currentWindow': true }, tabs => {
     const url = tabs[0].url;
-    const title = tabs[0].title || url;
-    const favIconUrl = tabs[0].favIconUrl || 'src/images/32x32gray.png';
-    const id = tabs[0].id;
-    const newTab = 'chrome://newtab/';
+    const pageInfo = {
+      url: url,
+      title: tabs[0].title || url,
+      favIconUrl: tabs[0].favIconUrl || 'src/images/32x32gray.png',
+    }
 
-    if (url === newTab) return;
+    if (url === 'chrome://newtab/') return;
     storage.filter(url, () => {
-      set(url, title, favIconUrl);
+      set(pageInfo);
     });
-    final(id, newTab);
+    final(tabs[0].id, 'chrome://newtab/');
   });
 };
 
 const final = function updateToNewTabForFinalTab(id, newTab) {
   chrome.tabs.query({}, tabs => {
-    if (tabs.length === 1 ) {
-      chrome.tabs.update(id, {url: newTab});
+    if (tabs.length === 1) {
+      chrome.tabs.update(id, { url: newTab });
     } else {
       close(id);
     }
@@ -38,12 +39,16 @@ const close = function closeCurrentTab(id) {
 };
 
 const click = function rightClickLinkAddToReadingList(info, tab) {
-  const url = info.linkUrl;
-  const title = info.selectionText || url;
-  const favIconUrl = tab.favIconUrl || 'src/images/32x32orange.png';
+  const pageInfo = {
+    url: info.linkUrl,
+    title: info.selectionText || url,
+    favIconUrl: tab.favIconUrl || 'src/images/32x32orange.png'
+  }
 
-  storage.filter(url, () => {
-    set(url, title, favIconUrl);
+  storage.filter(info.linkUrl, () => {
+    storage.set({
+      [Date.now()]: { pageInfo }
+    });
   });
 };
 
