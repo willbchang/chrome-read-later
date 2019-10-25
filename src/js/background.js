@@ -1,8 +1,7 @@
 import * as storage from "./storage.js";
 
 const check = function checkDuplicateURL(url, title, favIconUrl) {
-  storage.get(data => {
-    if (storage.has(data, url)) return;
+  storage.filter(url, () => {
     set(url, title, favIconUrl);
   });
 };

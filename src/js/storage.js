@@ -10,4 +10,8 @@ function has(data, url) {
   return Object.values(data).map(x => x.url).includes(url)
 }
 
-export { get, set, has }
+function filter(url, set) {
+  get((data) => { if (!has(data, url)) set() })
+}
+
+export { get, set, filter }
