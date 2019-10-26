@@ -30,11 +30,8 @@ const click = function clickEvents(e) {
   const tag = e.target.tagName
 
   if (tag === 'A') {
-    const id = e.target.parentNode.id
-    const href = e.target.href
-
-    tabs.create(href)
-    storage.remove(id)
+    tabs.create(e.target.href)
+    storage.remove(e.target.parentNode.id)
   }
 
   if (tag === 'BUTTON') {
