@@ -2,4 +2,8 @@ function onInstalled(callback) {
   chrome.runtime.onInstalled.addListener(callback)
 }
 
-export { onInstalled }
+function onCommand(callback) {
+  chrome.commands.onCommand.addListener(callback)
+}
+
+export { onInstalled, onCommand }

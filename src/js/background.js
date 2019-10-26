@@ -12,7 +12,7 @@ event.onInstalled(() => {
   });
 });
 
-chrome.commands.onCommand.addListener(command => {
+event.onCommand(() => {
   if (command === 'read-later') {
     tabs.current(aTab => {
       if (aTab.isEmpty()) return;
