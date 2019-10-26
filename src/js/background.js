@@ -1,5 +1,7 @@
 import * as storage from "./storage.js";
 import * as tabs from "./tabs.js";
+import * as page from "./page.js";
+
 
 const tab = function getCurrentTab() {
   tabs.query({ 'active': true, 'currentWindow': true }, aTabs => {
@@ -25,15 +27,7 @@ const close = function closeCurrentTab(id) {
 };
 
 const click = function rightClickLinkAddToReadingList(info, tab) {
-  const pageInfo = {
-    url: info.linkUrl,
-    title: info.selectionText || url,
-    favIconUrl: tab.favIconUrl || 'src/images/32x32orange.png'
-  }
-
-  storage.uniqueSet({
-    [Date.now()]: { pageInfo }
-  });
+  storage.uniqueSet(page.get(info, tab));
 };
 
 chrome.runtime.onInstalled.addListener(() => {
