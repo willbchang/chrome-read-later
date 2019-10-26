@@ -2,8 +2,9 @@ import "./prototype.js";
 import * as storage from "./storage.js";
 import * as tabs from "./tabs.js";
 import * as page from "./page.js";
+import * as event from "./event.js";
 
-chrome.runtime.onInstalled.addListener(() => {
+event.onInstalled(() => {
   chrome.contextMenus.create({
     title: 'Read later',
     contexts: ['link'],
