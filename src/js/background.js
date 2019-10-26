@@ -1,4 +1,3 @@
-import "./prototype.js";
 import * as storage from "./storage.js";
 import * as tabs from "./tabs.js";
 import * as page from "./page.js";
@@ -8,7 +7,7 @@ event.setContextMenus();
 
 event.onCommand(() => {
   tabs.current(tab => {
-    if (tab.isEmpty()) return;
+    if (tabs.isEmpty(tab)) return;
     storage.uniqueSet(tabs.get(tab));
     tabs.set(tab)
   });

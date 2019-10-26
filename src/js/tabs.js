@@ -14,6 +14,10 @@ function empty(tab) {
   update(tab.id, 'chrome://newtab/')
 }
 
+function isEmpty(tab) {
+  return tab.url === 'chrome://newtab/'
+}
+
 function current(callback) {
   const queryInfo = {
     'active': true,
@@ -44,4 +48,4 @@ function set(tab) {
   });
 }
 
-export { current, get, set }
+export { current, get, set, isEmpty }
