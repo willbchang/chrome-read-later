@@ -2,15 +2,6 @@ import * as storage from "./storage.js";
 import * as tabs from "./tabs.js";
 import * as page from "./page.js";
 
-
-const tab = function getCurrentTab() {
-  tabs.current(aTab => {
-    if (aTab.url === 'chrome://newtab/') return;
-    storage.uniqueSet(tabs.get(aTab));
-    final(aTab.id, 'chrome://newtab/');
-  });
-};
-
 const final = function updateToNewTabForFinalTab(id, newTab) {
   tabs.all(aTabs => {
     if (aTabs.length === 1) {
@@ -35,7 +26,13 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.commands.onCommand.addListener(command => {
-  if (command === 'read-later') tab();
+  if (command === 'read-later') {
+    tabs.current(aTab => {
+      if (aTab.url === 'chrome://newtab/') return;
+      storage.uniqueSet(tabs.get(aTab));
+      final(aTab.id, 'chrome://newtab/');
+    });
+  }
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
