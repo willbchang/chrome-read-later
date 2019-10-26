@@ -7,10 +7,10 @@ import * as event from "./event.js";
 event.setContextMenus();
 
 event.onCommand(() => {
-  tabs.current(aTab => {
-    if (aTab.isEmpty()) return;
-    storage.uniqueSet(tabs.get(aTab));
-    tabs.set(aTab)
+  tabs.current(tab => {
+    if (tab.isEmpty()) return;
+    storage.uniqueSet(tabs.get(tab));
+    tabs.set(tab)
   });
 });
 
