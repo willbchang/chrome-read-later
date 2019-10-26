@@ -8,14 +8,9 @@ const final = function updateToNewTabForFinalTab(id, newTab) {
     if (aTabs.length === 1) {
       chrome.tabs.update(id, { url: newTab });
     } else {
-      close(id);
+      tabs.remove(id);
     }
   });
-};
-
-
-const close = function closeCurrentTab(id) {
-  chrome.tabs.remove(id);
 };
 
 chrome.runtime.onInstalled.addListener(() => {

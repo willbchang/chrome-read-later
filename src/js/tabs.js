@@ -2,6 +2,10 @@ function query(queryInfo, callback) {
   chrome.tabs.query(queryInfo, callback)
 }
 
+function remove(id) {
+  chrome.tabs.remove(id);
+}
+
 function current(callback) {
   const queryInfo = {
     'active': true,
@@ -26,4 +30,4 @@ function get(tab) {
   }
 }
 
-export { query, current, all, get }
+export { query, remove, current, all, get }
