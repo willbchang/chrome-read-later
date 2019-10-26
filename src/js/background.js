@@ -4,10 +4,10 @@ import * as page from "./page.js";
 
 
 const tab = function getCurrentTab() {
-  tabs.current(aTabs => {
-    if (aTabs[0].url === 'chrome://newtab/') return;
-    storage.uniqueSet(tabs.get(aTabs[0]));
-    final(aTabs[0].id, 'chrome://newtab/');
+  tabs.current(aTab => {
+    if (aTab.url === 'chrome://newtab/') return;
+    storage.uniqueSet(tabs.get(aTab));
+    final(aTab.id, 'chrome://newtab/');
   });
 };
 
