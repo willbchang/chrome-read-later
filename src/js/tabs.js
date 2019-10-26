@@ -2,6 +2,10 @@ function query(queryInfo, callback) {
   chrome.tabs.query(queryInfo, callback)
 }
 
+function update(id, aUrl) {
+  chrome.tabs.update(id, { url: aUrl })
+}
+
 function remove(id) {
   chrome.tabs.remove(id);
 }
@@ -30,4 +34,4 @@ function get(tab) {
   }
 }
 
-export { query, remove, current, all, get }
+export { query, update, remove, current, all, get }

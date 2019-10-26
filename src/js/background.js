@@ -6,7 +6,7 @@ import * as page from "./page.js";
 const final = function updateToNewTabForFinalTab(id, newTab) {
   tabs.all(aTabs => {
     if (aTabs.length === 1) {
-      chrome.tabs.update(id, { url: newTab });
+      tabs.update(id, newTab);
     } else {
       tabs.remove(id);
     }
