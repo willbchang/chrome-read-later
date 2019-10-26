@@ -1,6 +1,11 @@
 import * as storage from "./storage.js"
 import * as tabs from "./tabs.js"
 
+$(() => {
+  get(set)
+  document.onclick = click
+})
+
 const get = function getChromeStorage(set) {
   storage.get(data => {
     for (const time in data) {
@@ -31,7 +36,3 @@ const click = function clickEvents(e) {
     window.close()
   }
 }
-$(() => {
-  get(set)
-  document.onclick = click
-})
