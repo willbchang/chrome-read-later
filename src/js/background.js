@@ -26,10 +26,6 @@ const close = function closeCurrentTab(id) {
   chrome.tabs.remove(id);
 };
 
-const click = function rightClickLinkAddToReadingList(info, tab) {
-  storage.uniqueSet(page.get(info, tab));
-};
-
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     title: 'Read later',
@@ -44,5 +40,5 @@ chrome.commands.onCommand.addListener(command => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId !== 'read-later') return;
-  click(info, tab);
+  storage.uniqueSet(page.get(info, tab));
 });
