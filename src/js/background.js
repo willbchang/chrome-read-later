@@ -5,11 +5,7 @@ import * as page from "./page.js";
 
 const final = function updateToNewTabForFinalTab(id, newTab) {
   tabs.all(aTabs => {
-    if (aTabs.length === 1) {
-      tabs.update(id, newTab);
-    } else {
-      tabs.remove(id);
-    }
+    aTabs.length === 1 ? tabs.update(id, newTab) : tabs.remove(id);
   });
 };
 
