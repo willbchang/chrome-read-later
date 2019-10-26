@@ -9,16 +9,16 @@ $(() => {
 function setReadingList() {
   storage.get(data => {
     for (const time in data) {
-      append(data[time].url, data[time].title, data[time].favIconUrl, time)
+      append(data[time])
     }
   })
 }
 
-function append(url, title, favIconUrl, time) {
+function append(data) {
   $("ul").append(`
     <li>
-      <img src = ${favIconUrl}>
-      <a href="${url}" target="_blank">${title}</a>
+      <img src = ${data.favIconUrl}>
+      <a href="${data.url}" target="_blank">${data.title}</a>
     </li>
   `)
 }
