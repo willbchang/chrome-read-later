@@ -19,8 +19,8 @@ function current(callback) {
     'active': true,
     'currentWindow': true
   }
-  query(queryInfo, (aTabs) => {
-    callback(aTabs[0]);
+  query(queryInfo, (tabs) => {
+    callback(tabs[0]);
   })
 }
 
@@ -39,8 +39,8 @@ function get(tab) {
 }
 
 function set(tab) {
-  all(aTabs => {
-    aTabs.length === 1 ? stayEmpty(tab) : remove(tab)
+  all(tabs => {
+    tabs.length === 1 ? stayEmpty(tab) : remove(tab)
   });
 }
 
