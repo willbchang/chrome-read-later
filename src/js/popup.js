@@ -30,10 +30,6 @@ const clear = function clearChromeStorage() {
   chrome.storage.sync.clear()
 }
 
-const remove = function removeFromChromeStorage(time) {
-  chrome.storage.sync.remove(time)
-}
-
 const click = function clickEvents(e) {
   const tag = e.target.tagName
 
@@ -42,7 +38,7 @@ const click = function clickEvents(e) {
     const href = e.target.href
 
     tabs.create(href)
-    remove(id)
+    storage.remove(id)
   }
 
   if (tag === 'BUTTON') {

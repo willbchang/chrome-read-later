@@ -6,6 +6,10 @@ function set(page) {
   chrome.storage.sync.set(page)
 }
 
+function remove(time) {
+  chrome.storage.sync.remove(time)
+}
+
 function has(pages, page) {
   return Object.values(pages).map(x => x.url)
   .includes(Object.values(page)[0].url)
@@ -17,4 +21,4 @@ function uniqueSet(page) {
   })
 }
 
-export { get, set, uniqueSet }
+export { get, set, remove, uniqueSet }
