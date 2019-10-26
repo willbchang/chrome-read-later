@@ -1,7 +1,7 @@
 import * as storage from "./storage.js"
 import * as tabs from "./tabs.js"
 
-const get =  function getChromeStorage(set) {
+const get = function getChromeStorage(set) {
   storage.get(data => {
     for (const time in data) {
       set(data[time].url, data[time].title, data[time].favIconUrl, time)
@@ -10,20 +10,12 @@ const get =  function getChromeStorage(set) {
 }
 
 const set = function setReadingList(url, title, favIconUrl, time) {
-  const ul = document.getElementById('reading-list')
-  const li = document.createElement('li')
-  const a = document.createElement('a')
-  const img = document.createElement('img')
-
-  img.src = favIconUrl
-  a.href = url
-  a.innerText = title
-  a.target = '_blank'
-  li.id = time
-
-  li.appendChild(img)
-  li.appendChild(a)
-  ul.appendChild(li)
+  $("ul").append(`
+    <li>
+      <img src = ${favIconUrl}>
+      <a href="${url}" target="_blank">${title}</a>
+    </li>
+  `)
 }
 
 const click = function clickEvents(e) {
