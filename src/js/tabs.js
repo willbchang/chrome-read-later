@@ -12,6 +12,10 @@ function current(callback) {
   })
 }
 
+function all(callback) {
+  query({}, callback)
+}
+
 function isEmpty(tab) {
   return tab.url === 'chrome://newtab/'
 }
@@ -26,4 +30,4 @@ function get(tab) {
   }
 }
 
-export { query, current, get, isEmpty }
+export { query, current, all, get, isEmpty }

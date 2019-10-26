@@ -12,7 +12,7 @@ const tab = function getCurrentTab() {
 };
 
 const final = function updateToNewTabForFinalTab(id, newTab) {
-  tabs.query({}, aTabs => {
+  tabs.all(aTabs => {
     if (aTabs.length === 1) {
       chrome.tabs.update(id, { url: newTab });
     } else {
