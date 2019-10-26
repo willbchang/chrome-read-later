@@ -2,16 +2,16 @@ function query(queryInfo, callback) {
   chrome.tabs.query(queryInfo, callback)
 }
 
-function update(id, aUrl) {
-  chrome.tabs.update(id, { url: aUrl })
+function update(tab, aUrl) {
+  chrome.tabs.update(tab.id, { url: aUrl })
 }
 
-function remove(id) {
-  chrome.tabs.remove(id);
+function remove(tab) {
+  chrome.tabs.remove(tab.id);
 }
 
-function stayEmpty(id) {
-  update(id, 'chrome://newtab/')
+function stayEmpty(tab) {
+  update(tab.id, 'chrome://newtab/')
 }
 
 function current(callback) {
@@ -38,9 +38,9 @@ function get(tab) {
   }
 }
 
-function set(id) {
+function set(tab) {
   all(aTabs => {
-    aTabs.length === 1 ? stayEmpty(id) : remove(id)
+    aTabs.length === 1 ? stayEmpty(tab) : remove(tab)
   });
 }
 

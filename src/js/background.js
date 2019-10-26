@@ -10,7 +10,7 @@ event.onCommand(() => {
   tabs.current(aTab => {
     if (aTab.isEmpty()) return;
     storage.uniqueSet(tabs.get(aTab));
-    tabs.set(aTab.id)
+    tabs.set(aTab)
   });
 });
 
