@@ -4,13 +4,7 @@ import * as tabs from "./tabs.js";
 import * as page from "./page.js";
 import * as event from "./event.js";
 
-event.onInstalled(() => {
-  chrome.contextMenus.create({
-    title: 'Read later',
-    contexts: ['link'],
-    id: 'read-later',
-  });
-});
+event.setContextMenus();
 
 event.onCommand(() => {
   if (command === 'read-later') {
