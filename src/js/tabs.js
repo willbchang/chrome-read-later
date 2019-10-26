@@ -38,4 +38,10 @@ function get(tab) {
   }
 }
 
-export { query, remove, current, all, get, stayEmpty }
+function set(id) {
+  all(aTabs => {
+    aTabs.length === 1 ? stayEmpty(id) : remove(id)
+  });
+}
+
+export { query, remove, current, all, get, set, stayEmpty }

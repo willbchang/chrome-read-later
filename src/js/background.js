@@ -3,12 +3,6 @@ import * as storage from "./storage.js";
 import * as tabs from "./tabs.js";
 import * as page from "./page.js";
 
-function updateTab(id) {
-  tabs.all(aTabs => {
-    aTabs.length === 1 ? tabs.stayEmpty(id) : tabs.remove(id)
-  });
-};
-
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     title: 'Read later',
@@ -22,7 +16,7 @@ chrome.commands.onCommand.addListener(command => {
     tabs.current(aTab => {
       if (aTab.isEmpty()) return;
       storage.uniqueSet(tabs.get(aTab));
-      updateTab(aTab.id)
+      tabs.set(aTab.id)
     });
   }
 });
