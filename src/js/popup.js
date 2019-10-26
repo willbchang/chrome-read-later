@@ -26,10 +26,6 @@ const set = function setReadingList(url, title, favIconUrl, time) {
   ul.appendChild(li)
 }
 
-const clear = function clearChromeStorage() {
-  chrome.storage.sync.clear()
-}
-
 const click = function clickEvents(e) {
   const tag = e.target.tagName
 
@@ -42,7 +38,7 @@ const click = function clickEvents(e) {
   }
 
   if (tag === 'BUTTON') {
-    clear()
+    storage.clear()
     window.close()
   }
 }
