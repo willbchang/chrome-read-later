@@ -10,7 +10,7 @@ function remove(tab) {
   chrome.tabs.remove(tab.id);
 }
 
-function stayEmpty(tab) {
+function empty(tab) {
   update(tab.id, 'chrome://newtab/')
 }
 
@@ -40,8 +40,8 @@ function get(tab) {
 
 function set(tab) {
   all(tabs => {
-    tabs.length === 1 ? stayEmpty(tab) : remove(tab)
+    tabs.length === 1 ? empty(tab) : remove(tab)
   });
 }
 
-export { query, remove, current, all, get, set, stayEmpty }
+export { query, remove, current, all, get, set, empty }
