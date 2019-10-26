@@ -5,8 +5,7 @@ import * as page from "./page.js";
 
 function updateTab(id) {
   tabs.all(aTabs => {
-    aTabs.length === 1 ?
-      tabs.update(id, 'chrome://newtab/') : tabs.remove(id)
+    aTabs.length === 1 ? tabs.stayEmpty(id) : tabs.remove(id)
   });
 };
 

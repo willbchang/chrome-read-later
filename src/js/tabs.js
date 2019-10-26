@@ -10,6 +10,10 @@ function remove(id) {
   chrome.tabs.remove(id);
 }
 
+function stayEmpty(id) {
+  update(id, 'chrome://newtab/')
+}
+
 function current(callback) {
   const queryInfo = {
     'active': true,
@@ -34,4 +38,4 @@ function get(tab) {
   }
 }
 
-export { query, update, remove, current, all, get }
+export { query, remove, current, all, get, stayEmpty }
