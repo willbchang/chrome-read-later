@@ -7,18 +7,18 @@ $(() => {
 })
 
 function setReadingList() {
-  storage.get(data => {
-    for (const time in data) {
-      append(data[time])
+  storage.get(pages => {
+    for (const time in pages) {
+      append(pages[time])
     }
   })
 }
 
-function append(data) {
+function append(page) {
   $("ul").append(`
     <li>
-      <img src = ${data.favIconUrl}>
-      <a href="${data.url}" target="_blank">${data.title}</a>
+      <img src = ${page.favIconUrl}>
+      <a href="${page.url}" target="_blank">${page.title}</a>
     </li>
   `)
 }
