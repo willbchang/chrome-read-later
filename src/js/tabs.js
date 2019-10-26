@@ -2,6 +2,16 @@ function query(queryInfo, callback) {
   chrome.tabs.query(queryInfo, callback)
 }
 
+function current(callback) {
+  const queryInfo = {
+    'active': true,
+    'currentWindow': true
+  }
+  query(queryInfo, (aTabs) => {
+    callback(aTabs[0]);
+  })
+}
+
 function get(tab) {
   return {
     [Date.now()]: {
@@ -12,4 +22,4 @@ function get(tab) {
   }
 }
 
-export { query, get }
+export { query, current, get }

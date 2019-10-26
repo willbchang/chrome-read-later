@@ -4,7 +4,7 @@ import * as page from "./page.js";
 
 
 const tab = function getCurrentTab() {
-  tabs.query({ 'active': true, 'currentWindow': true }, aTabs => {
+  tabs.current(aTabs => {
     if (aTabs[0].url === 'chrome://newtab/') return;
     storage.uniqueSet(tabs.get(aTabs[0]));
     final(aTabs[0].id, 'chrome://newtab/');
