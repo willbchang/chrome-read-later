@@ -6,4 +6,8 @@ function onCommand(callback) {
   chrome.commands.onCommand.addListener(callback)
 }
 
-export { onInstalled, onCommand }
+function onClicked(callback) {
+  chrome.contextMenus.onClicked.addListener(callback)
+}
+
+export { onInstalled, onCommand, onClicked }

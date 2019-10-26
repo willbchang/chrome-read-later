@@ -22,7 +22,7 @@ event.onCommand(() => {
   }
 });
 
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+event.onClicked((info, tab) => {
   if (info.menuItemId !== 'read-later') return;
   storage.uniqueSet(page.get(info, tab));
 });
