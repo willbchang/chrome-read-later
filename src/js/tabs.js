@@ -37,7 +37,7 @@ function get(tab) {
     [Date.now()]: {
       url: tab.url,
       title: tab.title || tab.url,
-      favIconUrl: tab.favIconUrl || 'src/images/32x32gray.png',
+      favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
     }
   }
 }
