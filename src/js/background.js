@@ -3,9 +3,10 @@ import * as storage from "./storage.js";
 import * as tabs from "./tabs.js";
 import * as page from "./page.js";
 
-const final = function updateToNewTabForFinalTab(id, newTab) {
+function updateTab(id) {
   tabs.all(aTabs => {
-    aTabs.length === 1 ? tabs.update(id, newTab) : tabs.remove(id);
+    aTabs.length === 1 ?
+      tabs.update(id, 'chrome://newtab/') : tabs.remove(id)
   });
 };
 
@@ -22,7 +23,7 @@ chrome.commands.onCommand.addListener(command => {
     tabs.current(aTab => {
       if (aTab.isEmpty()) return;
       storage.uniqueSet(tabs.get(aTab));
-      final(aTab.id, 'chrome://newtab/');
+      updateTab(aTab.id)
     });
   }
 });
