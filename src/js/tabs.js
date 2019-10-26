@@ -44,4 +44,4 @@ function set(tab) {
   });
 }
 
-export { query, remove, current, all, get, set, empty }
+export { current, get, set }
