@@ -16,10 +16,6 @@ function all(callback) {
   query({}, callback)
 }
 
-function isEmpty(tab) {
-  return tab.url === 'chrome://newtab/'
-}
-
 function get(tab) {
   return {
     [Date.now()]: {
@@ -30,4 +26,4 @@ function get(tab) {
   }
 }
 
-export { query, current, all, get, isEmpty }
+export { query, current, all, get }

@@ -1,3 +1,4 @@
+import "./prototype.js";
 import * as storage from "./storage.js";
 import * as tabs from "./tabs.js";
 import * as page from "./page.js";
@@ -28,7 +29,7 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.commands.onCommand.addListener(command => {
   if (command === 'read-later') {
     tabs.current(aTab => {
-      if (aTab.url === 'chrome://newtab/') return;
+      if (aTab.isEmpty()) return;
       storage.uniqueSet(tabs.get(aTab));
       final(aTab.id, 'chrome://newtab/');
     });
