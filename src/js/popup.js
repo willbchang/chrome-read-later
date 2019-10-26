@@ -2,19 +2,19 @@ import * as storage from "./storage.js"
 import * as tabs from "./tabs.js"
 
 $(() => {
-  get(set)
+  get()
   document.onclick = click
 })
 
-const get = function getChromeStorage(set) {
+const get = function getChromeStorage() {
   storage.get(data => {
     for (const time in data) {
-      set(data[time].url, data[time].title, data[time].favIconUrl, time)
+      append(data[time].url, data[time].title, data[time].favIconUrl, time)
     }
   })
 }
 
-const set = function setReadingList(url, title, favIconUrl, time) {
+function append(url, title, favIconUrl, time) {
   $("ul").append(`
     <li>
       <img src = ${favIconUrl}>
