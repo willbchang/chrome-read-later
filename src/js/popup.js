@@ -1,4 +1,5 @@
 import * as storage from "./storage.js"
+import * as tabs from "./tabs.js"
 
 const get =  function getChromeStorage(set) {
   storage.get(data => {
@@ -25,10 +26,6 @@ const set = function setReadingList(url, title, favIconUrl, time) {
   ul.appendChild(li)
 }
 
-const open = function openForAllLinks(href) {
-  chrome.tabs.create({url: href})
-}
-
 const clear = function clearChromeStorage() {
   chrome.storage.sync.clear()
 }
@@ -44,7 +41,7 @@ const click = function clickEvents(e) {
     const id = e.target.parentNode.id
     const href = e.target.href
 
-    open(href)
+    tabs.create(href)
     remove(id)
   }
 

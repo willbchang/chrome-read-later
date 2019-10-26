@@ -6,6 +6,10 @@ function update(tab, url) {
   chrome.tabs.update(tab.id, { "url": url })
 }
 
+function create(href) {
+  chrome.tabs.create({ url: href })
+}
+
 function remove(tab) {
   chrome.tabs.remove(tab.id);
 }
@@ -48,4 +52,4 @@ function set(tab) {
   });
 }
 
-export { current, get, set, isEmpty }
+export { current, get, set, create, isEmpty }
