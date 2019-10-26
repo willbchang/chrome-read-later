@@ -31,8 +31,7 @@ const click = function clickEvents(e) {
     window.close()
   }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
+$(() => {
   get(set)
   document.onclick = click
 })
