@@ -1,5 +1,5 @@
-import * as storage from "./storage.js"
-import * as tabs from "./tabs.js"
+import * as storage from "../modules/storage.js"
+import * as tabs from "../modules/tabs.js"
 
 $(() => {
   setReadingList()

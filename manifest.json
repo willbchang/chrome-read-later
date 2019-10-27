@@ -1,11 +1,11 @@
 {
    "background": {
       "persistent": false,
-      "page": "src/html/background.html"
+      "page": "background/index.html"
    },
    "browser_action": {
-      "default_icon": "src/images/32x32orange.png",
-      "default_popup": "src/html/popup.html",
+      "default_icon": "images/32x32orange.png",
+      "default_popup": "popup/index.html",
       "default_title": "Read Later"
    },
    "commands": {
@@ -18,10 +18,10 @@
    },
    "description": "Read current tab or selected link later.",
    "icons": {
-      "128": "src/images/128x128orange.png",
-      "16": "src/images/16x16orange.png",
-      "32": "src/images/32x32orange.png",
-      "48": "src/images/48x48orange.png"
+      "128": "images/128x128orange.png",
+      "16": "images/16x16orange.png",
+      "32": "images/32x32orange.png",
+      "48": "images/48x48orange.png"
    },
    "manifest_version": 2,
    "name": "Read Later",

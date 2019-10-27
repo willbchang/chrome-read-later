@@ -16,7 +16,7 @@ function clear() {
 
 function has(pages, page) {
   return Object.values(pages).map(x => x.url)
-  .includes(Object.values(page)[0].url)
+    .includes(Object.values(page)[0].url)
 }
 
 function uniqueSet(page) {
