@@ -9,14 +9,14 @@ $(() => {
 function setReadingList() {
   storage.get(pages => {
     for (const time in pages) {
-      append(pages[time])
+      append(time, pages[time])
     }
   })
 }
 
-function append(page) {
+function append(time, page) {
   $("ul").append(`
-    <li>
+    <li id=${time}>
       <img src = ${page.favIconUrl}>
       <a href="${page.url}" target="_blank">${page.title}</a>
     </li>
