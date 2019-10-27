@@ -8,7 +8,7 @@ event.setContextMenus()
 event.onCommand(() => {
   tabs.current(tab => {
     if (tabs.isEmpty(tab)) return
-    storage.uniqueSet(tabs.get(tab))
+    storage.uniqueSet(tabs.getInfo(tab))
     tabs.set(tab)
   })
 })

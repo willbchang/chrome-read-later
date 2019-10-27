@@ -36,7 +36,7 @@ function all(callback) {
   query({}, callback)
 }
 
-function get(tab) {
+function getInfo(tab) {
   return {
     [Date.now()]: {
       url: tab.url,
@@ -52,4 +52,4 @@ function set(tab) {
   });
 }
 
-export { current, get, set, create, isEmpty }
+export { current, getInfo, set, create, isEmpty }
