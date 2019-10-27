@@ -3,7 +3,15 @@ import * as tabs from "./tabs.js"
 
 $(() => {
   setReadingList()
-  document.onclick = click
+  $("ul").on("click", "a", (e) => {
+    tabs.create(e.target.href)
+    storage.remove(e.target.parentNode.id)
+  })
+
+  $("button").on("click", () => {
+    storage.clear()
+    window.close()
+  })
 })
 
 function setReadingList() {
@@ -21,18 +29,4 @@ function append(time, page) {
       <a href="${page.url}" target="_blank">${page.title}</a>
     </li>
   `)
-}
-
-const click = function clickEvents(e) {
-  const tag = e.target.tagName
-
-  if (tag === 'A') {
-    tabs.create(e.target.href)
-    storage.remove(e.target.parentNode.id)
-  }
-
-  if (tag === 'BUTTON') {
-    storage.clear()
-    window.close()
-  }
 }
