@@ -9,7 +9,7 @@ event.onCommand(() => {
   tabs.current(tab => {
     if (tabs.isEmpty(tab)) return
     storage.uniqueSet(tabs.getInfo(tab))
-    tabs.set(tab)
+    tabs.emptyOrRemove(tab)
   })
 })
 

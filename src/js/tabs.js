@@ -46,10 +46,10 @@ function getInfo(tab) {
   }
 }
 
-function set(tab) {
+function emptyOrRemove(tab) {
   all(tabs => {
     tabs.length === 1 ? empty(tab) : remove(tab)
   });
 }
 
-export { current, getInfo, set, create, isEmpty }
+export { current, getInfo, emptyOrRemove, create, isEmpty }
