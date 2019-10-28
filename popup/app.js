@@ -10,6 +10,8 @@ $(() => {
     window.close();
   })
 
+  setIconOnMouseChanged();
+
   $("button").on("click", () => {
     storage.clear()
     window.close()
@@ -40,4 +42,17 @@ function openReadingList(e) {
   tabs.current(tab => {
     tab.isEmpty() ? tabs.update(tab, e.target.href) : tabs.create(e.target.href)
   })
+}
+
+function setIconOnMouseChanged() {
+  let src;
+  $(document).on({
+    mouseenter: (e) => {
+      src = $(e.target).attr('src');
+      $(e.target).attr('src', "../images/32x32delete.png");
+    },
+    mouseleave: (e) => {
+      $(e.target).attr("src", src);
+    }
+  }, "img");
 }
