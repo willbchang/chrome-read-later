@@ -32,20 +32,10 @@ function all(callback) {
   query({}, callback)
 }
 
-function getInfo(tab) {
-  return {
-    [Date.now()]: {
-      url: tab.url,
-      title: tab.title || tab.url,
-      favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
-    }
-  }
-}
-
 function setEmptyOrRemove(tab) {
   all(tabs => {
     tabs.length === 1 ? empty(tab) : remove(tab)
   });
 }
 
-export { current, getInfo, setEmptyOrRemove, create }
+export { current, setEmptyOrRemove, create }

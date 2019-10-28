@@ -9,7 +9,7 @@ event.setContextMenus()
 event.onCommand(() => {
   tabs.current(tab => {
     if (tab.isEmpty()) return
-    storage.setUnique(tabs.getInfo(tab))
+    storage.setUnique(tab.getInfo())
     tabs.setEmptyOrRemove(tab)
   })
 })
