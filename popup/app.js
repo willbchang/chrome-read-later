@@ -2,7 +2,7 @@ import "../modules/tab.prototype.js"
 import * as storage from "../modules/storage.js"
 import * as tabs from "../modules/tabs.js"
 
-setReadingList()
+appendReadingListToHtml()
 $(() => {
   clickLinkToUpdateTabAndStorage()
   hoverMouseToChangeIcon()
@@ -10,7 +10,7 @@ $(() => {
   clickButtonToReset()
 })
 
-function setReadingList() {
+function appendReadingListToHtml() {
   storage.get(pages => {
     for (const time in pages) {
       append(time, pages[time])
