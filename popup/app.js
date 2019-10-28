@@ -13,12 +13,12 @@ $(() => {
 function appendReadingListToHtml() {
   storage.get(pages => {
     for (const time in pages) {
-      append(time, pages[time])
+      setReadigList(time, pages[time])
     }
   })
 }
 
-function append(time, page) {
+function setReadigList(time, page) {
   $("ul").append(`
     <li id=${time}>
       <img src="${page.favIconUrl}">
