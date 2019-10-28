@@ -14,13 +14,13 @@ export function clear() {
   chrome.storage.sync.clear()
 }
 
-export function has(pages, page) {
-  return Object.values(pages).map(x => x.url)
-    .includes(Object.values(page)[0].url)
-}
-
 export function setUnique(page) {
   get((pages) => {
     if (!has(pages, page)) set(page)
   })
+
+  function has(pages, page) {
+    return Object.values(pages).map(x => x.url)
+      .includes(Object.values(page)[0].url)
+  }
 }
