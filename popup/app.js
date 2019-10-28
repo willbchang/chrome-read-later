@@ -12,11 +12,7 @@ $(() => {
 
   setIconOnMouseChanged()
   clickIconToDelete()
-
-  $("button").on("click", () => {
-    storage.clear()
-    window.close()
-  })
+  clickButtonToReset()
 })
 
 function setReadingList() {
@@ -62,5 +58,12 @@ function clickIconToDelete() {
   $("img").on("click", (e) => {
     $(e.target.parentNode).remove()
     storage.remove(e.target.parentNode.id)
+  })
+}
+
+function clickButtonToReset() {
+  $("button").on("click", () => {
+    storage.clear()
+    window.close()
   })
 }
