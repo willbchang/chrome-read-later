@@ -27,7 +27,7 @@ function setReadingList() {
 function append(time, page) {
   $("ul").append(`
     <li id=${time}>
-      <img src = ${page.favIconUrl}>
+      <img src="${page.favIconUrl}">
       <a href="${page.url}" target="_blank">${page.title}</a>
     </li>
   `)
