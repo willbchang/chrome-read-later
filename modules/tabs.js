@@ -1,24 +1,24 @@
-function query(queryInfo, callback) {
+export function query(queryInfo, callback) {
   chrome.tabs.query(queryInfo, callback)
 }
 
-function update(tab, href) {
+export function update(tab, href) {
   chrome.tabs.update(tab.id, { url: href })
 }
 
-function create(href) {
+export function create(href) {
   chrome.tabs.create({ url: href })
 }
 
-function remove(tab) {
+export function remove(tab) {
   chrome.tabs.remove(tab.id);
 }
 
-function empty(tab) {
+export function empty(tab) {
   update(tab.id, 'chrome://newtab/')
 }
 
-function current(callback) {
+export function current(callback) {
   const queryInfo = {
     'active': true,
     'currentWindow': true
@@ -27,5 +27,3 @@ function current(callback) {
     callback(tabs[0]);
   })
 }
-
-export { query, current, create, empty, remove }

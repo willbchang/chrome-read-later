@@ -1,4 +1,4 @@
-function get(info, tab) {
+export function get(info, tab) {
   return {
     [Date.now()]: {
       url: info.linkUrl,
@@ -7,5 +7,3 @@ function get(info, tab) {
     }
   }
 }
-
-export { get }

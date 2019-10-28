@@ -1,16 +1,16 @@
-function onInstalled(callback) {
+export function onInstalled(callback) {
   chrome.runtime.onInstalled.addListener(callback)
 }
 
-function onCommand(callback) {
+export function onCommand(callback) {
   chrome.commands.onCommand.addListener(callback)
 }
 
-function onClicked(callback) {
+export function onClicked(callback) {
   chrome.contextMenus.onClicked.addListener(callback)
 }
 
-function setContextMenus() {
+export function setContextMenus() {
   onInstalled(() => {
     chrome.contextMenus.create({
       title: 'Read later',
@@ -19,5 +19,3 @@ function setContextMenus() {
     });
   });
 }
-
-export { onCommand, onClicked, setContextMenus }
