@@ -1,4 +1,4 @@
-export function get(selection, tab) {
+export function getInfo(selection, tab) {
   return {
     [Date.now()]: {
       url: selection.linkUrl,

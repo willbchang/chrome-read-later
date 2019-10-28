@@ -21,5 +21,5 @@ extension.onCommand(() => {
 })
 
 extension.onClicked((selection, tab) => {
-  storage.setUnique(page.get(selection, tab))
+  storage.setUnique(page.getInfo(selection, tab))
 })
