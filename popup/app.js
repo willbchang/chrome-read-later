@@ -2,8 +2,8 @@ import "../modules/tab.prototype.js";
 import * as storage from "../modules/storage.js"
 import * as tabs from "../modules/tabs.js"
 
+setReadingList()
 $(() => {
-  setReadingList()
   $("ul").on("click", "a", (e) => {
     openReadingList(e)
     storage.remove(e.target.parentNode.id)
