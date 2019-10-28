@@ -28,11 +28,4 @@ function current(callback) {
   })
 }
 
-function setEmptyOrRemove(tab) {
-  // query all tabs with {}
-  query({}, tabs => {
-    tabs.length === 1 ? empty(tab) : remove(tab)
-  });
-}
-
-export { current, setEmptyOrRemove, create }
+export { query, current, create, empty, remove }

@@ -10,7 +10,7 @@ event.onCommand(() => {
   tabs.current(tab => {
     if (tab.isEmpty()) return
     storage.setUnique(tab.getInfo())
-    tabs.setEmptyOrRemove(tab)
+    tab.setEmptyOrRemove()
   })
 })
 
