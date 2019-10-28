@@ -20,7 +20,7 @@ export function setUnique(page) {
   })
 
   function has(pages, page) {
-    return Object.values(pages).map(x => x.url)
+    return Object.values(pages).map(aPage => aPage.url)
       .includes(Object.values(page)[0].url)
   }
 }
