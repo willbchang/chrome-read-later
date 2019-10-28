@@ -1,7 +1,7 @@
-import * as storage from "./modules/storage.js"
-import * as tabs from "./modules/tabs.js"
-import * as page from "./modules/page.js"
-import * as event from "./modules/event.js"
+import * as storage from "../modules/storage.js"
+import * as tabs from "../modules/tabs.js"
+import * as page from "../modules/page.js"
+import * as event from "../modules/event.js"
 
 event.setContextMenus()
 
