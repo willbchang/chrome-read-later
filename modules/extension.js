@@ -10,9 +10,13 @@ export function onClicked(callback) {
   chrome.contextMenus.onClicked.addListener(callback)
 }
 
+export function createContextMenus(settings) {
+  chrome.contextMenus.create(settings)
+}
+
 export function setContextMenus() {
   onInstalled(() => {
-    chrome.contextMenus.create({
+    createContextMenus({
       title: 'Read later',
       contexts: ['link'],
       id: 'read-later',
