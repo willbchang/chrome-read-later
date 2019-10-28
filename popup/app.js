@@ -11,6 +11,7 @@ $(() => {
   })
 
   setIconOnMouseChanged();
+  clickIconToDelete()
 
   $("button").on("click", () => {
     storage.clear()
@@ -55,4 +56,11 @@ function setIconOnMouseChanged() {
       $(e.target).attr("src", src);
     }
   }, "img");
+}
+
+function clickIconToDelete() {
+  $("img").on("click", (e) => {
+    $(e.target.parentNode).remove()
+    storage.remove(e.target.parentNode.id)
+  })
 }
