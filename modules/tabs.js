@@ -11,7 +11,7 @@ export function create(href) {
 }
 
 export function remove(tab) {
-  chrome.tabs.remove(tab.id);
+  chrome.tabs.remove(tab.id)
 }
 
 export function empty(tab) {
@@ -24,6 +24,6 @@ export function current(callback) {
     'currentWindow': true
   }
   query(queryInfo, (tabs) => {
-    callback(tabs[0]);
+    callback(tabs[0])
   })
 }

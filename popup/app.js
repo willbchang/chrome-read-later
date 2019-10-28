@@ -1,4 +1,4 @@
-import "../modules/tab.prototype.js";
+import "../modules/tab.prototype.js"
 import * as storage from "../modules/storage.js"
 import * as tabs from "../modules/tabs.js"
 
@@ -7,10 +7,10 @@ $(() => {
   $("ul").on("click", "a", (e) => {
     openReadingList(e)
     storage.remove(e.target.parentNode.id)
-    window.close();
+    window.close()
   })
 
-  setIconOnMouseChanged();
+  setIconOnMouseChanged()
   clickIconToDelete()
 
   $("button").on("click", () => {
@@ -46,16 +46,16 @@ function openReadingList(e) {
 }
 
 function setIconOnMouseChanged() {
-  let src;
+  let src
   $(document).on({
     mouseenter: (e) => {
-      src = $(e.target).attr('src');
-      $(e.target).attr('src', "../images/32x32delete.png");
+      src = $(e.target).attr('src')
+      $(e.target).attr('src', "../images/32x32delete.png")
     },
     mouseleave: (e) => {
-      $(e.target).attr("src", src);
+      $(e.target).attr("src", src)
     }
-  }, "img");
+  }, "img")
 }
 
 function clickIconToDelete() {
