@@ -8,11 +8,11 @@ event.setContextMenus()
 event.onCommand(() => {
   tabs.current(tab => {
     if (tabs.isEmpty(tab)) return
-    storage.uniqueSet(tabs.getInfo(tab))
+    storage.setUnique(tabs.getInfo(tab))
     tabs.setEmptyOrRemove(tab)
   })
 })
 
 event.onClicked((info, tab) => {
-  storage.uniqueSet(page.get(info, tab))
+  storage.setUnique(page.get(info, tab))
 })

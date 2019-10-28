@@ -19,10 +19,10 @@ function has(pages, page) {
     .includes(Object.values(page)[0].url)
 }
 
-function uniqueSet(page) {
+function setUnique(page) {
   get((pages) => {
     if (!has(pages, page)) set(page)
   })
 }
 
-export { get, set, remove, clear, uniqueSet }
+export { get, set, remove, clear, setUnique }
