@@ -4,7 +4,13 @@ import * as tabs from "../modules/tabs.js"
 import * as page from "../modules/page.js"
 import * as extension from "../modules/extension.js"
 
-extension.setContextMenus()
+extension.onInstalled(() => {
+  extension.createContextMenus({
+    title: 'Read later',
+    contexts: ['link'],
+    id: 'read-later',
+  })
+})
 
 extension.onCommand(() => {
   tabs.current(tab => {
