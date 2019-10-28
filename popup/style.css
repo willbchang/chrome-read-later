@@ -29,6 +29,10 @@ img {
   height: 16px;
 }
 
+img:hover {
+  cursor: pointer;
+}
+
 #report-an-issue {
   color: gray;
   font-size: 12px;
