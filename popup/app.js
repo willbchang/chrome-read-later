@@ -16,15 +16,15 @@ function appendReadingListToHtml() {
       setReadigList(time, pages[time])
     }
   })
-}
 
-function setReadigList(time, page) {
-  $("ul").append(`
-    <li id=${time}>
-      <img src="${page.favIconUrl}">
-      <a href="${page.url}" target="_blank">${page.title}</a>
-    </li>
-  `)
+  function setReadigList(time, page) {
+    $("ul").append(`
+      <li id=${time}>
+        <img src="${page.favIconUrl}">
+        <a href="${page.url}" target="_blank">${page.title}</a>
+      </li>
+    `)
+  }
 }
 
 function clickLinkToUpdateTabAndStorage() {
