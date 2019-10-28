@@ -4,13 +4,8 @@ import * as tabs from "../modules/tabs.js"
 
 setReadingList()
 $(() => {
-  $("ul").on("click", "a", (e) => {
-    openReadingList(e)
-    storage.remove(e.target.parentNode.id)
-    window.close()
-  })
-
-  setIconOnMouseChanged()
+  clickLinkToUpdateTabAndStorage()
+  hoverMouseToChangeIcon()
   clickIconToDelete()
   clickButtonToReset()
 })
@@ -32,6 +27,14 @@ function append(time, page) {
   `)
 }
 
+function clickLinkToUpdateTabAndStorage() {
+  $("ul").on("click", "a", (e) => {
+    openReadingList(e)
+    storage.remove(e.target.parentNode.id)
+    window.close()
+  })
+}
+
 function openReadingList(e) {
   // disable default <a> tag action
   e.preventDefault()
@@ -41,7 +44,7 @@ function openReadingList(e) {
   })
 }
 
-function setIconOnMouseChanged() {
+function hoverMouseToChangeIcon() {
   let src
   $(document).on({
     mouseenter: (e) => {
