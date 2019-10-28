@@ -33,15 +33,15 @@ function clickLinkToUpdateTabAndStorage() {
     storage.remove(e.target.parentNode.id)
     window.close()
   })
-}
 
-function openReadingList(e) {
-  // disable default <a> tag action
-  e.preventDefault()
-  // open in current empty tab or create a new tab
-  tabs.current(tab => {
-    tab.isEmpty() ? tabs.update(tab, e.target.href) : tabs.create(e.target.href)
-  })
+  function openReadingList(e) {
+    // disable default <a> tag action
+    e.preventDefault()
+    // open in current empty tab or create a new tab
+    tabs.current(tab => {
+      tab.isEmpty() ? tabs.update(tab, e.target.href) : tabs.create(e.target.href)
+    })
+  }
 }
 
 function hoverMouseToChangeIcon() {
