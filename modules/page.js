@@ -1,8 +1,8 @@
-export function get(info, tab) {
+export function get(selection, tab) {
   return {
     [Date.now()]: {
-      url: info.linkUrl,
-      title: info.selectionText || info.linkUrl,
+      url: selection.linkUrl,
+      title: selection.selectionText || selection.linkUrl,
       favIconUrl: tab.favIconUrl || '../images/32x32orange.png',
     }
   }

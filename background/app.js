@@ -20,6 +20,6 @@ extension.onCommand(() => {
   })
 })
 
-extension.onClicked((info, tab) => {
-  storage.setUnique(page.get(info, tab))
+extension.onClicked((selection, tab) => {
+  storage.setUnique(page.get(selection, tab))
 })
