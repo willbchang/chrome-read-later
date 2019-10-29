@@ -45,7 +45,7 @@ function clickLinkToUpdateTabAndStorage() {
 }
 
 function hoverMouseToChangeIcon() {
-  let src
+  let src = ""
   $(document).on({
     mouseenter: (e) => {
       src = $(e.target).attr('src')
