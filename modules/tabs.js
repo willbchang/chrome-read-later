@@ -11,19 +11,19 @@ export function create(href) {
 }
 
 export function remove(tab) {
-  chrome.tabs.remove(tab.id);
+  chrome.tabs.remove(tab.id)
 }
 
 export function empty(tab) {
-  update(tab.id, 'chrome://newtab/')
+  update(tab.id, "chrome://newtab/")
 }
 
 export function current(callback) {
   const queryInfo = {
-    'active': true,
-    'currentWindow': true
+    "active": true,
+    "currentWindow": true
   }
   query(queryInfo, (tabs) => {
-    callback(tabs[0]);
+    callback(tabs[0])
   })
 }

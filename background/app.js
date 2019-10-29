@@ -6,9 +6,9 @@ import * as extension from "../modules/extension.js"
 
 extension.onInstalled(() => {
   extension.createContextMenus({
-    title: 'Read later',
-    contexts: ['link'],
-    id: 'read-later',
+    title: "Read later",
+    contexts: ["link"],
+    id: "read-later",
   })
 })
 

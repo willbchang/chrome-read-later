@@ -1,30 +1,34 @@
 {
-   "background": {
-      "persistent": false,
-      "page": "background/index.html"
-   },
-   "browser_action": {
-      "default_icon": "images/32x32orange.png",
-      "default_popup": "popup/index.html",
-      "default_title": "Read Later"
-   },
-   "commands": {
-      "read-later": {
-         "description": "Add to reading list",
-         "suggested_key": {
-            "default": "Alt+Shift+S"
-         }
+  "background": {
+    "persistent": false,
+    "page": "background/index.html"
+  },
+  "browser_action": {
+    "default_icon": "images/32x32orange.png",
+    "default_popup": "popup/index.html",
+    "default_title": "Read Later"
+  },
+  "commands": {
+    "read-later": {
+      "description": "Add to reading list",
+      "suggested_key": {
+        "default": "Alt+Shift+S"
       }
-   },
-   "description": "Read current tab or selected link later.",
-   "icons": {
-      "128": "images/128x128orange.png",
-      "16": "images/16x16orange.png",
-      "32": "images/32x32orange.png",
-      "48": "images/48x48orange.png"
-   },
-   "manifest_version": 2,
-   "name": "Read Later",
-   "permissions": [ "tabs", "storage", "contextMenus" ],
-   "version": "1.2.5"
+    }
+  },
+  "description": "Read current tab or selected link later.",
+  "icons": {
+    "128": "images/128x128orange.png",
+    "16": "images/16x16orange.png",
+    "32": "images/32x32orange.png",
+    "48": "images/48x48orange.png"
+  },
+  "manifest_version": 2,
+  "name": "Read Later",
+  "permissions": [
+    "tabs",
+    "storage",
+    "contextMenus"
+  ],
+  "version": "1.2.6"
 }
