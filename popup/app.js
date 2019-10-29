@@ -48,8 +48,8 @@ function hoverMouseToChangeIcon() {
   let src = ""
   $(document).on({
     mouseenter: (e) => {
-      src = $(e.target).attr('src')
-      $(e.target).attr('src', "../images/32x32delete.png")
+      src = $(e.target).attr("src")
+      $(e.target).attr("src", "../images/32x32delete.png")
     },
     mouseleave: (e) => {
       $(e.target).attr("src", src)
