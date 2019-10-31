@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/images/logotype.png" alt="Read Later Logo" height="150px">
+  <img src="images/logotype.png" alt="Read Later Logo" height="150px">
 </p>
 
 <p align="center">  
@@ -15,27 +15,45 @@ I haven't publish it to chrome store yet!
 5. Click `Load unpacked` and select the folder.
 
 ## Usages
-I'll refactor the code before 2019/12/13.
-### **Temporary** Reading List
+### Save Reading List **Temporarily**
 <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>s</kbd>
-- [x] Save by hotkey will close current tab.
+- [x] Press hotkey to save and close current tab.
   - [x] Avoid duplicated url.
-  - [ ] Check whether url is available.
+    - [ ] Check dupilicate with the last `/` in url.
+  - [ ] Avoid empty tab.
+    - [x] `chrome://newtab`
+    - [ ] `about:blank`
   - [x] Add websites' favicon in front of the reading list.
-  - [ ] Get current time of video/audio.
-- [x] Click list item will remove it from the reading list.
-  - [x] Load from current empty tab
-  - [ ] A delete icon will appear when cursor is hovering a favicon.
-  - [ ] Set stored time of video/audio.
+  - [ ] Get website scroll position.
+- [x] Click a reading list item to open it in a tab and remove from storage.
+  - [x] Load from current empty tab.
+  - [x] A delete icon will appear when cursor is hovering a favicon.
+    - [x] Click to delete.
+  - [ ] Set website scroll position.
 - [x] Right Click link and select read later to save(not in the search bar)
+  - [ ] Filter selected link in google search.
 
 ### Zoom Out Reading list
 <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>z</kbd>
-
-- You need to config it on your own for now, from `chrome://extensions/shortcuts`. I'll set it as default laterly. 
-- Browse list items by <kbd>tab</kbd>.
+- [x] Open clicked item in a tab and remove from reading list.
+  - [x] Load from current empty tab.
+  - [x] A delete icon will appear when cursor is hovering a favicon.
+    - [x] Click to delete.
+  - [ ] Set website scroll position.
+- [ ] Thin scroll bar.
+- Select items by <kbd>tab</kbd> and <kbd>shift</kbd> + <kbd>tab</kbd>.
 - Use <kbd>enter</kbd> to open selected item.
 
+<!-- ### Browse with Vim
+I'll finish this before 2020/02.
+- [ ] <kbd>j</kbd>
+- [ ] <kbd>k</kbd>
+- [ ] <kbd>d</kbd>
+  - [ ] <kbd>dd</kbd>: delete a item
+  - [ ] <kbd>d</kbd>@{num}<kbd>d</kbd>: delete x items
+- [ ] <kbd>/</kbd> search item -->
+
+You can config shortcuts from `chrome://extensions/shortcuts`
 ## Dependencies
 ```
 npm install
@@ -50,7 +68,7 @@ npm install --save @types/jquery
 ## Contributor
 | Logo Designer |
 | :---: |
-| [![Yasujizr](https://avatars0.githubusercontent.com/u/36993664?s=88&v=4)](https://github.com/Yasujizr) |
+| ![Yasujizr](https://avatars0.githubusercontent.com/u/36993664?s=88&v=4)|
 | [Yasujizr](https://github.com/Yasujizr) |
 
 ## LICENSE
