@@ -60,7 +60,7 @@ function hoverMouseToChangeIcon() {
 function clickIconToDelete() {
   $("img").on("click", (e) => {
     $(e.target.parentNode).remove()
-    storage.remove(e.target.parentNode.id)
+    storage.remove(e.target.nextElementSibling.href)
   })
 }
 
