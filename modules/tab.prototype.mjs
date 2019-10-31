@@ -10,8 +10,8 @@ Object.defineProperty(Object.prototype, "isEmpty", {
 Object.defineProperty(Object.prototype, "getInfo", {
   value: function () {
     return {
-      [Date.now()]: {
-        url: this.url,
+      [this.url]: {
+        date: Date.now(),
         title: this.title || this.url,
         favIconUrl: this.favIconUrl || "../images/32x32gray.png",
       }
