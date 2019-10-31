@@ -1,7 +1,7 @@
 {
   "background": {
     "persistent": false,
-    "page": "background/index.html"
+    "page": "background.html"
   },
   "browser_action": {
     "default_icon": "images/32x32orange.png",
