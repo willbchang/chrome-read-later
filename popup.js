@@ -13,15 +13,15 @@ $(() => {
 function appendReadingListToHtml() {
   storage.get(pages => {
     for (const url in pages) {
-      setReadigList(url, pages[url])
+      setReadigList(pages[url])
     }
   })
 
-  function setReadigList(url, page) {
+  function setReadigList(page) {
     $("ul").append(`
       <li id=${page.date}>
         <img src="${page.favIconUrl}">
-        <a href="${url}" target="_blank">${page.title}</a>
+        <a href="${page.url}" target="_blank">${page.title}</a>
       </li>
     `)
   }
