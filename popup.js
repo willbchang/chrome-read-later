@@ -12,14 +12,14 @@ $(() => {
 
 function appendReadingListToHtml() {
   storage.get(pages => {
-    for (const time in pages) {
-      setReadigList(time, pages[time])
-    }
+    Object.values(pages)
+      .sort((a, b) => a.date - b.date)
+      .map(page => setReadigList(page))
   })
 
-  function setReadigList(time, page) {
+  function setReadigList(page) {
     $("ul").append(`
-      <li id=${time}>
+      <li id=${page.date}>
         <img src="${page.favIconUrl}">
         <a href="${page.url}" target="_blank">${page.title}</a>
       </li>
@@ -60,7 +60,7 @@ function hoverMouseToChangeIcon() {
 function clickIconToDelete() {
   $("img").on("click", (e) => {
     $(e.target.parentNode).remove()
-    storage.remove(e.target.parentNode.id)
+    storage.remove(e.target.nextElementSibling.href)
   })
 }
 
