@@ -19,3 +19,11 @@ export function sendMessage(tab, callback) {
     callback(response)
   })
 }
+
+export function onMessage(response) {
+  chrome.runtime.onMessage.addListener(
+    function (request, sender, send) {
+      send(response)
+    }
+  )
+}
