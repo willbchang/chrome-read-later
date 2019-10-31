@@ -1,8 +1,8 @@
-import "./modules/tab.prototype.mjs"
-import * as storage from "./modules/storage.mjs"
-import * as tabs from "./modules/tabs.mjs"
-import * as page from "./modules/page.mjs"
-import * as extension from "./modules/extension.mjs"
+import "./modules/tab.prototype.js"
+import * as storage from "./modules/storage.js"
+import * as tabs from "./modules/tabs.js"
+import * as page from "./modules/page.js"
+import * as extension from "./modules/extension.js"
 
 extension.onInstalled(() => {
   extension.createContextMenus({

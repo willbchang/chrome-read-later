@@ -1,6 +1,6 @@
-import "./modules/tab.prototype.mjs"
-import * as storage from "./modules/storage.mjs"
-import * as tabs from "./modules/tabs.mjs"
+import "./modules/tab.prototype.js"
+import * as storage from "./modules/storage.js"
+import * as tabs from "./modules/tabs.js"
 
 appendReadingListToHtml()
 $(() => {

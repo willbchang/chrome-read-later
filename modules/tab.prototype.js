@@ -1,4 +1,4 @@
-import * as tabs from "./tabs.mjs"
+import * as tabs from "./tabs.js"
 
 // Use Object.defindeProperty to resolve confict with jQuery
 // https://stackoverflow.com/a/21730003/9984029
