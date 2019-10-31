@@ -30,7 +30,7 @@ function appendReadingListToHtml() {
 function clickLinkToUpdateTabAndStorage() {
   $("ul").on("click", "a", (e) => {
     openReadingList(e)
-    storage.remove(e.target.parentNode.id)
+    storage.remove(e.target.href)
     window.close()
   })
 
