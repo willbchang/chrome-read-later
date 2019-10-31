@@ -1,7 +1,6 @@
 import "./modules/tab.prototype.js"
 import * as storage from "./modules/storage.js"
 import * as tabs from "./modules/tabs.js"
-import * as page from "./modules/page.js"
 import * as extension from "./modules/extension.js"
 
 extension.onInstalled(() => {
@@ -21,5 +20,5 @@ extension.onCommand(() => {
 })
 
 extension.onClicked((selection, tab) => {
-  storage.set(page.getInfo(selection, tab))
+  storage.setSelection(tab, selection)
 })

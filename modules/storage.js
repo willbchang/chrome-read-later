@@ -22,3 +22,13 @@ export function setPage(tab) {
   page.date = Date.now()
   set({ [page.url]: page })
 }
+
+
+export function setSelection(tab, selection) {
+  const page = {}
+  page.url = selection.linkUrl
+  page.title = selection.selectionText || selection.linkUrl
+  page.favIconUrl = tab.favIconUrl || "../images/32x32gray.png"
+  page.date = Date.now()
+  set({ [page.url]: page })
+}
