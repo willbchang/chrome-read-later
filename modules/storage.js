@@ -6,8 +6,8 @@ export function set(page) {
   chrome.storage.sync.set(page)
 }
 
-export function remove(key) {
-  chrome.storage.sync.remove(key)
+export function remove(url) {
+  chrome.storage.sync.remove(url)
 }
 
 export function clear() {
