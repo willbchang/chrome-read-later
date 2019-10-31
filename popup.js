@@ -12,9 +12,9 @@ $(() => {
 
 function appendReadingListToHtml() {
   storage.get(pages => {
-    for (const url in pages) {
-      setReadigList(pages[url])
-    }
+    Object.values(pages)
+      .sort((a, b) => a.date - b.date)
+      .map(page => setReadigList(page))
   })
 
   function setReadigList(page) {
