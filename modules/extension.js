@@ -13,3 +13,9 @@ export function onClicked(callback) {
 export function createContextMenus(settings) {
   chrome.contextMenus.create(settings)
 }
+
+export function sendMessage(tab, callback) {
+  chrome.tabs.sendMessage(tab.id, {}, (response) => {
+    callback(response)
+  })
+}
