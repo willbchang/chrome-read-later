@@ -15,7 +15,7 @@ extension.onInstalled(() => {
 extension.onCommand(() => {
   tabs.current(tab => {
     if (tab.isEmpty()) return
-    storage.setUnique(tab.getInfo())
+    storage.set(tab.getInfo())
     tab.setEmptyOrRemove()
   })
 })
