@@ -33,6 +33,10 @@ img:hover {
   cursor: pointer;
 }
 
+sub {
+  display: none;
+}
+
 #report-an-issue {
   color: gray;
   font-size: 12px;
