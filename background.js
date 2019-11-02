@@ -14,8 +14,10 @@ extension.onInstalled(() => {
 extension.onCommand(() => {
   tabs.current(tab => {
     if (tab.isEmpty()) return
-    storage.setPage(tab)
-    tab.setEmptyOrRemove()
+    extension.sendMessage(tab, position => {
+      storage.setPage(tab, position)
+      tab.setEmptyOrRemove()
+    })
   })
 })
 

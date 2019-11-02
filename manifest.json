@@ -14,7 +14,7 @@
         "<all_urls>"
       ],
       "js": [
-        "content.js", "./modules/*"
+        "content.js"
       ]
     }
   ],
