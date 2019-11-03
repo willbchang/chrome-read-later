@@ -14,10 +14,10 @@ function appendReadingListToHtml() {
   storage.get(pages => {
     Object.values(pages)
       .sort((a, b) => a.date - b.date)
-      .map(page => setReadigList(page))
+      .map(page => append(page))
   })
 
-  function setReadigList(page) {
+  function append(page) {
     $("ul").append(`
       <li id=${page.date}>
         <img src="${page.favIconUrl}">
