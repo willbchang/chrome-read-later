@@ -30,14 +30,14 @@ function appendReadingListToHtml() {
 
 function clickLinkToUpdateTabAndStorage() {
   $("ul").on("click", "a", (e) => {
+    // disable default <a> tag action
+    e.preventDefault()
     openReadingList(e)
     storage.remove(e.target.href)
     window.close()
   })
 
   function openReadingList(e) {
-    // disable default <a> tag action
-    e.preventDefault()
     // open in current empty tab or create a new tab
     tabs.current(tab => {
       tab.isEmpty() ? tabs.update(tab, e.target.href) : tabs.create(e.target.href)
