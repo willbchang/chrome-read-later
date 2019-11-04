@@ -22,7 +22,7 @@ function appendReadingListToHtml() {
       <li id=${page.date}>
         <img src="${page.favIconUrl}">
         <a href="${page.url}" target="_blank">${page.title}</a>
-        <sub>${page.position}</sub>
+        <span>${page.position}</span>
       </li>
     `)
   }
