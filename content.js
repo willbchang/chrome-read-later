@@ -1,6 +1,9 @@
 chrome.runtime.onMessage.addListener(
   function (request, sender, send) {
     if (request.info === "save")
-      send(document.documentElement.scrollTop || 0)
+      send({
+        scrollTop: document.documentElement.scrollTop,
+        scrollHeight: document.documentElement.scrollHeight
+      })
   }
 )
