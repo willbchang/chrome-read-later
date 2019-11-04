@@ -22,9 +22,19 @@ function appendReadingListToHtml() {
       <li id=${page.date}>
         <img src="${page.favIconUrl}">
         <a href="${page.url}" target="_blank">${page.title}</a>
-        <span>${page.position}</span>
       </li>
     `)
+    
+    if (!page.scrollTop) return
+    $(`#${page.date}`).append(`
+      <span class="${page.scrollTop}">
+        ${percent(page.scrollTop, page.scrollHeight)}
+      </span>
+    `)
+  }
+
+  function percent(top, height) {
+    return Math.floor(top / height * 100) + '%'
   }
 }
 
