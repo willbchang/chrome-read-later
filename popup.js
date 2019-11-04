@@ -40,7 +40,7 @@ function clickLinkToUpdateTabAndStorage() {
   function openReadingList(e) {
     // open in current empty tab or create a new tab
     tabs.current(tab => {
-      tab.isEmpty() ? tabs.update(tab, e.target.href) : tabs.create(e.target.href)
+      tab.isEmpty() ? tabs.update(e.target.href) : tabs.create(e.target.href)
     })
   }
 }
