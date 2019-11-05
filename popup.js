@@ -42,12 +42,12 @@ function clickLinkToUpdateTabAndStorage() {
   $("ul").on("click", "a", (e) => {
     // disable default <a> tag action
     e.preventDefault()
-    openReadingList(e.target.href)
+    open(e.target.href)
     storage.remove(e.target.href)
     window.close()
   })
 
-  function openReadingList(href) {
+  function open(href) {
     // open in current empty tab or create a new tab
     tabs.current(tab => {
       tab.isEmpty() ? tabs.update(href) : tabs.create(href)
