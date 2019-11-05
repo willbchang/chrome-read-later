@@ -11,9 +11,11 @@ ul {
 
 li {
   padding: 5px 0;
+  line-height: 16px;
 }
 
 a {
+  vertical-align: middle;
   text-decoration: none;
   color: #0052cc;
 }
@@ -36,6 +38,7 @@ img:hover {
 span {
   font-size: 11px;
   color: #f05f00cc;
+  vertical-align: middle;
 }
 
 #report-an-issue {
