@@ -35,8 +35,9 @@ img:hover {
   cursor: pointer;
 }
 
-span {
-  font-size: 11px;
+.position {
+  font-size: 12px;
+  font-weight: 500;
   color: #f05f00cc;
   vertical-align: middle;
 }
