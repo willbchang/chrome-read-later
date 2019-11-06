@@ -33,8 +33,8 @@ function appendReadingListToHtml() {
     `)
   }
 
-  function percent(top, height) {
-    return Math.floor(top / height * 100) + '%'
+  function percent(x, y) {
+    return Math.floor(x / y * 100) + '%'
   }
 }
 
