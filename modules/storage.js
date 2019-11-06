@@ -19,8 +19,9 @@ export function setPage(tab, position) {
   page.url = tab.url
   page.title = tab.title || tab.url
   page.favIconUrl = tab.favIconUrl || "../images/32x32gray.png"
-  page.scrollTop = position.scrollTop
-  page.scrollHeight = position.scrollHeight
+  page.scroll = {}
+  page.scroll.top = position.scroll.top
+  page.scroll.height = position.scroll.height
   page.date = Date.now()
   set({ [page.url]: page })
 }

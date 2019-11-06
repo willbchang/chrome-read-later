@@ -2,8 +2,9 @@ chrome.runtime.onMessage.addListener(
   function (request, sender, send) {
     if (request.info === "save") {
       const position = {}
-      position.scrollTop = document.documentElement.scrollTop
-      position.scrollHeight = document.documentElement.scrollHeight
+      position.scroll = {}
+      position.scroll.top = document.documentElement.scrollTop
+      position.scroll.height = document.documentElement.scrollHeight
       send(position)
     }
   }
