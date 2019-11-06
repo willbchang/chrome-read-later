@@ -28,7 +28,7 @@ function appendReadingListToHtml() {
     if (!page.scroll.top) return
     $(`#${page.date}`).append(`
       <span class="position">
-        ${percent(page.scroll.top, page.scroll.height)}
+        ${percent(page.scroll.bottom, page.scroll.height)}
       </span>
     `)
   }
