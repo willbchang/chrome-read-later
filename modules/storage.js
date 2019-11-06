@@ -19,8 +19,8 @@ export function setPage(tab, position) {
   page.url = tab.url
   page.title = tab.title || tab.url
   page.favIconUrl = tab.favIconUrl || "../images/32x32gray.png"
-  Object.assign(page, position)
   page.date = Date.now()
+  Object.assign(page, position)
   set({ [page.url]: page })
 }
 
