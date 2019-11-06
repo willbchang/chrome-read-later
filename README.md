@@ -29,7 +29,8 @@ I haven't publish it to chrome store yet!
   - [x] Load from current empty tab.
   - [x] A delete icon will appear when cursor is hovering a favicon.
     - [x] Click to delete.
-  - [ ] Set website scroll position.
+  - [ ] Get website scroll position.
+  - [ ] Get the current playing time of video/audio.
 - [x] Right Click link and select read later to save(not in the search bar)
   - [ ] Filter selected link in google search.
 
@@ -40,18 +41,24 @@ I haven't publish it to chrome store yet!
   - [x] A delete icon will appear when cursor is hovering a favicon.
     - [x] Click to delete.
   - [ ] Set website scroll position.
+  - [ ] Set played time of video and audio.
 - [ ] Thin scroll bar.
 - Select items by <kbd>tab</kbd> and <kbd>shift</kbd> + <kbd>tab</kbd>.
 - Use <kbd>enter</kbd> to open selected item.
 
-<!-- ### Browse with Vim
+<!-- ### Simple Vim
 I'll finish this before 2020/02.
-- [ ] <kbd>j</kbd>
-- [ ] <kbd>k</kbd>
+- [ ] <kbd>j</kbd>: move to next link
+- [ ] <kbd>k</kbd>: move to previous link
+- [ ] <kbd>g</kbd>
+  - [ ] <kbd>gg</kbd>: back to the first link
+  - [ ] <kbd>G</kbd>: jump to the last link
 - [ ] <kbd>d</kbd>
-  - [ ] <kbd>dd</kbd>: delete a item
-  - [ ] <kbd>d</kbd>@{num}<kbd>d</kbd>: delete x items
-- [ ] <kbd>/</kbd> search item -->
+  - [ ] <kbd>dd</kbd>: delete a link
+  - [ ] <kbd>d</kbd>@{num}<kbd>d</kbd>: delete x links
+- [ ] <kbd>/</kbd> search links -->
+
+<!-- ### Dark Mode -->
 
 You can config shortcuts from `chrome://extensions/shortcuts`
 ## Dependencies
