@@ -37,17 +37,10 @@ function clickLinkToUpdateTabAndStorage() {
   $('ul').on('click', 'a', e => {
     // disable default <a> tag action
     e.preventDefault()
-    open(e.target.href)
+    tabs.openInCurrentOrNewTab(e.target.href)
     storage.remove(e.target.href)
     window.close()
   })
-
-  function open(href) {
-    // open in current empty tab or create a new tab
-    tabs.current(tab => {
-      tabs.isEmpty(tab) ? tabs.update(href) : tabs.create(href)
-    })
-  }
 }
 
 function hoverMouseToChangeIcon() {

@@ -28,6 +28,12 @@ export function emptyOrRemove(tab) {
   })
 }
 
+export function openInCurrentOrNewTab(href) {
+  current(tab => {
+    isEmpty(tab) ? update(href) : create(href)
+  })
+}
+
 export function current(callback) {
   const queryInfo = {
     active: true,
