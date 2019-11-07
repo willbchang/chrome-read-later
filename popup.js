@@ -1,6 +1,6 @@
-import "./modules/tab.prototype.js"
-import * as storage from "./modules/storage.js"
-import * as tabs from "./modules/tabs.js"
+import './modules/tab.prototype.js'
+import * as storage from './modules/storage.js'
+import * as tabs from './modules/tabs.js'
 
 appendReadingListToHtml()
 $(() => {
@@ -18,13 +18,13 @@ function appendReadingListToHtml() {
   })
 
   function append(page) {
-    $("ul").append(`
+    $('ul').append(`
       <li id=${page.date}>
         <img src="${page.favIconUrl}">
         <a href="${page.url}" target="_blank">${page.title}</a>
       </li>
     `)
-    
+
     if (!page.scroll.top) return
     $(`#${page.date}`).append(`
       <span class="position">
@@ -35,7 +35,7 @@ function appendReadingListToHtml() {
 }
 
 function clickLinkToUpdateTabAndStorage() {
-  $("ul").on("click", "a", (e) => {
+  $('ul').on('click', 'a', e => {
     // disable default <a> tag action
     e.preventDefault()
     open(e.target.href)
@@ -52,27 +52,30 @@ function clickLinkToUpdateTabAndStorage() {
 }
 
 function hoverMouseToChangeIcon() {
-  let src = ""
-  $(document).on({
-    mouseenter: (e) => {
-      src = $(e.target).attr("src")
-      $(e.target).attr("src", "../images/32x32delete.png")
+  let src = ''
+  $(document).on(
+    {
+      mouseenter: e => {
+        src = $(e.target).attr('src')
+        $(e.target).attr('src', '../images/32x32delete.png')
+      },
+      mouseleave: e => {
+        $(e.target).attr('src', src)
+      },
     },
-    mouseleave: (e) => {
-      $(e.target).attr("src", src)
-    }
-  }, "img")
+    'img'
+  )
 }
 
 function clickIconToDelete() {
-  $("img").on("click", (e) => {
+  $('img').on('click', e => {
     $(e.target.parentNode).remove()
     storage.remove(e.target.nextElementSibling.href)
   })
 }
 
 function clickButtonToReset() {
-  $("button").on("click", () => {
+  $('button').on('click', () => {
     storage.clear()
     window.close()
   })

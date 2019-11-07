@@ -15,15 +15,15 @@ export function remove(tab) {
 }
 
 export function empty(tab) {
-  update(tab.id, "chrome://newtab/")
+  update(tab.id, 'chrome://newtab/')
 }
 
 export function current(callback) {
   const queryInfo = {
-    "active": true,
-    "currentWindow": true
+    active: true,
+    currentWindow: true,
   }
-  query(queryInfo, (tabs) => {
+  query(queryInfo, tabs => {
     callback(tabs[0])
   })
 }
