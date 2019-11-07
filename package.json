@@ -22,5 +22,8 @@
   "dependencies": {
     "@types/chrome": "0.0.91",
     "@types/jquery": "^3.3.31"
+  },
+  "devDependencies": {
+    "prettier": "1.18.2"
   }
 }
