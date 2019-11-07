@@ -14,12 +14,6 @@ export function createContextMenus(settings) {
   chrome.contextMenus.create(settings)
 }
 
-export function sendMessage(tab, message, callback) {
-  chrome.tabs.sendMessage(tab.id, message, response => {
-    callback(response)
-  })
-}
-
 export function onMessage(response) {
   chrome.runtime.onMessage.addListener(function(request, sender, send) {
     send(response)

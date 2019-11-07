@@ -6,8 +6,8 @@ export function update(href) {
   chrome.tabs.update(null, { url: href })
 }
 
-export function create(href) {
-  chrome.tabs.create({ url: href })
+export function create(href, callback) {
+  chrome.tabs.create({ url: href }, callback)
 }
 
 export function remove(tab) {
@@ -25,5 +25,11 @@ export function current(callback) {
   }
   query(queryInfo, tabs => {
     callback(tabs[0])
+  })
+}
+
+export function sendMessage(tab, message, callback) {
+  chrome.tabs.sendMessage(tab.id, message, response => {
+    callback(response)
   })
 }
