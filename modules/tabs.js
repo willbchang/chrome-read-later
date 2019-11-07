@@ -18,6 +18,12 @@ export function empty(tab) {
   update(tab.id, 'chrome://newtab/')
 }
 
+export function emptyOrRemove(tab) {
+  query({}, tabs => {
+    tabs.length === 1 ? empty(tab) : remove(tab)
+  })
+}
+
 export function current(callback) {
   const queryInfo = {
     active: true,
