@@ -21,7 +21,7 @@ export function setPage(tab, position) {
   page.favIconUrl = tab.favIconUrl || '../images/32x32gray.png'
   page.date = Date.now()
   Object.assign(page, position)
-  page.scroll.percent = percent(page.scroll.bottom, page.scroll.height)
+  page.scrollPercent = percent(page.scrollBottom, page.scrollHeight)
   set({ [page.url]: page })
 
   function percent(x, y) {
