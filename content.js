@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener(function(request, sender, send) {
+chrome.runtime.onMessage.addListener((request, sender, send) => {
   if (request.info === 'save') {
     const position = {}
     position.scrollTop = document.documentElement.scrollTop

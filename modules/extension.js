@@ -19,7 +19,7 @@ export function sendMessage(message) {
 }
 
 export function onMessage(response) {
-  chrome.runtime.onMessage.addListener(function(request, sender, send) {
+  chrome.runtime.onMessage.addListener((request, sender, send) => {
     send(response)
   })
 }
