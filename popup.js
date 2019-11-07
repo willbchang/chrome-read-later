@@ -1,4 +1,3 @@
-import './modules/tab.prototype.js'
 import * as storage from './modules/storage.js'
 import * as tabs from './modules/tabs.js'
 
@@ -46,7 +45,7 @@ function clickLinkToUpdateTabAndStorage() {
   function open(href) {
     // open in current empty tab or create a new tab
     tabs.current(tab => {
-      tab.isEmpty() ? tabs.update(href) : tabs.create(href)
+      tabs.isEmpty(tab) ? tabs.update(href) : tabs.create(href)
     })
   }
 }
