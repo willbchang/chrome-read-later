@@ -14,7 +14,7 @@ extension.onInstalled(() => {
 extension.onCommand(() => {
   tabs.current(tab => {
     if (tab.isEmpty()) return
-    extension.sendMessage(tab, { info: 'save' }, position => {
+    tabs.sendMessage(tab, { info: 'save' }, position => {
       storage.setPage(tab, position)
       tab.setEmptyOrRemove()
     })

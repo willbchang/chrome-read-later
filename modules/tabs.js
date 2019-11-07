@@ -30,6 +30,6 @@ export function current(callback) {
 
 export function sendMessage(tab, message, callback) {
   chrome.tabs.sendMessage(tab.id, message, response => {
-    callback(response)
+    if (callback) callback(response)
   })
 }
