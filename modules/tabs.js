@@ -45,7 +45,5 @@ export function current(callback) {
 }
 
 export function sendMessage(tab, message, callback) {
-  chrome.tabs.sendMessage(tab.id, message, response => {
-    if (callback) callback(response)
-  })
+  chrome.tabs.sendMessage(tab.id, message, callback)
 }
