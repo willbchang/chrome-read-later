@@ -54,11 +54,11 @@ export function onUpdate(callback) {
   chrome.tabs.onUpdated.addListener(callback)
 }
 
-export function onComplete(href) {
+export function onComplete(message) {
   onUpdate(function listener(tabId, info) {
     if (info.status === 'complete') {
       chrome.tabs.onUpdated.removeListener(listener)
-      chrome.tabs.sendMessage(tabId, { url: href })
+      chrome.tabs.sendMessage(tabId, message)
     }
   })
 }
