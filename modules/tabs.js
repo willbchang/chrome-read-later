@@ -30,7 +30,9 @@ export function emptyOrRemove(tab) {
 
 export function openInCurrentOrNewTab(href) {
   current(tab => {
-    isEmpty(tab) ? update(href) : create(href)
+    isEmpty(tab)
+      ? update(href, onComplete(href))
+      : create(href, onComplete(href))
   })
 }
 
