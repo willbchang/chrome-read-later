@@ -18,8 +18,6 @@ export function sendMessage(message) {
   chrome.runtime.sendMessage(message)
 }
 
-export function onMessage(response) {
-  chrome.runtime.onMessage.addListener((request, sender, send) => {
-    send(response)
-  })
+export function onMessage(callback) {
+  chrome.runtime.onMessage.addListener(callback)
 }
