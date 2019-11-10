@@ -47,3 +47,7 @@ export function current(callback) {
 export function sendMessage(tabId, message, callback) {
   chrome.tabs.sendMessage(tabId, message, callback)
 }
+
+export function onUpdate(callback) {
+  chrome.tabs.onUpdated.addListener(callback)
+}
