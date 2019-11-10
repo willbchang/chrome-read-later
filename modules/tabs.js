@@ -2,8 +2,8 @@ export function query(queryInfo, callback) {
   chrome.tabs.query(queryInfo, callback)
 }
 
-export function update(href) {
-  chrome.tabs.update(null, { url: href })
+export function update(href, callback) {
+  chrome.tabs.update(null, { url: href }, callback)
 }
 
 export function create(href, callback) {
