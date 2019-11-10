@@ -44,6 +44,6 @@ export function current(callback) {
   })
 }
 
-export function sendMessage(tab, message, callback) {
-  chrome.tabs.sendMessage(tab.id, message, callback)
+export function sendMessage(tabId, message, callback) {
+  chrome.tabs.sendMessage(tabId, message, callback)
 }
