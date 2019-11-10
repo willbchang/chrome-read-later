@@ -1,5 +1,5 @@
 import * as storage from './modules/storage.js'
-import * as tabs from './modules/tabs.js'
+import * as extension from './modules/extension.js'
 
 appendReadingListToHtml()
 $(() => {
@@ -37,7 +37,7 @@ function clickLinkToUpdateTabAndStorage() {
   $('ul').on('click', 'a', e => {
     // disable default <a> tag action
     e.preventDefault()
-    tabs.openInCurrentOrNewTab(e.target.href)
+    extension.sendMessage({ url: e.target.href })
     storage.remove(e.target.href)
     window.close()
   })

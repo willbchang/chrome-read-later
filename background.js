@@ -20,6 +20,11 @@ extension.onCommand(() => {
   })
 })
 
+extension.onMessage(request => {
+  if (!request.url) return
+  tabs.openInCurrentOrNewTab(request.url)
+})
+
 extension.onClicked((selection, tab) => {
   storage.setSelection(tab, selection)
 })
