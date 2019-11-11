@@ -28,11 +28,11 @@ export function emptyOrRemove(tab) {
   })
 }
 
-export function openInCurrentOrNewTab(href) {
+export function openInCurrentOrNewTab(href, message) {
   current(tab => {
     isEmpty(tab)
-      ? update(href, onComplete(href))
-      : create(href, onComplete(href))
+      ? update(href, onComplete(message))
+      : create(href, onComplete(message))
   })
 }
 
