@@ -27,6 +27,7 @@ extension.onMessage(request => {
     const position = {}
     position.scrollTop = page.scrollTop
     tabs.openInCurrentOrNewTab(request.url, position)
+    storage.remove(request.url)
   })
 })
 

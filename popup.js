@@ -38,7 +38,6 @@ function clickLinkToUpdateTabAndStorage() {
     // disable default <a> tag action
     e.preventDefault()
     extension.sendMessage({ url: e.target.href })
-    storage.remove(e.target.href)
     window.close()
   })
 }
