@@ -1,6 +1,5 @@
-import "./modules/tab.prototype.js"
-import * as storage from "./modules/storage.js"
-import * as tabs from "./modules/tabs.js"
+import * as storage from './modules/storage.js'
+import * as extension from './modules/extension.js'
 
 appendReadingListToHtml()
 $(() => {
@@ -14,58 +13,61 @@ function appendReadingListToHtml() {
   storage.get(pages => {
     Object.values(pages)
       .sort((a, b) => a.date - b.date)
-      .map(page => setReadigList(page))
+      .map(page => append(page))
   })
 
-  function setReadigList(page) {
-    $("ul").append(`
+  function append(page) {
+    $('ul').append(`
       <li id=${page.date}>
         <img src="${page.favIconUrl}">
         <a href="${page.url}" target="_blank">${page.title}</a>
       </li>
     `)
+
+    if (!page.scrollTop) return
+    $(`#${page.date}`).append(`
+      <span class="position">
+        ${page.scrollPercent}
+      </span>
+    `)
   }
 }
 
 function clickLinkToUpdateTabAndStorage() {
-  $("ul").on("click", "a", (e) => {
-    openReadingList(e)
+  $('ul').on('click', 'a', e => {
+    // disable default <a> tag action
+    e.preventDefault()
+    extension.sendMessage({ url: e.target.href })
     storage.remove(e.target.href)
     window.close()
   })
-
-  function openReadingList(e) {
-    // disable default <a> tag action
-    e.preventDefault()
-    // open in current empty tab or create a new tab
-    tabs.current(tab => {
-      tab.isEmpty() ? tabs.update(tab, e.target.href) : tabs.create(e.target.href)
-    })
-  }
 }
 
 function hoverMouseToChangeIcon() {
-  let src = ""
-  $(document).on({
-    mouseenter: (e) => {
-      src = $(e.target).attr("src")
-      $(e.target).attr("src", "../images/32x32delete.png")
+  let src = ''
+  $(document).on(
+    {
+      mouseenter: e => {
+        src = $(e.target).attr('src')
+        $(e.target).attr('src', '../images/32x32delete.png')
+      },
+      mouseleave: e => {
+        $(e.target).attr('src', src)
+      },
     },
-    mouseleave: (e) => {
-      $(e.target).attr("src", src)
-    }
-  }, "img")
+    'img'
+  )
 }
 
 function clickIconToDelete() {
-  $("img").on("click", (e) => {
+  $('img').on('click', e => {
     $(e.target.parentNode).remove()
     storage.remove(e.target.nextElementSibling.href)
   })
 }
 
 function clickButtonToReset() {
-  $("button").on("click", () => {
+  $('button').on('click', () => {
     storage.clear()
     window.close()
   })
