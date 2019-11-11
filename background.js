@@ -22,7 +22,12 @@ extension.onCommand(() => {
 
 extension.onMessage(request => {
   if (!request.url) return
-  tabs.openInCurrentOrNewTab(request.url)
+  storage.get(pages => {
+    const page = pages[request.url]
+    const position = {}
+    position.scrollTop = page.scrollTop
+    tabs.openInCurrentOrNewTab(request.url, position)
+  })
 })
 
 extension.onClicked((selection, tab) => {

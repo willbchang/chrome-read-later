@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener((request, sender, send) => {
     position.scrollHeight = document.documentElement.scrollHeight
     send(position)
   }
-  if (request.url) {
-    console.log(request.url)
+  if (request.scrollTop) {
+    document.documentElement.scrollTop = request.scrollTop
   }
 })
