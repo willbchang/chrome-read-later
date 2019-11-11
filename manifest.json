@@ -10,12 +10,8 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "content.js"
-      ]
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
     }
   ],
   "commands": {
@@ -35,11 +31,6 @@
   },
   "manifest_version": 2,
   "name": "Read Later",
-  "permissions": [
-    "activeTab",
-    "tabs",
-    "storage",
-    "contextMenus"
-  ],
-  "version": "1.2.6"
+  "permissions": ["activeTab", "tabs", "storage", "contextMenus"],
+  "version": "1.2.7"
 }
