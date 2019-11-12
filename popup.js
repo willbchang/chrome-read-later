@@ -1,7 +1,7 @@
 import * as storage from './modules/storage.js'
 import * as extension from './modules/extension.js'
 
-appendReadingListToHtml()
+initReadingList()
 $(() => {
   clickLinkToUpdateTabAndStorage()
   hoverMouseToChangeIcon()
@@ -9,7 +9,7 @@ $(() => {
   clickButtonToReset()
 })
 
-function appendReadingListToHtml() {
+function initReadingList() {
   storage.get(pages => {
     Object.values(pages)
       .sort((a, b) => a.date - b.date)
