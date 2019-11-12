@@ -6,12 +6,14 @@ export function clear() {
   chrome.storage.sync.clear()
 }
 
-export function get(callback) {
-  chrome.storage.sync.get(callback)
+export function get() {
+  return new Promise(resolve => {
+    chrome.storage.sync.get(resolve)
+  })
 }
 
 export function getSorted(callback) {
-  get(pages => {
+  get().then(pages => {
     callback(Object.values(pages).sort((a, b) => a.date - b.date))
   })
 }

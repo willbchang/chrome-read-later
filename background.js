@@ -22,30 +22,29 @@ extension.onCommand(() => {
 
 extension.onMessage(message => {
   if (!message.url) return
-  storage.get(pages => {
-    tabs
-      .current()
-      .then(tab => {
-        if (tabs.isEmpty(tab)) return tabs.update(message.url)
-        return tabs.create(message.url)
-      })
-      .then(() => {
-        setPosition()
-        storage.remove(message.url)
-      })
+  tabs
+    .current()
+    .then(tab => {
+      if (tabs.isEmpty(tab)) return tabs.update(message.url)
+      return tabs.create(message.url)
+    })
+    .then(storage.get)
+    .then(pages => {
+      setPosition(pages)
+      storage.remove(message.url)
+    })
 
-    function setPosition() {
-      const page = pages[message.url]
-      const position = {}
-      position.scrollTop = page.scrollTop
+  function setPosition(pages) {
+    const page = pages[message.url]
+    const position = {}
+    position.scrollTop = page.scrollTop
 
-      tabs.onComplete(tabId => {
-        // Use raw sendMessage to avoid receive response.
-        // Which will cause message port closed before sending.
-        chrome.tabs.sendMessage(tabId, position)
-      })
-    }
-  })
+    tabs.onComplete(tabId => {
+      // Use raw sendMessage to avoid receive response.
+      // Which will cause message port closed before sending.
+      chrome.tabs.sendMessage(tabId, position)
+    })
+  }
 })
 
 extension.onClicked((selection, tab) => {
