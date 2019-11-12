@@ -5,7 +5,7 @@ import * as event from './modules/event.js'
 initReadingList()
 $(() => {
   event.onClick('a', sendUrlToBackground)
-  hoverMouseToChangeIcon()
+  event.onHover('img', showDeleteIconOnEnter, showFavIconOnLeave)
   event.onClick('img', removeItem)
   clickButtonToReset()
 })
@@ -41,20 +41,13 @@ function sendUrlToBackground(e) {
   window.close()
 }
 
-function hoverMouseToChangeIcon() {
-  let src = ''
-  $(document).on(
-    {
-      mouseenter: e => {
-        src = $(e.target).attr('src')
-        $(e.target).attr('src', '../images/32x32delete.png')
-      },
-      mouseleave: e => {
-        $(e.target).attr('src', src)
-      },
-    },
-    'img'
-  )
+function showDeleteIconOnEnter(e) {
+  localStorage.setItem('src', $(e.target).attr('src'))
+  $(e.target).attr('src', '../images/32x32delete.png')
+}
+
+function showFavIconOnLeave(e) {
+  $(e.target).attr('src', localStorage.getItem('src'))
 }
 
 function removeItem(e) {
