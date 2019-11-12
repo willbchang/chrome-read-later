@@ -36,7 +36,9 @@ extension.onMessage(message => {
       position.scrollTop = page.scrollTop
 
       tabs.onComplete(tabId => {
-        tabs.sendMessage(tabId, position)
+        // Use raw sendMessage to avoid receive response.
+        // Which will cause message port closed before sending.
+        chrome.tabs.sendMessage(tabId, position)
       })
     }
   })
