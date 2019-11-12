@@ -29,12 +29,7 @@ export function setPage(tab, position) {
   page.favIconUrl = tab.favIconUrl || '../images/32x32gray.png'
   page.date = Date.now()
   Object.assign(page, position)
-  page.scrollPercent = percent(page.scrollBottom, page.scrollHeight)
   set({ [page.url]: page })
-
-  function percent(x, y) {
-    return Math.floor((x / y) * 100) + '%'
-  }
 }
 
 export function setSelection(tab, selection) {
