@@ -1,25 +1,38 @@
+import * as extension from './modules/extension.js'
 import * as storage from './modules/storage.js'
 import * as tabs from './modules/tabs.js'
-import * as extension from './modules/extension.js'
 
 extension.onCommand(() => {
   tabs.current(tab => {
     if (tabs.isEmpty(tab)) return
     tabs.sendMessage(tab.id, { info: 'get page position' }, position => {
       storage.setPage(tab, position)
-      tabs.emptyOrRemove(tab)
+      tabs.query({}, xTabs => {
+        xTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
+      })
     })
   })
 })
 
-extension.onMessage(request => {
-  if (!request.url) return
+extension.onMessage(message => {
+  if (!message.url) return
   storage.get(pages => {
-    const page = pages[request.url]
-    const position = {}
-    position.scrollTop = page.scrollTop
-    tabs.openInCurrentOrNewTab(request.url, position)
-    storage.remove(request.url)
+    tabs.current(tab => {
+      tabs.isEmpty(tab)
+        ? tabs.update(message.url, setPosition)
+        : tabs.create(message.url, setPosition)
+    })
+    storage.remove(message.url)
+
+    function setPosition() {
+      const page = pages[message.url]
+      const position = {}
+      position.scrollTop = page.scrollTop
+
+      tabs.onComplete(tabId => {
+        tabs.sendMessage(tabId, position)
+      })
+    }
   })
 })
 

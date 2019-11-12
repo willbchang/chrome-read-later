@@ -1,14 +1,14 @@
-export function query(queryInfo, callback) {
-  chrome.tabs.query(queryInfo, callback)
+export function query(info, callback) {
+  chrome.tabs.query(info, callback)
 }
 
 export function current(callback) {
-  const queryInfo = {
+  const info = {
     active: true,
     currentWindow: true,
   }
 
-  query(queryInfo, tabs => {
+  query(info, tabs => {
     callback(tabs[0])
   })
 }
@@ -33,12 +33,6 @@ export function isEmpty(tab) {
   return tab.url === 'chrome://newtab/'
 }
 
-export function emptyOrRemove(tab) {
-  query({}, tabs => {
-    tabs.length === 1 ? empty(tab) : remove(tab)
-  })
-}
-
 export function sendMessage(tabId, message, callback) {
   chrome.tabs.sendMessage(tabId, message, callback)
 }
@@ -47,19 +41,11 @@ export function onUpdate(callback) {
   chrome.tabs.onUpdated.addListener(callback)
 }
 
-export function onComplete(message) {
+export function onComplete(callback) {
   onUpdate(function listener(tabId, info) {
     if (info.status === 'complete') {
       chrome.tabs.onUpdated.removeListener(listener)
-      chrome.tabs.sendMessage(tabId, message)
+      callback(tabId)
     }
-  })
-}
-
-export function openInCurrentOrNewTab(href, message) {
-  current(tab => {
-    isEmpty(tab)
-      ? update(href, onComplete(message))
-      : create(href, onComplete(message))
   })
 }

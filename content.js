@@ -1,13 +1,13 @@
-chrome.runtime.onMessage.addListener((request, sender, send) => {
-  if (request.info === 'get page position') {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.info === 'get page position') {
     const position = {}
     position.scrollTop = document.documentElement.scrollTop
     position.scrollBottom = window.scrollY + window.innerHeight
     position.scrollHeight = document.documentElement.scrollHeight
-    send(position)
+    sendResponse(position)
   }
 
-  if (request.scrollTop) {
-    document.documentElement.scrollTop = request.scrollTop
+  if (message.scrollTop) {
+    document.documentElement.scrollTop = message.scrollTop
   }
 })

@@ -2,8 +2,8 @@ export function onCommand(callback) {
   chrome.commands.onCommand.addListener(callback)
 }
 
-export function sendMessage(message) {
-  chrome.runtime.sendMessage(message)
+export function sendMessage(info) {
+  chrome.runtime.sendMessage(info)
 }
 
 export function onMessage(callback) {

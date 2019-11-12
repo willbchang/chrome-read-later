@@ -1,26 +1,23 @@
-import * as storage from './modules/storage.js'
+import * as event from './modules/event.js'
 import * as extension from './modules/extension.js'
+import * as storage from './modules/storage.js'
 
-appendReadingListToHtml()
+initReadingList()
 $(() => {
-  clickLinkToUpdateTabAndStorage()
-  hoverMouseToChangeIcon()
-  clickIconToDelete()
+  event.onClick('a', sendUrlToBackground)
+  event.onHover('img', showDeleteIconOnEnter, showFavIconOnLeave)
+  event.onClick('img', removeItem)
   clickButtonToReset()
 })
 
-function appendReadingListToHtml() {
-  storage.get(pages => {
-    Object.values(pages)
-      .sort((a, b) => a.date - b.date)
-      .map(page => append(page))
-  })
+function initReadingList() {
+  storage.getSorted(pages => pages.map(page => append(page)))
 
   function append(page) {
     $('ul').append(`
       <li id=${page.date}>
         <img src="${page.favIconUrl}">
-        <a href="${page.url}" target="_blank">${page.title}</a>
+        <a href="${page.url}">${page.title}</a>
       </li>
     `)
 
@@ -33,36 +30,25 @@ function appendReadingListToHtml() {
   }
 }
 
-function clickLinkToUpdateTabAndStorage() {
-  $('ul').on('click', 'a', e => {
-    // disable default <a> tag action
-    e.preventDefault()
-    extension.sendMessage({ url: e.target.href })
-    window.close()
-  })
+function sendUrlToBackground(e) {
+  // disable default <a> tag action
+  e.preventDefault()
+  extension.sendMessage({ url: e.target.href })
+  window.close()
 }
 
-function hoverMouseToChangeIcon() {
-  let src = ''
-  $(document).on(
-    {
-      mouseenter: e => {
-        src = $(e.target).attr('src')
-        $(e.target).attr('src', '../images/32x32delete.png')
-      },
-      mouseleave: e => {
-        $(e.target).attr('src', src)
-      },
-    },
-    'img'
-  )
+function showDeleteIconOnEnter(e) {
+  localStorage.setItem('src', $(e.target).attr('src'))
+  $(e.target).attr('src', '../images/32x32delete.png')
 }
 
-function clickIconToDelete() {
-  $('img').on('click', e => {
-    $(e.target.parentNode).remove()
-    storage.remove(e.target.nextElementSibling.href)
-  })
+function showFavIconOnLeave(e) {
+  $(e.target).attr('src', localStorage.getItem('src'))
+}
+
+function removeItem(e) {
+  $(e.target.parentNode).remove()
+  storage.remove(e.target.nextElementSibling.href)
 }
 
 function clickButtonToReset() {
