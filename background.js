@@ -17,10 +17,6 @@ extension.onCommand(() => {
 extension.onMessage(message => {
   if (!message.url) return
   storage.get(pages => {
-    const page = pages[message.url]
-    const position = {}
-    position.scrollTop = page.scrollTop
-
     tabs.current(tab => {
       tabs.isEmpty(tab)
         ? tabs.update(message.url, setPosition)
@@ -29,6 +25,10 @@ extension.onMessage(message => {
     storage.remove(message.url)
 
     function setPosition() {
+      const page = pages[message.url]
+      const position = {}
+      position.scrollTop = page.scrollTop
+
       tabs.onComplete(tabId => {
         tabs.sendMessage(tabId, position)
       })
