@@ -21,7 +21,6 @@ extension.onCommand(() => {
 })
 
 extension.onMessage(message => {
-  if (!message.url) return
   tabs
     .current()
     .then(tab => {
