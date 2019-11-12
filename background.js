@@ -1,8 +1,11 @@
 import * as extension from './modules/extension.js'
 import * as storage from './modules/storage.js'
 import * as tabs from './modules/tabs.js'
-// https://stackoverflow.com/questions/28250680/how-do-i-access-previous-promise-results-in-a-then-chain
+
+// Use Promise for onCommand listener will cause only listen once.
 extension.onCommand(() => {
+  // https://stackoverflow.com/questions/28250680/how-do-i-access-previous-promise-results-in-a-then-chain
+  // I choose to use variable to maintain code readability.
   let tab
   tabs
     .current()
