@@ -1,6 +1,6 @@
 {
   "background": {
-    "persistent": false,
+    "persistent": true,
     "page": "background.html"
   },
   "browser_action": {
