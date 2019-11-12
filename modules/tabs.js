@@ -1,14 +1,14 @@
-export function query(queryInfo, callback) {
-  chrome.tabs.query(queryInfo, callback)
+export function query(info, callback) {
+  chrome.tabs.query(info, callback)
 }
 
 export function current(callback) {
-  const queryInfo = {
+  const info = {
     active: true,
     currentWindow: true,
   }
 
-  query(queryInfo, tabs => {
+  query(info, tabs => {
     callback(tabs[0])
   })
 }
