@@ -1,5 +1,7 @@
-export function query(info, callback) {
-  chrome.tabs.query(info, callback)
+export function query(info) {
+  return new Promise(resolve => {
+    chrome.tabs.query(info, resolve)
+  })
 }
 
 export function current(callback) {
