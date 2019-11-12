@@ -49,11 +49,13 @@ export function onUpdate(callback) {
   chrome.tabs.onUpdated.addListener(callback)
 }
 
-export function onComplete(callback) {
-  onUpdate(function listener(tabId, info) {
-    if (info.status === 'complete') {
-      chrome.tabs.onUpdated.removeListener(listener)
-      callback(tabId)
-    }
+export function onComplete() {
+  return new Promise(resolve => {
+    onUpdate(function listener(tabId, info) {
+      if (info.status === 'complete') {
+        chrome.tabs.onUpdated.removeListener(listener)
+        resolve(tabId)
+      }
+    })
   })
 }

@@ -30,20 +30,21 @@ extension.onMessage(message => {
       if (tabs.isEmpty(tab)) return tabs.update(message.url)
       return tabs.create(message.url)
     })
-    .then(storage.get)
+    .then(tabs.onComplete)
+    .then(tabId => {
+      localStorage.setItem('tabId', tabId)
+      return storage.get()
+    })
     .then(pages => {
       const page = pages[message.url]
       const position = {}
       position.scrollTop = page.scrollTop
-
-      // Listener cannot use Promise, at least I didn't figure out.
-      tabs.onComplete(tabId => {
-        // Use raw sendMessage to avoid receive response.
-        // Which will cause message port closed before sending.
-        chrome.tabs.sendMessage(tabId, position)
-        storage.remove(message.url)
-      })
+      const tabId = parseInt(localStorage.getItem('tabId'))
+      // Use raw sendMessage to avoid receive response.
+      // Which will cause message port closed before sending.
+      chrome.tabs.sendMessage(tabId, position)
     })
+    .then(() => storage.remove(message.url))
 })
 
 extension.onClicked((selection, tab) => {
