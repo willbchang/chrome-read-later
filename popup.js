@@ -59,7 +59,7 @@ function hoverMouseToChangeIcon() {
 }
 
 function clickIconToDelete() {
-  $('img').on('click', e => {
+  $('ul').on('click', 'img', e => {
     $(e.target.parentNode).remove()
     storage.remove(e.target.nextElementSibling.href)
   })
