@@ -21,8 +21,8 @@ extension.onMessage(message => {
       tabs.isEmpty(tab)
         ? tabs.update(message.url, setPosition)
         : tabs.create(message.url, setPosition)
+      storage.remove(message.url)
     })
-    storage.remove(message.url)
 
     function setPosition() {
       const page = pages[message.url]
