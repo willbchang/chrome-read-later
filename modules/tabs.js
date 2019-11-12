@@ -15,12 +15,16 @@ export function current() {
   })
 }
 
-export function update(href, callback) {
-  chrome.tabs.update(null, { url: href }, callback)
+export function update(href) {
+  return new Promise(resolve => {
+    chrome.tabs.update(null, { url: href }, resolve)
+  })
 }
 
-export function create(href, callback) {
-  chrome.tabs.create({ url: href }, callback)
+export function create(href) {
+  return new Promise(resolve => {
+    chrome.tabs.create({ url: href }, resolve)
+  })
 }
 
 export function remove(tab) {

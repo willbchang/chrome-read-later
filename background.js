@@ -23,12 +23,16 @@ extension.onCommand(() => {
 extension.onMessage(message => {
   if (!message.url) return
   storage.get(pages => {
-    tabs.current().then(tab => {
-      tabs.isEmpty(tab)
-        ? tabs.update(message.url, setPosition)
-        : tabs.create(message.url, setPosition)
-      storage.remove(message.url)
-    })
+    tabs
+      .current()
+      .then(tab => {
+        if (tabs.isEmpty(tab)) return tabs.update(message.url)
+        return tabs.create(message.url)
+      })
+      .then(() => {
+        setPosition()
+        storage.remove(message.url)
+      })
 
     function setPosition() {
       const page = pages[message.url]
