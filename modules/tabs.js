@@ -55,9 +55,3 @@ export function onComplete(callback) {
     }
   })
 }
-
-export function openInCurrentOrNewTab(href, callback) {
-  current(tab => {
-    isEmpty(tab) ? update(href, callback) : create(href, callback)
-  })
-}

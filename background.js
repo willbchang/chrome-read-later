@@ -18,13 +18,19 @@ extension.onMessage(message => {
     const page = pages[message.url]
     const position = {}
     position.scrollTop = page.scrollTop
-    tabs.openInCurrentOrNewTab(
-      message.url,
+
+    tabs.current(tab => {
+      tabs.isEmpty(tab)
+        ? tabs.update(message.url, setPosition)
+        : tabs.create(message.url, setPosition)
+    })
+    storage.remove(message.url)
+
+    function setPosition() {
       tabs.onComplete(tabId => {
         tabs.sendMessage(tabId, position)
       })
-    )
-    storage.remove(message.url)
+    }
   })
 })
 
