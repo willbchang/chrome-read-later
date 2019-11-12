@@ -47,19 +47,19 @@ export function onUpdate(callback) {
   chrome.tabs.onUpdated.addListener(callback)
 }
 
-export function onComplete(message) {
+export function onComplete(callback) {
   onUpdate(function listener(tabId, info) {
     if (info.status === 'complete') {
       chrome.tabs.onUpdated.removeListener(listener)
-      sendMessage(tabId, message)
+      callback(tabId)
     }
   })
 }
 
-export function openInCurrentOrNewTab(href, message) {
+export function openInCurrentOrNewTab(href, callback) {
   current(tab => {
     isEmpty(tab)
-      ? update(href, onComplete(message))
-      : create(href, onComplete(message))
+      ? update(href, onComplete(callback))
+      : create(href, onComplete(callback))
   })
 }
