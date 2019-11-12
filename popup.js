@@ -1,9 +1,10 @@
 import * as storage from './modules/storage.js'
 import * as extension from './modules/extension.js'
+import * as event from './modules/event.js'
 
 initReadingList()
 $(() => {
-  clickLinkToUpdateTabAndStorage()
+  event.onClick('a', sendUrlToBackground)
   hoverMouseToChangeIcon()
   clickIconToDelete()
   clickButtonToReset()
@@ -33,13 +34,11 @@ function initReadingList() {
   }
 }
 
-function clickLinkToUpdateTabAndStorage() {
-  $('ul').on('click', 'a', e => {
-    // disable default <a> tag action
-    e.preventDefault()
-    extension.sendMessage({ url: e.target.href })
-    window.close()
-  })
+function sendUrlToBackground(e) {
+  // disable default <a> tag action
+  e.preventDefault()
+  extension.sendMessage({ url: e.target.href })
+  window.close()
 }
 
 function hoverMouseToChangeIcon() {
