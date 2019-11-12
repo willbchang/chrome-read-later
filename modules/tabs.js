@@ -35,8 +35,10 @@ export function isEmpty(tab) {
   return tab.url === 'chrome://newtab/'
 }
 
-export function sendMessage(tabId, message, callback) {
-  chrome.tabs.sendMessage(tabId, message, callback)
+export function sendMessage(tabId, message) {
+  return new Promise(resolve => {
+    chrome.tabs.sendMessage(tabId, message, resolve)
+  })
 }
 
 export function onUpdate(callback) {
