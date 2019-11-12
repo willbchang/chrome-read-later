@@ -13,9 +13,11 @@ extension.onCommand(() => {
     .then(position => {
       const tab = JSON.parse(localStorage.getItem('tab'))
       storage.setPage(tab, position)
-      tabs.query({}).then(xTabs => {
-        xTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
-      })
+      return tabs.query({})
+    })
+    .then(xTabs => {
+      const tab = JSON.parse(localStorage.getItem('tab'))
+      xTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
     })
 })
 
