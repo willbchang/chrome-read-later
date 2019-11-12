@@ -11,11 +11,7 @@ $(() => {
 })
 
 function initReadingList() {
-  storage.get(pages => {
-    Object.values(pages)
-      .sort((a, b) => a.date - b.date)
-      .map(page => append(page))
-  })
+  storage.getSorted(pages => pages.map(page => append(page)))
 
   function append(page) {
     $('ul').append(`
