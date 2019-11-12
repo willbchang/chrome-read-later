@@ -7,9 +7,11 @@ extension.onCommand(() => {
     .current()
     .then(tab => {
       if (tabs.isEmpty(tab)) return
+      localStorage.setItem('tab', JSON.stringify(tab))
       return tabs.sendMessage(tab.id, { info: 'get page position' })
     })
     .then(position => {
+      const tab = JSON.parse(localStorage.getItem('tab'))
       storage.setPage(tab, position)
       tabs.query({}).then(xTabs => {
         xTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
