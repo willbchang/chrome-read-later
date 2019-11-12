@@ -3,5 +3,5 @@ export function onClick(selector, callback) {
 }
 
 export function onHover(selector, onEnter, onLeave) {
-  $(document).on({ mouseenter: onEnter, mouseleave: onLeave }, selector)
+  $('ul').on({ mouseenter: onEnter, mouseleave: onLeave }, selector)
 }
