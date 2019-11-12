@@ -18,7 +18,9 @@ extension.onMessage(message => {
     const page = pages[message.url]
     const position = {}
     position.scrollTop = page.scrollTop
-    tabs.openInCurrentOrNewTab(message.url, position)
+    tabs.openInCurrentOrNewTab(message.url, tabId => {
+      tabs.sendMessage(tabId, position)
+    })
     storage.remove(message.url)
   })
 })
