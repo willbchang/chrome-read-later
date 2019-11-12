@@ -15,8 +15,8 @@ extension.onCommand(() => {
       storage.setPage(tab, position)
       return tabs.query({})
     })
-    .then(xTabs => {
-      xTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
+    .then(allTabs => {
+      allTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
     })
 })
 
