@@ -3,7 +3,7 @@ import * as storage from './modules/storage.js'
 import * as tabs from './modules/tabs.js'
 
 extension.onCommand(() => {
-  tabs.current(tab => {
+  tabs.current().then(tab => {
     if (tabs.isEmpty(tab)) return
     tabs.sendMessage(tab.id, { info: 'get page position' }, position => {
       storage.setPage(tab, position)
@@ -17,7 +17,7 @@ extension.onCommand(() => {
 extension.onMessage(message => {
   if (!message.url) return
   storage.get(pages => {
-    tabs.current(tab => {
+    tabs.current().then(tab => {
       tabs.isEmpty(tab)
         ? tabs.update(message.url, setPosition)
         : tabs.create(message.url, setPosition)

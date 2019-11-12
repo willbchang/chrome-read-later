@@ -4,14 +4,14 @@ export function query(info) {
   })
 }
 
-export function current(callback) {
+export function current() {
   const info = {
     active: true,
     currentWindow: true,
   }
 
-  query(info, tabs => {
-    callback(tabs[0])
+  return new Promise(resolve => {
+    query(info).then(tabs => resolve(tabs[0]))
   })
 }
 
