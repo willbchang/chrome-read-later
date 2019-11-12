@@ -28,8 +28,7 @@ export function setPage(tab, position) {
   page.title = tab.title || tab.url
   page.favIconUrl = tab.favIconUrl || '../images/32x32gray.png'
   page.date = Date.now()
-  Object.assign(page, position)
-  set({ [page.url]: page })
+  set({ [page.url]: Object.assign(page, position) })
 }
 
 export function setSelection(tab, selection) {
