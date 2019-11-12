@@ -6,7 +6,7 @@ initReadingList()
 $(() => {
   event.onClick('a', sendUrlToBackground)
   hoverMouseToChangeIcon()
-  clickIconToDelete()
+  event.onClick('img', removeItem)
   clickButtonToReset()
 })
 
@@ -57,11 +57,9 @@ function hoverMouseToChangeIcon() {
   )
 }
 
-function clickIconToDelete() {
-  $('ul').on('click', 'img', e => {
-    $(e.target.parentNode).remove()
-    storage.remove(e.target.nextElementSibling.href)
-  })
+function removeItem(e) {
+  $(e.target.parentNode).remove()
+  storage.remove(e.target.nextElementSibling.href)
 }
 
 function clickButtonToReset() {
