@@ -2,6 +2,17 @@ export function query(queryInfo, callback) {
   chrome.tabs.query(queryInfo, callback)
 }
 
+export function current(callback) {
+  const queryInfo = {
+    active: true,
+    currentWindow: true,
+  }
+
+  query(queryInfo, tabs => {
+    callback(tabs[0])
+  })
+}
+
 export function update(href, callback) {
   chrome.tabs.update(null, { url: href }, callback)
 }
@@ -28,24 +39,6 @@ export function emptyOrRemove(tab) {
   })
 }
 
-export function openInCurrentOrNewTab(href, message) {
-  current(tab => {
-    isEmpty(tab)
-      ? update(href, onComplete(message))
-      : create(href, onComplete(message))
-  })
-}
-
-export function current(callback) {
-  const queryInfo = {
-    active: true,
-    currentWindow: true,
-  }
-  query(queryInfo, tabs => {
-    callback(tabs[0])
-  })
-}
-
 export function sendMessage(tabId, message, callback) {
   chrome.tabs.sendMessage(tabId, message, callback)
 }
@@ -60,5 +53,13 @@ export function onComplete(message) {
       chrome.tabs.onUpdated.removeListener(listener)
       chrome.tabs.sendMessage(tabId, message)
     }
+  })
+}
+
+export function openInCurrentOrNewTab(href, message) {
+  current(tab => {
+    isEmpty(tab)
+      ? update(href, onComplete(message))
+      : create(href, onComplete(message))
   })
 }
