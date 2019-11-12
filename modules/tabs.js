@@ -51,7 +51,7 @@ export function onComplete(message) {
   onUpdate(function listener(tabId, info) {
     if (info.status === 'complete') {
       chrome.tabs.onUpdated.removeListener(listener)
-      chrome.tabs.sendMessage(tabId, message)
+      sendMessage(tabId, message)
     }
   })
 }
