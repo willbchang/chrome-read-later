@@ -1,5 +1,5 @@
-chrome.runtime.onMessage.addListener((request, sender, send) => {
-  if (request.info === 'get page position') {
+chrome.runtime.onMessage.addListener((message, sender, send) => {
+  if (message.info === 'get page position') {
     const position = {}
     position.scrollTop = document.documentElement.scrollTop
     position.scrollBottom = window.scrollY + window.innerHeight
@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener((request, sender, send) => {
     send(position)
   }
 
-  if (request.scrollTop) {
-    document.documentElement.scrollTop = request.scrollTop
+  if (message.scrollTop) {
+    document.documentElement.scrollTop = message.scrollTop
   }
 })

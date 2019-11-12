@@ -12,14 +12,14 @@ extension.onCommand(() => {
   })
 })
 
-extension.onMessage(request => {
-  if (!request.url) return
+extension.onMessage(message => {
+  if (!message.url) return
   storage.get(pages => {
-    const page = pages[request.url]
+    const page = pages[message.url]
     const position = {}
     position.scrollTop = page.scrollTop
-    tabs.openInCurrentOrNewTab(request.url, position)
-    storage.remove(request.url)
+    tabs.openInCurrentOrNewTab(message.url, position)
+    storage.remove(message.url)
   })
 })
 
