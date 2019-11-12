@@ -10,6 +10,12 @@ export function get(callback) {
   chrome.storage.sync.get(callback)
 }
 
+export function getSorted(callback) {
+  get(pages => {
+    callback(Object.values(pages).sort((a, b) => a.date - b.date))
+  })
+}
+
 export function set(page) {
   chrome.storage.sync.set(page)
 }
