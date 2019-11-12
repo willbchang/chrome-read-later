@@ -3,20 +3,19 @@ import * as storage from './modules/storage.js'
 import * as tabs from './modules/tabs.js'
 // https://stackoverflow.com/questions/28250680/how-do-i-access-previous-promise-results-in-a-then-chain
 extension.onCommand(() => {
+  let tab
   tabs
     .current()
-    .then(tab => {
-      if (tabs.isEmpty(tab)) return
-      localStorage.setItem('tab', JSON.stringify(tab))
-      return tabs.sendMessage(tab.id, { info: 'get page position' })
+    .then(aTab => {
+      if (tabs.isEmpty(aTab)) return
+      tab = aTab
+      return tabs.sendMessage(aTab.id, { info: 'get page position' })
     })
     .then(position => {
-      const tab = JSON.parse(localStorage.getItem('tab'))
       storage.setPage(tab, position)
       return tabs.query({})
     })
     .then(xTabs => {
-      const tab = JSON.parse(localStorage.getItem('tab'))
       xTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
     })
 })
