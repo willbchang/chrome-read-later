@@ -7,7 +7,9 @@ extension.onCommand(() => {
     if (tabs.isEmpty(tab)) return
     tabs.sendMessage(tab.id, { info: 'get page position' }, position => {
       storage.setPage(tab, position)
-      tabs.emptyOrRemove(tab)
+      tabs.query({}, xTabs => {
+        xTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
+      })
     })
   })
 })

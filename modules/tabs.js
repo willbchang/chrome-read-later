@@ -33,12 +33,6 @@ export function isEmpty(tab) {
   return tab.url === 'chrome://newtab/'
 }
 
-export function emptyOrRemove(tab) {
-  query({}, tabs => {
-    tabs.length === 1 ? empty(tab) : remove(tab)
-  })
-}
-
 export function sendMessage(tabId, message, callback) {
   chrome.tabs.sendMessage(tabId, message, callback)
 }
