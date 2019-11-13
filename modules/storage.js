@@ -12,10 +12,9 @@ export function get() {
   })
 }
 
-export function getSorted() {
-  return get().then(pages => {
-    return Object.values(pages).sort((a, b) => a.date - b.date)
-  })
+export async function getSorted() {
+  const pages = await get()
+  return Object.values(pages).sort((a, b) => a.date - b.date)
 }
 
 export async function getPosition(url) {
