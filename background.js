@@ -10,11 +10,11 @@ extension.onCommand(() => {
   tabs
     .current()
     .then(aTab => {
+      tab = aTab
       // Break the promise chain when the tab is empty.
       // https://stackoverflow.com/a/45339587/9984029
-      if (tabs.isEmpty(aTab)) return { then: () => {} }
-      tab = aTab
-      return tabs.sendMessage(aTab.id, { info: 'get page position' })
+      if (tabs.isEmpty(tab)) return { then: () => {} }
+      return tabs.sendMessage(tab.id, { info: 'get page position' })
     })
     .then(position => {
       storage.setPage(tab, position)
