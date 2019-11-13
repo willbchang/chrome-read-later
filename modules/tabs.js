@@ -9,10 +9,7 @@ export function current() {
     active: true,
     currentWindow: true,
   }
-
-  return new Promise(resolve => {
-    query(info).then(tabs => resolve(tabs[0]))
-  })
+  return query(info).then(tabs => tabs[0])
 }
 
 export function update(href) {
