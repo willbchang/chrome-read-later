@@ -18,6 +18,17 @@ export function getSorted(callback) {
   })
 }
 
+export function getPosition(url) {
+  return new Promise(resolve => {
+    get().then(pages => {
+      const page = pages[url]
+      const position = {}
+      position.scrollTop = page.scrollTop
+      resolve(position)
+    })
+  })
+}
+
 export function set(page) {
   chrome.storage.sync.set(page)
 }

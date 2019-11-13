@@ -36,12 +36,9 @@ extension.onMessage(message => {
     .then(tabs.onComplete)
     .then(aTabId => {
       tabId = aTabId
-      return storage.get()
+      return storage.getPosition(message.url)
     })
-    .then(pages => {
-      const page = pages[message.url]
-      const position = {}
-      position.scrollTop = page.scrollTop
+    .then(position => {
       // Use raw sendMessage to avoid receive response.
       // Which will cause message port closed before sending.
       chrome.tabs.sendMessage(tabId, position)
