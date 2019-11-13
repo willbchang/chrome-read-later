@@ -18,13 +18,12 @@ export function getSorted() {
   })
 }
 
-export function getPosition(url) {
-  return get().then(pages => {
-    const page = pages[url]
-    const position = {}
-    position.scrollTop = page.scrollTop
-    return position
-  })
+export async function getPosition(url) {
+  const pages = await get()
+  const page = pages[url]
+  const position = {}
+  position.scrollTop = page.scrollTop
+  return position
 }
 
 export function set(page) {
