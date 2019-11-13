@@ -12,9 +12,9 @@ export function get() {
   })
 }
 
-export function getSorted(callback) {
-  get().then(pages => {
-    callback(Object.values(pages).sort((a, b) => a.date - b.date))
+export function getSorted() {
+  return get().then(pages => {
+    return Object.values(pages).sort((a, b) => a.date - b.date)
   })
 }
 
