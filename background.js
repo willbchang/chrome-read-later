@@ -13,25 +13,15 @@ extension.onCommand(async () => {
   allTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
 })
 
-extension.onMessage(message => {
-  let tabId
-  tabs
-    .current()
-    .then(tab => {
-      if (tabs.isEmpty(tab)) return tabs.update(message.url)
-      return tabs.create(message.url)
-    })
-    .then(tabs.onComplete)
-    .then(aTabId => {
-      tabId = aTabId
-      return storage.getPosition(message.url)
-    })
-    .then(position => {
-      // Use raw sendMessage to avoid receive response.
-      // Which will cause message port closed before sending.
-      chrome.tabs.sendMessage(tabId, position)
-    })
-    .then(() => storage.remove(message.url))
+extension.onMessage(async message => {
+  const tab = await tabs.current()
+  tabs.isEmpty(tab) ? tabs.update(message.url) : tabs.create(message.url)
+
+  const tabId = await tabs.onComplete()
+  const position = await storage.getPosition(message.url)
+  chrome.tabs.sendMessage(tabId, position)
+
+  storage.remove(message.url)
 })
 
 extension.onClicked((selection, tab) => {
