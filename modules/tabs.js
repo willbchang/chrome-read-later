@@ -4,12 +4,13 @@ export function query(info) {
   })
 }
 
-export function current() {
+export async function current() {
   const info = {
     active: true,
     currentWindow: true,
   }
-  return query(info).then(tabs => tabs[0])
+  const tabs = await query(info)
+  return tabs[0]
 }
 
 export function update(href) {
