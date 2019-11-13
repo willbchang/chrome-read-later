@@ -43,13 +43,9 @@ export function sendMessage(tabId, message) {
   })
 }
 
-export function onUpdate(callback) {
-  chrome.tabs.onUpdated.addListener(callback)
-}
-
 export function onComplete() {
   return new Promise(resolve => {
-    onUpdate(function listener(tabId, info) {
+    chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
       if (info.status === 'complete') {
         chrome.tabs.onUpdated.removeListener(listener)
         resolve(tabId)
