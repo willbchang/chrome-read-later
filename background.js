@@ -19,8 +19,9 @@ extension.onMessage(async message => {
 
   const tabId = await tabs.onComplete()
   const position = await storage.getPosition(message.url)
+  // Use raw sendMessage to avoid the error message below:
+  // The message port closed before a response was received.
   chrome.tabs.sendMessage(tabId, position)
-
   storage.remove(message.url)
 })
 
