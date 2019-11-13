@@ -1,24 +1,28 @@
-export function query(info, callback) {
-  chrome.tabs.query(info, callback)
+export function query(info) {
+  return new Promise(resolve => {
+    chrome.tabs.query(info, resolve)
+  })
 }
 
-export function current(callback) {
+export async function current() {
   const info = {
     active: true,
     currentWindow: true,
   }
+  const tabs = await query(info)
+  return tabs[0]
+}
 
-  query(info, tabs => {
-    callback(tabs[0])
+export function update(href) {
+  return new Promise(resolve => {
+    chrome.tabs.update(null, { url: href }, resolve)
   })
 }
 
-export function update(href, callback) {
-  chrome.tabs.update(null, { url: href }, callback)
-}
-
-export function create(href, callback) {
-  chrome.tabs.create({ url: href }, callback)
+export function create(href) {
+  return new Promise(resolve => {
+    chrome.tabs.create({ url: href }, resolve)
+  })
 }
 
 export function remove(tab) {
@@ -33,19 +37,19 @@ export function isEmpty(tab) {
   return tab.url === 'chrome://newtab/'
 }
 
-export function sendMessage(tabId, message, callback) {
-  chrome.tabs.sendMessage(tabId, message, callback)
+export function sendMessage(tabId, message) {
+  return new Promise(resolve => {
+    chrome.tabs.sendMessage(tabId, message, resolve)
+  })
 }
 
-export function onUpdate(callback) {
-  chrome.tabs.onUpdated.addListener(callback)
-}
-
-export function onComplete(callback) {
-  onUpdate(function listener(tabId, info) {
-    if (info.status === 'complete') {
-      chrome.tabs.onUpdated.removeListener(listener)
-      callback(tabId)
-    }
+export function onComplete() {
+  return new Promise(resolve => {
+    chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+      if (info.status === 'complete') {
+        chrome.tabs.onUpdated.removeListener(listener)
+        resolve(tabId)
+      }
+    })
   })
 }

@@ -2,38 +2,27 @@ import * as extension from './modules/extension.js'
 import * as storage from './modules/storage.js'
 import * as tabs from './modules/tabs.js'
 
-extension.onCommand(() => {
-  tabs.current(tab => {
-    if (tabs.isEmpty(tab)) return
-    tabs.sendMessage(tab.id, { info: 'get page position' }, position => {
-      storage.setPage(tab, position)
-      tabs.query({}, xTabs => {
-        xTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
-      })
-    })
-  })
+extension.onCommand(async () => {
+  const tab = await tabs.current()
+  if (tabs.isEmpty(tab)) return
+
+  const position = await tabs.sendMessage(tab.id, { info: 'get page position' })
+  storage.setPage(tab, position)
+
+  const allTabs = await tabs.query({})
+  allTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
 })
 
-extension.onMessage(message => {
-  if (!message.url) return
-  storage.get(pages => {
-    tabs.current(tab => {
-      tabs.isEmpty(tab)
-        ? tabs.update(message.url, setPosition)
-        : tabs.create(message.url, setPosition)
-    })
-    storage.remove(message.url)
+extension.onMessage(async message => {
+  const tab = await tabs.current()
+  tabs.isEmpty(tab) ? tabs.update(message.url) : tabs.create(message.url)
 
-    function setPosition() {
-      const page = pages[message.url]
-      const position = {}
-      position.scrollTop = page.scrollTop
-
-      tabs.onComplete(tabId => {
-        tabs.sendMessage(tabId, position)
-      })
-    }
-  })
+  const tabId = await tabs.onComplete()
+  const position = await storage.getPosition(message.url)
+  // Use raw sendMessage to avoid the error message below:
+  // The message port closed before a response was received.
+  chrome.tabs.sendMessage(tabId, position)
+  storage.remove(message.url)
 })
 
 extension.onClicked((selection, tab) => {

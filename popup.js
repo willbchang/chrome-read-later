@@ -10,8 +10,9 @@ $(() => {
   clickButtonToReset()
 })
 
-function initReadingList() {
-  storage.getSorted(pages => pages.map(page => append(page)))
+async function initReadingList() {
+  const pages = await storage.getSorted()
+  pages.map(page => append(page))
 
   function append(page) {
     $('ul').append(`

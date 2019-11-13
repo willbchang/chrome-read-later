@@ -6,14 +6,23 @@ export function clear() {
   chrome.storage.sync.clear()
 }
 
-export function get(callback) {
-  chrome.storage.sync.get(callback)
+export function get() {
+  return new Promise(resolve => {
+    chrome.storage.sync.get(resolve)
+  })
 }
 
-export function getSorted(callback) {
-  get(pages => {
-    callback(Object.values(pages).sort((a, b) => a.date - b.date))
-  })
+export async function getSorted() {
+  const pages = await get()
+  return Object.values(pages).sort((a, b) => a.date - b.date)
+}
+
+export async function getPosition(url) {
+  const pages = await get()
+  const page = pages[url]
+  const position = {}
+  position.scrollTop = page.scrollTop
+  return position
 }
 
 export function set(page) {
@@ -26,13 +35,7 @@ export function setPage(tab, position) {
   page.title = tab.title || tab.url
   page.favIconUrl = tab.favIconUrl || '../images/32x32gray.png'
   page.date = Date.now()
-  Object.assign(page, position)
-  page.scrollPercent = percent(page.scrollBottom, page.scrollHeight)
-  set({ [page.url]: page })
-
-  function percent(x, y) {
-    return Math.floor((x / y) * 100) + '%'
-  }
+  set({ [page.url]: Object.assign(page, position) })
 }
 
 export function setSelection(tab, selection) {
