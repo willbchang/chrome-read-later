@@ -23,6 +23,14 @@ export function update(href) {
   })
 }
 
+export function empty() {
+  update('chrome://newtab/')
+}
+
+export function isEmpty(tab) {
+  return tab.url === 'chrome://newtab/'
+}
+
 export function create(href) {
   return new Promise(resolve => {
     chrome.tabs.create({ url: href }, resolve)
@@ -31,14 +39,6 @@ export function create(href) {
 
 export function remove(tab) {
   chrome.tabs.remove(tab.id)
-}
-
-export function empty() {
-  update('chrome://newtab/')
-}
-
-export function isEmpty(tab) {
-  return tab.url === 'chrome://newtab/'
 }
 
 export function sendMessage(tabId, message) {
