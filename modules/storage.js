@@ -1,3 +1,5 @@
+// For chrome.storage functions:
+// https://developer.chrome.com/extensions/storage
 export function remove(url) {
   chrome.storage.sync.remove(url)
 }
@@ -35,6 +37,9 @@ export function setPage(tab, position) {
   page.title = tab.title || tab.url
   page.favIconUrl = tab.favIconUrl || '../images/32x32gray.png'
   page.date = Date.now()
+  // The [key] feature is Computed Property Names.
+  // https://mdn.io/computed_property_names
+  // https://mdn.io/object.assign
   set({ [page.url]: Object.assign(page, position) })
 }
 
