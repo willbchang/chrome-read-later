@@ -24,16 +24,6 @@
     "@types/jquery": "^3.3.31"
   },
   "devDependencies": {
-    "eslint": "^6.6.0",
-    "husky": "^3.0.9",
-    "lint-staged": "^9.4.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": "lint:eslint"
+    "eslint": "^6.6.0"
   }
 }
