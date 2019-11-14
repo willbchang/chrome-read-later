@@ -9,7 +9,7 @@ extension.onCommand(async () => {
   const position = await tabs.sendMessage(tab.id, { info: 'get page position' })
   storage.setPage(tab, position)
 
-  const allTabs = await tabs.query({})
+  const allTabs = await tabs.all()
   allTabs.length === 1 ? tabs.empty(tab) : tabs.remove(tab)
 })
 
