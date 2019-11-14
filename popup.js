@@ -36,22 +36,20 @@ async function initReadingList() {
 function sendUrlToBackground(e) {
   // Disable the default <a> tag action.
   // Because there are some actions need to be run.
-  // e.g.
-  //  - Check if current is empty: tabs.isEmpty()
+  //  - Check if current tab is empty: tabs.isEmpty()
   //  - Add tab loading status listener: tabs.onComplete()
-  //  - Get saved page scroll position and set it:
-  //    - storage.getPosition(), chrome.tabs.sendMessage()
+  //  - Get saved page scroll position: storage.getPosition()
+  //  - Send position to cotent.js: chrome.tabs.sendMessage()
   //  - Remove this item in storage: storage.remove()
   e.preventDefault()
   // Send clicked url as message to background.
   // Because tabs.onComplete() is a live listener,
-  // after clicking the url in popup.html,
-  // popup.html disappeared, the listener would be interrupted.
+  // popup.html will disappeared after clicking the link,
+  // thus the listener in popup.js would be interrupted.
   extension.sendMessage({ url: e.target.href })
   // Close popup.html when loading in current tab,
   // which also means the current tab is empty.
-  // tabs.update() won't close popup.html,
-  // tabs.create() does.
+  // Because tabs.update() won't close popup.html, tabs.create() does.
   window.close()
 }
 
