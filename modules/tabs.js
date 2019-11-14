@@ -33,8 +33,8 @@ export function remove(tab) {
   chrome.tabs.remove(tab.id)
 }
 
-export function empty(tab) {
-  update(tab.id, 'chrome://newtab/')
+export function empty() {
+  update('chrome://newtab/')
 }
 
 export function isEmpty(tab) {
