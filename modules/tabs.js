@@ -4,6 +4,10 @@ export function query(info) {
   })
 }
 
+export async function all() {
+  return await query({})
+}
+
 export async function current() {
   const info = {
     active: true,
