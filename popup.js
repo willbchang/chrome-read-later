@@ -22,6 +22,8 @@ async function initReadingList() {
       </li>
     `)
 
+    // Stop when page.scrollTop doesn't exist or the value is zero.
+    // e.g. tabs.setSelection() does not save scroll position.
     if (!page.scrollTop) return
     $(`#${page.date}`).append(`
       <span class="position">
@@ -32,9 +34,24 @@ async function initReadingList() {
 }
 
 function sendUrlToBackground(e) {
-  // disable default <a> tag action
+  // Disable the default <a> tag action.
+  // Because there are some actions need to be run.
+  // e.g.
+  //  - Check if current is empty: tabs.isEmpty()
+  //  - Add tab loading status listener: tabs.onComplete()
+  //  - Get saved page scroll position and set it:
+  //    - storage.getPosition(), chrome.tabs.sendMessage()
+  //  - Remove this item in storage: storage.remove()
   e.preventDefault()
+  // Send clicked url as message to background.
+  // Because tabs.onComplete() is a live listener,
+  // after clicking the url in popup.html,
+  // popup.html disappeared, the listener would be interrupted.
   extension.sendMessage({ url: e.target.href })
+  // Close popup.html when loading in current tab,
+  // which also means the current tab is empty.
+  // tabs.update() won't close popup.html,
+  // tabs.create() does.
   window.close()
 }
 
@@ -48,7 +65,9 @@ function showFavIconOnLeave(e) {
 }
 
 function removeItem(e) {
+  // e.target is <img>, the parentNode is <li>
   $(e.target.parentNode).remove()
+  // The next sibling of <img> is <a>
   storage.remove(e.target.nextElementSibling.href)
 }
 
