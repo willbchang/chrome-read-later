@@ -4,10 +4,6 @@ export function remove(url) {
   chrome.storage.sync.remove(url)
 }
 
-export function clear() {
-  chrome.storage.sync.clear()
-}
-
 export function get() {
   return new Promise(resolve => {
     chrome.storage.sync.get(resolve)

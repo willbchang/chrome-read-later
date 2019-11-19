@@ -7,7 +7,6 @@ $(() => {
   event.onClick('a', sendUrlToBackground)
   event.onHover('img', showDeleteIconOnEnter, showFavIconOnLeave)
   event.onClick('img', removeItem)
-  clickButtonToReset()
 })
 
 async function initReadingList() {
@@ -67,11 +66,4 @@ function removeItem(e) {
   $(e.target.parentNode).remove()
   // The next sibling of <img> is <a>
   storage.remove(e.target.nextElementSibling.href)
-}
-
-function clickButtonToReset() {
-  $('button').on('click', () => {
-    storage.clear()
-    window.close()
-  })
 }
