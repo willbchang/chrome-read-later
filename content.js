@@ -12,7 +12,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message.scrollTop) {
-    document.documentElement.scrollTop = message.scrollTop
+    window.scrollTo({
+      top: message.scrollTop,
+      behavior: 'smooth'
+    })
   }
 })
 
