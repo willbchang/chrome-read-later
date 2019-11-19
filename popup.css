@@ -1,7 +1,7 @@
 body {
   width: 300px;
   font-size: 14px;
-  word-break: break-all;
+  hyphens: auto;
   letter-spacing: 0.4px;
   word-spacing: 1px;
 }
