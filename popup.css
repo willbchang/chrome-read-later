@@ -2,6 +2,8 @@ body {
   width: 300px;
   font-size: 14px;
   word-break: break-all;
+  letter-spacing: 0.4px;
+  word-spacing: 1px;
 }
 
 ul {
