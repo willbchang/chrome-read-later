@@ -36,8 +36,8 @@ export function setPage(tab, position) {
   page.date = Date.now()
   // The [key] feature is Computed Property Names.
   // https://mdn.io/computed_property_names
-  // https://mdn.io/object.assign
-  set({ [page.url]: Object.assign(page, position) })
+  // https://mdn.io/object.spread
+  set({ [page.url]: { ...page, ...position } })
 }
 
 export function setSelection(tab, selection) {

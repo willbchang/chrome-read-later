@@ -19,7 +19,7 @@ extension.onMessage(async message => {
 
   const position = await storage.getPosition(message.url)
   storage.remove(message.url)
-  
+
   // Use raw sendMessage to avoid the error message below:
   // The message port closed before a response was received.
   const tabId = await tabs.onComplete()
