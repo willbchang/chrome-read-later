@@ -17,12 +17,13 @@ extension.onMessage(async message => {
   const tab = await tabs.current()
   tabs.isEmpty(tab) ? tabs.update(message.url) : tabs.create(message.url)
 
-  const tabId = await tabs.onComplete()
   const position = await storage.getPosition(message.url)
+  storage.remove(message.url)
+  
   // Use raw sendMessage to avoid the error message below:
   // The message port closed before a response was received.
+  const tabId = await tabs.onComplete()
   chrome.tabs.sendMessage(tabId, position)
-  storage.remove(message.url)
 })
 
 extension.onClicked((selection, tab) => {
