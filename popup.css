@@ -9,6 +9,7 @@ body {
 ul {
   list-style: none;
   padding: 0 15px;
+  margin-bottom: 0;
 }
 
 li {
@@ -45,6 +46,7 @@ img:hover {
 }
 
 #report-an-issue {
+  padding: 5px 0;
   color: gray;
   font-size: 12px;
   float: right;
