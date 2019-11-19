@@ -30,7 +30,7 @@ export function empty() {
 }
 
 export function isEmpty(tab) {
-  return tab.url === 'chrome://newtab/'
+  return ['chrome://newtab/', 'about:blank'].includes(tab.url)
 }
 
 // https://developer.chrome.com/extensions/tabs#method-create
