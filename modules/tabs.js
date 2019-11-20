@@ -5,11 +5,11 @@ export function query(info) {
   })
 }
 
-export async function all() {
+export async function queryAll() {
   return await query({})
 }
 
-export async function current() {
+export async function queryCurrent() {
   const info = {
     active: true,
     currentWindow: true,

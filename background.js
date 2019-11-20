@@ -3,8 +3,8 @@ import * as storage from './modules/storage.js'
 import * as tabs from './modules/tabs.js'
 
 extension.onCommand(async () => {
-  const allTabs = await tabs.all()
-  const tab = await tabs.current()
+  const allTabs = await tabs.queryAll()
+  const tab = await tabs.queryCurrent()
   if (tabs.isEmpty(tab)) return
   
   if (tab.status !== 'complete') {
@@ -18,7 +18,7 @@ extension.onCommand(async () => {
 })
 
 extension.onMessage(async message => {
-  const tab = await tabs.current()
+  const tab = await tabs.queryCurrent()
   tabs.isEmpty(tab) ? tabs.update(message.url) : tabs.create(message.url)
 
   const position = await storage.getPosition(message.url)
