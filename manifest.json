@@ -1,17 +1,17 @@
 {
   "background": {
     "persistent": true,
-    "page": "background.html"
+    "page": "src/background.html"
   },
   "browser_action": {
     "default_icon": "images/32x32orange.png",
-    "default_popup": "popup.html",
+    "default_popup": "src/popup.html",
     "default_title": "Read Later"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["src/content.js"]
     }
   ],
   "commands": {

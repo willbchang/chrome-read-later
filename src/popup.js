@@ -1,6 +1,6 @@
-import * as event from './modules/event.js'
-import * as extension from './modules/extension.js'
-import * as storage from './modules/storage.js'
+import * as event from '../modules/event.js'
+import * as extension from '../modules/extension.js'
+import * as storage from '../modules/storage.js'
 
 initReadingList()
 $(() => {
