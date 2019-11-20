@@ -21,6 +21,10 @@ async function initReadingList() {
       </li>
     `)
 
+    if (page.url === page.title) {
+      $(`#${page.date} a`).css('word-break', 'break-all')
+    }
+    
     // Stop when page.scrollTop doesn't exist or the value is zero.
     // e.g. tabs.setSelection() does not save scroll position.
     if (!page.scrollTop) return
@@ -29,6 +33,7 @@ async function initReadingList() {
         ${page.scrollPercent}
       </span>
     `)
+
   }
 }
 
