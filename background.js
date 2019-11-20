@@ -3,10 +3,9 @@ import * as storage from './modules/storage.js'
 import * as tabs from './modules/tabs.js'
 
 extension.onCommand(async () => {
-  const allTabs = await tabs.queryAll()
   const tab = await tabs.queryCurrent()
   if (tabs.isEmpty(tab)) return
-  
+
   if (tab.status !== 'complete' || tab.url.slice(0, 4) !== 'http') {
     storage.setPage(tab)
   } else {
@@ -14,6 +13,7 @@ extension.onCommand(async () => {
     storage.setPage(tab, position)
   }
 
+  const allTabs = await tabs.queryAll()
   allTabs.length === 1 ? tabs.empty() : tabs.remove(tab)
 })
 
