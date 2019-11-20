@@ -29,11 +29,8 @@ async function initReadingList() {
     // Stop when page.scrollTop doesn't exist or the value is zero.
     // e.g. tabs.setSelection() does not save scroll position.
     if (!page.scrollTop) return
-    $(`#${page.date}`).append(`
-      <span class="position">
-        ${page.scrollPercent}
-      </span>
-    `)
+    $(`#${page.date}`)
+      .append(`<span class="position">${page.scrollPercent}</span>`)
 
   }
 }
