@@ -7,7 +7,7 @@ extension.onCommand(async () => {
   const tab = await tabs.queryCurrent()
   if (tabs.isEmpty(tab)) return
   
-  if (tab.status !== 'complete') {
+  if (tab.status !== 'complete' || tab.url.slice(0, 4) !== 'http') {
     storage.setPage(tab)
   } else {
     const position = await tabs.sendMessage(tab.id, { info: 'get page position' })
