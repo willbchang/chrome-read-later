@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.info === 'get page position')
-    sendResponse(getPagePosition())
+    sendResponse(getPosition())
 
   if (message.scrollTop) {
     window.scrollTo({
@@ -12,7 +12,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // Use scrollBottom to calculate scrollPercent to avoid the situation: 
 // Scroll page to the bottom, but the percent is not 100%.
-function getPagePosition() {
+function getPosition() {
   const position = Object.assign({
     scrollTop: document.documentElement.scrollTop,
     scrollPercent: percent(
