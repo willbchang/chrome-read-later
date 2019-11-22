@@ -11,14 +11,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 })
 
 function getPagePosition() {
-  const position = {}
-  position.scrollTop = document.documentElement.scrollTop
-  position.scrollBottom = window.scrollY + window.innerHeight
-  position.scrollHeight = document.documentElement.scrollHeight
-  position.scrollPercent = percent(
-    position.scrollBottom,
-    position.scrollHeight
-  )
+  const position = Object.assign({
+    scrollTop: document.documentElement.scrollTop,
+    scrollBottom: window.scrollY + window.innerHeight,
+    scrollHeight: document.documentElement.scrollHeight,
+    scrollPercent: percent(position.scrollBottom, position.scrollHeight)
+  })
   return position
 }
 
