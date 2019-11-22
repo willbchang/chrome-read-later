@@ -24,8 +24,10 @@ export async function getPosition(url) {
   return position
 }
 
+// The [key] feature is Computed Property Names.
+// https://mdn.io/computed_property_names
 export function set(page) {
-  chrome.storage.sync.set(page)
+  chrome.storage.sync.set({ [page.url]: page })
 }
 
 // https://mdn.io/object.assign
@@ -37,9 +39,7 @@ export function setPage(tab, position) {
     favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
     date: Date.now(),
   }, position)
-  // The [key] feature is Computed Property Names.
-  // https://mdn.io/computed_property_names
-  set({ [page.url]: page })
+  set(page)
 }
 
 export function setSelection(tab, selection) {
@@ -49,5 +49,5 @@ export function setSelection(tab, selection) {
     favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
     date: Date.now(),
   })
-  set({ [page.url]: page })
+  set(page)
 }
