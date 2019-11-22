@@ -2,12 +2,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.info === 'get position')
     sendResponse(getPosition())
 
-  if (message.scrollTop) {
+  if (message.scrollTop)
     window.scrollTo({
       top: message.scrollTop,
       behavior: 'smooth'
     })
-  }
 })
 
 // Use scrollBottom to calculate scrollPercent to avoid the situation: 
