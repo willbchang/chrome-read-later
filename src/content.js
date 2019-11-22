@@ -10,11 +10,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 })
 
+// Use scrollBottom to calculate scrollPercent to avoid the situation: 
+// Scroll page to the bottom, but the percent is not 100%.
 function getPagePosition() {
   const position = Object.assign({
     scrollTop: document.documentElement.scrollTop,
     scrollPercent: percent(
-      window.scrollY + window.innerHeight,
+      window.scrollY + window.innerHeight, // scrollBottom
       document.documentElement.scrollHeight
     )
   })
