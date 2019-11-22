@@ -15,8 +15,8 @@ function getPagePosition() {
     scrollTop: document.documentElement.scrollTop,
     scrollBottom: window.scrollY + window.innerHeight,
     scrollHeight: document.documentElement.scrollHeight,
-    scrollPercent: percent(position.scrollBottom, position.scrollHeight)
   })
+  position.scrollPercent = percent(position.scrollBottom, position.scrollHeight)
   return position
 }
 
