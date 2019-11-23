@@ -37,6 +37,10 @@ export function isHttp(tab) {
   return tab.url.slice(0, 4) === 'http'
 }
 
+export function isComplete(tab) {
+  return tab.status === 'complete'
+}
+
 // https://developer.chrome.com/extensions/tabs#method-create
 export function create(href) {
   return new Promise(resolve => {
