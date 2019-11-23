@@ -43,11 +43,11 @@ export function setPage(tab, position) {
 }
 
 export function setSelection(tab, selection) {
-  const page = Object.assign({
+  const page = {
     url: selection.linkUrl,
     title: selection.selectionText || selection.linkUrl,
     favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
     date: Date.now(),
-  })
+  }
   set(page)
 }
