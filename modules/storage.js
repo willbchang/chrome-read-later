@@ -24,27 +24,30 @@ export async function getPosition(url) {
   return position
 }
 
+// The [key] feature is Computed Property Names.
+// https://mdn.io/computed_property_names
 export function set(page) {
-  chrome.storage.sync.set(page)
+  chrome.storage.sync.set({[page.url]: page})
 }
 
+// https://mdn.io/object.assign
+// https://git.io/Je6Aq
 export function setPage(tab, position) {
-  const page = {}
-  page.url = tab.url
-  page.title = tab.title || tab.url
-  page.favIconUrl = tab.favIconUrl || '../images/32x32gray.png'
-  page.date = Date.now()
-  // The [key] feature is Computed Property Names.
-  // https://mdn.io/computed_property_names
-  // https://mdn.io/object.spread
-  set({ [page.url]: { ...page, ...position } })
+  const page = Object.assign({
+    url: tab.url,
+    title: tab.title || tab.url,
+    favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
+    date: Date.now(),
+  }, position)
+  set(page)
 }
 
 export function setSelection(tab, selection) {
-  const page = {}
-  page.url = selection.linkUrl
-  page.title = selection.selectionText || selection.linkUrl
-  page.favIconUrl = tab.favIconUrl || '../images/32x32gray.png'
-  page.date = Date.now()
-  set({ [page.url]: page })
+  const page = {
+    url: selection.linkUrl,
+    title: selection.selectionText || selection.linkUrl,
+    favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
+    date: Date.now(),
+  }
+  set(page)
 }
