@@ -16,7 +16,7 @@ async function initReadingList() {
   function append(page) {
     $('ul').append(`
       <li id=${page.date}>
-        <img src="${page.favIconUrl}">
+        <img src="${page.favIconUrl}" alt="favIcon">
         <a href="${page.url}" title="${page.url}">${page.title}</a>
       </li>
     `)
