@@ -1,21 +1,11 @@
-Object.defineProperty(Object.prototype, 'isEmpty', {
-  value: function () {
-    return ['chrome://newtab/', 'about:blank'].includes(this.url)
-  },
-  enumerable: false
-})
+Object.prototype.isEmpty = function () {
+  return this.url === 'chrome://newtab/'
+}
 
-Object.defineProperty(Object.prototype, 'isHttp', {
-  value: function () {
-    return this.url.slice(0, 4) === 'http'
-  },
-  enumerable: false
-})
+Object.prototype.isHttp = function () {
+  return this.url.slice(0, 4) === 'http'
+}
 
-Object.defineProperty(Object.prototype, 'isComplete', {
-  value: function () {
-    return this.status === 'complete'
-  },
-  enumerable: false
-})
-
+Object.prototype.isComplete = function () {
+  return this.status === 'complete'
+}
