@@ -41,7 +41,7 @@ function sendUrlToBackground(e) {
   //  - Check if current tab is empty: tabs.isEmpty()
   //  - Add tab loading status listener: tabs.onComplete()
   //  - Get saved page scroll position: storage.getPosition()
-  //  - Send position to cotent.js: chrome.tabs.sendMessage()
+  //  - Send position to content.js: chrome.tabs.sendMessage()
   //  - Remove this item in storage: storage.remove()
   e.preventDefault()
   // Send clicked url as message to background.
