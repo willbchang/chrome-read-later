@@ -12,6 +12,7 @@ async function initReadingList() {
   pages.map(page => {
     append(page)
     setUrlAsTitleStyle(page)
+    setScrollPercent(page)
   })
 
   function append(page) {
@@ -21,12 +22,6 @@ async function initReadingList() {
         <a href="${page.url}" title="${page.url}">${page.title}</a>
       </li>
     `)
-
-    // Stop when page.scrollTop doesn't exist or the value is zero.
-    // e.g. tabs.setSelection() does not save scroll position.
-    if (!page.scrollTop) return
-    $(`#${page.date}`)
-      .append(`<span class="position">${page.scrollPercent}</span>`)
   }
 
   function setUrlAsTitleStyle(page) {
@@ -36,6 +31,14 @@ async function initReadingList() {
         color: 'gray',
       })
     }
+  }
+
+  function setScrollPercent(page) {
+    // Set scroll percent when page.scrollTop doesn't exist or the value is zero.
+    // e.g. tabs.setSelection() does not save scroll position.
+    if (!page.scrollTop) return
+    $(`#${page.date}`)
+      .append(`<span class="position">${page.scrollPercent}</span>`)
   }
 }
 
