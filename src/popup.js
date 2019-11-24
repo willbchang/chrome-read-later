@@ -25,19 +25,16 @@ async function initReadingList() {
   }
 
   function setUrlAsTitleStyle(page) {
-    if (page.url === page.title) {
-      $(`#${page.date} a`).css({
-        'word-break': 'break-all',
-        color: 'gray',
-      })
-    }
+    if (page.url === page.title) $(`#${page.date} a`).css({
+      'word-break': 'break-all',
+      color: 'gray',
+    })
   }
 
   function setScrollPercent(page) {
     // Set scroll percent when page.scrollTop doesn't exist or the value is zero.
     // e.g. tabs.setSelection() does not save scroll position.
-    if (!page.scrollTop) return
-    $(`#${page.date}`)
+    if (page.scrollTop) $(`#${page.date}`)
       .append(`<span class="position">${page.scrollPercent}</span>`)
   }
 }
