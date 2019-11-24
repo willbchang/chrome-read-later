@@ -3,7 +3,7 @@ import * as storage from '../modules/storage.js'
 
 initReadingList().then(() => {
   $('ul').on('click', 'a', sendUrlToBackground)
-    .on({ mouseenter: showDeleteIconOnEnter, mouseleave: showFavIconOnLeave }, 'img')
+    .on({ mouseenter: showDeleteIcon, mouseleave: showFavIcon }, 'img')
     .on('click', 'img', removeItem)
 })
 
@@ -55,12 +55,12 @@ function sendUrlToBackground(e) {
   window.close()
 }
 
-function showDeleteIconOnEnter(e) {
+function showDeleteIcon(e) {
   localStorage.setItem('src', $(e.target).attr('src'))
   $(e.target).attr('src', '../images/32x32delete.png')
 }
 
-function showFavIconOnLeave(e) {
+function showFavIcon(e) {
   $(e.target).attr('src', localStorage.getItem('src'))
 }
 
