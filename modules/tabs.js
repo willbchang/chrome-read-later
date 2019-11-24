@@ -29,10 +29,6 @@ export function empty() {
   update('chrome://newtab/')
 }
 
-export function isEmpty(tab) {
-  return ['chrome://newtab/', 'about:blank'].includes(tab.url)
-}
-
 export function isHttp(tab) {
   return tab.url.slice(0, 4) === 'http'
 }

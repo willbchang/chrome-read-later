@@ -1,10 +1,11 @@
+import '../modules/tab.prototype.js'
 import * as extension from '../modules/extension.js'
 import * as storage from '../modules/storage.js'
 import * as tabs from '../modules/tabs.js'
 
 extension.onCommand(async () => {
   const tab = await tabs.queryCurrent()
-  if (tabs.isEmpty(tab)) return
+  if (tab.isEmpty()) return
   else if (!tabs.isHttp(tab)) storage.setPage(tab)
   else if (!tabs.isComplete(tab)) storage.setPage(tab)
   else {
@@ -18,7 +19,7 @@ extension.onCommand(async () => {
 
 extension.onMessage(async message => {
   const tab = await tabs.queryCurrent()
-  tabs.isEmpty(tab) ? await tabs.update(message.url) : await tabs.create(message.url)
+  tab.isEmpty() ? await tabs.update(message.url) : await tabs.create(message.url)
 
   const position = await storage.getPosition(message.url)
   storage.remove(message.url)
