@@ -21,7 +21,7 @@ export async function queryCurrent() {
 // https://developer.chrome.com/extensions/tabs#method-update
 export function update(href) {
   return new Promise(resolve => {
-    chrome.tabs.update(null, { url: href }, resolve)
+    chrome.tabs.update(null, {url: href}, resolve)
   })
 }
 
@@ -32,7 +32,7 @@ export function empty() {
 // https://developer.chrome.com/extensions/tabs#method-create
 export function create(href) {
   return new Promise(resolve => {
-    chrome.tabs.create({ url: href }, resolve)
+    chrome.tabs.create({url: href}, resolve)
   })
 }
 

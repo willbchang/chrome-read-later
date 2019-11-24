@@ -9,7 +9,7 @@ extension.onCommand(async () => {
   else if (!tab.isHttp()) storage.setPage(tab)
   else if (!tab.isComplete()) storage.setPage(tab)
   else {
-    const position = await tabs.sendMessage(tab.id, { info: 'get position' })
+    const position = await tabs.sendMessage(tab.id, {info: 'get position'})
     storage.setPage(tab, position)
   }
 

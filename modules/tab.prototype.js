@@ -18,3 +18,4 @@ Object.defineProperty(Object.prototype, 'isComplete', {
   },
   enumerable: false
 })
+

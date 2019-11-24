@@ -3,7 +3,7 @@ import * as storage from '../modules/storage.js'
 
 initReadingList().then(() => {
   $('ul').on('click', 'a', sendUrlToBackground)
-    .on({ mouseenter: showDeleteIcon, mouseleave: showFavIcon }, 'img')
+    .on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
     .on('click', 'img', removeItem)
 })
 
