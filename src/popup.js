@@ -11,7 +11,8 @@ async function initReadingList() {
   const pages = await storage.getSorted()
   pages.map(page => {
     append(page)
-    setUrlAsTitleStyle(page)
+    breakLongWord(page)
+    setTitleColor(page)
     setScrollPercent(page)
   })
 
@@ -24,11 +25,14 @@ async function initReadingList() {
     `)
   }
 
-  function setUrlAsTitleStyle(page) {
-    if (page.url === page.title) $(`#${page.date} a`).css({
-      'word-break': 'break-all',
-      color: 'gray',
-    })
+  function setTitleColor(page) {
+    if (page.url === page.title)
+      $(`#${page.date} a`).css('color', 'gray')
+  }
+
+  function breakLongWord(page) {
+    if (page.title.length >= 30)
+      $(`#${page.date} a`).css('word-break', 'break-all')
   }
 
   function setScrollPercent(page) {
