@@ -3,8 +3,8 @@ import * as storage from '../modules/storage.js'
 
 initReadingList().then(() => {
   $('ul').on('click', 'a', sendUrlToBackground)
-  $('ul').on({ mouseenter: showDeleteIconOnEnter, mouseleave: showFavIconOnLeave }, 'img')
-  $('ul').on('click', 'img', removeItem)
+    .on({ mouseenter: showDeleteIconOnEnter, mouseleave: showFavIconOnLeave }, 'img')
+    .on('click', 'img', removeItem)
 })
 
 async function initReadingList() {
