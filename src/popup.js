@@ -26,13 +26,13 @@ async function initReadingList() {
   }
 
   function setTitleColor(page) {
-    if (page.url === page.title)
-      $(`#${page.date} a`).css('color', 'gray')
+    if (page.url === page.title) $(`#${page.date} a`)
+      .css('color', 'gray')
   }
 
   function breakLongWord(page) {
-    if (page.title.length >= 30)
-      $(`#${page.date} a`).css('word-break', 'break-all')
+    if (page.title.length >= 30) $(`#${page.date} a`)
+      .css('word-break', 'break-all')
   }
 
   function setScrollPercent(page) {
