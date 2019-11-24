@@ -10,13 +10,13 @@ initReadingList().then(() => {
 async function initReadingList() {
   const pages = await storage.getSorted()
   pages.map(page => {
-    append(page)
+    setReadingList(page)
     breakLongWord(page)
     setTitleColor(page)
     setScrollPercent(page)
   })
 
-  function append(page) {
+  function setReadingList(page) {
     $('ul').append(`
       <li id=${page.date}>
         <img src="${page.favIconUrl}" alt="favIcon">
