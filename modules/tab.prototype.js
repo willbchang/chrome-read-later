@@ -11,3 +11,10 @@ Object.defineProperty(Object.prototype, 'isHttp', {
   },
   enumerable: false
 })
+
+Object.defineProperty(Object.prototype, 'isComplete', {
+  value: function () {
+    return this.status === 'complete'
+  },
+  enumerable: false
+})

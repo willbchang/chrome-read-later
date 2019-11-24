@@ -29,10 +29,6 @@ export function empty() {
   update('chrome://newtab/')
 }
 
-export function isComplete(tab) {
-  return tab.status === 'complete'
-}
-
 // https://developer.chrome.com/extensions/tabs#method-create
 export function create(href) {
   return new Promise(resolve => {
