@@ -6,7 +6,7 @@ import * as tabs from '../modules/tabs.js'
 extension.onCommand(async () => {
   const tab = await tabs.queryCurrent()
   if (tab.isEmpty()) return
-  else if (!tabs.isHttp(tab)) storage.setPage(tab)
+  else if (!tab.isHttp()) storage.setPage(tab)
   else if (!tabs.isComplete(tab)) storage.setPage(tab)
   else {
     const position = await tabs.sendMessage(tab.id, { info: 'get position' })
