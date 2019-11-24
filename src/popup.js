@@ -1,11 +1,10 @@
-import * as event from '../modules/event.js'
 import * as extension from '../modules/extension.js'
 import * as storage from '../modules/storage.js'
 
 initReadingList().then(() => {
-  event.onClick('a', sendUrlToBackground)
-  event.onHover('img', showDeleteIconOnEnter, showFavIconOnLeave)
-  event.onClick('img', removeItem)
+  $('ul').on('click', 'a', sendUrlToBackground)
+  $('ul').on({ mouseenter: showDeleteIconOnEnter, mouseleave: showFavIconOnLeave }, 'img')
+  $('ul').on('click', 'img', removeItem)
 })
 
 async function initReadingList() {
