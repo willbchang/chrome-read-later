@@ -9,7 +9,10 @@ initReadingList().then(() => {
 
 async function initReadingList() {
   const pages = await storage.getSorted()
-  pages.map(page => append(page))
+  pages.map(page => {
+    append(page)
+    setUrlAsTitleStyle(page)
+  })
 
   function append(page) {
     $('ul').append(`
@@ -19,19 +22,20 @@ async function initReadingList() {
       </li>
     `)
 
+    // Stop when page.scrollTop doesn't exist or the value is zero.
+    // e.g. tabs.setSelection() does not save scroll position.
+    if (!page.scrollTop) return
+    $(`#${page.date}`)
+      .append(`<span class="position">${page.scrollPercent}</span>`)
+  }
+
+  function setUrlAsTitleStyle(page) {
     if (page.url === page.title) {
       $(`#${page.date} a`).css({
         'word-break': 'break-all',
         color: 'gray',
       })
     }
-
-    // Stop when page.scrollTop doesn't exist or the value is zero.
-    // e.g. tabs.setSelection() does not save scroll position.
-    if (!page.scrollTop) return
-    $(`#${page.date}`)
-      .append(`<span class="position">${page.scrollPercent}</span>`)
-
   }
 }
 
@@ -62,6 +66,7 @@ function showDeleteIcon(e) {
 
 function showFavIcon(e) {
   $(e.target).attr('src', localStorage.getItem('src'))
+  localStorage.clear()
 }
 
 function removeItem(e) {
