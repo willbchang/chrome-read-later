@@ -2,8 +2,7 @@ import * as event from '../modules/event.js'
 import * as extension from '../modules/extension.js'
 import * as storage from '../modules/storage.js'
 
-initReadingList()
-$(() => {
+initReadingList().then(() => {
   event.onClick('a', sendUrlToBackground)
   event.onHover('img', showDeleteIconOnEnter, showFavIconOnLeave)
   event.onClick('img', removeItem)
@@ -22,8 +21,10 @@ async function initReadingList() {
     `)
 
     if (page.url === page.title) {
-      $(`#${page.date} a`).css('word-break', 'break-all')
-      $(`#${page.date} a`).css('color', 'gray')
+      $(`#${page.date} a`).css({
+        'word-break': 'break-all',
+        color: 'gray',
+      })
     }
 
     // Stop when page.scrollTop doesn't exist or the value is zero.
@@ -48,7 +49,7 @@ function sendUrlToBackground(e) {
   // Because tabs.onComplete() is a live listener,
   // popup.html will disappeared after clicking the link,
   // thus the listener in popup.js would be interrupted.
-  extension.sendMessage({ url: e.target.href })
+  extension.sendMessage({url: e.target.href})
   // Close popup.html when loading in current tab,
   // which also means the current tab is empty.
   // Because tabs.update() won't close popup.html, tabs.create() does.
