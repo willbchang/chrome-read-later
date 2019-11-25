@@ -1,5 +1,7 @@
 import * as extension from '../modules/extension.js'
 import * as storage from '../modules/storage.js'
+import {getReadingListFrom} from '../modules/data.js'
+
 
 initReadingList().then(() => {
   $('ul').on('click', 'a', sendUrlToBackground)
@@ -9,38 +11,7 @@ initReadingList().then(() => {
 
 async function initReadingList() {
   const pages = await storage.getSorted()
-  pages.map(page => {
-    setReadingList(page)
-    breakLongWord(page)
-    setTitleColor(page)
-    setScrollPercent(page)
-  })
-
-  function setReadingList(page) {
-    $('ul').append(`
-      <li id=${page.date}>
-        <img src="${page.favIconUrl}" alt="favIcon">
-        <a href="${page.url}" title="${page.url}">${page.title}</a>
-      </li>
-    `)
-  }
-
-  function setTitleColor(page) {
-    if (page.url === page.title) $(`#${page.date} a`)
-      .css('color', 'gray')
-  }
-
-  function breakLongWord(page) {
-    if (page.title.length >= 30) $(`#${page.date} a`)
-      .css('word-break', 'break-all')
-  }
-
-  function setScrollPercent(page) {
-    // Set scroll percent when page.scrollTop doesn't exist or the value is zero.
-    // e.g. tabs.setSelection() does not save scroll position.
-    if (page.scrollTop) $(`#${page.date}`)
-      .append(`<span class="position">${page.scrollPercent}</span>`)
-  }
+  pages.map(page => $('ul').append(getReadingListFrom(page)))
 }
 
 function sendUrlToBackground(e) {
