@@ -5,7 +5,3 @@ Object.prototype.isEmpty = function () {
 Object.prototype.isHttp = function () {
   return this.url.slice(0, 4) === 'http'
 }
-
-Object.prototype.isComplete = function () {
-  return this.status === 'complete'
-}
