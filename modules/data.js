@@ -29,12 +29,14 @@ export function getReadingListFrom(page) {
 
   function setTitleColor() {
     if (page.url === page.title) return 'color: gray'
+    return ''
   }
 
   function breakLongWord() {
     for (let word of page.title.split(' ')) {
       if (word.length >= 30) return 'word-break: break-all'
     }
+    return ''
   }
 
   function setScrollPercent() {
