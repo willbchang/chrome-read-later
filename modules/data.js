@@ -8,3 +8,12 @@ export function getFromPage(tab, position) {
     date: Date.now(),
   }, position)
 }
+
+export function getFromSelection(tab, selection) {
+  return {
+    url: selection.linkUrl,
+    title: selection.selectionText || selection.linkUrl,
+    favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
+    date: Date.now(),
+  }
+}

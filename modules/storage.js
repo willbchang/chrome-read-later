@@ -30,12 +30,3 @@ export function set(page) {
   chrome.storage.sync.set({[page.url]: page})
 }
 
-export function setSelection(tab, selection) {
-  const page = {
-    url: selection.linkUrl,
-    title: selection.selectionText || selection.linkUrl,
-    favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
-    date: Date.now(),
-  }
-  set(page)
-}

@@ -37,7 +37,7 @@ extension.onMessage(async message => {
 })
 
 extension.onClicked((selection, tab) => {
-  storage.setSelection(tab, selection)
+  storage.set(data.getFromSelection(tab, selection))
 })
 
 extension.onInstalled(() => {
