@@ -22,7 +22,7 @@ export function getReadingListFrom(page) {
   return ` 
       <li id=${page.date}>
         <img src="${page.favIconUrl}" alt="favIcon">
-        <a href="${page.url}" title="${page.url}" style="${setTitleColor()} ${breakLongWord()}">${page.title}</a>
+        <a href="${page.url}" title="${page.url}" style="${setTitleColor()}"> ${setTitle()}</a>
         ${setScrollPercent()}
       </li>
     `
@@ -32,11 +32,12 @@ export function getReadingListFrom(page) {
     return ''
   }
 
-  function breakLongWord() {
-    for (let word of page.title.split(' ')) {
-      if (word.length >= 30) return 'word-break: break-all'
-    }
-    return ''
+  function setTitle() {
+    return page.title.split(' ').map(word => {
+      if (word.length >= 30)
+        return `<span style="word-break: break-all">${word}</span>`
+      return word
+    }).join(' ')
   }
 
   function setScrollPercent() {
