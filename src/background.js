@@ -7,8 +7,10 @@ extension.onCommand(async () => {
   const tab = await tabs.queryCurrent()
   if (tab.isEmpty()) return
   else if (!tab.isHttp()) storage.setPage(tab)
-  else if (!tab.isComplete()) storage.setPage(tab)
   else {
+    // Injected content script at document start, to avoid the error below:
+    // The message port closed before a response was received.
+    // https://developer.chrome.com/extensions/content_scripts#run_time
     const position = await tabs.sendMessage(tab.id, {info: 'get position'})
     storage.setPage(tab, position)
   }
