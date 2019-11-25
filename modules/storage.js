@@ -30,18 +30,6 @@ export function set(page) {
   chrome.storage.sync.set({[page.url]: page})
 }
 
-// https://mdn.io/object.assign
-// https://git.io/Je6Aq
-export function setPage(tab, position) {
-  const page = Object.assign({
-    url: tab.url,
-    title: tab.title || tab.url,
-    favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
-    date: Date.now(),
-  }, position)
-  set(page)
-}
-
 export function setSelection(tab, selection) {
   const page = {
     url: selection.linkUrl,
