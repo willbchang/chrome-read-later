@@ -29,6 +29,8 @@ extension.onMessage(async message => {
 
   // Use raw sendMessage to avoid the error message below:
   // The message port closed before a response was received.
+  // Because tabs.sendMessage() is a Promise with response,
+  // the raw sendMessage's response is optional.
   const tabId = await tabs.onComplete()
   chrome.tabs.sendMessage(tabId, position)
 })
