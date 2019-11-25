@@ -32,7 +32,9 @@ export function getReadingListFrom(page) {
   }
 
   function breakLongWord() {
-    if (page.title.length >= 30) return 'word-break: break-all'
+    for (let word of page.title.split(' ')) {
+      if (word.length >= 30) return 'word-break: break-all'
+    }
   }
 
   function setScrollPercent() {
