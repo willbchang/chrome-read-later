@@ -12,9 +12,15 @@ export function getFromPage(tab, position) {
 export function getFromSelection(tab, selection) {
   return {
     url: selection.linkUrl,
-    title: selection.selectionText || selection.linkUrl,
+    title: filterSelectionText() || selection.linkUrl,
     favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
     date: Date.now(),
+  }
+
+  function filterSelectionText() {
+    if (tab.url.includes('://www.google.'))
+      return selection.selectionText.split('https://')[0]
+    return selection.selectionText
   }
 }
 
