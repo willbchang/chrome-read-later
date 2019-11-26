@@ -1,6 +1,6 @@
 import * as extension from '../modules/extension.js'
 import * as storage from '../modules/storage.js'
-import {getReadingListFrom} from '../modules/data.js'
+import {getReadingItemFrom} from '../modules/data.js'
 
 
 initReadingList().then(() => {
@@ -11,7 +11,7 @@ initReadingList().then(() => {
 
 async function initReadingList() {
   const pages = await storage.getSorted()
-  pages.map(page => $('ul').append(getReadingListFrom(page)))
+  pages.map(page => $('ul').append(getReadingItemFrom(page)))
 }
 
 function sendUrlToBackground(e) {
