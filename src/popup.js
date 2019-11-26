@@ -27,7 +27,9 @@ function sendUrlToBackground(e) {
   // Because tabs.onComplete() is a live listener,
   // popup.html will disappeared after clicking the link,
   // thus the listener in popup.js would be interrupted.
-  extension.sendMessage({url: e.target.href})
+  // `e.target.parentNode.href` is for the case when url is title,
+  // to break the long 'word', the whole title is contained by <span>
+  extension.sendMessage({url: e.target.href || e.target.parentNode.href})
   // Close popup.html when loading in current tab,
   // which also means the current tab is empty.
   // Because tabs.update() won't close popup.html, tabs.create() does.
