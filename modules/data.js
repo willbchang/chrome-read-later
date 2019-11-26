@@ -18,6 +18,7 @@ export function getFromSelection(tab, selection) {
   }
 
   function getTitle() {
+    // TODO: Will fetch page info(title, favicon) via url in later version.
     // Select item in google search will also select its url.
     if (tab.url.includes('://www.google.'))
       return filterUrl(selection.selectionText)

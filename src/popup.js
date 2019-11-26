@@ -15,8 +15,8 @@ async function initReadingList() {
 }
 
 function sendUrlToBackground(e) {
-  // Disable the default <a> tag action.
-  // Because there are some actions need to be run.
+  // Disable the default <a> tag action,
+  // because there are some actions need to be run:
   //  - Check if current tab is empty: tabs.isEmpty()
   //  - Add tab loading status listener: tabs.onComplete()
   //  - Get saved page scroll position: storage.getPosition()
@@ -32,8 +32,8 @@ function sendUrlToBackground(e) {
   // Please check getReadingListFrom() and breakLongWord() in data.js
   extension.sendMessage({url: e.target.href || e.target.parentNode.href})
   // Close popup.html when loading in current tab,
-  // which also means the current tab is empty.
-  // Because tabs.update() won't close popup.html, tabs.create() does.
+  // because tabs.update() won't close popup.html automatically,
+  // tabs.create() does.
   window.close()
 }
 

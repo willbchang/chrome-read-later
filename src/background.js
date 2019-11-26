@@ -8,6 +8,7 @@ extension.onCommand(async () => {
   if (tabs.isEmpty(tab)) return
 
   // It will only set the tab info if position is undefined.
+  // Runs smoothly even if it's offline, chrome://*, etc.
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
   storage.set(data.getFromPage(tab, position))
 

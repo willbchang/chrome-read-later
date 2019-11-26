@@ -50,6 +50,8 @@ export function sendMessage(tabId, message) {
   return new Promise(resolve => {
     chrome.tabs.sendMessage(tabId, message, position => {
       resolve(position)
+      // https://stackoverflow.com/a/28432087/9984029
+      // Handle the error when there is no need to receive response.
       if (chrome.runtime.lastError)
         console.log('Handled Error:', chrome.runtime.lastError.message)
     })
