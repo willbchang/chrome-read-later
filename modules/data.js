@@ -33,11 +33,14 @@ export function getReadingListFrom(page) {
   }
 
   function setTitle() {
-    return page.title.split(' ').map(word => {
-      if (word.length >= 30)
-        return `<span style="word-break: break-all">${word}</span>`
-      return word
-    }).join(' ')
+    return page.title.split(' ').map(word => breakLongWord(word)).join(' ')
+  }
+
+  function breakLongWord(word) {
+    if (word.length >= 30)
+      return `<span style="word-break: break-all">${word}</span>`
+    return word
+
   }
 
   function setScrollPercent() {
