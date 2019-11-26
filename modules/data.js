@@ -18,7 +18,10 @@ export function getFromSelection(tab, selection) {
   }
 
   function filterSelectionText() {
+    // Select item in google search will also select its url.
     if (tab.url.includes('://www.google.'))
+      // FIX: Cannot avoid http:// in google search,
+      // the http:// doesn't reveal. Needs to use url regex.
       return selection.selectionText.split('https://')[0]
     return selection.selectionText
   }
@@ -45,6 +48,10 @@ export function getReadingListFrom(page) {
       .join(' ')
   }
 
+  // This function is especially for but not limited to
+  // the case: url is title. The url is treated as
+  // one word and not in the dictionary, so it can't be
+  // broken automatically with hyphen.
   function breakLongWord(word) {
     if (word.length >= 30)
       return `<span style="word-break: break-all">${word}</span>`
