@@ -45,7 +45,8 @@ export function getReadingListFrom(page) {
 
   function getScrollPercent() {
     // Get scroll percent when page.scrollTop doesn't exist or the value is zero.
-    // e.g. tabs.setSelection() does not save scroll position.
+    // e.g. getFromPage(tab) and getFromSelection(tab, position),
+    // they do not save scroll position from the web page.
     if (page.scrollTop)
       return `<span class="position">${page.scrollPercent}</span>`
     return ''
