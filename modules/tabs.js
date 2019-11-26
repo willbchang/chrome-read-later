@@ -29,6 +29,10 @@ export function empty() {
   update('chrome://newtab/')
 }
 
+export function isEmpty(tab) {
+  return ['chrome://newtab/', 'about:blank'].includes(tab.url)
+}
+
 // https://developer.chrome.com/extensions/tabs#method-create
 export function create(href) {
   return new Promise(resolve => {
@@ -44,7 +48,13 @@ export function remove(tab) {
 // https://developer.chrome.com/extensions/tabs#method-sendMessage
 export function sendMessage(tabId, message) {
   return new Promise(resolve => {
-    chrome.tabs.sendMessage(tabId, message, resolve)
+    chrome.tabs.sendMessage(tabId, message, position => {
+      resolve(position)
+      // https://stackoverflow.com/a/28432087/9984029
+      // Handle the error when there is no need to receive response.
+      if (chrome.runtime.lastError)
+        console.log('Handled Error:', chrome.runtime.lastError.message)
+    })
   })
 }
 
@@ -54,7 +64,7 @@ export function onComplete() {
     chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
       if (info.status === 'complete') {
         chrome.tabs.onUpdated.removeListener(listener)
-        resolve(tabId)
+        resolve()
       }
     })
   })

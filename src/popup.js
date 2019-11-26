@@ -1,5 +1,7 @@
 import * as extension from '../modules/extension.js'
 import * as storage from '../modules/storage.js'
+import {getReadingItemFrom} from '../modules/data.js'
+
 
 initReadingList().then(() => {
   $('ul').on('click', 'a', sendUrlToBackground)
@@ -9,57 +11,29 @@ initReadingList().then(() => {
 
 async function initReadingList() {
   const pages = await storage.getSorted()
-  pages.map(page => {
-    setReadingList(page)
-    breakLongWord(page)
-    setTitleColor(page)
-    setScrollPercent(page)
-  })
-
-  function setReadingList(page) {
-    $('ul').append(`
-      <li id=${page.date}>
-        <img src="${page.favIconUrl}" alt="favIcon">
-        <a href="${page.url}" title="${page.url}">${page.title}</a>
-      </li>
-    `)
-  }
-
-  function setTitleColor(page) {
-    if (page.url === page.title) $(`#${page.date} a`)
-      .css('color', 'gray')
-  }
-
-  function breakLongWord(page) {
-    if (page.title.length >= 30) $(`#${page.date} a`)
-      .css('word-break', 'break-all')
-  }
-
-  function setScrollPercent(page) {
-    // Set scroll percent when page.scrollTop doesn't exist or the value is zero.
-    // e.g. tabs.setSelection() does not save scroll position.
-    if (page.scrollTop) $(`#${page.date}`)
-      .append(`<span class="position">${page.scrollPercent}</span>`)
-  }
+  pages.map(page => $('ul').append(getReadingItemFrom(page)))
 }
 
 function sendUrlToBackground(e) {
-  // Disable the default <a> tag action.
-  // Because there are some actions need to be run.
+  // Disable the default <a> tag action,
+  // because there are some actions need to be run:
   //  - Check if current tab is empty: tabs.isEmpty()
   //  - Add tab loading status listener: tabs.onComplete()
   //  - Get saved page scroll position: storage.getPosition()
-  //  - Send position to content.js: chrome.tabs.sendMessage()
+  //  - Send position to content.js: tabs.sendMessage()
   //  - Remove this item in storage: storage.remove()
   e.preventDefault()
   // Send clicked url as message to background.
   // Because tabs.onComplete() is a live listener,
   // popup.html will disappeared after clicking the link,
   // thus the listener in popup.js would be interrupted.
-  extension.sendMessage({url: e.target.href})
+  // `e.target.parentNode.href` is for the case when url is title,
+  // to break the long 'word', the whole title is contained by <span>.
+  // Please check getReadingListFrom() and breakLongWord() in data.js
+  extension.sendMessage({url: e.target.href || e.target.parentNode.href})
   // Close popup.html when loading in current tab,
-  // which also means the current tab is empty.
-  // Because tabs.update() won't close popup.html, tabs.create() does.
+  // because tabs.update() won't close popup.html automatically,
+  // tabs.create() does.
   window.close()
 }
 

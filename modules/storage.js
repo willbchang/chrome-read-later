@@ -19,9 +19,9 @@ export async function getSorted() {
 export async function getPosition(url) {
   const pages = await get()
   const page = pages[url]
-  const position = {}
-  position.scrollTop = page.scrollTop
-  return position
+  return {
+    scrollTop: page.scrollTop,
+  }
 }
 
 // The [key] feature is Computed Property Names.
@@ -30,24 +30,3 @@ export function set(page) {
   chrome.storage.sync.set({[page.url]: page})
 }
 
-// https://mdn.io/object.assign
-// https://git.io/Je6Aq
-export function setPage(tab, position) {
-  const page = Object.assign({
-    url: tab.url,
-    title: tab.title || tab.url,
-    favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
-    date: Date.now(),
-  }, position)
-  set(page)
-}
-
-export function setSelection(tab, selection) {
-  const page = {
-    url: selection.linkUrl,
-    title: selection.selectionText || selection.linkUrl,
-    favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
-    date: Date.now(),
-  }
-  set(page)
-}
