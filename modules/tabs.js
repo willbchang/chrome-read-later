@@ -49,7 +49,9 @@ export function remove(tab) {
 export function sendMessage(tabId, message) {
   return new Promise(resolve => {
     chrome.tabs.sendMessage(tabId, message, (position) => {
-      if (!chrome.runtime.lastError) resolve(position)
+      resolve(position)
+      if (chrome.runtime.lastError)
+        console.log('Handled Error:', chrome.runtime.lastError.message)
     })
   })
 }

@@ -1,3 +1,4 @@
+console.log(1)
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.info === 'get position')
     sendResponse(getPosition())
