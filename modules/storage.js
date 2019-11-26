@@ -19,9 +19,9 @@ export async function getSorted() {
 export async function getPosition(url) {
   const pages = await get()
   const page = pages[url]
-  const position = {}
-  position.scrollTop = page.scrollTop
-  return position
+  return {
+    scrollTop: page.scrollTop,
+  }
 }
 
 // The [key] feature is Computed Property Names.
