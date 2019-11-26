@@ -23,12 +23,9 @@ extension.onMessage(async message => {
   storage.remove(message.url)
   if (!position.scrollTop) return
 
-  // Use raw sendMessage to avoid the error message below:
-  // The message port closed before a response was received.
-  // Because tabs.sendMessage() is a Promise with response,
-  // the raw sendMessage's response is optional.
   const tabId = await tabs.onComplete()
-  chrome.tabs.sendMessage(tabId, position)
+  await tabs.sendMessage(tabId, position)
+  if (chrome.runtime.lastError) console.log('Do not need to receive response.')
 })
 
 extension.onClicked((selection, tab) => {
