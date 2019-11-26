@@ -41,7 +41,6 @@ export function getReadingListFrom(page) {
     if (word.length >= 30)
       return `<span style="word-break: break-all">${word}</span>`
     return word
-
   }
 
   function setScrollPercent() {
