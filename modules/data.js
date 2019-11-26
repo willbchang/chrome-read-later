@@ -43,20 +43,19 @@ export function getReadingListFrom(page) {
   }
 
   function getTitle() {
-    return page.title.split(' ')
-      .map(word => breakLongWord(word))
-      .join(' ')
+    return page.title.split(' ').map(breakLongWord).join(' ')
+
+    // This function is especially for but not limited to
+    // the case: url is title. The url is treated as
+    // one word and not in the dictionary, so it can't be
+    // broken automatically with hyphen.
+    function breakLongWord(word) {
+      if (word.length >= 30)
+        return `<span style="word-break: break-all">${word}</span>`
+      return word
+    }
   }
 
-  // This function is especially for but not limited to
-  // the case: url is title. The url is treated as
-  // one word and not in the dictionary, so it can't be
-  // broken automatically with hyphen.
-  function breakLongWord(word) {
-    if (word.length >= 30)
-      return `<span style="word-break: break-all">${word}</span>`
-    return word
-  }
 
   function getScrollPercent() {
     // Get scroll percent when page.scrollTop doesn't exist or the value is zero.
