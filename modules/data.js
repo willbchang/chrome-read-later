@@ -12,18 +12,22 @@ export function getFromPage(tab, position) {
 export function getFromSelection(tab, selection) {
   return {
     url: selection.linkUrl,
-    title: filterSelectionText() || selection.linkUrl,
+    title: getTitle() || selection.linkUrl,
     favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
     date: Date.now(),
   }
 
-  function filterSelectionText() {
+  function getTitle() {
     // Select item in google search will also select its url.
     if (tab.url.includes('://www.google.'))
-      // FIX: Cannot avoid http:// in google search,
-      // the http:// doesn't reveal. Needs to use url regex.
-      return selection.selectionText.split('https://')[0]
+      return filterUrl(selection.selectionText)
     return selection.selectionText
+  }
+
+  function filterUrl(text) {
+    // FIX: Cannot avoid http:// in google search,
+    // the http:// doesn't reveal. Needs to use url regex.
+    return text.split('https://')[0]
   }
 }
 
