@@ -1,4 +1,3 @@
-import '../modules/tab.prototype.js'
 import * as extension from '../modules/extension.js'
 import * as storage from '../modules/storage.js'
 import * as tabs from '../modules/tabs.js'
@@ -6,8 +5,8 @@ import * as data from '../modules/data.js'
 
 extension.onCommand(async () => {
   const tab = await tabs.queryCurrent()
-  if (tab.isEmpty()) return
-  else if (!tab.isHttp()) storage.set(data.getFromPage(tab))
+  if (tabs.isEmpty(tab)) return
+  else if (!tabs.isHttp(tab)) storage.set(data.getFromPage(tab))
   else {
     // Injected content script at document start, to avoid the error below:
     // The message port closed before a response was received.
@@ -22,7 +21,7 @@ extension.onCommand(async () => {
 
 extension.onMessage(async message => {
   const tab = await tabs.queryCurrent()
-  tab.isEmpty() ? await tabs.update(message.url) : await tabs.create(message.url)
+  tabs.isEmpty(tab) ? await tabs.update(message.url) : await tabs.create(message.url)
 
   const position = await storage.getPosition(message.url)
   storage.remove(message.url)
