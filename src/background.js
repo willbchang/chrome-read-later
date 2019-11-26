@@ -21,7 +21,6 @@ extension.onMessage(async message => {
 
   const position = await storage.getPosition(message.url)
   storage.remove(message.url)
-  if (!position.scrollTop) return
 
   await tabs.onComplete()
   await tabs.sendMessage(tab.id, position)
