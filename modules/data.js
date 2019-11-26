@@ -22,18 +22,18 @@ export function getReadingListFrom(page) {
   return ` 
       <li id=${page.date}>
         <img src="${page.favIconUrl}" alt="favIcon">
-        <a href="${page.url}" title="${page.url}" style="${setTitleColor()}"> ${setTitle()}</a>
-        ${setScrollPercent()}
+        <a href="${page.url}" title="${page.url}" style="${getTitleColor()}"> ${getTitle()}</a>
+        ${getScrollPercent()}
       </li>
     `
 
-  function setTitleColor() {
+  function getTitleColor() {
     if (page.url === page.title)
       return 'color: gray'
     return ''
   }
 
-  function setTitle() {
+  function getTitle() {
     return page.title.split(' ').map(word => breakLongWord(word)).join(' ')
   }
 
@@ -43,8 +43,8 @@ export function getReadingListFrom(page) {
     return word
   }
 
-  function setScrollPercent() {
-    // Set scroll percent when page.scrollTop doesn't exist or the value is zero.
+  function getScrollPercent() {
+    // Get scroll percent when page.scrollTop doesn't exist or the value is zero.
     // e.g. tabs.setSelection() does not save scroll position.
     if (page.scrollTop)
       return `<span class="position">${page.scrollPercent}</span>`
