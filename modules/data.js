@@ -28,7 +28,8 @@ export function getReadingListFrom(page) {
     `
 
   function setTitleColor() {
-    if (page.url === page.title) return 'color: gray'
+    if (page.url === page.title)
+      return 'color: gray'
     return ''
   }
 
