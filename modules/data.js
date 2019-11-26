@@ -34,7 +34,9 @@ export function getReadingListFrom(page) {
   }
 
   function getTitle() {
-    return page.title.split(' ').map(word => breakLongWord(word)).join(' ')
+    return page.title.split(' ')
+      .map(word => breakLongWord(word))
+      .join(' ')
   }
 
   function breakLongWord(word) {
