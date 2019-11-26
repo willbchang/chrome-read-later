@@ -28,14 +28,14 @@ export function getReadingListFrom(page) {
   return ` 
       <li id=${page.date}>
         <img src="${page.favIconUrl}" alt="favIcon">
-        <a href="${page.url}" title="${page.url}" style="${getTitleColor()}"> ${getTitle()}</a>
+        <a href="${page.url}" title="${page.url}" ${getTitleColor()}> ${getTitle()}</a>
         ${getScrollPercent()}
       </li>
     `
 
   function getTitleColor() {
     if (page.url === page.title)
-      return 'color: gray'
+      return 'style="color: gray"'
     return ''
   }
 
