@@ -15,8 +15,7 @@
       ],
       "js": [
         "src/content.js"
-      ],
-      "run_at": "document_start"
+      ]
     }
   ],
   "commands": {

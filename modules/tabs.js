@@ -33,10 +33,6 @@ export function isEmpty(tab) {
   return tab.url === 'chrome://newtab/'
 }
 
-export function isHttp(tab) {
-  return tab.url.slice(0, 4) === 'http'
-}
-
 // https://developer.chrome.com/extensions/tabs#method-create
 export function create(href) {
   return new Promise(resolve => {
