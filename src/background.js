@@ -23,8 +23,8 @@ extension.onMessage(async message => {
   const position = await storage.getPosition(message.url)
   storage.remove(message.url)
 
-  await tabs.onComplete()
-  await tabs.sendMessage(tab.id, position)
+  const tabId = await tabs.onComplete()
+  await tabs.sendMessage(tabId, position)
 })
 
 extension.onClicked((selection, tab) => {

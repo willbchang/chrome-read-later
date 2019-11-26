@@ -64,7 +64,7 @@ export function onComplete() {
     chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
       if (info.status === 'complete') {
         chrome.tabs.onUpdated.removeListener(listener)
-        resolve()
+        resolve(tabId)
       }
     })
   })
