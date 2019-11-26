@@ -23,8 +23,8 @@ extension.onMessage(async message => {
   storage.remove(message.url)
   if (!position.scrollTop) return
 
-  const tabId = await tabs.onComplete()
-  await tabs.sendMessage(tabId, position)
+  await tabs.onComplete()
+  await tabs.sendMessage(tab.id, position)
 })
 
 extension.onClicked((selection, tab) => {
