@@ -12,6 +12,7 @@ extension.onCommand(async () => {
     // The message port closed before a response was received.
     // https://developer.chrome.com/extensions/content_scripts#run_time
     const position = await tabs.sendMessage(tab.id, {info: 'get position'})
+    if (chrome.runtime.lastError) console.log('Did not get position')
     storage.set(data.getFromPage(tab, position))
   }
 
