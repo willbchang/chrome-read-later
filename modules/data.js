@@ -12,7 +12,7 @@ export function getFromPage(tab, position) {
 export function getFromSelection(tab, selection) {
   return {
     url: selection.linkUrl,
-    title: getTitle() || selection.linkUrl,
+    title: getTitle(),
     favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
     date: Date.now(),
   }
@@ -21,7 +21,7 @@ export function getFromSelection(tab, selection) {
     // Select item in google search will also select its url.
     if (tab.url.includes('://www.google.'))
       return filterUrl(selection.selectionText)
-    return selection.selectionText
+    return selection.selectionText || selection.linkUrl
   }
 
   function filterUrl(text) {
