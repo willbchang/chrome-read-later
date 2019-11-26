@@ -7,6 +7,7 @@ extension.onCommand(async () => {
   const tab = await tabs.queryCurrent()
   if (tabs.isEmpty(tab)) return
 
+  // It will only set the tab info if position is undefined.
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
   if (chrome.runtime.lastError) console.log('Did not get position')
   storage.set(data.getFromPage(tab, position))
