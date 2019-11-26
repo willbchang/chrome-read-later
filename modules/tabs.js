@@ -48,7 +48,9 @@ export function remove(tab) {
 // https://developer.chrome.com/extensions/tabs#method-sendMessage
 export function sendMessage(tabId, message) {
   return new Promise(resolve => {
-    chrome.tabs.sendMessage(tabId, message, resolve)
+    chrome.tabs.sendMessage(tabId, message, (position) => {
+      if (!chrome.runtime.lastError) resolve(position)
+    })
   })
 }
 

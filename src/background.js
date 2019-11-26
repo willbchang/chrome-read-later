@@ -9,7 +9,6 @@ extension.onCommand(async () => {
 
   // It will only set the tab info if position is undefined.
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-  if (chrome.runtime.lastError) console.log('Did not get position')
   storage.set(data.getFromPage(tab, position))
 
   const allTabs = await tabs.queryAll()
@@ -26,7 +25,6 @@ extension.onMessage(async message => {
 
   const tabId = await tabs.onComplete()
   await tabs.sendMessage(tabId, position)
-  if (chrome.runtime.lastError) console.log('Do not need to receive response.')
 })
 
 extension.onClicked((selection, tab) => {
