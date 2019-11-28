@@ -1,6 +1,6 @@
-import * as extension from '../modules/extension.js'
-import * as storage from '../modules/storage.js'
-import {getReadingItemFrom} from '../modules/data.js'
+import * as extension from '../modules/extension.mjs'
+import * as storage from '../modules/storage.mjs'
+import {getReadingItemFrom} from '../modules/data.mjs'
 
 
 initReadingList().then(() => {
@@ -29,7 +29,7 @@ function sendUrlToBackground(e) {
   // thus the listener in popup.js would be interrupted.
   // `e.target.parentNode.href` is for the case when url is title,
   // to break the long 'word', the whole title is contained by <span>.
-  // Please check getReadingListFrom() and breakLongWord() in data.js
+  // Please check getReadingListFrom() and breakLongWord() in data.mjs
   extension.sendMessage({url: e.target.href || e.target.parentNode.href})
   // Close popup.html when loading in current tab,
   // because tabs.update() won't close popup.html automatically,

@@ -1,7 +1,7 @@
-import * as data from '../modules/data.js'
-import * as extension from '../modules/extension.js'
-import * as storage from '../modules/storage.js'
-import * as tabs from '../modules/tabs.js'
+import * as data from '../modules/data.mjs'
+import * as extension from '../modules/extension.mjs'
+import * as storage from '../modules/storage.mjs'
+import * as tabs from '../modules/tabs.mjs'
 
 extension.onCommand(async () => {
   const tab = await tabs.queryCurrent()
