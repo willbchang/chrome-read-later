@@ -876,4 +876,4 @@ packages:
 specifiers:
   '@types/chrome': 0.0.91
   '@types/jquery': ^3.3.31
-  eslint: ^6.7.1
+  eslint: 6.7.1
