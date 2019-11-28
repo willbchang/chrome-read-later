@@ -24,6 +24,6 @@
     "@types/jquery": "^3.3.31"
   },
   "devDependencies": {
-    "eslint": "^6.7.1"
+    "eslint": "6.7.1"
   }
 }
