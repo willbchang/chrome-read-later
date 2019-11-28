@@ -10,7 +10,7 @@ initReadingList().then(() => {
 })
 
 async function initReadingList() {
-  const pages = await storage.getSorted()
+  const pages = await storage.getSortedByDate()
   pages.map(page => $('ul').append(getReadingItemFrom(page)))
 }
 
