@@ -55,8 +55,20 @@ export function getReadingItemFrom(page) {
   // the case: url is title. The url is treated as
   // one word and not in the dictionary, so it can't be
   // broken automatically with hyphen.
+  // This is also a word: tester-testABCDEFGHI?title
   function breakLongWord(word) {
-    if (word.length >= 30)
+    // ul: 300px(width) - 15px*2(padding) = 270px(content width)
+    // favicon:  16px(content width) + 5px*2(padding) = 26px(width)
+    // li: 270px - 26px = 244px
+    // letter-spacing: 0.4px
+    // body: font-size: 14px
+    // Check: https://jsfiddle.net/2750Lujs
+    // The largest letter W has 13px(NOTE: some fonts are not equal width)
+    // 244px / 13.4px(letter width) ≈ 18 letters
+    // Assume a word is made by W, if the length is larger than 244px,
+    // the favicon and the word won't be in the same line,
+    // or the word in title will ugly break the line.
+    if (word.length >= 18)
       return `<span style="word-break: break-all">${word}</span>`
     return word
   }
