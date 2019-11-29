@@ -15,7 +15,7 @@ export function getFromSelection(tab, selection) {
     url: getUrl(),
     title: getTitle(),
     favIconUrl: getFavIconUrl(),
-    date: Date.now(),
+    date: getDate(),
   }
 
   function getUrl() {
@@ -38,6 +38,10 @@ export function getFromSelection(tab, selection) {
 
   function getFavIconUrl() {
     return tab.favIconUrl || '../images/32x32gray.png'
+  }
+
+  function getDate() {
+    return Date.now()
   }
 }
 
