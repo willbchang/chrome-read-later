@@ -11,11 +11,10 @@ export function getFromPage(tab, position) {
 }
 
 export function getFromSelection(tab, selection) {
-
   return {
     url: getUrl(),
     title: getTitle(),
-    favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
+    favIconUrl: getFavIconUrl(),
     date: Date.now(),
   }
 
@@ -35,6 +34,10 @@ export function getFromSelection(tab, selection) {
     // FIX: Cannot avoid http:// in google search,
     // the http:// doesn't reveal. Needs to use url regex.
     return text.split('https://')[0]
+  }
+
+  function getFavIconUrl() {
+    return tab.favIconUrl || '../images/32x32gray.png'
   }
 }
 
