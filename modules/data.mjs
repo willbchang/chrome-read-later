@@ -11,11 +11,16 @@ export function getFromPage(tab, position) {
 }
 
 export function getFromSelection(tab, selection) {
+
   return {
-    url: selection.linkUrl,
+    url: getUrl(),
     title: getTitle(),
     favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
     date: Date.now(),
+  }
+
+  function getUrl() {
+    return selection.linkUrl
   }
 
   function getTitle() {
