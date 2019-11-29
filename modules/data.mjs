@@ -1,12 +1,13 @@
-// https://mdn.io/object.assign
+// https://mdn.io/object.spread
 // https://git.io/Je6Aq
 export function getFromPage(tab, position) {
-  return Object.assign({
+  return {
     url: tab.url,
     title: tab.title || tab.url,
     favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
     date: Date.now(),
-  }, position)
+    ...position
+  }
 }
 
 export function getFromSelection(tab, selection) {
