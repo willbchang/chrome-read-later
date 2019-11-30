@@ -1,25 +1,20 @@
 // https://mdn.io/object.spread
 // https://git.io/Je6Aq
-export function getFromPage(tab, position) {
-  return {
-    url: tab.url,
-    title: tab.title || tab.url,
-    favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
-    date: Date.now(),
-    ...position
-  }
-}
-
-export function getFromSelection(tab, selection) {
+// https://mdn.io/default_parameters
+// Use object as parameter to get optional parameter.
+// Set default empty value to 'selection' to avoid
+// Cannot read property of undefined
+export function extractJson({tab, position, selection={}}) {
   return {
     url: getUrl(),
     title: getTitle(),
     favIconUrl: getFavIconUrl(),
     date: getDate(),
+    ...position, // scrollTop, scrollPercent
   }
 
   function getUrl() {
-    return selection.linkUrl
+    return selection.linkUrl || tab.url
   }
 
   function getTitle() {
@@ -27,7 +22,7 @@ export function getFromSelection(tab, selection) {
     // Select item in google search will also select its url.
     if (tab.url.includes('://www.google.'))
       return filterUrl(selection.selectionText)
-    return selection.selectionText || selection.linkUrl
+    return selection.selectionText || selection.url || tab.title || tab.url
   }
 
   function filterUrl(text) {

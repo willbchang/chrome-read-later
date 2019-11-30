@@ -10,7 +10,7 @@ extension.onCommand(async () => {
   // It will only set the tab info if position is undefined.
   // Runs smoothly even if it's offline, chrome://*, etc.
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-  storage.set(data.getFromPage(tab, position))
+  storage.set(data.extractJson({tab, position}))
 
   const allTabs = await tabs.queryAll()
   allTabs.length === 1 ? tabs.empty() : tabs.remove(tab)
@@ -28,7 +28,7 @@ extension.onMessage(async message => {
 })
 
 extension.onClicked((selection, tab) => {
-  storage.set(data.getFromSelection(tab, selection))
+  storage.set(data.extractJson({tab, selection}))
 })
 
 extension.onInstalled(() => {
