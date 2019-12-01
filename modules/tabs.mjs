@@ -33,6 +33,11 @@ export function isEmpty(tab) {
   return ['chrome://newtab/', 'about:blank'].includes(tab.url)
 }
 
+export async function isFinalTab() {
+  const allTabs = await queryAll()
+  return allTabs.length === 1
+}
+
 // https://developer.chrome.com/extensions/tabs#method-create
 export function create(href) {
   return new Promise(resolve => {

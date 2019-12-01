@@ -12,8 +12,7 @@ extension.onCommand(async () => {
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
   storage.set(data.extractJson({tab, position}))
 
-  const allTabs = await tabs.queryAll()
-  allTabs.length === 1 ? tabs.empty() : tabs.remove(tab)
+  await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
 })
 
 extension.onMessage(async message => {
