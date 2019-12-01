@@ -11,9 +11,9 @@ export function get() {
 }
 
 // NOTICE: This returns an Array.
-export async function sortByDate() {
+export async function sortByReversedDate() {
   const pages = await get()
-  return Object.values(pages).sort((a, b) => a.date - b.date)
+  return Object.values(pages).sort((a, b) => b.date - a.date)
 }
 
 export async function getPosition(url) {
