@@ -14,8 +14,7 @@ extension.onCommand(async () => {
 })
 
 extension.onMessage(async message => {
-  const tab = await tabs.queryCurrent()
-  tabs.isEmpty(tab) ? await tabs.update(message.url) : await tabs.create(message.url)
+  await tabs.isEmptyTab() ? await tabs.update(message.url) : await tabs.create(message.url)
 
   const position = await storage.getPosition(message.url)
   storage.remove(message.url)

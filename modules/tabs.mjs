@@ -29,7 +29,8 @@ export function empty() {
   update('chrome://newtab/')
 }
 
-export function isEmpty(tab) {
+export async function isEmptyTab() {
+  const tab = await queryCurrent()
   return ['chrome://newtab/', 'about:blank'].includes(tab.url)
 }
 
