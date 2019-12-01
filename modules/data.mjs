@@ -1,3 +1,4 @@
+import './prototype.mjs'
 // https://mdn.io/object.spread
 // https://git.io/Je6Aq
 // https://mdn.io/default_parameters
@@ -18,11 +19,12 @@ export function extractJson({tab, position, selection={}}) {
   }
 
   function getTitle() {
+    if (selection.isEmpty()) return tab.title || tab.url
     // TODO: Will fetch page info(title, favicon) via url in later version.
     // Select item in google search will also select its url.
     if (tab.url.includes('://www.google.'))
       return filterUrl(selection.selectionText)
-    return selection.selectionText || selection.url || tab.title || tab.url
+    return selection.selectionText || selection.url
   }
 
   function filterUrl(text) {
