@@ -4,11 +4,9 @@ import * as storage from '../modules/storage.mjs'
 import * as tabs from '../modules/tabs.mjs'
 
 extension.onCommand(async () => {
-  const tab = await tabs.queryCurrent()
-  if (tabs.isEmpty(tab)) return
-
   // It will only set the tab info if position is undefined.
   // Runs smoothly even if it's offline, chrome://*, etc.
+  const tab = await tabs.queryCurrent()
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
   storage.set(data.extractJson({tab, position}))
 
