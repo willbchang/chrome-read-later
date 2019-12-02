@@ -8,7 +8,7 @@ extension.onCommand(async () => {
   // Runs smoothly even if it's offline, chrome://*, etc.
   const tab = await tabs.queryCurrent()
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-  storage.set(data.getPage({tab, position}))
+  storage.set(data.getPageInfo({tab, position}))
 
   await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
 })
@@ -24,7 +24,7 @@ extension.onMessage(async message => {
 })
 
 extension.onClickedContextMenus((selection, tab) => {
-  storage.set(data.getPage({tab, selection}))
+  storage.set(data.getPageInfo({tab, selection}))
 })
 
 extension.onInstalled(() => {

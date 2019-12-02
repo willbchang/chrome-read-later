@@ -5,7 +5,7 @@ import './prototype.mjs'
 // Use object as parameter to get optional parameter.
 // Set default empty value to 'selection' to avoid
 // Cannot read property of undefined
-export function getPage({tab, position, selection={}}) {
+export function getPageInfo({tab, position, selection={}}) {
 // https://mdn.io/computed_property_names
   return {
     [getUrl()]: {
