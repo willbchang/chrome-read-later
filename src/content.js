@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.info === 'get position')
-    sendResponse(getPosition())
+    sendResponse(getPagePosition())
 
   if (message.scrollTop)
     window.scrollTo({
@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // Use scrollBottom to calculate scrollPercent to avoid the situation: 
 // Scroll page to the bottom, but the percent is not 100%.
-function getPosition() {
+function getPagePosition() {
   // In popup.js, there is a `if` statement to check if the scrollTop is 0,
   // if it is 0, the scrollPercent won't add to popup.html.
   // Do not worry this situation: scrollTop: 0, scrollPercent: 100%
