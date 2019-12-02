@@ -23,7 +23,7 @@ extension.onMessage(async message => {
   await tabs.sendMessage(tabId, position)
 })
 
-extension.onClicked((selection, tab) => {
+extension.onClickedContextMenus((selection, tab) => {
   storage.set(data.getPage({tab, selection}))
 })
 

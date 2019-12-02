@@ -16,7 +16,7 @@ export function onMessage(callback) {
 }
 
 // https://developer.chrome.com/extensions/contextMenus#event-onClicked
-export function onClicked(callback) {
+export function onClickedContextMenus(callback) {
   chrome.contextMenus.onClicked.addListener(callback)
 }
 
