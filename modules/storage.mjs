@@ -24,9 +24,6 @@ export async function getPosition(url) {
   }
 }
 
-// The [key] feature is Computed Property Names.
-// https://mdn.io/computed_property_names
 export function set(page) {
-  chrome.storage.sync.set({[page.url]: page})
+  chrome.storage.sync.set(page)
 }
-

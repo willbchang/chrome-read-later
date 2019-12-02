@@ -6,12 +6,15 @@ import './prototype.mjs'
 // Set default empty value to 'selection' to avoid
 // Cannot read property of undefined
 export function getPage({tab, position, selection={}}) {
+// https://mdn.io/computed_property_names
   return {
-    url: getUrl(),
-    title: getTitle(),
-    favIconUrl: getFavIconUrl(),
-    date: getDate(),
-    ...position, // scrollTop, scrollPercent
+    [getUrl()]: {
+      url: getUrl(),
+      title: getTitle(),
+      favIconUrl: getFavIconUrl(),
+      date: getDate(),
+      ...position, // scrollTop, scrollPercent
+    }
   }
 
   function getUrl() {
