@@ -54,8 +54,8 @@ export function remove(tab) {
 // https://developer.chrome.com/extensions/tabs#method-sendMessage
 export function sendMessage(tabId, message) {
   return new Promise(resolve => {
-    chrome.tabs.sendMessage(tabId, message, position => {
-      resolve(position)
+    chrome.tabs.sendMessage(tabId, message, response => {
+      resolve(response)
       // https://stackoverflow.com/a/28432087/9984029
       // Handle the error when there is no need to receive response.
       if (chrome.runtime.lastError)
