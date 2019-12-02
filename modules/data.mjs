@@ -5,7 +5,7 @@ import './prototype.mjs'
 // Use object as parameter to get optional parameter.
 // Set default empty value to 'selection' to avoid
 // Cannot read property of undefined
-export function getPageInfo({tab, position, selection={}}) {
+export function getPageInfo({tab, position = {}, selection = {}}) {
 // https://mdn.io/computed_property_names
   return {
     [getUrl()]: {
@@ -13,7 +13,8 @@ export function getPageInfo({tab, position, selection={}}) {
       title: getTitle(),
       favIconUrl: getFavIconUrl(),
       date: getDate(),
-      ...position, // scrollTop, scrollPercent
+      scrollTop: getScrollTop(),
+      scrollPercent: getScrollPercent(),
     }
   }
 
@@ -42,6 +43,14 @@ export function getPageInfo({tab, position, selection={}}) {
 
   function getDate() {
     return Date.now()
+  }
+
+  function getScrollTop() {
+    return position.scrollTop || 0
+  }
+
+  function getScrollPercent() {
+    return position.scrollPercent || '0%'
   }
 }
 
