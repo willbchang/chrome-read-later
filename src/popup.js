@@ -1,6 +1,6 @@
 import * as extension from '../modules/extension.mjs'
 import * as storage from '../modules/storage.mjs'
-import {createReadingItem} from '../modules/data.mjs'
+import * as data from '../modules/data.mjs'
 
 
 initReadingList().then(() => {
@@ -11,7 +11,7 @@ initReadingList().then(() => {
 
 async function initReadingList() {
   const pages = await storage.getByLatest()
-  pages.map(page => $('ul').append(createReadingItem(page)))
+  pages.map(page => $('ul').append(data.getReadingItem(page)))
 }
 
 function sendUrlToBackground(event) {

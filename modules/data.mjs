@@ -42,7 +42,7 @@ export function getPage({tab, position, selection={}}) {
   }
 }
 
-export function createReadingItem(page) {
+export function getReadingItem(page) {
   return ` 
       <li id=${page.date}>
         <img src="${page.favIconUrl}" alt="favIcon">
