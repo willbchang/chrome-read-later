@@ -50,10 +50,10 @@ export function getPageInfo({tab, position = {}, selection = {}}) {
   }
 
   function getScrollPercent() {
-    return percent(position.scrollBottom, position.scrollHeight) || '0%'
+    return percent(position.scrollBottom / position.scrollHeight) || '0%'
 
-    function percent(x, y) {
-      return Math.floor((x / y) * 100) + '%'
+    function percent(num) {
+      return Math.floor(num * 100) + '%'
     }
   }
 }
