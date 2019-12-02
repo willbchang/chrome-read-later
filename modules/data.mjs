@@ -29,12 +29,12 @@ export function getPageInfo({tab, position = {}, selection = {}}) {
     if (tab.url.includes('://www.google.'))
       return filterUrl(selection.selectionText)
     return selection.selectionText || selection.url
-  }
 
-  function filterUrl(text) {
-    // FIX: Cannot avoid http:// in google search,
-    // the http:// doesn't reveal. Needs to use url regex.
-    return text.split('https://')[0]
+    function filterUrl(text) {
+      // FIX: Cannot avoid http:// in google search,
+      // the http:// doesn't reveal. Needs to use url regex.
+      return text.split('https://')[0]
+    }
   }
 
   function getFavIconUrl() {
