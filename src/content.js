@@ -16,8 +16,20 @@ function getPagePosition() {
   // if it is 0, the scrollPercent won't add to popup.html.
   // Do not worry this situation: scrollTop: 0, scrollPercent: 100%
   return {
-    scrollTop: document.documentElement.scrollTop,
-    scrollBottom: window.scrollY + window.innerHeight,
-    scrollHeight: document.documentElement.scrollHeight,
+    scrollTop: getScrollTop(),
+    scrollBottom: getScrollBottom(),
+    scrollHeight: getScrollHeight(),
+  }
+
+  function getScrollTop() {
+    return document.documentElement.scrollTop
+  }
+
+  function getScrollBottom() {
+    return window.scrollY + window.innerHeight
+  }
+
+  function getScrollHeight() {
+    return document.documentElement.scrollHeight
   }
 }
