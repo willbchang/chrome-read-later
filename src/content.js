@@ -17,13 +17,7 @@ function getPosition() {
   // Do not worry this situation: scrollTop: 0, scrollPercent: 100%
   return {
     scrollTop: document.documentElement.scrollTop,
-    scrollPercent: percent(
-      window.scrollY + window.innerHeight, // scrollBottom
-      document.documentElement.scrollHeight
-    )
+    scrollBottom: window.scrollY + window.innerHeight,
+    scrollHeight: document.documentElement.scrollHeight,
   }
-}
-
-function percent(x, y) {
-  return Math.floor((x / y) * 100) + '%'
 }
