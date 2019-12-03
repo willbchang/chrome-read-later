@@ -1,6 +1,5 @@
 (async () => {
-  const src = chrome.runtime.getURL('modules/data.mjs')
-  const data = await import(src)
+  const data = await importModule('modules/data.mjs')
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.info === 'get position')
@@ -14,3 +13,7 @@
   })
 })()
 
+async function importModule(url) {
+  const src = chrome.runtime.getURL(url)
+  return await import(src)
+}
