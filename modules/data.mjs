@@ -82,7 +82,7 @@ export function getReadingItem(page) {
     // broken automatically with hyphen.
     // This is also a word: tester-testABCDEFGHI?title
     function breakLongWord(word) {
-      if (word.isMaxLength)
+      if (word.isMaxLength())
         return `<span style="word-break: break-all">${word}</span>`
       return word
     }

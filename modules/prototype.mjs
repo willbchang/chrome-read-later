@@ -20,6 +20,7 @@ Object.defineProperty(String.prototype, 'isMaxLength', {
     // Assume a word is made by W, if the length is larger than 244px,
     // the favicon and the word won't be in the same line,
     // or the word in title will ugly break the line.
-    return this.length === 18
-  }
+    return this.length >= 18
+  },
+  enumerable: false
 })
