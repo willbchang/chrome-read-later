@@ -14,10 +14,13 @@
         "<all_urls>"
       ],
       "js": [
-        "src/content.js",
-        "modules/data.mjs"
+        "src/content.js"
       ]
     }
+  ],
+  "web_accessible_resources": [
+    "modules/data.mjs",
+    "modules/prototype.mjs"
   ],
   "commands": {
     "read-later": {
