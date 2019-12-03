@@ -14,7 +14,8 @@
         "<all_urls>"
       ],
       "js": [
-        "src/content.js"
+        "src/content.js",
+        "modules/data.mjs"
       ]
     }
   ],
