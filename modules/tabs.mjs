@@ -70,13 +70,17 @@ export function onComplete(newTab) {
     chrome.tabs.onUpdated.addListener(listener)
 
     function listener(tabId, info) {
-      if (isCompleteLoading() && (newTab.id === tabId)) {
+      if (isCompleteLoading() && isSameTab()) {
         chrome.tabs.onUpdated.removeListener(listener)
         resolve(tabId)
       }
 
       function isCompleteLoading() {
         return info.status === 'complete'
+      }
+
+      function isSameTab() {
+        return newTab.id === tabId
       }
     }
   })
