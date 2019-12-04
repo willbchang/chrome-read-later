@@ -70,9 +70,13 @@ export function onComplete(newTab) {
     chrome.tabs.onUpdated.addListener(listener)
 
     function listener(tabId, info) {
-      if (info.status === 'complete' && (newTab.id === tabId)) {
+      if (isCompleteLoading() && (newTab.id === tabId)) {
         chrome.tabs.onUpdated.removeListener(listener)
         resolve(tabId)
+      }
+
+      function isCompleteLoading() {
+        return info.status === 'complete'
       }
     }
   })
