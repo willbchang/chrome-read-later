@@ -67,12 +67,13 @@ export function sendMessage(tabId, message) {
 // https://developer.chrome.com/extensions/tabs#event-onUpdated
 export function onComplete(newTab) {
   return new Promise(resolve => {
-    chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+    chrome.tabs.onUpdated.addListener(listener)
+
+    function listener(tabId, info) {
       if (info.status === 'complete' && (newTab.id === tabId)) {
         chrome.tabs.onUpdated.removeListener(listener)
         resolve(tabId)
       }
-    })
+    }
   })
 }
-
