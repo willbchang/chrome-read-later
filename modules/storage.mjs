@@ -37,19 +37,18 @@ export function set(page) {
 // Set default empty value to 'selection' to avoid
 // Cannot read property of undefined
 export function setPageInfo({tab, position = {}, selection = {}}) {
-// https://mdn.io/computed_property_names
   const page = {
-    [getUrl()]: {
-      url: getUrl(),
-      title: getTitle(),
-      favIconUrl: getFavIconUrl(),
-      date: getDate(),
-      scrollTop: getScrollTop(),
-      scrollPercent: getScrollPercent(),
-    }
+    url: getUrl(),
+    title: getTitle(),
+    favIconUrl: getFavIconUrl(),
+    date: getDate(),
+    scrollTop: getScrollTop(),
+    scrollPercent: getScrollPercent(),
   }
 
-  set(page)
+
+  // https://mdn.io/computed_property_names
+  set({[page.url]: page})
 
   function getUrl() {
     return selection.linkUrl || tab.url
