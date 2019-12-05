@@ -9,18 +9,6 @@ export function getScrollPosition() {
     scrollBottom: getScrollBottom(),
     scrollHeight: getScrollHeight(),
   }
-
-  function getScrollTop() {
-    return document.documentElement.scrollTop
-  }
-
-  function getScrollBottom() {
-    return window.scrollY + window.innerHeight
-  }
-
-  function getScrollHeight() {
-    return document.documentElement.scrollHeight
-  }
 }
 
 export function setScrollPosition({scrollTop, scrollHeight}) {
@@ -28,4 +16,17 @@ export function setScrollPosition({scrollTop, scrollHeight}) {
     top: scrollTop,
     behavior: 'smooth'
   })
+}
+
+
+function getScrollTop() {
+  return document.documentElement.scrollTop
+}
+
+function getScrollBottom() {
+  return window.scrollY + window.innerHeight
+}
+
+function getScrollHeight() {
+  return document.documentElement.scrollHeight
 }
