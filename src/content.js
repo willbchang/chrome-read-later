@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   (async () => {
-    const page = await importModule('modules/page.mjs')
+    const page = await dynamicImport('modules/page.mjs')
     if (message.info === 'get position')
       sendResponse(page.getScrollPosition())
     if (message.scrollTop)
@@ -9,7 +9,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   return true
 })
 
-async function importModule(url) {
+async function dynamicImport(url) {
   const src = chrome.runtime.getURL(url)
   return await import(src)
 }
