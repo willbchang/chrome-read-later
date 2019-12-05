@@ -14,9 +14,9 @@ async function importModule(url) {
   return await import(src)
 }
 
-function setScrollPosition(message) {
+function setScrollPosition({scrollTop, scrollHeight}) {
   window.scrollTo({
-    top: message.scrollTop,
+    top: scrollTop,
     behavior: 'smooth'
   })
 }
