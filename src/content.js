@@ -3,7 +3,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const data = await importModule('modules/data.mjs')
     if (message.info === 'get position')
       sendResponse(data.getScrollPosition())
-    setScrollPosition(message)
+    if (message.scrollTop)
+      setScrollPosition(message)
   })()
   return true
 })
@@ -14,9 +15,8 @@ async function importModule(url) {
 }
 
 function setScrollPosition(message) {
-  if (message.scrollTop)
-    window.scrollTo({
-      top: message.scrollTop,
-      behavior: 'smooth'
-    })
+  window.scrollTo({
+    top: message.scrollTop,
+    behavior: 'smooth'
+  })
 }
