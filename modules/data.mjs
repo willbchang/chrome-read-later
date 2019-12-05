@@ -1,6 +1,6 @@
 import './prototype.mjs'
 
-export function getReadingItem(page) {
+export function renderHtmlText(page) {
   return ` 
       <li id=${page.date}>
         <img src="${page.favIconUrl}" alt="favIcon">
