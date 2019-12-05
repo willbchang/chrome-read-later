@@ -36,9 +36,9 @@ export function set(page) {
 // Use object as parameter to get optional parameter.
 // Set default empty value to 'selection' to avoid
 // Cannot read property of undefined
-export function getPageInfo({tab, position = {}, selection = {}}) {
+export function setPageInfo({tab, position = {}, selection = {}}) {
 // https://mdn.io/computed_property_names
-  return {
+  const page = {
     [getUrl()]: {
       url: getUrl(),
       title: getTitle(),
@@ -48,6 +48,8 @@ export function getPageInfo({tab, position = {}, selection = {}}) {
       scrollPercent: getScrollPercent(),
     }
   }
+
+  set(page)
 
   function getUrl() {
     return selection.linkUrl || tab.url
