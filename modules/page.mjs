@@ -22,3 +22,10 @@ export function getScrollPosition() {
     return document.documentElement.scrollHeight
   }
 }
+
+export function setScrollPosition({scrollTop, scrollHeight}) {
+  window.scrollTo({
+    top: scrollTop,
+    behavior: 'smooth'
+  })
+}

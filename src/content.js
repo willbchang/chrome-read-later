@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.info === 'get position')
       sendResponse(page.getScrollPosition())
     if (message.scrollTop)
-      setScrollPosition(message)
+      page.setScrollPosition(message)
   })()
   return true
 })
@@ -12,11 +12,4 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 async function importModule(url) {
   const src = chrome.runtime.getURL(url)
   return await import(src)
-}
-
-function setScrollPosition({scrollTop, scrollHeight}) {
-  window.scrollTo({
-    top: scrollTop,
-    behavior: 'smooth'
-  })
 }
