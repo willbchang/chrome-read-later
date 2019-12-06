@@ -13,7 +13,7 @@ extension.onCommand(async () => {
 })
 
 extension.onMessage(async message => {
-  let newTab = await tabs.isEmptyTab()
+  const newTab = await tabs.isEmptyTab()
     ? await tabs.update(message.url)
     : await tabs.create(message.url)
 
