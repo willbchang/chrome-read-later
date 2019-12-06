@@ -34,7 +34,9 @@ export function set(page) {
 // Use object as parameter to get optional parameter.
 // Set default empty value to 'selection' to avoid
 // Cannot read property of undefined
-export function setPageInfo({tab, position = {}, selection = {}}) {
+export function setPageInfo({tab, position = {}, selectionText, linkUrl}) {
+
+  console.log(selectionText, linkUrl)
   const page = {
     url: getUrl(),
     title: getTitle(),
@@ -44,21 +46,20 @@ export function setPageInfo({tab, position = {}, selection = {}}) {
     scrollPercent: getScrollPercent(),
   }
 
-
   // https://mdn.io/computed_property_names
   set({[page.url]: page})
 
   function getUrl() {
-    return selection.linkUrl || tab.url
+    return linkUrl || tab.url
   }
 
   function getTitle() {
-    if (!selection.selectionText) return tab.title || tab.url
+    if (!selectionText) return tab.title || tab.url
     // TODO: Will fetch page info(title, favicon) via url in later version.
     // Select item in google search will also select its url.
     if (tab.url.includes('://www.google.'))
-      return filterUrl(selection.selectionText)
-    return selection.selectionText || selection.linkUrl
+      return filterUrl(selectionText)
+    return selectionText || linkUrl
 
     function filterUrl(text) {
       // FIX: Cannot avoid http:// in google search,

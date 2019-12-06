@@ -25,7 +25,7 @@ extension.onMessage(async ({url}) => {
 })
 
 extension.onClickedContextMenus((selection, tab) => {
-  storage.setPageInfo({tab, selection})
+  storage.setPageInfo({tab, ...selection})
 })
 
 extension.onInstalled(() => {
