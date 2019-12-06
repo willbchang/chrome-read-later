@@ -31,7 +31,7 @@ extension.onClickedContextMenus((selection, tab) => {
 extension.onInstalled(() => {
   extension.createContextMenus({
     title: 'Read later',
-    contexts: ['link'],
+    contexts: ['link', 'page'],
     id: 'read-later',
   })
 })
