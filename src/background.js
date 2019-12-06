@@ -4,17 +4,7 @@ import * as tabs from '../modules/tabs.mjs'
 
 extension.onCommand(async () => getPage())
 
-extension.onMessage(async ({url}) => {
-  const newTab = await tabs.isEmptyTab()
-    ? await tabs.update(url)
-    : await tabs.create(url)
-
-  const position = await storage.getPagePosition(url)
-  storage.remove(url)
-
-  const tabId = await tabs.onComplete(newTab)
-  await tabs.sendMessage(tabId, position)
-})
+extension.onMessage(async ({url}) => setPage(url))
 
 extension.onClickedContextMenus((selection, tab) => {
   storage.setPageInfo({tab, ...selection})
@@ -36,4 +26,16 @@ async function getPage() {
   storage.setPageInfo({tab, position})
 
   await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
+}
+
+async function setPage(url) {
+  const newTab = await tabs.isEmptyTab()
+    ? await tabs.update(url)
+    : await tabs.create(url)
+
+  const position = await storage.getPagePosition(url)
+  storage.remove(url)
+
+  const tabId = await tabs.onComplete(newTab)
+  await tabs.sendMessage(tabId, position)
 }
