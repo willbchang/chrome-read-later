@@ -11,6 +11,10 @@ export async function save() {
   await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
 }
 
+export function saveSelection(tab, selection) {
+  storage.set(getInfo({tab, ...selection}))
+}
+
 export async function open({url}) {
   const newTab = await tabs.isEmptyTab()
     ? await tabs.update(url)
