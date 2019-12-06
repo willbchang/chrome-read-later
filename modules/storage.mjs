@@ -35,8 +35,6 @@ export function set(page) {
 // Set default empty value to 'selection' to avoid
 // Cannot read property of undefined
 export function setPageInfo({tab, position = {}, selectionText, linkUrl}) {
-
-  console.log(selectionText, linkUrl)
   const page = {
     url: getUrl(),
     title: getTitle(),

@@ -1,3 +1,28 @@
+import * as storage from '../modules/storage.mjs'
+import * as tabs from '../modules/tabs.mjs'
+
+export async function get() {
+  // It will only set the tab info if position is undefined.
+  // Runs smoothly even if it's offline, chrome://*, etc.
+  const tab = await tabs.queryCurrent()
+  const position = await tabs.sendMessage(tab.id, {info: 'get position'})
+  storage.setPageInfo({tab, position})
+
+  await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
+}
+
+export async function set(url) {
+  const newTab = await tabs.isEmptyTab()
+    ? await tabs.update(url)
+    : await tabs.create(url)
+
+  const position = await storage.getPagePosition(url)
+  storage.remove(url)
+
+  const tabId = await tabs.onComplete(newTab)
+  await tabs.sendMessage(tabId, position)
+}
+
 // Use scrollBottom to calculate scrollPercent to avoid the situation:
 // Scroll page to the bottom, but the percent is not 100%.
 export function getScrollPosition() {

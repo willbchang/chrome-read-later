@@ -1,10 +1,10 @@
 import * as extension from '../modules/extension.mjs'
+import * as page from '../modules/page.mjs'
 import * as storage from '../modules/storage.mjs'
-import * as tabs from '../modules/tabs.mjs'
 
-extension.onCommand(async () => getPage())
+extension.onCommand(async () => page.get())
 
-extension.onMessage(async ({url}) => setPage(url))
+extension.onMessage(async ({url}) => page.set(url))
 
 extension.onClickedContextMenus((selection, tab) => {
   storage.setPageInfo({tab, ...selection})
@@ -18,24 +18,3 @@ extension.onInstalled(() => {
   })
 })
 
-async function getPage() {
-  // It will only set the tab info if position is undefined.
-  // Runs smoothly even if it's offline, chrome://*, etc.
-  const tab = await tabs.queryCurrent()
-  const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-  storage.setPageInfo({tab, position})
-
-  await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
-}
-
-async function setPage(url) {
-  const newTab = await tabs.isEmptyTab()
-    ? await tabs.update(url)
-    : await tabs.create(url)
-
-  const position = await storage.getPagePosition(url)
-  storage.remove(url)
-
-  const tabId = await tabs.onComplete(newTab)
-  await tabs.sendMessage(tabId, position)
-}

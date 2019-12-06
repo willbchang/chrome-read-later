@@ -19,7 +19,9 @@
     }
   ],
   "web_accessible_resources": [
-    "modules/page.mjs"
+    "modules/page.mjs",
+    "modules/storage.mjs",
+    "modules/tabs.mjs"
   ],
   "commands": {
     "read-later": {
