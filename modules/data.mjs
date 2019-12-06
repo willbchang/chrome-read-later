@@ -9,7 +9,7 @@ import './prototype.mjs'
 // Cannot read property of undefined
 export function getInfo({tab, position = {}, selectionText, linkUrl}) {
   return {
-    [getUrl]: {
+    [getUrl()]: {
       url: getUrl(),
       title: getTitle(),
       favIconUrl: getFavIconUrl(),
