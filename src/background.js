@@ -2,15 +2,7 @@ import * as extension from '../modules/extension.mjs'
 import * as storage from '../modules/storage.mjs'
 import * as tabs from '../modules/tabs.mjs'
 
-extension.onCommand(async () => {
-  // It will only set the tab info if position is undefined.
-  // Runs smoothly even if it's offline, chrome://*, etc.
-  const tab = await tabs.queryCurrent()
-  const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-  storage.setPageInfo({tab, position})
-
-  await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
-})
+extension.onCommand(async () => getPage())
 
 extension.onMessage(async ({url}) => {
   const newTab = await tabs.isEmptyTab()
@@ -35,3 +27,13 @@ extension.onInstalled(() => {
     id: 'read-later',
   })
 })
+
+async function getPage() {
+  // It will only set the tab info if position is undefined.
+  // Runs smoothly even if it's offline, chrome://*, etc.
+  const tab = await tabs.queryCurrent()
+  const position = await tabs.sendMessage(tab.id, {info: 'get position'})
+  storage.setPageInfo({tab, position})
+
+  await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
+}
