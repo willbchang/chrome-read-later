@@ -6,8 +6,10 @@ extension.onCommand(page.get)
 
 extension.onMessage(page.set)
 
-extension.onClickedContextMenus((selection, tab) => {
-  storage.setPageInfo({tab, ...selection})
+extension.onClickedContextMenus(async (selection, tab) => {
+  selection.linkUrl
+    ? storage.setPageInfo({tab, ...selection})
+    : await page.get()
 })
 
 extension.onInstalled(() => {
