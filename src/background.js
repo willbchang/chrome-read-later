@@ -4,7 +4,7 @@ import * as storage from '../modules/storage.mjs'
 
 extension.onCommand(page.save)
 
-extension.onMessage(page.set)
+extension.onMessage(page.open)
 
 extension.onClickedContextMenus(async (selection, tab) => {
   selection.linkUrl
