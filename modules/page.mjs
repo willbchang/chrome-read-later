@@ -16,7 +16,7 @@ export async function set({url}) {
     ? await tabs.update(url)
     : await tabs.create(url)
 
-  const position = await storage.getPagePosition(url)
+  const position = await storage.getPosition(url)
   storage.remove(url)
 
   const tabId = await tabs.onComplete(newTab)

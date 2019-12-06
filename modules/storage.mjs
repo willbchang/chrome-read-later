@@ -16,7 +16,7 @@ export async function getByLatest() {
   return Object.values(pages).sort((a, b) => b.date - a.date)
 }
 
-export async function getPagePosition(url) {
+export async function getPosition(url) {
   const pages = await get()
   const page = pages[url]
   return {
