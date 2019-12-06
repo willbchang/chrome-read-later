@@ -99,7 +99,7 @@ export function getScrollPosition() {
   }
 }
 
-export function setScrollPosition({scrollTop, scrollHeight}) {
+export function setScrollPosition({scrollTop}) {
   window.scrollTo({
     top: scrollTop,
     behavior: 'smooth'
