@@ -1,7 +1,7 @@
 import * as storage from '../modules/storage.mjs'
 import * as tabs from '../modules/tabs.mjs'
 
-export async function get() {
+export async function save() {
   // It will only set the tab info if position is undefined.
   // Runs smoothly even if it's offline, chrome://*, etc.
   const tab = await tabs.queryCurrent()
