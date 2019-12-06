@@ -12,13 +12,13 @@ extension.onCommand(async () => {
   await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
 })
 
-extension.onMessage(async message => {
+extension.onMessage(async ({url}) => {
   const newTab = await tabs.isEmptyTab()
-    ? await tabs.update(message.url)
-    : await tabs.create(message.url)
+    ? await tabs.update(url)
+    : await tabs.create(url)
 
-  const position = await storage.getPagePosition(message.url)
-  storage.remove(message.url)
+  const position = await storage.getPagePosition(url)
+  storage.remove(url)
 
   const tabId = await tabs.onComplete(newTab)
   await tabs.sendMessage(tabId, position)
