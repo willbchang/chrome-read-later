@@ -84,7 +84,7 @@ export function setPageInfo({tab, position = {}, selectionText, linkUrl}) {
     return percent(position.scrollBottom / position.scrollHeight)
 
     function percent(num) {
-      return Math.floor(num * 100) || 0 + '%'
+      return (Math.floor(num * 100) || 0) + '%'
     }
   }
 }
