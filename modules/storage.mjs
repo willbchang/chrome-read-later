@@ -1,5 +1,3 @@
-import './prototype.mjs'
-
 // For chrome.storage functions:
 // https://developer.chrome.com/extensions/storage
 export function remove(url) {
@@ -55,12 +53,12 @@ export function setPageInfo({tab, position = {}, selection = {}}) {
   }
 
   function getTitle() {
-    if (selection.isEmpty()) return tab.title || tab.url
+    if (!selection.selectionText) return tab.title || tab.url
     // TODO: Will fetch page info(title, favicon) via url in later version.
     // Select item in google search will also select its url.
     if (tab.url.includes('://www.google.'))
       return filterUrl(selection.selectionText)
-    return selection.selectionText || selection.url
+    return selection.selectionText || selection.linkUrl
 
     function filterUrl(text) {
       // FIX: Cannot avoid http:// in google search,
