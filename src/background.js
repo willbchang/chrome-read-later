@@ -8,7 +8,7 @@ extension.onMessage(page.set)
 
 extension.onClickedContextMenus(async (selection, tab) => {
   selection.linkUrl
-    ? storage.setPageInfo({tab, ...selection})
+    ? storage.set(page.getInfo({tab, ...selection}))
     : await page.get()
 })
 
