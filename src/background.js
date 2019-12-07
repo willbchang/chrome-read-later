@@ -39,7 +39,7 @@ export async function openPage({url}) {
     ? await tabs.update(url)
     : await tabs.create(url)
 
-  const position = await storage.getPosition(url)
+  const position = await storage.getScrollPosition(url)
   storage.remove(url)
 
   const tabId = await tabs.onComplete(newTab)
