@@ -11,7 +11,7 @@ export function get() {
 }
 
 // NOTICE: This returns an Array.
-export async function getByLatest() {
+export async function sortByLatest() {
   const pages = await get()
   return Object.values(pages).sort((a, b) => b.date - a.date)
 }
