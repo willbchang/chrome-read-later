@@ -16,6 +16,16 @@ export async function queryCurrent() {
   return tabs[0]
 }
 
+// https://developer.chrome.com/extensions/tabs#method-remove
+export function remove(tab) {
+  chrome.tabs.remove(tab.id)
+}
+
+// https://developer.chrome.com/extensions/tabs#method-create
+export function create(href) {
+  return new Promise(resolve => chrome.tabs.create({url: href}, resolve))
+}
+
 // https://developer.chrome.com/extensions/tabs#method-update
 export function update(href) {
   return new Promise(resolve => chrome.tabs.update(null, {url: href}, resolve))
@@ -33,16 +43,6 @@ export async function isEmptyTab() {
 export async function isFinalTab() {
   const allTabs = await queryAll()
   return allTabs.length === 1
-}
-
-// https://developer.chrome.com/extensions/tabs#method-create
-export function create(href) {
-  return new Promise(resolve => chrome.tabs.create({url: href}, resolve))
-}
-
-// https://developer.chrome.com/extensions/tabs#method-remove
-export function remove(tab) {
-  chrome.tabs.remove(tab.id)
 }
 
 // https://developer.chrome.com/extensions/tabs#method-sendMessage
