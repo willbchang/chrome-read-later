@@ -19,14 +19,12 @@ export async function sortByLatest() {
 export async function getScrollPosition(url) {
   const pages = await get()
   const page = pages[url]
-  console.log(page)
   return {
     scrollTop: page.scrollTop,
   }
 }
 
 export function set(page) {
-  console.log(page)
   chrome.storage.sync.set(page)
 }
 
