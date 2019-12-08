@@ -10,7 +10,7 @@ initReadingList().then(() => {
 
 async function initReadingList() {
   const pages = await storage.sortByLatest()
-  pages.map(page => $('ul').append(data.renderHtmlText(page)))
+  pages.map(page => $('ul').append(data.getHtml(page)))
 }
 
 function sendUrlToBackground(event) {

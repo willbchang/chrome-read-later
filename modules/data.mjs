@@ -59,7 +59,7 @@ export function getJson({tab, position = {}, selectionText, linkUrl}) {
   }
 }
 
-export function renderHtmlText(page) {
+export function getHtml(page) {
   return ` 
       <li id=${page.date}>
         <img src="${page.favIconUrl}" alt="favIcon">
