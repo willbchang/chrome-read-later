@@ -5,9 +5,7 @@ export function remove(url) {
 }
 
 export function get() {
-  return new Promise(resolve => {
-    chrome.storage.sync.get(resolve)
-  })
+  return new Promise(resolve => chrome.storage.sync.get(resolve))
 }
 
 // NOTICE: This returns an Array.
