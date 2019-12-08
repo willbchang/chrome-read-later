@@ -7,7 +7,7 @@ import './prototype.mjs'
 // Use object as parameter to get optional parameter.
 // Set default empty value to 'selection' to avoid
 // Cannot read property of undefined
-export function getInfo({tab, position = {}, selectionText, linkUrl}) {
+export function getJson({tab, position = {}, selectionText, linkUrl}) {
   return {
     [getUrl()]: {
       url: getUrl(),

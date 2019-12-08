@@ -23,13 +23,13 @@ export async function savePage() {
   // Runs smoothly even if it's offline, chrome://*, etc.
   const tab = await tabs.queryCurrent()
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-  storage.set(data.getInfo({tab, position}))
+  storage.set(data.getJson({tab, position}))
 
   await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
 }
 
 export function saveSelection(tab, selection) {
-  storage.set(data.getInfo({tab, ...selection}))
+  storage.set(data.getJson({tab, ...selection}))
 }
 
 export async function openPage({url}) {
