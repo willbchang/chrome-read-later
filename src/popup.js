@@ -5,7 +5,7 @@ import * as data from '../modules/data.mjs'
 initReadingList().then(() => {
   $('ul').on('click', 'a', sendUrlToBackground)
     .on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
-    .on('click', 'img', removeItem)
+    .on('click', 'img', removeReadingItem)
 })
 
 async function initReadingList() {
@@ -46,7 +46,7 @@ function showFavIcon(event) {
   localStorage.clear()
 }
 
-function removeItem(event) {
+function removeReadingItem(event) {
   // event.target is <img>, the parentNode is <li>
   $(event.target.parentNode).remove()
   // The next sibling of <img> is <a>
