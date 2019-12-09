@@ -28,6 +28,10 @@ class PageGenerator {
   get scrollPercent() {
     return '0%'
   }
+
+  get scrollHeight() {
+    return 0
+  }
 }
 
 class TabPageGenerator extends PageGenerator {
@@ -46,6 +50,10 @@ class TabPageGenerator extends PageGenerator {
     function percent(num) {
       return (Math.floor(num * 100) || 0) + '%'
     }
+  }
+
+  get scrollHeight() {
+    return this.position.scrollHeight
   }
 }
 
@@ -97,6 +105,7 @@ export function createPageData({tab, position = {}, selection = {}}) {
       date: page.date,
       scrollTop: page.scrollTop,
       scrollPercent: page.scrollPercent,
+      scrollHeight: page.scrollHeight,
     }
   }
 }

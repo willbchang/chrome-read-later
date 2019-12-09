@@ -23,9 +23,15 @@ export function getScrollPosition() {
   }
 }
 
-export function setScrollPosition({scrollTop}) {
+export function setScrollPosition({scrollTop, scrollHeight}) {
   window.scrollTo({
-    top: scrollTop,
+    top: getCurrentScrollTop(),
     behavior: 'smooth'
   })
+
+  function getCurrentScrollTop() {
+    if (scrollHeight)
+      return scrollTop / scrollHeight * document.documentElement.scrollHeight
+    return scrollTop
+  }
 }
