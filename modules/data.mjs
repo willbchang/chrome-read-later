@@ -28,17 +28,21 @@ class PageGenerator {
   }
 
   get scrollPercent() {
-    return percent(this.position.scrollBottom / this.position.scrollHeight)
-
-    function percent(num) {
-      return (Math.floor(num * 100) || 0) + '%'
-    }
+    return '0%'
   }
 }
 
 class TabPageGenerator extends PageGenerator {
   get scrollTop() {
     return this.position.scrollTop
+  }
+
+  get scrollPercent() {
+    return percent(this.position.scrollBottom / this.position.scrollHeight)
+
+    function percent(num) {
+      return (Math.floor(num * 100) || 0) + '%'
+    }
   }
 }
 
