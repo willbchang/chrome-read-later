@@ -29,7 +29,7 @@ export async function savePage() {
 }
 
 export function saveSelection(tab, selection) {
-  storage.set(data.getJson({tab, ...selection}))
+  storage.set(data.getJson({tab, selection}))
 }
 
 export async function openPage({url}) {

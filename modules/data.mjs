@@ -1,24 +1,23 @@
 import './prototype.mjs'
 
 class PageGenerator {
-  constructor(tab, position, selectionText, linkUrl) {
+  constructor(tab, position, selection) {
     this.tab = tab
     this.position = position
-    this.selectionText = selectionText
-    this.linkUrl = linkUrl
+    this.selection = selection
   }
 
   get url() {
-    return this.linkUrl || this.tab.url
+    return this.selection.linkUrl || this.tab.url
   }
 
   get title() {
-    if (!this.selectionText) return this.tab.title || this.tab.url
+    if (!this.selection.selectionText) return this.tab.title || this.tab.url
     // TODO: Will fetch page info(title, favicon) via url in later version.
     // Select item in google search will also select its url.
     if (this.tab.url.includes('://www.google.'))
-      return filterUrl(this.selectionText)
-    return this.selectionText || this.linkUrl
+      return filterUrl(this.selection.selectionText)
+    return this.selection.selectionText || this.selection.linkUrl
 
     function filterUrl(text) {
       // FIX: Cannot avoid http:// in google search,
@@ -55,8 +54,8 @@ class PageGenerator {
 // Use object as parameter to get optional parameter.
 // Set default empty value to 'selection' to avoid
 // Cannot read property of undefined
-export function getJson({tab, position = {}, selectionText, linkUrl}) {
-  const page = new PageGenerator(tab, position, selectionText, linkUrl)
+export function getJson({tab, position = {}, selection = {}}) {
+  const page = new PageGenerator(tab, position, selection)
   return {
     [page.url]: {
       url: page.url,
