@@ -24,7 +24,7 @@ class PageGenerator {
   }
 
   get scrollTop() {
-    return this.position.scrollTop || 0
+    return 0
   }
 
   get scrollPercent() {
@@ -37,6 +37,9 @@ class PageGenerator {
 }
 
 class TabPageGenerator extends PageGenerator {
+  get scrollTop() {
+    return this.position.scrollTop
+  }
 }
 
 class SelectionPageGenerator extends PageGenerator {
