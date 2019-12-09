@@ -101,7 +101,7 @@ export function createPageData({tab, position = {}, selection = {}}) {
   }
 }
 
-export function getHtml(page) {
+export function renderHtmlList(page) {
   return ` 
       <li id=${page.date}>
         <img src="${page.favIconUrl}" alt="favIcon">

@@ -1,6 +1,6 @@
+import {renderHtmlList} from '../modules/data.mjs'
 import * as extension from '../modules/extension.mjs'
 import * as storage from '../modules/storage.mjs'
-import * as data from '../modules/data.mjs'
 
 initReadingList().then(() => {
   $('ul').on('click', 'a', sendUrlToBackground)
@@ -10,7 +10,7 @@ initReadingList().then(() => {
 
 async function initReadingList() {
   const pages = await storage.sortByLatest()
-  pages.map(page => $('ul').append(data.getHtml(page)))
+  pages.map(page => $('ul').append(renderHtmlList(page)))
 }
 
 function sendUrlToBackground(event) {
