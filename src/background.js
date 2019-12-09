@@ -1,4 +1,4 @@
-import * as data from '../modules/data.mjs'
+import {createPageData} from '../modules/data.mjs'
 import * as extension from '../modules/extension.mjs'
 import * as storage from '../modules/storage.mjs'
 import * as tabs from '../modules/tabs.mjs'
@@ -23,13 +23,13 @@ export async function savePage() {
   // Runs smoothly even if it's offline, chrome://*, etc.
   const tab = await tabs.queryCurrent()
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-  storage.set(data.createJson({tab, position}))
+  storage.set(createPageData({tab, position}))
 
   await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
 }
 
 export function saveSelection(tab, selection) {
-  storage.set(data.createJson({tab, selection}))
+  storage.set(createPageData({tab, selection}))
 }
 
 export async function openPage({url}) {

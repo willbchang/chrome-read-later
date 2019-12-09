@@ -87,7 +87,7 @@ function createPageGenerator(tab, position, selection) {
 // Use object as parameter to get optional parameter.
 // Set default empty value to 'selection' to avoid
 // Cannot read property of undefined
-export function createJson({tab, position = {}, selection = {}}) {
+export function createPageData({tab, position = {}, selection = {}}) {
   const page = createPageGenerator(tab, position, selection)
   return {
     [page.url]: {
