@@ -1,10 +1,8 @@
 import './prototype.mjs'
 
 class PageGenerator {
-  constructor(tab, position, selection) {
+  constructor(tab) {
     this.tab = tab
-    this.position = position
-    this.selection = selection
   }
 
   get url() {
@@ -33,6 +31,11 @@ class PageGenerator {
 }
 
 class TabPageGenerator extends PageGenerator {
+  constructor(tab, position) {
+    super(tab)
+    this.position = position
+  }
+
   get scrollTop() {
     return this.position.scrollTop
   }
@@ -47,6 +50,11 @@ class TabPageGenerator extends PageGenerator {
 }
 
 class SelectionPageGenerator extends PageGenerator {
+  constructor(tab, selection) {
+    super(tab)
+    this.selection = selection
+  }
+
   get url() {
     return this.selection.linkUrl
   }
@@ -68,8 +76,8 @@ class SelectionPageGenerator extends PageGenerator {
 
 function createPageGenerator(tab, position, selection) {
   if (selection.isEmpty())
-    return new TabPageGenerator(tab, position, selection)
-  return new SelectionPageGenerator(tab, position, selection)
+    return new TabPageGenerator(tab, position)
+  return new SelectionPageGenerator(tab, selection)
 }
 
 // https://git.io/Je6Aq
