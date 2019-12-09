@@ -1,35 +1,24 @@
 import './prototype.mjs'
 
-// https://git.io/Je6Aq
-// https://mdn.io/object.spread
-// https://mdn.io/default_parameters
-// https://mdn.io/computed_property_names
-// Use object as parameter to get optional parameter.
-// Set default empty value to 'selection' to avoid
-// Cannot read property of undefined
-export function getJson({tab, position = {}, selectionText, linkUrl}) {
-  return {
-    [getUrl()]: {
-      url: getUrl(),
-      title: getTitle(),
-      favIconUrl: getFavIconUrl(),
-      date: getDate(),
-      scrollTop: getScrollTop(),
-      scrollPercent: getScrollPercent(),
-    }
+class PageGenerator {
+  constructor(tab, position, selectionText, linkUrl) {
+    this.tab = tab
+    this.position = position
+    this.selectionText = selectionText
+    this.linkUrl = linkUrl
   }
 
-  function getUrl() {
-    return linkUrl || tab.url
+  get url() {
+    return this.linkUrl || this.tab.url
   }
 
-  function getTitle() {
-    if (!selectionText) return tab.title || tab.url
+  get title() {
+    if (!this.selectionText) return this.tab.title || this.tab.url
     // TODO: Will fetch page info(title, favicon) via url in later version.
     // Select item in google search will also select its url.
-    if (tab.url.includes('://www.google.'))
-      return filterUrl(selectionText)
-    return selectionText || linkUrl
+    if (this.tab.url.includes('://www.google.'))
+      return filterUrl(this.selectionText)
+    return this.selectionText || this.linkUrl
 
     function filterUrl(text) {
       // FIX: Cannot avoid http:// in google search,
@@ -38,23 +27,44 @@ export function getJson({tab, position = {}, selectionText, linkUrl}) {
     }
   }
 
-  function getFavIconUrl() {
-    return tab.favIconUrl || '../images/32x32gray.png'
+  get favIconUrl() {
+    return this.tab.favIconUrl || '../images/32x32gray.png'
   }
 
-  function getDate() {
+  get date() {
     return Date.now()
   }
 
-  function getScrollTop() {
-    return position.scrollTop || 0
+  get scrollTop() {
+    return this.position.scrollTop || 0
   }
 
-  function getScrollPercent() {
-    return percent(position.scrollBottom / position.scrollHeight)
+  get scrollPercent() {
+    return percent(this.position.scrollBottom / this.position.scrollHeight)
 
     function percent(num) {
       return (Math.floor(num * 100) || 0) + '%'
+    }
+  }
+}
+
+// https://git.io/Je6Aq
+// https://mdn.io/object.spread
+// https://mdn.io/default_parameters
+// https://mdn.io/computed_property_names
+// Use object as parameter to get optional parameter.
+// Set default empty value to 'selection' to avoid
+// Cannot read property of undefined
+export function getJson({tab, position = {}, selectionText, linkUrl}) {
+  const page = new PageGenerator(tab, position, selectionText, linkUrl)
+  return {
+    [page.url]: {
+      url: page.url,
+      title: page.title,
+      favIconUrl: page.favIconUrl,
+      date: page.date,
+      scrollTop: page.scrollTop,
+      scrollPercent: page.scrollPercent,
     }
   }
 }
