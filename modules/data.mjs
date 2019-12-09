@@ -12,18 +12,7 @@ class PageGenerator {
   }
 
   get title() {
-    if (!this.selection.selectionText) return this.tab.title || this.tab.url
-    // TODO: Will fetch page info(title, favicon) via url in later version.
-    // Select item in google search will also select its url.
-    if (this.tab.url.includes('://www.google.'))
-      return filterUrl(this.selection.selectionText)
-    return this.selection.selectionText || this.selection.linkUrl
-
-    function filterUrl(text) {
-      // FIX: Cannot avoid http:// in google search,
-      // the http:// doesn't reveal. Needs to use url regex.
-      return text.split('https://')[0]
-    }
+    return this.tab.title || this.tab.url
   }
 
   get favIconUrl() {
@@ -53,6 +42,20 @@ class TabPageGenerator extends PageGenerator {
 class SelectionPageGenerator extends PageGenerator {
   get url() {
     return this.selection.linkUrl
+  }
+
+  get title() {
+    // TODO: Will fetch page info(title, favicon) via url in later version.
+    // Select item in google search will also select its url.
+    if (this.tab.url.includes('://www.google.'))
+      return filterUrl(this.selection.selectionText)
+    return this.selection.selectionText || this.selection.linkUrl
+
+    function filterUrl(text) {
+      // FIX: Cannot avoid http:// in google search,
+      // the http:// doesn't reveal. Needs to use url regex.
+      return text.split('https://')[0]
+    }
   }
 }
 
