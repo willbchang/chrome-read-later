@@ -47,6 +47,12 @@ class PageGenerator {
   }
 }
 
+class TabPageGenerator extends PageGenerator {
+}
+
+class SelectionPageGenerator extends PageGenerator {
+}
+
 function createPageGenerator(tab, position, selection) {
   return new PageGenerator(tab, position, selection)
 }
