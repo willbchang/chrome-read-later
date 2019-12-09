@@ -8,7 +8,7 @@ class PageGenerator {
   }
 
   get url() {
-    return this.selection.linkUrl || this.tab.url
+    return this.tab.url
   }
 
   get title() {
@@ -51,10 +51,15 @@ class TabPageGenerator extends PageGenerator {
 }
 
 class SelectionPageGenerator extends PageGenerator {
+  get url() {
+    return this.selection.linkUrl
+  }
 }
 
 function createPageGenerator(tab, position, selection) {
-  return new PageGenerator(tab, position, selection)
+  if (selection.isEmpty())
+    return new TabPageGenerator(tab, position, selection)
+  return new SelectionPageGenerator(tab, position, selection)
 }
 
 // https://git.io/Je6Aq
