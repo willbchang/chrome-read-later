@@ -47,6 +47,10 @@ class PageGenerator {
   }
 }
 
+function createPageGenerator(tab, position, selection) {
+  return new PageGenerator(tab, position, selection)
+}
+
 // https://git.io/Je6Aq
 // https://mdn.io/object.spread
 // https://mdn.io/default_parameters
@@ -55,7 +59,7 @@ class PageGenerator {
 // Set default empty value to 'selection' to avoid
 // Cannot read property of undefined
 export function getJson({tab, position = {}, selection = {}}) {
-  const page = new PageGenerator(tab, position, selection)
+  const page = createPageGenerator(tab, position, selection)
   return {
     [page.url]: {
       url: page.url,
