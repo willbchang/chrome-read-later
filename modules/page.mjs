@@ -6,6 +6,8 @@ class ScrollPosition {
   }
 
   get scrollTop() {
+    if (this.position.scrollHeight)
+      return this.dynamicScrollTop
     return document.documentElement.scrollTop
   }
 
@@ -18,9 +20,7 @@ class ScrollPosition {
   }
 
   get dynamicScrollTop() {
-    if (this.position.scrollHeight)
-      return this.position.scrollTop / this.position.scrollHeight * this.scrollHeight
-    return this.scrollTop
+    return this.position.scrollTop / this.position.scrollHeight * this.scrollHeight
   }
 
   scrollTo(scrollTop) {
@@ -45,7 +45,7 @@ export function getScrollPosition() {
 
 export function setScrollPosition(position) {
   const scrollPosition = new ScrollPosition(position)
-  scrollPosition.scrollTo(scrollPosition.dynamicScrollTop)
+  scrollPosition.scrollTo(scrollPosition.scrollTop)
 }
 
 
