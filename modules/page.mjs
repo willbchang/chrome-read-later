@@ -12,7 +12,9 @@ class ScrollPosition {
   }
 
   get dynamicScrollTop() {
-    return this.position.scrollTop / this.position.scrollHeight * this.scrollHeight
+    return this.position.scrollTop
+      / this.position.scrollHeight
+      * this.scrollHeight
   }
 
   get scrollBottom() {
