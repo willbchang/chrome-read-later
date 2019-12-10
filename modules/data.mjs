@@ -100,8 +100,8 @@ export function createPageData({tab, position = {}, selection = {}}) {
       favIconUrl: page.favIconUrl,
       date: page.date,
       scrollTop: page.scrollTop,
-      scrollPercent: page.scrollPercent,
       scrollHeight: page.scrollHeight,
+      scrollPercent: page.scrollPercent,
     }
   }
 }
