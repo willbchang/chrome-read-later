@@ -44,12 +44,12 @@ class TabPageGenerator extends PageGenerator {
     return this.position.scrollTop
   }
 
-  get scrollPercent() {
-    return this.position.scrollBottom / this.position.scrollHeight
-  }
-
   get scrollHeight() {
     return this.position.scrollHeight
+  }
+
+  get scrollPercent() {
+    return this.position.scrollBottom / this.position.scrollHeight
   }
 }
 
