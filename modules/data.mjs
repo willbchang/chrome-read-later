@@ -45,11 +45,7 @@ class TabPageGenerator extends PageGenerator {
   }
 
   get scrollPercent() {
-    return percent(this.position.scrollBottom / this.position.scrollHeight)
-
-    function percent(num) {
-      return (Math.floor(num * 100) || 0) + '%'
-    }
+    return this.position.scrollBottom / this.position.scrollHeight
   }
 
   get scrollHeight() {
@@ -146,7 +142,11 @@ export function renderHtmlList(page) {
     // e.g. getFromPage(tab) and getFromSelection(tab, position),
     // they do not save scroll position from the web page.
     if (page.scrollTop)
-      return `<span class="position">${page.scrollPercent}</span>`
+      return `<span class="position">${percent(page.scrollPercent)}</span>`
     return ''
+  }
+
+  function percent(num) {
+    return (Math.floor(num * 100) || 0) + '%'
   }
 }
