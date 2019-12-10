@@ -11,16 +11,16 @@ class ScrollPosition {
     return document.documentElement.scrollTop
   }
 
+  get dynamicScrollTop() {
+    return this.position.scrollTop / this.position.scrollHeight * this.scrollHeight
+  }
+
   get scrollBottom() {
     return window.scrollY + window.innerHeight
   }
 
   get scrollHeight() {
     return document.documentElement.scrollHeight
-  }
-
-  get dynamicScrollTop() {
-    return this.position.scrollTop / this.position.scrollHeight * this.scrollHeight
   }
 
   scrollTo(scrollTop) {
