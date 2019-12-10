@@ -6,9 +6,9 @@ class ScrollPosition {
   }
 
   get scrollTop() {
-    if (this.position.scrollHeight)
-      return this.dynamicScrollTop
-    return document.documentElement.scrollTop
+    return this.position.scrollHeight
+      ? this.dynamicScrollTop
+      : document.documentElement.scrollTop
   }
 
   get dynamicScrollTop() {

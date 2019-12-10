@@ -79,9 +79,9 @@ class SelectionPageGenerator extends PageGenerator {
 }
 
 function createPageGenerator(tab, position, selection) {
-  if (selection.isEmpty())
-    return new TabPageGenerator(tab, position)
-  return new SelectionPageGenerator(tab, selection)
+  return selection.isEmpty()
+    ? new TabPageGenerator(tab, position)
+    : new SelectionPageGenerator(tab, selection)
 }
 
 // https://git.io/Je6Aq
@@ -116,9 +116,7 @@ export function renderHtmlList(page) {
     `
 
   function getTitleColor() {
-    if (page.url === page.title)
-      return 'style="color: gray"'
-    return ''
+    return page.url === page.title ? 'style="color: gray"' : ''
   }
 
   function getTitle() {
@@ -130,9 +128,9 @@ export function renderHtmlList(page) {
     // broken automatically with hyphen.
     // This is also a word: tester-testABCDEFGHI?title
     function breakLongWord(word) {
-      if (word.isMaxLength())
-        return `<span style="word-break: break-all">${word}</span>`
-      return word
+      return word.isMaxLength()
+        ? `<span style="word-break: break-all">${word}</span>`
+        : word
     }
   }
 
@@ -141,9 +139,9 @@ export function renderHtmlList(page) {
     // Get scroll percent when page.scrollTop doesn't exist or the value is zero.
     // e.g. getFromPage(tab) and getFromSelection(tab, position),
     // they do not save scroll position from the web page.
-    if (page.scrollTop)
-      return `<span class="position">${percent(page.scrollPercent)}</span>`
-    return ''
+    return page.scrollTop
+      ? `<span class="position">${percent(page.scrollPercent)}</span>`
+      : ''
   }
 
   function percent(num) {
