@@ -1,7 +1,7 @@
 import {createPageData} from '../modules/data.mjs'
-import * as extension from '../modules/extension.mjs'
-import * as storage from '../modules/storage.mjs'
-import * as tabs from '../modules/tabs.mjs'
+import * as extension from '../modules_chrome/extension.mjs'
+import * as storage from '../modules_chrome/storage.mjs'
+import * as tabs from '../modules_chrome/tabs.mjs'
 
 extension.onCommand(savePage)
 extension.onMessage(openPage)
