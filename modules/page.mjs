@@ -17,12 +17,12 @@ class ScrollPosition {
       * this.scrollHeight
   }
 
-  get scrollBottom() {
-    return window.scrollY + window.innerHeight
-  }
-
   get scrollHeight() {
     return document.documentElement.scrollHeight
+  }
+
+  get scrollBottom() {
+    return window.scrollY + window.innerHeight
   }
 
   scrollTo(scrollTop) {
