@@ -2,7 +2,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   (async () => {
     const page = await dynamicImport('modules/page.mjs')
     if (message.info === 'get position') sendResponse(page.getScrollPosition())
-    if (message.scrollTop) page.setScrollPosition(message)
+    if (message.scroll.top) page.setScrollPosition(message)
   })()
   return true
 })

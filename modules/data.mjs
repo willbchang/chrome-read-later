@@ -37,19 +37,19 @@ class PageGenerator {
 class TabPageGenerator extends PageGenerator {
   constructor(tab, position) {
     super(tab)
-    this.position = position
+    this.scroll = position.scroll
   }
 
   get scrollTop() {
-    return this.position.scrollTop
+    return this.scroll.top
   }
 
   get scrollHeight() {
-    return this.position.scrollHeight
+    return this.scroll.height
   }
 
   get scrollPercent() {
-    return this.position.scrollBottom / this.position.scrollHeight
+    return this.scroll.bottom / this.scroll.height
   }
 }
 
@@ -99,9 +99,11 @@ export function createPageData({tab, position = {}, selection = {}}) {
       title: page.title,
       favIconUrl: page.favIconUrl,
       date: page.date,
-      scrollTop: page.scrollTop,
-      scrollHeight: page.scrollHeight,
-      scrollPercent: page.scrollPercent,
+      scroll: {
+        top: page.scrollTop,
+        height: page.scrollHeight,
+        percent: page.scrollPercent,
+      }
     }
   }
 }
@@ -139,8 +141,8 @@ export function renderHtmlList(page) {
     // Get scroll percent when page.scrollTop doesn't exist or the value is zero.
     // e.g. getFromPage(tab) and getFromSelection(tab, position),
     // they do not save scroll position from the web page.
-    return page.scrollTop
-      ? `<span class="position">${percent(page.scrollPercent)}</span>`
+    return page.scroll.top
+      ? `<span class="position">${percent(page.scroll.percent)}</span>`
       : ''
   }
 

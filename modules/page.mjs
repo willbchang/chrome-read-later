@@ -1,20 +1,19 @@
 // Use scrollBottom to calculate scrollPercent to avoid the situation:
 // Scroll page to the bottom, but the percent is not 100%.
 class ScrollPosition {
-  constructor({scrollTop, scrollHeight}) {
-    this.scrolledTop = scrollTop
-    this.scrolledHeight = scrollHeight
+  constructor(scrolled) {
+    this.scrolled = scrolled
   }
 
   get top() {
-    return this.scrolledHeight
+    return this.scrolled.height
       ? this.dynamicTop
       : document.documentElement.scrollTop
   }
 
   get dynamicTop() {
-    return this.scrolledTop
-      / this.scrolledHeight
+    return this.scrolled.top
+      / this.scrolled.height
       * this.height
   }
 
@@ -40,14 +39,16 @@ export function getScrollPosition() {
   // Do not worry this situation: scrollTop: 0, scrollPercent: 100%
   const scrollPosition = new ScrollPosition({})
   return {
-    scrollTop: scrollPosition.top,
-    scrollBottom: scrollPosition.bottom,
-    scrollHeight: scrollPosition.height,
+    scroll: {
+      top: scrollPosition.top,
+      bottom: scrollPosition.bottom,
+      height: scrollPosition.height,
+    }
   }
 }
 
 export function setScrollPosition(position) {
-  const scrollPosition = new ScrollPosition(position)
+  const scrollPosition = new ScrollPosition(position.scroll)
   scrollPosition.scrollPage()
 }
 

@@ -18,8 +18,10 @@ export async function getScrollPosition(url) {
   const pages = await get()
   const page = pages[url]
   return {
-    scrollTop: page.scrollTop,
-    scrollHeight: page.scrollHeight
+    scroll: {
+      top: page.scroll.top,
+      height: page.scroll.height,
+    }
   }
 }
 
