@@ -145,6 +145,6 @@ export function renderHtmlList(page) {
   }
 
   function percent(num) {
-    return (Math.floor(num * 100) || 0) + '%'
+    return Math.floor(num * 100) + '%'
   }
 }
