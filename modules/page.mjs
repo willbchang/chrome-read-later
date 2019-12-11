@@ -5,14 +5,6 @@ class ScrollPosition {
     this.scrolled = scrolled
   }
 
-  get() {
-    return {
-      top: this.top,
-      bottom: this.bottom,
-      height: this.height,
-    }
-  }
-
   get top() {
     return this.scrolled.height
       ? this.dynamicTop
@@ -47,7 +39,11 @@ export function getPosition() {
   // Do not worry this situation: scrollTop: 0, scrollPercent: 100%
   const scrollPosition = new ScrollPosition({})
   return {
-    scroll: {...scrollPosition.get()}
+    scroll: {
+      top: scrollPosition.top,
+      bottom: scrollPosition.bottom,
+      height: scrollPosition.height,
+    },
   }
 }
 
