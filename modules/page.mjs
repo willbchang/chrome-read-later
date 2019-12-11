@@ -33,7 +33,7 @@ class ScrollPosition {
     return window.scrollY + window.innerHeight
   }
 
-  scrollPage() {
+  set() {
     window.scrollTo({
       top: this.top,
       behavior: 'smooth'
@@ -41,7 +41,7 @@ class ScrollPosition {
   }
 }
 
-export function getScrollPosition() {
+export function getPosition() {
   // In popup.js, there is a `if` statement to check if the scrollTop is 0,
   // if it is 0, the scrollPercent won't add to popup.html.
   // Do not worry this situation: scrollTop: 0, scrollPercent: 100%
@@ -51,7 +51,7 @@ export function getScrollPosition() {
   }
 }
 
-export function setScrollPosition(position) {
+export function setPosition(position) {
   const scrollPosition = new ScrollPosition(position.scroll)
-  scrollPosition.scrollPage()
+  scrollPosition.set()
 }
