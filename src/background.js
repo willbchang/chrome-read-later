@@ -41,5 +41,5 @@ export async function openPage({url}) {
   storage.remove(url)
 
   const tabId = await tabs.onComplete(newTab)
-  await tabs.sendMessage(tabId, position)
+  await tabs.sendMessage(tabId, {...position, info: 'set position'})
 }
