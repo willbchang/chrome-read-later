@@ -19,8 +19,6 @@ extension.onInstalled(() => {
 })
 
 export async function savePage() {
-  // It will only set the tab info if position is undefined.
-  // Runs smoothly even if it's offline, chrome://*, etc.
   const tab = await tabs.queryCurrent()
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
   storage.set(createPageData({tab, position}))

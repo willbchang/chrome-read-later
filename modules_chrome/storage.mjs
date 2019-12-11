@@ -8,10 +8,11 @@ export function get() {
   return new Promise(resolve => chrome.storage.sync.get(resolve))
 }
 
-// NOTICE: This returns an Array.
+// NOTICE: This returns an Array of objects.
 export async function sortByLatest() {
   const pages = await get()
-  return Object.values(pages).sort((a, b) => b.date - a.date)
+  return Object.values(pages)
+    .sort((a, b) => b.date - a.date)
 }
 
 export async function getScrollPosition(url) {
@@ -21,11 +22,10 @@ export async function getScrollPosition(url) {
     scroll: {
       top: page.scroll.top,
       height: page.scroll.height,
-    }
+    },
   }
 }
 
 export function set(page) {
   chrome.storage.sync.set(page)
 }
-

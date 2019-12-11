@@ -15,25 +15,20 @@ async function initReadingList() {
 }
 
 function sendUrlToBackground(event) {
-  // Disable the default <a> tag action,
-  // because there are some actions need to be run:
-  //  - Check if current tab is empty: tabs.isEmpty()
-  //  - Add tab loading status listener: tabs.onComplete()
-  //  - Get saved page scroll position: storage.getPosition()
-  //  - Send position to content.js: tabs.sendMessage()
-  //  - Remove this item in storage: storage.remove()
+  // Disable the default <a> tag action.
   event.preventDefault()
-  // Send clicked url as message to background.
-  // Because tabs.onComplete() is a live listener,
+  // Send clicked url as message to background,
+  // because tabs.onComplete() is a live listener,
   // popup.html will disappeared after clicking the link,
   // thus the listener in popup.js would be interrupted.
-  // `event.target.parentNode.href` is for the case when url is title,
-  // to break the long 'word', the whole title is contained by <span>.
-  // Please check getReadingListFrom() and breakLongWord() in data.mjs
+  // `event.target.parentNode.href` is for the case
+  // when clicked the long word in <a>, it is contained by <span>.
+  // Please check data.mjs: renderHtmlList() and breakLongWord().
   extension.sendMessage({url: event.target.href || event.target.parentNode.href})
   // Close popup.html when loading in current tab,
-  // because tabs.update() won't close popup.html automatically,
-  // tabs.create() does.
+  // because update current tab won't close popup.html automatically,
+  // create a new tab does.
+  // Please check tabs.mjs: update() and create().
   window.close()
 }
 

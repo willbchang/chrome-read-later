@@ -84,13 +84,6 @@ function createPageGenerator(tab, position, selection) {
     : new SelectionGenerator(tab, selection)
 }
 
-// https://git.io/Je6Aq
-// https://mdn.io/object.spread
-// https://mdn.io/default_parameters
-// https://mdn.io/computed_property_names
-// Use object as parameter to get optional parameter.
-// Set default empty value to 'selection' to avoid
-// Cannot read property of undefined
 export function createPageData({tab, position = {}, selection = {}}) {
   const page = createPageGenerator(tab, position, selection)
   return {
@@ -124,11 +117,6 @@ export function renderHtmlList(page) {
   function getTitle() {
     return page.title.split(' ').map(breakLongWord).join(' ')
 
-    // This function is especially for but not limited to
-    // the case: url is title. The url is treated as
-    // one word and not in the dictionary, so it can't be
-    // broken automatically with hyphen.
-    // This is also a word: tester-testABCDEFGHI?title
     function breakLongWord(word) {
       return word.isMaxLength()
         ? `<span style="word-break: break-all">${word}</span>`
@@ -138,9 +126,6 @@ export function renderHtmlList(page) {
 
 
   function getScrollPercent() {
-    // Get scroll percent when page.scrollTop doesn't exist or the value is zero.
-    // e.g. getFromPage(tab) and getFromSelection(tab, position),
-    // they do not save scroll position from the web page.
     return page.scroll.top
       ? `<span class="position">${percent(page.scroll.percent)}</span>`
       : ''
