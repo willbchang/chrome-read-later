@@ -26,9 +26,9 @@ class ScrollPosition {
     return window.scrollY + window.innerHeight
   }
 
-  scrollTo(top) {
+  scrollPage() {
     window.scrollTo({
-      top: top,
+      top: this.top,
       behavior: 'smooth'
     })
   }
@@ -48,7 +48,7 @@ export function getScrollPosition() {
 
 export function setScrollPosition(position) {
   const scrollPosition = new ScrollPosition(position)
-  scrollPosition.scrollTo(scrollPosition.top)
+  scrollPosition.scrollPage()
 }
 
 
