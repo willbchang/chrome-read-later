@@ -34,7 +34,7 @@ class PageGenerator {
   }
 }
 
-class TabPageGenerator extends PageGenerator {
+class PositionGenerator extends PageGenerator {
   constructor(tab, position) {
     super(tab)
     this.scroll = position.scroll
@@ -53,7 +53,7 @@ class TabPageGenerator extends PageGenerator {
   }
 }
 
-class SelectionPageGenerator extends PageGenerator {
+class SelectionGenerator extends PageGenerator {
   constructor(tab, selection) {
     super(tab)
     this.selection = selection
@@ -80,8 +80,8 @@ class SelectionPageGenerator extends PageGenerator {
 
 function createPageGenerator(tab, position, selection) {
   return selection.isEmpty()
-    ? new TabPageGenerator(tab, position)
-    : new SelectionPageGenerator(tab, selection)
+    ? new PositionGenerator(tab, position)
+    : new SelectionGenerator(tab, selection)
 }
 
 // https://git.io/Je6Aq
