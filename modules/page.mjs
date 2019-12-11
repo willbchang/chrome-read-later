@@ -5,29 +5,29 @@ class ScrollPosition {
     this.position = position
   }
 
-  get scrollTop() {
+  get top() {
     return this.position.scrollHeight
-      ? this.dynamicScrollTop
+      ? this.dynamicTop
       : document.documentElement.scrollTop
   }
 
-  get dynamicScrollTop() {
+  get dynamicTop() {
     return this.position.scrollTop
       / this.position.scrollHeight
-      * this.scrollHeight
+      * this.height
   }
 
-  get scrollHeight() {
+  get height() {
     return document.documentElement.scrollHeight
   }
 
-  get scrollBottom() {
+  get bottom() {
     return window.scrollY + window.innerHeight
   }
 
-  scrollTo(scrollTop) {
+  scrollTo(top) {
     window.scrollTo({
-      top: scrollTop,
+      top: top,
       behavior: 'smooth'
     })
   }
@@ -39,15 +39,15 @@ export function getScrollPosition() {
   // Do not worry this situation: scrollTop: 0, scrollPercent: 100%
   const scrollPosition = new ScrollPosition({})
   return {
-    scrollTop: scrollPosition.scrollTop,
-    scrollBottom: scrollPosition.scrollBottom,
-    scrollHeight: scrollPosition.scrollHeight,
+    scrollTop: scrollPosition.top,
+    scrollBottom: scrollPosition.bottom,
+    scrollHeight: scrollPosition.height,
   }
 }
 
 export function setScrollPosition(position) {
   const scrollPosition = new ScrollPosition(position)
-  scrollPosition.scrollTo(scrollPosition.scrollTop)
+  scrollPosition.scrollTo(scrollPosition.top)
 }
 
 
