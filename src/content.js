@@ -1,29 +1,16 @@
+// https://developer.chrome.com/apps/runtime#event-onMessage
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.info === 'get position')
-    sendResponse(getPosition())
+  (async () => {
+    const page = await dynamicImport('modules/page.mjs')
+    if (message.info === 'get position') sendResponse(page.getPosition())
+    if (message.info === 'set position') page.setPosition(message)
+  })()
 
-  if (message.scrollTop)
-    window.scrollTo({
-      top: message.scrollTop,
-      behavior: 'smooth'
-    })
+  // Return true in onMessage will wait the async function.
+  return true
 })
 
-// Use scrollBottom to calculate scrollPercent to avoid the situation: 
-// Scroll page to the bottom, but the percent is not 100%.
-function getPosition() {
-  // In popup.js, there is a `if` statement to check if the scrollTop is 0,
-  // if it is 0, the scrollPercent won't add to popup.html.
-  // Do not worry this situation: scrollTop: 0, scrollPercent: 100%
-  return {
-    scrollTop: document.documentElement.scrollTop,
-    scrollPercent: percent(
-      window.scrollY + window.innerHeight, // scrollBottom
-      document.documentElement.scrollHeight
-    )
-  }
-}
-
-function percent(x, y) {
-  return Math.floor((x / y) * 100) + '%'
+async function dynamicImport(url) {
+  const src = chrome.runtime.getURL(url)
+  return await import(src)
 }

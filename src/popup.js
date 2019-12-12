@@ -1,55 +1,47 @@
-import * as extension from '../modules/extension.mjs'
-import * as storage from '../modules/storage.mjs'
-import {getReadingItemFrom} from '../modules/data.mjs'
-
+import {renderHtmlList} from '../modules/data.mjs'
+import * as extension from '../modules_chrome/runtime.mjs'
+import * as storage from '../modules_chrome/storage.mjs'
 
 initReadingList().then(() => {
   $('ul').on('click', 'a', sendUrlToBackground)
     .on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
-    .on('click', 'img', removeItem)
+    .on('click', 'img', removeReadingItem)
 })
 
 async function initReadingList() {
-  const pages = await storage.getSorted()
-  pages.map(page => $('ul').append(getReadingItemFrom(page)))
+  const pages = await storage.sortByLatest()
+  pages.map(page => $('ul').append(renderHtmlList(page)))
 }
 
-function sendUrlToBackground(e) {
-  // Disable the default <a> tag action,
-  // because there are some actions need to be run:
-  //  - Check if current tab is empty: tabs.isEmpty()
-  //  - Add tab loading status listener: tabs.onComplete()
-  //  - Get saved page scroll position: storage.getPosition()
-  //  - Send position to content.js: tabs.sendMessage()
-  //  - Remove this item in storage: storage.remove()
-  e.preventDefault()
-  // Send clicked url as message to background.
-  // Because tabs.onComplete() is a live listener,
-  // popup.html will disappeared after clicking the link,
-  // thus the listener in popup.js would be interrupted.
-  // `e.target.parentNode.href` is for the case when url is title,
-  // to break the long 'word', the whole title is contained by <span>.
-  // Please check getReadingListFrom() and breakLongWord() in data.mjs
-  extension.sendMessage({url: e.target.href || e.target.parentNode.href})
-  // Close popup.html when loading in current tab,
-  // because tabs.update() won't close popup.html automatically,
-  // tabs.create() does.
+function sendUrlToBackground(event) {
+  // https://devdocs.io/jquery/event.preventdefault
+  event.preventDefault()
+  // Send clicked url as message to background,
+  // because there are async/await functions,
+  // popup.html will disappear after clicking the link,
+  // thus popup.js will be interrupted.
+  // `event.target.parentNode.href` is for
+  // clicking the long word in <a>, it is contained by <span>.
+  extension.sendMessage({url: event.target.href || event.target.parentNode.href})
+  // Close popup.html when loading in current tab.
+  // Update current tab won't close popup.html automatically,
+  // but create a new tab does.
   window.close()
 }
 
-function showDeleteIcon(e) {
-  localStorage.setItem('src', $(e.target).attr('src'))
-  $(e.target).attr('src', '../images/32x32delete.png')
+function showDeleteIcon(event) {
+  localStorage.setItem('src', $(event.target).attr('src'))
+  $(event.target).attr('src', '../images/32x32delete.png')
 }
 
-function showFavIcon(e) {
-  $(e.target).attr('src', localStorage.getItem('src'))
+function showFavIcon(event) {
+  $(event.target).attr('src', localStorage.getItem('src'))
   localStorage.clear()
 }
 
-function removeItem(e) {
-  // e.target is <img>, the parentNode is <li>
-  $(e.target.parentNode).remove()
+function removeReadingItem(event) {
+  // Current `event.target` is <img>, the parentNode is <li>
+  $(event.target.parentNode).remove()
   // The next sibling of <img> is <a>
-  storage.remove(e.target.nextElementSibling.href)
+  storage.remove(event.target.nextElementSibling.href)
 }

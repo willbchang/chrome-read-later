@@ -1,40 +1,45 @@
-import * as data from '../modules/data.mjs'
-import * as extension from '../modules/extension.mjs'
-import * as storage from '../modules/storage.mjs'
-import * as tabs from '../modules/tabs.mjs'
+import {createPageData} from '../modules/data.mjs'
+import * as commands from '../modules_chrome/commands.mjs'
+import * as contextMenus from '../modules_chrome/contextMenus.mjs'
+import * as runtime from '../modules_chrome/runtime.mjs'
+import * as storage from '../modules_chrome/storage.mjs'
+import * as tabs from '../modules_chrome/tabs.mjs'
 
-extension.onCommand(async () => {
-  const tab = await tabs.queryCurrent()
-  if (tabs.isEmpty(tab)) return
+commands.onCommand(savePage)
+runtime.onMessage(openPage)
 
-  // It will only set the tab info if position is undefined.
-  // Runs smoothly even if it's offline, chrome://*, etc.
-  const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-  storage.set(data.getFromPage(tab, position))
-
-  const allTabs = await tabs.queryAll()
-  allTabs.length === 1 ? tabs.empty() : tabs.remove(tab)
+contextMenus.onClicked(async (selection, tab) => {
+  selection.linkUrl ? saveSelection(tab, selection) : await savePage()
 })
 
-extension.onMessage(async message => {
-  const tab = await tabs.queryCurrent()
-  tabs.isEmpty(tab) ? await tabs.update(message.url) : await tabs.create(message.url)
-
-  const position = await storage.getPosition(message.url)
-  storage.remove(message.url)
-
-  const tabId = await tabs.onComplete()
-  await tabs.sendMessage(tabId, position)
-})
-
-extension.onClicked((selection, tab) => {
-  storage.set(data.getFromSelection(tab, selection))
-})
-
-extension.onInstalled(() => {
-  extension.createContextMenus({
+runtime.onInstalled(() => {
+  contextMenus.create({
     title: 'Read later',
-    contexts: ['link'],
+    contexts: ['link', 'page'],
     id: 'read-later',
   })
 })
+
+export async function savePage() {
+  const tab = await tabs.queryCurrent()
+  const position = await tabs.sendMessage(tab.id, {info: 'get position'})
+  storage.set(createPageData({tab, position}))
+
+  await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
+}
+
+export function saveSelection(tab, selection) {
+  storage.set(createPageData({tab, selection}))
+}
+
+export async function openPage({url}) {
+  const newTab = await tabs.isEmptyTab()
+    ? await tabs.update(url)
+    : await tabs.create(url)
+
+  const position = await storage.getScrollPosition(url)
+  storage.remove(url)
+
+  const tabId = await tabs.onComplete(newTab)
+  await tabs.sendMessage(tabId, {...position, info: 'set position'})
+}

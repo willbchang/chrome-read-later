@@ -1,38 +1,113 @@
-// https://mdn.io/object.assign
-// https://git.io/Je6Aq
-export function getFromPage(tab, position) {
-  return Object.assign({
-    url: tab.url,
-    title: tab.title || tab.url,
-    favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
-    date: Date.now(),
-  }, position)
-}
+import './prototype.mjs'
 
-export function getFromSelection(tab, selection) {
-  return {
-    url: selection.linkUrl,
-    title: getTitle(),
-    favIconUrl: tab.favIconUrl || '../images/32x32gray.png',
-    date: Date.now(),
+class PageGenerator {
+  constructor(tab) {
+    this.tab = tab
   }
 
-  function getTitle() {
+  get url() {
+    return this.tab.url
+  }
+
+  get title() {
+    return this.tab.title || this.tab.url
+  }
+
+  get favIconUrl() {
+    return this.tab.favIconUrl || '../images/32x32gray.png'
+  }
+
+  get date() {
+    return Date.now()
+  }
+
+  get scrollTop() {
+    return 0
+  }
+
+  get scrollPercent() {
+    return this.percent(0)
+  }
+
+  percent(num) {
+    return Math.floor(num * 100) + '%'
+  }
+
+  get scrollHeight() {
+    return 0
+  }
+}
+
+class PositionGenerator extends PageGenerator {
+  constructor(tab, position) {
+    super(tab)
+    this.scroll = position.scroll
+  }
+
+  get scrollTop() {
+    return this.scroll.top
+  }
+
+  get scrollHeight() {
+    return this.scroll.height
+  }
+
+  get scrollPercent() {
+    return this.percent(this.scroll.bottom / this.scroll.height)
+  }
+}
+
+class SelectionGenerator extends PageGenerator {
+  constructor(tab, selection) {
+    super(tab)
+    this.selection = selection
+  }
+
+  get url() {
+    return this.selection.linkUrl
+  }
+
+  get title() {
     // TODO: Will fetch page info(title, favicon) via url in later version.
     // Select item in google search will also select its url.
-    if (tab.url.includes('://www.google.'))
-      return filterUrl(selection.selectionText)
-    return selection.selectionText || selection.linkUrl
-  }
+    if (this.tab.url.includes('://www.google.'))
+      return filterUrl(this.selection.selectionText)
+    return this.selection.selectionText || this.selection.linkUrl
 
-  function filterUrl(text) {
-    // FIX: Cannot avoid http:// in google search,
-    // the http:// doesn't reveal. Needs to use url regex.
-    return text.split('https://')[0]
+    function filterUrl(text) {
+      // FIX: Cannot avoid http:// in google search,
+      // the http:// doesn't reveal. Needs to use url regex.
+      return text.split('https://')[0]
+    }
   }
 }
 
-export function getReadingItemFrom(page) {
+function createPageGenerator(tab, position, selection) {
+  return selection.isEmpty()
+    ? position.isEmpty()
+      ? new PageGenerator(tab)
+      : new PositionGenerator(tab, position)
+    : new SelectionGenerator(tab, selection)
+}
+
+export function createPageData({tab, position = {}, selection = {}}) {
+  const page = createPageGenerator(tab, position, selection)
+  return {
+    [page.url]: {
+      url: page.url,
+      title: page.title,
+      favIconUrl: page.favIconUrl,
+      date: page.date,
+      scroll: {
+        top: page.scrollTop,
+        height: page.scrollHeight,
+        percent: page.scrollPercent,
+      }
+    }
+  }
+}
+
+export function renderHtmlList(page) {
   return ` 
       <li id=${page.date}>
         <img src="${page.favIconUrl}" alt="favIcon">
@@ -42,31 +117,23 @@ export function getReadingItemFrom(page) {
     `
 
   function getTitleColor() {
-    if (page.url === page.title)
-      return 'style="color: gray"'
-    return ''
+    return page.url === page.title ? 'style="color: gray"' : ''
   }
 
   function getTitle() {
     return page.title.split(' ').map(breakLongWord).join(' ')
+
+    function breakLongWord(word) {
+      return word.isMaxLength()
+        ? `<span style="word-break: break-all">${word}</span>`
+        : word
+    }
   }
 
-  // This function is especially for but not limited to
-  // the case: url is title. The url is treated as
-  // one word and not in the dictionary, so it can't be
-  // broken automatically with hyphen.
-  function breakLongWord(word) {
-    if (word.length >= 30)
-      return `<span style="word-break: break-all">${word}</span>`
-    return word
-  }
 
   function getScrollPercent() {
-    // Get scroll percent when page.scrollTop doesn't exist or the value is zero.
-    // e.g. getFromPage(tab) and getFromSelection(tab, position),
-    // they do not save scroll position from the web page.
-    if (page.scrollTop)
-      return `<span class="position">${page.scrollPercent}</span>`
-    return ''
+    return page.scroll.top
+      ? `<span class="position">${page.scroll.percent}</span>`
+      : ''
   }
 }
