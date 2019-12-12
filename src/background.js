@@ -1,18 +1,18 @@
 import {createPageData} from '../modules/data.mjs'
 import * as commands from '../modules_chrome/commands.mjs'
 import * as contextMenus from '../modules_chrome/contextMenus.mjs'
-import * as extension from '../modules_chrome/extension.mjs'
+import * as runtime from '../modules_chrome/runtime.mjs'
 import * as storage from '../modules_chrome/storage.mjs'
 import * as tabs from '../modules_chrome/tabs.mjs'
 
 commands.onCommand(savePage)
-extension.onMessage(openPage)
+runtime.onMessage(openPage)
 
 contextMenus.onClicked(async (selection, tab) => {
   selection.linkUrl ? saveSelection(tab, selection) : await savePage()
 })
 
-extension.onInstalled(() => {
+runtime.onInstalled(() => {
   contextMenus.create({
     title: 'Read later',
     contexts: ['link', 'page'],

@@ -1,5 +1,5 @@
 import {renderHtmlList} from '../modules/data.mjs'
-import * as extension from '../modules_chrome/extension.mjs'
+import * as extension from '../modules_chrome/runtime.mjs'
 import * as storage from '../modules_chrome/storage.mjs'
 
 initReadingList().then(() => {
