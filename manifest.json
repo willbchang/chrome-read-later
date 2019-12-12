@@ -27,6 +27,11 @@
       "suggested_key": {
         "default": "Alt+Shift+S"
       }
+    },
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+Z"
+      }
     }
   },
   "description": "Read current tab or selected link later.",
