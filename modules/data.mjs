@@ -26,7 +26,11 @@ class PageGenerator {
   }
 
   get scrollPercent() {
-    return '0%'
+    return this.percent(0)
+  }
+
+  percent(num) {
+    return Math.floor(num * 100) + '%'
   }
 
   get scrollHeight() {
@@ -49,7 +53,7 @@ class PositionGenerator extends PageGenerator {
   }
 
   get scrollPercent() {
-    return this.scroll.bottom / this.scroll.height
+    return this.percent(this.scroll.bottom / this.scroll.height)
   }
 }
 
@@ -129,11 +133,7 @@ export function renderHtmlList(page) {
 
   function getScrollPercent() {
     return page.scroll.top
-      ? `<span class="position">${percent(page.scroll.percent)}</span>`
+      ? `<span class="position">${page.scroll.percent}</span>`
       : ''
-  }
-
-  function percent(num) {
-    return Math.floor(num * 100) + '%'
   }
 }
