@@ -1,9 +1,12 @@
+// https://developer.chrome.com/apps/runtime#event-onMessage
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   (async () => {
     const page = await dynamicImport('modules/page.mjs')
     if (message.info === 'get position') sendResponse(page.getPosition())
     if (message.info === 'set position') page.setPosition(message)
   })()
+
+  // Return true in onMessage will wait the async function.
   return true
 })
 

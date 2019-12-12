@@ -10,25 +10,22 @@ initReadingList().then(() => {
 
 async function initReadingList() {
   const pages = await storage.sortByLatest()
-  console.log(pages)
   pages.map(page => $('ul').append(renderHtmlList(page)))
 }
 
 function sendUrlToBackground(event) {
-  // Disable the default <a> tag action.
+  // https://devdocs.io/jquery/event.preventdefault
   event.preventDefault()
   // Send clicked url as message to background,
-  // because tabs.onComplete() is a live listener,
-  // popup.html will disappeared after clicking the link,
-  // thus the listener in popup.js would be interrupted.
-  // `event.target.parentNode.href` is for the case
-  // when clicked the long word in <a>, it is contained by <span>.
-  // Please check data.mjs: renderHtmlList() and breakLongWord().
+  // because there are async/await functions,
+  // popup.html will disappear after clicking the link,
+  // thus popup.js will be interrupted.
+  // `event.target.parentNode.href` is for
+  // clicking the long word in <a>, it is contained by <span>.
   extension.sendMessage({url: event.target.href || event.target.parentNode.href})
-  // Close popup.html when loading in current tab,
-  // because update current tab won't close popup.html automatically,
-  // create a new tab does.
-  // Please check tabs.mjs: update() and create().
+  // Close popup.html when loading in current tab.
+  // Update current tab won't close popup.html automatically,
+  // but create a new tab does.
   window.close()
 }
 
@@ -43,7 +40,7 @@ function showFavIcon(event) {
 }
 
 function removeReadingItem(event) {
-  // event.target is <img>, the parentNode is <li>
+  // Current `event.target` is <img>, the parentNode is <li>
   $(event.target.parentNode).remove()
   // The next sibling of <img> is <a>
   storage.remove(event.target.nextElementSibling.href)
