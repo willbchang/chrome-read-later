@@ -1,9 +1,10 @@
 import {createPageData} from '../modules/data.mjs'
+import * as commands from '../modules_chrome/commands.mjs'
 import * as extension from '../modules_chrome/extension.mjs'
 import * as storage from '../modules_chrome/storage.mjs'
 import * as tabs from '../modules_chrome/tabs.mjs'
 
-extension.onCommand(savePage)
+commands.onCommand(savePage)
 extension.onMessage(openPage)
 
 extension.onClickedContextMenus(async (selection, tab) => {

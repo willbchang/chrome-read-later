@@ -1,10 +1,3 @@
-// https://developer.chrome.com/extensions/commands#event-onCommand
-// Promise only fired once, it's not suit able to this kind of listener.
-// Unlike tabs.onComplete(), extension.onCommand() is a one-time setup.
-export function onCommand(callback) {
-  chrome.commands.onCommand.addListener(callback)
-}
-
 // https://developer.chrome.com/extensions/runtime#method-sendMessage
 export function sendMessage(info) {
   chrome.runtime.sendMessage(info)
