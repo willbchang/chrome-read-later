@@ -34,7 +34,7 @@
       }
     }
   },
-  "description": "Read current tab or selected link later.",
+  "description": "Read current tab or selected link/page later.",
   "icons": {
     "128": "images/128x128orange.png",
     "16": "images/16x16orange.png",
