@@ -1,5 +1,6 @@
 import {createPageData} from '../modules/data.mjs'
 import * as commands from '../modules_chrome/commands.mjs'
+import * as contextMenus from '../modules_chrome/contextMenus.mjs'
 import * as extension from '../modules_chrome/extension.mjs'
 import * as storage from '../modules_chrome/storage.mjs'
 import * as tabs from '../modules_chrome/tabs.mjs'
@@ -7,12 +8,12 @@ import * as tabs from '../modules_chrome/tabs.mjs'
 commands.onCommand(savePage)
 extension.onMessage(openPage)
 
-extension.onClickedContextMenus(async (selection, tab) => {
+contextMenus.onClicked(async (selection, tab) => {
   selection.linkUrl ? saveSelection(tab, selection) : await savePage()
 })
 
 extension.onInstalled(() => {
-  extension.createContextMenus({
+  contextMenus.create({
     title: 'Read later',
     contexts: ['link', 'page'],
     id: 'read-later',
