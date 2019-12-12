@@ -3,6 +3,13 @@ class ScrollPosition {
     this.scrolled = scrolled
   }
 
+  setTop() {
+    window.scrollTo({
+      top: this.top,
+      behavior: 'smooth'
+    })
+  }
+
   get top() {
     return this.scrolled.height
       ? this.dynamicTop
@@ -21,13 +28,6 @@ class ScrollPosition {
 
   get bottom() {
     return window.scrollY + window.innerHeight
-  }
-
-  setTop() {
-    window.scrollTo({
-      top: this.top,
-      behavior: 'smooth'
-    })
   }
 }
 
