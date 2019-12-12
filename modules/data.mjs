@@ -80,7 +80,9 @@ class SelectionGenerator extends PageGenerator {
 
 function createPageGenerator(tab, position, selection) {
   return selection.isEmpty()
-    ? new PositionGenerator(tab, position)
+    ? position.isEmpty()
+      ? new PageGenerator(tab)
+      : new PositionGenerator(tab, position)
     : new SelectionGenerator(tab, selection)
 }
 
