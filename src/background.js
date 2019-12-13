@@ -24,10 +24,11 @@ export async function savePage() {
   const tab = await tabs.queryCurrent()
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
 
+  await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
+
   const page = createPageData({tab, position})
   storage.set(page)
 
-  await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
 }
 
 export function saveSelection(tab, selection) {
