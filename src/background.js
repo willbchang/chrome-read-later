@@ -9,7 +9,7 @@ commands.onCommand(savePage)
 runtime.onMessage(openPage)
 
 contextMenus.onClicked(async (selection, tab) => {
-  selection.linkUrl ? saveSelection(tab, selection) : await savePage()
+  selection.linkUrl ? await saveSelection(tab, selection) : await savePage()
 })
 
 runtime.onInstalled(() => {
@@ -27,13 +27,13 @@ export async function savePage() {
   await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
 
   const page = createPageData({tab, position})
-  storage.set(page)
+  await storage.set(page)
 
 }
 
-export function saveSelection(tab, selection) {
+export async function saveSelection(tab, selection) {
   const page = createPageData({tab, selection})
-  storage.set(page)
+  await storage.set(page)
 }
 
 export async function openPage({url}) {
