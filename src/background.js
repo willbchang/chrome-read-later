@@ -23,13 +23,16 @@ runtime.onInstalled(() => {
 export async function savePage() {
   const tab = await tabs.queryCurrent()
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-  storage.set(createPageData({tab, position}))
+
+  const page = createPageData({tab, position})
+  storage.set(page)
 
   await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
 }
 
 export function saveSelection(tab, selection) {
-  storage.set(createPageData({tab, selection}))
+  const page = createPageData({tab, selection})
+  storage.set(page)
 }
 
 export async function openPage({url}) {
