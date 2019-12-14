@@ -80,7 +80,7 @@ function createPageGenerator(tab, position, selection) {
     : new SelectionGenerator(tab, selection)
 }
 
-export function createPageData({tab, position = {}, selection = {}}) {
+export function initPageData({tab, position = {}, selection = {}}) {
   const page = createPageGenerator(tab, position, selection)
   return {
     url: page.url,

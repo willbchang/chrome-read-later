@@ -1,4 +1,4 @@
-import {createPageData} from '../modules/data.mjs'
+import {initPageData} from '../modules/data.mjs'
 import * as commands from '../modules_chrome/commands.mjs'
 import * as contextMenus from '../modules_chrome/contextMenus.mjs'
 import * as runtime from '../modules_chrome/runtime.mjs'
@@ -26,12 +26,12 @@ export async function savePage() {
 
   await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
 
-  const page = createPageData({tab, position})
+  const page = initPageData({tab, position})
   await storage.set(page)
 }
 
 export async function saveSelection(tab, selection) {
-  const page = createPageData({tab, selection})
+  const page = initPageData({tab, selection})
   await storage.set(page)
 }
 
