@@ -99,6 +99,7 @@ export function initPageData({tab, position = {}, selection = {}}) {
 export async function completePageData(rawPage) {
   const completePage = {...rawPage}
   completePage.title  = await request.getTitle(completePage.url)
+  completePage.favIconUrl = await request.getFavIconUrl(completePage.url)
   return completePage
 }
 
