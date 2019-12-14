@@ -20,7 +20,7 @@ runtime.onInstalled(() => {
   })
 })
 
-export async function savePage() {
+async function savePage() {
   const tab = await tabs.queryCurrent()
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
   await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
@@ -34,7 +34,7 @@ async function updateStorage({tab, position = {}, selection = {}}) {
   await storage.set(page)
 }
 
-export async function openPage({url}) {
+async function openPage({url}) {
   const newTab = await tabs.isEmptyTab()
     ? await tabs.update(url)
     : await tabs.create(url)
@@ -46,7 +46,7 @@ export async function openPage({url}) {
   await tabs.sendMessage(tabId, {...position, info: 'set position'})
 }
 
-export async function saveSelection(tab, selection) {
+async function saveSelection(tab, selection) {
   await updateStorage({tab, selection})
 }
 
