@@ -68,17 +68,7 @@ class SelectionGenerator extends PageGenerator {
   }
 
   get title() {
-    // TODO: Will fetch page info(title, favicon) via url in later version.
-    // Select item in google search will also select its url.
-    if (this.tab.url.includes('://www.google.'))
-      return filterUrl(this.selection.selectionText)
-    return this.selection.selectionText || this.selection.linkUrl
-
-    function filterUrl(text) {
-      // FIX: Cannot avoid http:// in google search,
-      // the http:// doesn't reveal. Needs to use url regex.
-      return text.split('https://')[0]
-    }
+    return this.selection.selectionText
   }
 }
 

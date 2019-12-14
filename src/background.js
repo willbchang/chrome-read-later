@@ -28,7 +28,6 @@ export async function savePage() {
 
   const page = createPageData({tab, position})
   await storage.set(page)
-
 }
 
 export async function saveSelection(tab, selection) {
