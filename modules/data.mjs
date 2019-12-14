@@ -98,7 +98,7 @@ export function initPageData({tab, position = {}, selection = {}}) {
 
 export async function completePageData(rawPage) {
   const completePage = {...rawPage}
-  completePage.title  = await request.getTitle(completePage.url)
+  completePage.title = await request.getTitle(completePage.url)
   completePage.favIconUrl = await request.getFavIconUrl(completePage.url)
   return completePage
 }
@@ -118,14 +118,13 @@ export function renderHtmlList(page) {
 
   function getTitle() {
     return page.title.split(' ').map(breakLongWord).join(' ')
-
-    function breakLongWord(word) {
-      return word.isMaxLength()
-        ? `<span style="word-break: break-all">${word}</span>`
-        : word
-    }
   }
 
+  function breakLongWord(word) {
+    return word.isMaxLength()
+      ? `<span style="word-break: break-all">${word}</span>`
+      : word
+  }
 
   function getScrollPercent() {
     return page.scroll.top
