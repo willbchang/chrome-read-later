@@ -8,3 +8,8 @@ export async function getHtml(url) {
     return $('')
   }
 }
+
+export async function getTitle(url) {
+  const html = await getHtml(url)
+  return html.filter('title').text() || url
+}
