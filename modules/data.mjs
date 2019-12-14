@@ -1,4 +1,5 @@
 import './prototype.mjs'
+import * as request from './request.mjs'
 
 class PageGenerator {
   constructor(tab) {
@@ -93,6 +94,12 @@ export function initPageData({tab, position = {}, selection = {}}) {
       percent: page.scrollPercent,
     }
   }
+}
+
+export async function completePageData(rawPage) {
+  const completePage = {...rawPage}
+  completePage.title  = await request.getTitle(completePage.url)
+  return completePage
 }
 
 export function renderHtmlList(page) {
