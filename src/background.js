@@ -34,10 +34,6 @@ async function updateStorage({tab, position = {}, selection = {}}) {
   await storage.set(page)
 }
 
-export async function saveSelection(tab, selection) {
-  await updateStorage({tab, selection})
-}
-
 export async function openPage({url}) {
   const newTab = await tabs.isEmptyTab()
     ? await tabs.update(url)
@@ -49,3 +45,8 @@ export async function openPage({url}) {
   const tabId = await tabs.onComplete(newTab)
   await tabs.sendMessage(tabId, {...position, info: 'set position'})
 }
+
+export async function saveSelection(tab, selection) {
+  await updateStorage({tab, selection})
+}
+
