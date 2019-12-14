@@ -1,4 +1,4 @@
-import {createPageData} from '../modules/data.mjs'
+import * as data from '../modules/data.mjs'
 import * as commands from '../modules_chrome/commands.mjs'
 import * as contextMenus from '../modules_chrome/contextMenus.mjs'
 import * as runtime from '../modules_chrome/runtime.mjs'
@@ -9,7 +9,7 @@ commands.onCommand(savePage)
 runtime.onMessage(openPage)
 
 contextMenus.onClicked(async (selection, tab) => {
-  selection.linkUrl ? saveSelection(tab, selection) : await savePage()
+  selection.linkUrl ? await saveSelection(tab, selection) : await savePage()
 })
 
 runtime.onInstalled(() => {
@@ -20,19 +20,21 @@ runtime.onInstalled(() => {
   })
 })
 
-export async function savePage() {
+async function savePage() {
   const tab = await tabs.queryCurrent()
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-  storage.set(createPageData({tab, position}))
-
   await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
+  await updateStorage({tab, position})
 }
 
-export function saveSelection(tab, selection) {
-  storage.set(createPageData({tab, selection}))
+async function updateStorage({tab, position = {}, selection = {}}) {
+  let page = data.initPageData({tab, position, selection})
+  await storage.set(page)
+  page = await data.completePageData(page)
+  await storage.set(page)
 }
 
-export async function openPage({url}) {
+async function openPage({url}) {
   const newTab = await tabs.isEmptyTab()
     ? await tabs.update(url)
     : await tabs.create(url)
@@ -43,3 +45,8 @@ export async function openPage({url}) {
   const tabId = await tabs.onComplete(newTab)
   await tabs.sendMessage(tabId, {...position, info: 'set position'})
 }
+
+async function saveSelection(tab, selection) {
+  await updateStorage({tab, selection})
+}
+

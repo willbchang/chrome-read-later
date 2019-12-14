@@ -1,4 +1,5 @@
 import './prototype.mjs'
+import * as request from './request.mjs'
 
 class PageGenerator {
   constructor(tab) {
@@ -68,17 +69,7 @@ class SelectionGenerator extends PageGenerator {
   }
 
   get title() {
-    // TODO: Will fetch page info(title, favicon) via url in later version.
-    // Select item in google search will also select its url.
-    if (this.tab.url.includes('://www.google.'))
-      return filterUrl(this.selection.selectionText)
-    return this.selection.selectionText || this.selection.linkUrl
-
-    function filterUrl(text) {
-      // FIX: Cannot avoid http:// in google search,
-      // the http:// doesn't reveal. Needs to use url regex.
-      return text.split('https://')[0]
-    }
+    return this.selection.selectionText
   }
 }
 
@@ -90,21 +81,26 @@ function createPageGenerator(tab, position, selection) {
     : new SelectionGenerator(tab, selection)
 }
 
-export function createPageData({tab, position = {}, selection = {}}) {
+export function initPageData({tab, position = {}, selection = {}}) {
   const page = createPageGenerator(tab, position, selection)
   return {
-    [page.url]: {
-      url: page.url,
-      title: page.title,
-      favIconUrl: page.favIconUrl,
-      date: page.date,
-      scroll: {
-        top: page.scrollTop,
-        height: page.scrollHeight,
-        percent: page.scrollPercent,
-      }
+    url: page.url,
+    title: page.title,
+    favIconUrl: page.favIconUrl,
+    date: page.date,
+    scroll: {
+      top: page.scrollTop,
+      height: page.scrollHeight,
+      percent: page.scrollPercent,
     }
   }
+}
+
+export async function completePageData(rawPage) {
+  const completePage = {...rawPage}
+  completePage.title = await request.getTitle(completePage.url)
+  completePage.favIconUrl = await request.getFavIconUrl(completePage.url)
+  return completePage
 }
 
 export function renderHtmlList(page) {
@@ -122,14 +118,13 @@ export function renderHtmlList(page) {
 
   function getTitle() {
     return page.title.split(' ').map(breakLongWord).join(' ')
-
-    function breakLongWord(word) {
-      return word.isMaxLength()
-        ? `<span style="word-break: break-all">${word}</span>`
-        : word
-    }
   }
 
+  function breakLongWord(word) {
+    return word.isMaxLength()
+      ? `<span style="word-break: break-all">${word}</span>`
+      : word
+  }
 
   function getScrollPercent() {
     return page.scroll.top
