@@ -28,6 +28,6 @@ export async function getScrollPosition(url) {
 
 export async function set(page) {
   return new Promise(resolve =>
-    chrome.storage.sync.set(page, resolve)
+    chrome.storage.sync.set({[page.url]: page}, resolve)
   )
 }

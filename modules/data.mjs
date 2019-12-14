@@ -93,16 +93,14 @@ function createPageGenerator(tab, position, selection) {
 export function createPageData({tab, position = {}, selection = {}}) {
   const page = createPageGenerator(tab, position, selection)
   return {
-    [page.url]: {
-      url: page.url,
-      title: page.title,
-      favIconUrl: page.favIconUrl,
-      date: page.date,
-      scroll: {
-        top: page.scrollTop,
-        height: page.scrollHeight,
-        percent: page.scrollPercent,
-      }
+    url: page.url,
+    title: page.title,
+    favIconUrl: page.favIconUrl,
+    date: page.date,
+    scroll: {
+      top: page.scrollTop,
+      height: page.scrollHeight,
+      percent: page.scrollPercent,
     }
   }
 }
