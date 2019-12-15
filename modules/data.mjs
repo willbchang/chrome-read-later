@@ -23,6 +23,10 @@ class PageGenerator {
     return this.tab.favIconUrl || this.defaultFavIconUrl
   }
 
+  get isRequiredFavIconUrl() {
+    return this.favIconUrl === this.defaultFavIconUrl
+  }
+
   get date() {
     return Date.now()
   }
@@ -80,6 +84,14 @@ class SelectionGenerator extends PageGenerator {
   get isRequiredTitle() {
     return true
   }
+
+  get favIconUrl() {
+    return this.defaultFavIconUrl
+  }
+
+  get isRequiredFavIconUrl() {
+    return true
+  }
 }
 
 function createPageGenerator(tab, position, selection) {
@@ -97,6 +109,7 @@ export function initPageData({tab, position = {}, selection = {}}) {
     title: page.title,
     isRequiredTitle: page.isRequiredTitle,
     favIconUrl: page.favIconUrl,
+    isRequiredFavIconUrl: page.isRequiredFavIconUrl,
     date: page.date,
     scroll: {
       top: page.scrollTop,
@@ -110,7 +123,8 @@ export async function completePageData(rawPage) {
   const completePage = {...rawPage}
   if (completePage.isRequiredTitle)
     completePage.title = await request.getTitle(completePage.url)
-  completePage.favIconUrl = await request.getFavIconUrl(completePage.url)
+  if (completePage.isRequiredFavIconUrl)
+    completePage.favIconUrl = await request.getFavIconUrl(completePage.url)
   return completePage
 }
 
