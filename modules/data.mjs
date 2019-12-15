@@ -14,6 +14,10 @@ class PageGenerator {
     return this.tab.title || this.tab.url
   }
 
+  get isRequiredTitle() {
+    return this.title === this.url
+  }
+
   get favIconUrl() {
     return this.tab.favIconUrl || '../images/32x32gray.png'
   }
@@ -71,6 +75,10 @@ class SelectionGenerator extends PageGenerator {
   get title() {
     return this.selection.selectionText
   }
+
+  get isRequiredTitle() {
+    return true
+  }
 }
 
 function createPageGenerator(tab, position, selection) {
@@ -86,6 +94,7 @@ export function initPageData({tab, position = {}, selection = {}}) {
   return {
     url: page.url,
     title: page.title,
+    isRequiredTitle: page.isRequiredTitle,
     favIconUrl: page.favIconUrl,
     date: page.date,
     scroll: {
@@ -98,7 +107,8 @@ export function initPageData({tab, position = {}, selection = {}}) {
 
 export async function completePageData(rawPage) {
   const completePage = {...rawPage}
-  completePage.title = await request.getTitle(completePage.url)
+  if (completePage.isRequiredTitle)
+    completePage.title = await request.getTitle(completePage.url)
   completePage.favIconUrl = await request.getFavIconUrl(completePage.url)
   return completePage
 }
