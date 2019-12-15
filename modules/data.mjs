@@ -4,6 +4,7 @@ import * as request from './request.mjs'
 class PageGenerator {
   constructor(tab) {
     this.tab = tab
+    this.defaultFavIconUrl = '../images/32x32gray.png'
   }
 
   get url() {
@@ -19,7 +20,7 @@ class PageGenerator {
   }
 
   get favIconUrl() {
-    return this.tab.favIconUrl || '../images/32x32gray.png'
+    return this.tab.favIconUrl || this.defaultFavIconUrl
   }
 
   get date() {
