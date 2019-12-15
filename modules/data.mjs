@@ -119,13 +119,13 @@ export function initPageData({tab, position = {}, selection = {}}) {
   }
 }
 
-export async function completePageData(rawPage) {
-  const completePage = {...rawPage}
-  if (completePage.isRequiredTitle)
-    completePage.title = await request.getTitle(completePage.url)
-  if (completePage.isRequiredFavIconUrl)
-    completePage.favIconUrl = await request.getFavIconUrl(completePage.url)
-  return completePage
+export async function completePageData(aPage) {
+  const page = {...aPage}
+  if (page.isRequiredTitle)
+    page.title = await request.getTitle(page.url)
+  if (page.isRequiredFavIconUrl)
+    page.favIconUrl = await request.getFavIconUrl(page.url)
+  return page
 }
 
 export function renderHtmlList(page) {
