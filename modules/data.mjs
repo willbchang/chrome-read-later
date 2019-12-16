@@ -124,14 +124,14 @@ export async function completePageData(aPage) {
   if (page.isRequiredTitle)
     page.title = await request.getTitle(page.url)
   if (page.isRequiredFavIconUrl)
-    page.favIconUrl = await request.getFavIconUrl(page.url)
+    page.favIconUrl = `https://s2.googleusercontent.com/s2/favicons?domain=${page.url}`
   return page
 }
 
 export function renderHtmlList(page) {
   return ` 
       <li id=${page.date}>
-        <img src="${page.favIconUrl}" alt="favIcon">
+        <img src="${page.favIconUrl}">
         <a href="${page.url}" title="${page.url}" ${getTitleColor()}> ${getTitle()}</a>
         ${getScrollPercent()}
       </li>
