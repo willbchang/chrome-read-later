@@ -125,6 +125,8 @@ export async function completePageData(aPage) {
     page.title = await request.getTitle(page.url)
   if (page.isRequiredFavIconUrl)
     page.favIconUrl = `https://s2.googleusercontent.com/s2/favicons?domain=${page.url}`
+  delete page.isRequiredTitle
+  delete page.isRequiredFavIconUrl
   return page
 }
 
