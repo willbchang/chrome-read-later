@@ -4,7 +4,7 @@ import * as request from './request.mjs'
 class PageGenerator {
   constructor(tab) {
     this.tab = tab
-    this.defaultFavIconUrl = '../images/32x32gray.png'
+    this.defaultFavIconUrl = 'https://s2.googleusercontent.com/s2/favicons?domain='
   }
 
   get url() {
@@ -20,11 +20,7 @@ class PageGenerator {
   }
 
   get favIconUrl() {
-    return this.tab.favIconUrl || this.defaultFavIconUrl
-  }
-
-  get isRequiredFavIconUrl() {
-    return this.favIconUrl === this.defaultFavIconUrl
+    return this.tab.favIconUrl || this.defaultFavIconUrl + this.url
   }
 
   get date() {
@@ -86,11 +82,7 @@ class SelectionGenerator extends PageGenerator {
   }
 
   get favIconUrl() {
-    return this.defaultFavIconUrl
-  }
-
-  get isRequiredFavIconUrl() {
-    return true
+    return this.defaultFavIconUrl + this.url
   }
 }
 
@@ -109,7 +101,6 @@ export function initPageData({tab, position = {}, selection = {}}) {
     title: page.title,
     isRequiredTitle: page.isRequiredTitle,
     favIconUrl: page.favIconUrl,
-    isRequiredFavIconUrl: page.isRequiredFavIconUrl,
     date: page.date,
     scroll: {
       top: page.scrollTop,
@@ -123,10 +114,7 @@ export async function completePageData(aPage) {
   const page = {...aPage}
   if (page.isRequiredTitle)
     page.title = await request.getTitle(page.url)
-  if (page.isRequiredFavIconUrl)
-    page.favIconUrl = `https://s2.googleusercontent.com/s2/favicons?domain=${page.url}`
   delete page.isRequiredTitle
-  delete page.isRequiredFavIconUrl
   return page
 }
 
