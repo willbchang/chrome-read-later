@@ -1,12 +1,8 @@
 import '../modules_web/jquery.min.js'
 
-function setupAjax() {
-  // https://git.io/Je7tD
-  $.ajaxSetup({
-    beforeSend(jqXHR) {
-      jqXHR.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
-    }
-  })
+export async function getTitle(url) {
+  const html = await getHtml(url)
+  return html.filter('title').text() || url
 }
 
 export async function getHtml(url) {
@@ -19,13 +15,17 @@ export async function getHtml(url) {
   }
 }
 
-function cors(url) {
-  return 'https://cors-anywhere.herokuapp.com/' + url
+function setupAjax() {
+  // https://git.io/Je7tD
+  $.ajaxSetup({
+    beforeSend(jqXHR) {
+      jqXHR.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+    }
+  })
 }
 
-export async function getTitle(url) {
-  const html = await getHtml(url)
-  return html.filter('title').text() || url
+function cors(url) {
+  return 'https://cors-anywhere.herokuapp.com/' + url
 }
 
 export async function getFavIcon(url) {
