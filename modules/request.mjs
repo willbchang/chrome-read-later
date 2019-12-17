@@ -12,12 +12,15 @@ function setupAjax() {
 export async function getHtml(url) {
   setupAjax()
   try {
-    url = 'https://cors-anywhere.herokuapp.com/' + url
-    const data = await $.get(url)
+    const data = await $.get(cors(url))
     return $($.parseHTML(data))
   } catch (e) {
     return $('')
   }
+}
+
+function cors(url) {
+  return 'https://cors-anywhere.herokuapp.com/' + url
 }
 
 export async function getTitle(url) {
@@ -26,7 +29,5 @@ export async function getTitle(url) {
 }
 
 export async function getFavIcon(url) {
-  let favIconUrl = `https://s2.googleusercontent.com/s2/favicons?domain=${url}`
-  favIconUrl = 'https://cors-anywhere.herokuapp.com/' + favIconUrl
-  return favIconUrl
+  return cors(`https://s2.googleusercontent.com/s2/favicons?domain=${url}`)
 }
