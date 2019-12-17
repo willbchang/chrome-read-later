@@ -4,7 +4,7 @@ import * as request from './request.mjs'
 class PageGenerator {
   constructor(tab) {
     this.tab = tab
-    this.defaultFavIconUrl = 'https://s2.googleusercontent.com/s2/favicons?domain='
+    this.defaultFavIconUrl = '../images/32x32gray.png'
   }
 
   get url() {
@@ -20,7 +20,7 @@ class PageGenerator {
   }
 
   get favIconUrl() {
-    return this.tab.favIconUrl || this.defaultFavIconUrl + this.url
+    return this.tab.favIconUrl || this.defaultFavIconUrl
   }
 
   get date() {
@@ -82,7 +82,7 @@ class SelectionGenerator extends PageGenerator {
   }
 
   get favIconUrl() {
-    return this.defaultFavIconUrl + this.url
+    return this.defaultFavIconUrl
   }
 }
 
@@ -114,6 +114,7 @@ export async function completePageData(aPage) {
   const page = {...aPage}
   if (page.isRequiredTitle)
     page.title = await request.getTitle(page.url)
+  page.favIconUrl = await request.getFavIcon(page.url)
   delete page.isRequiredTitle
   return page
 }

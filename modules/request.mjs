@@ -24,3 +24,9 @@ export async function getTitle(url) {
   const html = await getHtml(url)
   return html.filter('title').text() || url
 }
+
+export async function getFavIcon(url) {
+  let favIconUrl = `https://s2.googleusercontent.com/s2/favicons?domain=${url}`
+  favIconUrl = 'https://cors-anywhere.herokuapp.com/' + favIconUrl
+  return favIconUrl
+}
