@@ -88,7 +88,6 @@ function createPageGenerator(tab, position, selection) {
 
 export function initPageData({tab, position = {}, selection = {}}) {
   const page = createPageGenerator(tab, position, selection)
-  console.log(page.url)
   return {
     url: page.url,
     title: page.title,

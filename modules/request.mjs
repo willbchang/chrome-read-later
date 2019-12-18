@@ -24,6 +24,12 @@ function setupAjax() {
   })
 }
 
+function setupHeaders() {
+  const headers = new Headers()
+  headers.append('X-Requested-With', 'XMLHttpRequest')
+  return headers
+}
+
 function cors(url) {
   return 'https://cors-anywhere.herokuapp.com/' + url
 }
@@ -33,7 +39,7 @@ export async function getFavIcon(url) {
 }
 
 async function toDataUrl(url) {
-  const response = await fetch(url)
+  const response = await fetch(url, {headers: setupHeaders()})
   const blob = await response.blob()
   return await fileReader(blob)
 }
