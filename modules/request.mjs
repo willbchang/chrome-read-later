@@ -16,10 +16,10 @@ export async function getHtml(url) {
 }
 
 export async function getFavIcon(url) {
-  return await toDataUrl(`https://s2.googleusercontent.com/s2/favicons?domain=${url}`)
+  return await toBase64(`https://s2.googleusercontent.com/s2/favicons?domain=${url}`)
 }
 
-async function toDataUrl(url) {
+async function toBase64(url) {
   try {
     const response = await fetch(url)
     const blob = await response.blob()
