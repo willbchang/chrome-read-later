@@ -20,9 +20,13 @@ export async function getFavIcon(url) {
 }
 
 async function toDataUrl(url) {
-  const response = await fetch(url)
-  const blob = await response.blob()
-  return await fileReader(blob)
+  try {
+    const response = await fetch(url)
+    const blob = await response.blob()
+    return await fileReader(blob)
+  } catch (e) {
+    return '../images/32x32gray.png'
+  }
 }
 
 async function fileReader(blob) {
