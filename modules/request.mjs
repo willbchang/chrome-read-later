@@ -39,9 +39,13 @@ export async function getFavIcon(url) {
 }
 
 async function toDataUrl(url) {
-  const response = await fetch(url, {headers: setupHeaders()})
+  const response = await corsFetch(url)
   const blob = await response.blob()
   return await fileReader(blob)
+}
+
+async function corsFetch(url) {
+  return await fetch(cors(url), {headers: setupHeaders()})
 }
 
 async function fileReader(blob) {
