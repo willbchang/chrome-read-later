@@ -15,6 +15,10 @@ class PageGenerator {
     return this.tab.title || this.url
   }
 
+  get hasTitle() {
+    return this.title !== this.url
+  }
+
   get favIconUrl() {
     return this.tab.favIconUrl || this.defaultFavIconUrl
   }
@@ -73,6 +77,10 @@ class SelectionGenerator extends PageGenerator {
     return this.selection.selectionText || this.url
   }
 
+  get hasTitle() {
+    return false
+  }
+
   get favIconUrl() {
     return this.defaultFavIconUrl
   }
@@ -91,6 +99,7 @@ export function initPageData({tab, position = {}, selection = {}}) {
   return {
     url: page.url,
     title: page.title,
+    hasTitle: page.hasTitle,
     favIconUrl: page.favIconUrl,
     date: page.date,
     scroll: {
@@ -103,8 +112,9 @@ export function initPageData({tab, position = {}, selection = {}}) {
 
 export async function completePageData(aPage) {
   const page = {...aPage}
-  page.title = await request.getTitle(page.url)
+  if (!page.hasTitle) page.title = await request.getTitle(page.url)
   page.favIconUrl = await request.getFavIcon(page.url)
+  delete page.hasTitle
   return page
 }
 
