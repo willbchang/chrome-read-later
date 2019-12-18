@@ -13,7 +13,7 @@ class ScrollPosition {
   get top() {
     return this.scrolled.height
       ? this.dynamicTop
-      : document.documentElement.scrollTop
+      : window.pageYOffset
   }
 
   get dynamicTop() {
