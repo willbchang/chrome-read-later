@@ -17,6 +17,7 @@ class PageGenerator {
 
   get hasTitle() {
     return this.title !== this.url
+      && this.url !== this.tab.pendingUrl
   }
 
   get favIconUrl() {
