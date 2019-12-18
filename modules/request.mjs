@@ -6,22 +6,13 @@ export async function getTitle(url) {
 }
 
 export async function getHtml(url) {
-  setupAjax()
   try {
-    const data = await $.get(cors(url))
-    return $($.parseHTML(data))
+    const response = await fetch(url)
+    const html = await response.text()
+    return $(html)
   } catch (e) {
     return $('')
   }
-}
-
-function setupAjax() {
-  // https://git.io/Je7tD
-  $.ajaxSetup({
-    beforeSend(jqXHR) {
-      jqXHR.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
-    }
-  })
 }
 
 function setupHeaders() {
