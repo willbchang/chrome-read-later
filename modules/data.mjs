@@ -103,6 +103,7 @@ export function initPageData({tab, position = {}, selection = {}}) {
 
 export async function completePageData(aPage) {
   const page = {...aPage}
+  if (!page.url.isHttp()) return page
   page.title = await request.getTitle(page.url)
   page.favIconUrl = await request.getFavIcon(page.url)
   return page
