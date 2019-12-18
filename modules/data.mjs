@@ -70,7 +70,7 @@ class SelectionGenerator extends PageGenerator {
   }
 
   get title() {
-    return this.selection.selectionText
+    return this.selection.selectionText || this.url
   }
 
   get favIconUrl() {
@@ -103,7 +103,6 @@ export function initPageData({tab, position = {}, selection = {}}) {
 
 export async function completePageData(aPage) {
   const page = {...aPage}
-  // console.log(page)
   page.title = await request.getTitle(page.url)
   page.favIconUrl = await request.getFavIcon(page.url)
   return page

@@ -1,15 +1,10 @@
 <p align="center">
-  <img src="images/logotype.png" alt="Read Later Logo" height="150px">
-</p>
-
-<p align="center">  
+  <img src="images/logotype.png" alt="Read Later Logo" height="150px"><br>
+  Dedicated to my good friend <a href="https://github.com/evestorm">@EveStorm</a><br>
   A Chrome extension focuses on reading later, rather than closing and removing.
 </p>
 
 ## Installation
-
-I haven't publish it to chrome store yet!
-
 1. Download [Read-Later.zip](https://github.com/WillBChang/readlater/releases/latest) from releases.
 2. Move it to the safe path(you won't delete it accidentally).
 3. Go to `chrome://extensions/`
@@ -17,39 +12,12 @@ I haven't publish it to chrome store yet!
 5. Click `Load unpacked` and select the folder.
 
 ## Usages
-
-### Save Reading List **Temporarily**
-
-<kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>s</kbd>
-
-- [x] Press hotkey to save and close current tab.
-  - [x] Avoid duplicated url.
-    - [ ] Check dupilicate with the last `/` in url.
-  - [ ] Avoid empty tab.
-    - [x] `chrome://newtab`
-    - [ ] `about:blank`
-  - [x] Add websites' favicon in front of the reading list.
-  - [ ] Get website scroll position.
-- [x] Click a reading list item to open it in a tab and remove from storage.
-  - [x] Load from current empty tab.
-  - [x] A delete icon will appear when cursor is hovering a favicon.
-    - [x] Click to delete.
-  - [x] Get website scroll position.
-  - [ ] Get the current playing time of video/audio.
-- [x] Right Click link and select read later to save(not in the search bar)
-  - [ ] Filter selected link in google search.
+### Save Current Page *Temporarily*
+- **Shortcut**: <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>s</kbd>
+- Right Click: Click Link/Page and select **Read Later**. 
 
 ### Zoom Out Reading list
-
 <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>z</kbd>
-
-- [x] Open clicked item in a tab and remove from reading list.
-  - [x] Load from current empty tab.
-  - [x] A delete icon will appear when cursor is hovering a favicon.
-    - [x] Click to delete.
-  - [x] Set website scroll position.
-  - [ ] Set played time of video and audio.
-- [ ] Thin scroll bar.
 - Select items by <kbd>tab</kbd> and <kbd>shift</kbd> + <kbd>tab</kbd>.
 - Use <kbd>enter</kbd> to open selected item.
 
@@ -70,25 +38,21 @@ I'll finish this before 2020/02.
 You can config shortcuts from `chrome://extensions/shortcuts`
 
 ## Dependencies
-
 ```
-npm install
+pnpm install
 ```
 
 or
 
 ```
-npm install --save @types/chrome
-npm install --save @types/jquery
+npm install 
 ```
 
 ## Contributor
-
 |                              Logo Designer                              |
 | :---------------------------------------------------------------------: |
 | ![Yasujizr](https://avatars0.githubusercontent.com/u/36993664?s=88&v=4) |
 |                 [Yasujizr](https://github.com/Yasujizr)                 |
 
 ## LICENSE
-
 [MIT](LICENSE)
