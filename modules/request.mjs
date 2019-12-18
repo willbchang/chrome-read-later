@@ -15,16 +15,6 @@ export async function getHtml(url) {
   }
 }
 
-function setupHeaders() {
-  const headers = new Headers()
-  headers.append('X-Requested-With', 'XMLHttpRequest')
-  return headers
-}
-
-function cors(url) {
-  return 'https://cors-anywhere.herokuapp.com/' + url
-}
-
 export async function getFavIcon(url) {
   return await toDataUrl(`https://s2.googleusercontent.com/s2/favicons?domain=${url}`)
 }
@@ -37,6 +27,16 @@ async function toDataUrl(url) {
 
 async function corsFetch(url) {
   return await fetch(cors(url), {headers: setupHeaders()})
+}
+
+function setupHeaders() {
+  const headers = new Headers()
+  headers.append('X-Requested-With', 'XMLHttpRequest')
+  return headers
+}
+
+function cors(url) {
+  return 'https://cors-anywhere.herokuapp.com/' + url
 }
 
 async function fileReader(blob) {
