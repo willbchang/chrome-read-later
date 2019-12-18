@@ -4,18 +4,19 @@ import * as request from './request.mjs'
 class PageGenerator {
   constructor(tab) {
     this.tab = tab
+    this.defaultFavIconUrl = '../images/32x32gray.png'
   }
 
   get url() {
-    return this.tab.url
+    return this.tab.url || this.tab.pendingUrl
   }
 
   get title() {
-    return this.tab.title || this.tab.url
+    return this.tab.title || this.url
   }
 
   get favIconUrl() {
-    return this.tab.favIconUrl || '../images/32x32gray.png'
+    return this.tab.favIconUrl || this.defaultFavIconUrl
   }
 
   get date() {
@@ -71,6 +72,10 @@ class SelectionGenerator extends PageGenerator {
   get title() {
     return this.selection.selectionText
   }
+
+  get favIconUrl() {
+    return this.defaultFavIconUrl
+  }
 }
 
 function createPageGenerator(tab, position, selection) {
@@ -96,17 +101,18 @@ export function initPageData({tab, position = {}, selection = {}}) {
   }
 }
 
-export async function completePageData(rawPage) {
-  const completePage = {...rawPage}
-  completePage.title = await request.getTitle(completePage.url)
-  completePage.favIconUrl = await request.getFavIconUrl(completePage.url)
-  return completePage
+export async function completePageData(aPage) {
+  const page = {...aPage}
+  // console.log(page)
+  page.title = await request.getTitle(page.url)
+  page.favIconUrl = await request.getFavIcon(page.url)
+  return page
 }
 
 export function renderHtmlList(page) {
   return ` 
       <li id=${page.date}>
-        <img src="${page.favIconUrl}" alt="favIcon">
+        <img src="${page.favIconUrl}">
         <a href="${page.url}" title="${page.url}" ${getTitleColor()}> ${getTitle()}</a>
         ${getScrollPercent()}
       </li>
