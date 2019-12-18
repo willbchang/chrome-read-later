@@ -8,7 +8,7 @@ class PageGenerator {
   }
 
   get url() {
-    return this.tab.url || this.tab.pendingUrl
+    return this.tab.pendingUrl || this.tab.url
   }
 
   get title() {
