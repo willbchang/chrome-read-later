@@ -29,5 +29,20 @@ function cors(url) {
 }
 
 export async function getFavIcon(url) {
-  return cors(`https://s2.googleusercontent.com/s2/favicons?domain=${url}`)
+  return await toDataUrl(`https://s2.googleusercontent.com/s2/favicons?domain=${url}`)
+}
+
+async function toDataUrl(url) {
+  const response = await fetch(url)
+  const blob = await response.blob()
+  return await fileReader(blob)
+}
+
+async function fileReader(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onloadend = () => resolve(reader.result)
+    reader.onerror = reject
+    reader.readAsDataURL(blob)
+  })
 }
