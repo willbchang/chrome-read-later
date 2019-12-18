@@ -20,23 +20,9 @@ export async function getFavIcon(url) {
 }
 
 async function toDataUrl(url) {
-  const response = await corsFetch(url)
+  const response = await fetch(url)
   const blob = await response.blob()
   return await fileReader(blob)
-}
-
-async function corsFetch(url) {
-  return await fetch(cors(url), {headers: setupHeaders()})
-}
-
-function setupHeaders() {
-  const headers = new Headers()
-  headers.append('X-Requested-With', 'XMLHttpRequest')
-  return headers
-}
-
-function cors(url) {
-  return 'https://cors-anywhere.herokuapp.com/' + url
 }
 
 async function fileReader(blob) {
