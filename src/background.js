@@ -31,6 +31,8 @@ async function savePage() {
 async function updateStorage({tab, position = {}, selection = {}}) {
   let page = data.initPageData({tab, position, selection})
   await storage.set(page)
+
+  if (!page.url.isHttp()) return
   page = await data.completePageData(page)
   await storage.set(page)
 }
