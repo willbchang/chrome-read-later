@@ -21,7 +21,9 @@ class PageGenerator {
   }
 
   get favIconUrl() {
-    return this.tab.favIconUrl || this.defaultFavIconUrl
+    return this.tab.favIconUrl.isHttp()
+      ? this.tab.favIconUrl
+      : this.defaultFavIconUrl
   }
 
   get date() {
@@ -80,10 +82,6 @@ class SelectionGenerator extends PageGenerator {
 
   get hasTitle() {
     return false
-  }
-
-  get favIconUrl() {
-    return this.defaultFavIconUrl
   }
 }
 
