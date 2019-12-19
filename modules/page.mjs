@@ -37,17 +37,17 @@ class ScrollPosition {
 }
 
 export function getPosition() {
-  const scrollPosition = new ScrollPosition({})
+  const scroll = new ScrollPosition({})
   return {
     scroll: {
-      top: scrollPosition.top,
-      bottom: scrollPosition.bottom,
-      height: scrollPosition.height,
+      top: scroll.top,
+      bottom: scroll.bottom,
+      height: scroll.height,
     },
   }
 }
 
 export function setPosition(position) {
-  const scrollPosition = new ScrollPosition(position.scroll)
-  scrollPosition.setTop()
+  const scroll = new ScrollPosition(position.scroll)
+  scroll.setTop()
 }
