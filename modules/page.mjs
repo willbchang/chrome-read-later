@@ -1,3 +1,4 @@
+// https://javascript.info/size-and-scroll-window
 class ScrollPosition {
   constructor(scrolled) {
     this.scrolled = scrolled
@@ -23,7 +24,11 @@ class ScrollPosition {
   }
 
   get height() {
-    return document.documentElement.scrollHeight
+    return Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    )
   }
 
   get bottom() {
