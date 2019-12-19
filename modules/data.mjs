@@ -16,7 +16,7 @@ class PageGenerator {
   }
 
   get hasTitle() {
-    return this.title !== this.url
+    return this.url !== this.title
       && this.url !== this.tab.pendingUrl
   }
 
