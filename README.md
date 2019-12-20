@@ -5,6 +5,7 @@
 </p>
 
 ## Installation
+[![](docs/images/chrome-store-logo.png)](https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/)
 
 ### Manually
 1. [Download this repo](https://github.com/willbchang/chrome-read-later/releases/latest).
@@ -35,6 +36,41 @@ Config shortcuts: `chrome://extensions/shortcuts`, the last two are unable to co
 - Right click page and select Read Later in context menus to save page info.
 ![](docs/images/right-lick-page-to-save.gif)
 
+
+
+## Features
+- It saves almost all kinds of pages in any situation: `http://`, `https://`, `chrome://`, `localhost:`...
+- It saves the reading progress of current page, **works on most pages**(I'll improve it later).
+- It syncs to your browser(sign in google account first) automatically, you can use one reading list with multiple Chrome Browsers.
+- It saves page's favicon as `Base64`, only needs to be saved once per page.
+
+### TODO
+- Test
+  - [ ] JS Test Framework: [Mocha](https://mochajs.org)
+  - [ ] [Refactoring](https://learning.oreilly.com/library/view/refactoring-improving-the/9780134757681): Chapter 2 ~ 4
+- CORS `V2.1.0`
+  - [ ] Build cors-anywhere on heroku.
+  - [ ] Apply to `fetch` request. 
+- Get/Set Scroll Left `V2.2.0`
+- Get/Set Multiple Scroll Position `V2.3.0`
+- Get/Set Video/Audio info `V3.0.0`
+  - [ ] Find video/audio. [resource](https://github.com/igrigorik/videospeed/blob/master/inject.js)
+  - [ ] Current time.
+  - [ ] Video screen size.
+  - [ ] Video/Audio play speed.
+- Vim Mode `V4.0.0`
+  - [ ] <kbd>j</kbd>: focus to next link.
+  - [ ] <kbd>k</kbd>: focus to previous link.
+  - [ ] <kbd>g</kbd>
+    - [ ] <kbd>gg</kbd>: focus to the first link.
+    - [ ] <kbd>G</kbd>: focus to the last link.
+  - [ ] <kbd>d</kbd>
+    - [ ] <kbd>dd</kbd>: delete a focused link.
+    - [ ] <kbd>d</kbd>@{num}<kbd>d</kbd>: delete x links.
+  - [ ] <kbd>/</kbd> search links' title.
+
+### Known Issues
+- Cannot save scroll position from `*.google.com`, `https://manga.bilibili.com/*`, or some sites has multiple scroll bars.
 
 ## Credits
 [![](docs/images/ezgif-logo.png)](https://ezgif.com/)
