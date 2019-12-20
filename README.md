@@ -5,7 +5,9 @@
 </p>
 
 ## Installation
-[![](docs/images/chrome-store-logo.png)](https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/)
+<a href="https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/">
+  <img src="docs/images/chrome-store-logo.png" width="250px" alt="chrome-store-logo">
+</a>
 
 ### Manually
 1. [Download this repo](https://github.com/willbchang/chrome-read-later/releases/latest).
@@ -71,6 +73,30 @@ Config shortcuts: `chrome://extensions/shortcuts`, the last two are unable to co
 
 ### Known Issues
 - Cannot save scroll position from `*.google.com`, `https://manga.bilibili.com/*`, or some sites has multiple scroll bars.
+
+## Contribution
+This is my first real world problem project. If you feel the code is hard to read or understand, pull request is always welcome.
+[data.mjs](https://github.com/willbchang/chrome-read-later/blob/master/modules/data.mjs)'s code structure is learned from [Refactoring Chapter 1](https://learning.oreilly.com/library/view/refactoring-improving-the/9780134757681/).
+
+### Dependencies
+Run `pnpm install` or `npm install`, check [package.json](https://github.com/willbchang/chrome-read-later/blob/master/package.json#L22) for details. 
+
+### Code Style
+- [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript#introduction)
+- [Git Style Guide](https://udacity.github.io/git-styleguide/)
+
+### Documentation
+Any improvement to README, issue-template... is welcome.
+
+### Language Specification
+- I'm not a native speaker, welcome to pull request if there is any typo or grammar issue.
+- Internationalization translations are also welcome! Pull request now!
+
+### Contributor
+|                              Logo Designer                              |
+| :---------------------------------------------------------------------: |
+| ![Yasujizr](https://avatars0.githubusercontent.com/u/36993664?s=88&v=4) |
+|                 [Yasujizr](https://github.com/Yasujizr)                 |
 
 ## Credits
 [![](docs/images/ezgif-logo.png)](https://ezgif.com/)
