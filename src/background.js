@@ -9,7 +9,6 @@ commands.onCommand(savePage)
 runtime.onMessage(openPage)
 
 contextMenus.onClicked(async (selection, tab) => {
-  console.log(selection)
   selection.linkUrl ? await saveSelection(tab, selection) : await savePage()
 })
 

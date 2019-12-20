@@ -21,9 +21,8 @@ class PageGenerator {
   }
 
   get favIconUrl() {
-    return this.tab.favIconUrl.isHttp()
-      ? this.tab.favIconUrl
-      : this.defaultFavIconUrl
+    const aFavIconUrl = this.tab.favIconUrl || this.defaultFavIconUrl
+    return aFavIconUrl.isHttp() ? aFavIconUrl : this.defaultFavIconUrl
   }
 
   get date() {
