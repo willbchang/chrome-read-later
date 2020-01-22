@@ -1,5 +1,5 @@
 dependencies:
-  '@types/chrome': 0.0.91
+  '@types/chrome': 0.0.92
   '@types/jquery': 3.3.31
 devDependencies:
   eslint: 6.8.0
@@ -19,12 +19,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-7dV4eu9gBxoM0dAnj/BCFDW9LFU0zvTrkq0ugM7pnHEgguOEeOz1so2ZghEdzviYzQEED0r4EAgpsBChKy1TRQ==
-  /@types/chrome/0.0.91:
+  /@types/chrome/0.0.92:
     dependencies:
       '@types/filesystem': 0.0.29
     dev: false
     resolution:
-      integrity: sha512-vNvo9lJkp1AvViWrUwe1bxhoMwr5dRZWlgr1DTuaNkz97LsG56lDX1sceWeZir2gRACJ5vdHtoRdVAvm8C75Ug==
+      integrity: sha512-bTv1EljZ03bexRJwS5FwSZmrudtw+QNbzwUY2sxVtXWgtxk752G4I2owhZ+Mlzbf3VKvG+rBYSw/FnvzuZ4xOA==
   /@types/filesystem/0.0.29:
     dependencies:
       '@types/filewriter': 0.0.28
@@ -874,6 +874,6 @@ packages:
     resolution:
       integrity: sha512-/lg70HAjtkUgWPVZhZcm+T4hkL8Zbtp1nFNOn3lRrxnlv50SRBv7cR7RqR+GMsd3hUXy9hWBo4CHTbFTcOYwig==
 specifiers:
-  '@types/chrome': 0.0.91
+  '@types/chrome': 0.0.92
   '@types/jquery': ^3.3.31
   eslint: 6.8.0
