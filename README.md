@@ -30,13 +30,13 @@ Config shortcuts: `chrome://extensions/shortcuts`, the last two are unable to co
 
 ### Mouse Click
 - Left click the icon to open the reading List.
-![](docs/images/click-icon-to-open-reading-list.gif)
+  ![](docs/images/click-icon-to-open-reading-list.gif)
 - Left click the link to open in browser.
-![](docs/images/click-link-to-open-reading-item.gif)
+  ![](docs/images/click-link-to-open-reading-item.gif)
 - Right click Link and select Read Later in context menus to fetch and save page info.
-![](docs/images/right-click-link-to-save.gif)
+  ![](docs/images/right-click-link-to-save.gif)
 - Right click page and select Read Later in context menus to save page info.
-![](docs/images/right-lick-page-to-save.gif)
+  ![](docs/images/right-lick-page-to-save.gif)
 
 
 
