@@ -12,12 +12,10 @@ contextMenus.onClicked(async (selection, tab) => {
   selection.linkUrl ? await saveSelection(tab, selection) : await savePage()
 })
 
-runtime.onInstalled(() => {
-  contextMenus.create({
-    title: 'Read later',
-    contexts: ['all'],
-    id: 'read-later',
-  })
+contextMenus.create({
+  title: 'Read later',
+  contexts: ['all'],
+  id: 'read-later',
 })
 
 async function savePage() {
