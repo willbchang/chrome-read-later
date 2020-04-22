@@ -126,23 +126,13 @@ export function renderHtmlList(page) {
   return ` 
       <li id=${page.date}>
         <img src="${page.favIconUrl}">
-        <a href="${page.url}" title="${page.url}" ${getTitleColor()}> ${getTitle()}</a>
+        <a href="${page.url}" title="${page.url}" ${getTitleColor()}> ${page.title}</a>
         ${getScrollPercent()}
       </li>
     `
 
   function getTitleColor() {
     return page.url === page.title ? 'style="color: gray"' : ''
-  }
-
-  function getTitle() {
-    return page.title.split(' ').map(breakLongWord).join(' ')
-  }
-
-  function breakLongWord(word) {
-    return word.isMaxLength()
-      ? `<span style="word-break: break-all">${word}</span>`
-      : word
   }
 
   function getScrollPercent() {
