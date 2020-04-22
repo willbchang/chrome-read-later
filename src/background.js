@@ -18,6 +18,9 @@ contextMenus.create({
   id: 'read-later',
 })
 
+
+runtime.onInstalled(tabs.create('https://github.com/willbchang/chrome-read-later#usages'))
+
 async function savePage() {
   const tab = await tabs.queryCurrent()
   const position = await tabs.sendMessage(tab.id, {info: 'get position'})

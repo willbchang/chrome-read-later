@@ -1,53 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    width: 300px;
+    width: 400px;
     font-size: 14px;
     hyphens: auto;
-    letter-spacing: 0.4px;
     word-spacing: 1px;
 }
 
 ul {
     list-style: none;
-    padding: 0 15px;
-    margin-bottom: 0;
 }
 
 li {
-    padding: 5px 0;
-    line-height: 16px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    line-height: 30px;
+}
+
+li:first-child {
+    margin-top: 10px;
+}
+
+li:hover {
+    cursor: pointer;
+    background-color: #c8c8c9;
 }
 
 a {
-    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     text-decoration: none;
     color: #0052cc;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
 img {
-    vertical-align: middle;
-    margin: 0 3px;
+    margin-right: 8px;
     padding: 1px;
-    width: 16px;
-    height: 16px;
-}
-
-img:hover {
-    cursor: pointer;
+    min-width: 16px;
+    max-width: 16px;
+    min-height: 16px;
+    max-height: 16px;
 }
 
 .position {
     font-size: 12px;
     font-weight: 500;
     color: #f05f00cc;
-    vertical-align: middle;
 }
 
-#report-an-issue {
-    padding: 5px 0;
+#feedback {
+    padding: 5px;
     color: gray;
     font-size: 12px;
     float: right;
@@ -57,6 +64,10 @@ img:hover {
 @media screen and (prefers-color-scheme: dark) {
     html {
         background-color: #292a2de1;
+    }
+
+    li:hover {
+        background-color: #66666666;
     }
 
     img:hover {
