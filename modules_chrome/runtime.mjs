@@ -10,5 +10,7 @@ export function onMessage(callback) {
 
 // https://developer.chrome.com/extensions/runtime#event-onInstalled
 export function onInstalled(callback) {
-  chrome.runtime.onInstalled.addListener(callback)
+  chrome.runtime.onInstalled.addListener(details => {
+    if (details.reason === 'install') callback()
+  })
 }
