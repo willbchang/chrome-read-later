@@ -1,54 +1,54 @@
 body {
-  width: 300px;
-  font-size: 14px;
-  hyphens: auto;
-  letter-spacing: 0.4px;
-  word-spacing: 1px;
+    width: 300px;
+    font-size: 14px;
+    hyphens: auto;
+    letter-spacing: 0.4px;
+    word-spacing: 1px;
 }
 
 ul {
-  list-style: none;
-  padding: 0 15px;
-  margin-bottom: 0;
+    list-style: none;
+    padding: 0 15px;
+    margin-bottom: 0;
 }
 
 li {
-  padding: 5px 0;
-  line-height: 16px;
+    padding: 5px 0;
+    line-height: 16px;
 }
 
 a {
-  vertical-align: middle;
-  text-decoration: none;
-  color: #0052cc;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #0052cc;
 }
 
 a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 img {
-  vertical-align: middle;
-  padding: 0 5px;
-  width: 16px;
-  height: 16px;
+    vertical-align: middle;
+    padding: 0 5px;
+    width: 16px;
+    height: 16px;
 }
 
 img:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .position {
-  font-size: 12px;
-  font-weight: 500;
-  color: #f05f00cc;
-  vertical-align: middle;
+    font-size: 12px;
+    font-weight: 500;
+    color: #f05f00cc;
+    vertical-align: middle;
 }
 
 #report-an-issue {
-  padding: 5px 0;
-  color: gray;
-  font-size: 12px;
-  float: right;
-  margin: 3px;
+    padding: 5px 0;
+    color: gray;
+    font-size: 12px;
+    float: right;
+    margin: 3px;
 }
