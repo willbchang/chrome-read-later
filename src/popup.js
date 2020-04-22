@@ -3,9 +3,8 @@ import * as extension from '../modules_chrome/runtime.mjs'
 import * as storage from '../modules_chrome/storage.mjs'
 
 initReadingList().then(() => {
-  $('ul').on('click', 'a', sendUrlToBackground)
+  $('ul').on('click', performAction)
     .on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
-    .on('click', 'img', removeReadingItem)
 })
 
 async function initReadingList() {
@@ -13,20 +12,32 @@ async function initReadingList() {
   pages.map(page => $('ul').append(renderHtmlList(page)))
 }
 
-function sendUrlToBackground(event) {
+function performAction(event) {
   // https://devdocs.io/jquery/event.preventdefault
   event.preventDefault()
-  // Send clicked url as message to background,
-  // because there are async/await functions,
+  // Get and send reading item's url as message to background,
+  // because they are async/await functions,
   // popup.html will disappear after clicking the link,
   // thus popup.js will be interrupted.
-  // `event.target.parentNode.href` is for
-  // clicking the long word in <a>, it is contained by <span>.
-  extension.sendMessage({url: event.target.href || event.target.parentNode.href})
+
+  let url
+  if (event.target.tagName === 'IMG') return removeReadingItem(event)
+  if (event.target.tagName === 'A') url = event.target.href
+  if (event.target.tagName === 'LI') url = event.target.childNodes[3].href
+  if (event.target.tagName === 'SPAN') url = event.target.previousSibling.previousSibling.href
+
+  extension.sendMessage({url})
   // Close popup.html when loading in current tab.
   // Update current tab won't close popup.html automatically,
   // but create a new tab does.
   window.close()
+}
+
+function removeReadingItem(event) {
+  // Current `event.target` is <img>, the parentNode is <li>
+  $(event.target.parentNode).remove()
+  // The next sibling of <img> is <a>
+  storage.remove(event.target.nextElementSibling.href)
 }
 
 function showDeleteIcon(event) {
@@ -39,9 +50,3 @@ function showFavIcon(event) {
   localStorage.clear()
 }
 
-function removeReadingItem(event) {
-  // Current `event.target` is <img>, the parentNode is <li>
-  $(event.target.parentNode).remove()
-  // The next sibling of <img> is <a>
-  storage.remove(event.target.nextElementSibling.href)
-}
