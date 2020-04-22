@@ -27,6 +27,7 @@ li:first-child {
 }
 
 li:hover {
+    cursor: pointer;
     background-color: #c8c8c9;
 }
 
@@ -43,10 +44,6 @@ img {
     padding: 1px;
     width: 16px;
     height: 16px;
-}
-
-img:hover {
-    cursor: pointer;
 }
 
 .position {
