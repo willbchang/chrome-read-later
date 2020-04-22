@@ -53,3 +53,23 @@ img:hover {
     float: right;
     margin: 3px;
 }
+
+@media screen and (prefers-color-scheme: dark) {
+    html {
+        background-color: #202124;
+    }
+
+    img:hover {
+        background-color: cyan;
+        border-radius: 100%;
+        cursor: pointer;
+    }
+
+    a {
+        color: #00cc9e;
+    }
+
+    .position {
+        color: #f05f00;
+    }
+}
