@@ -10,5 +10,16 @@ export function onMessage(callback) {
 
 // https://developer.chrome.com/extensions/runtime#event-onInstalled
 export function onInstalled(callback) {
-  chrome.runtime.onInstalled.addListener(callback)
+  chrome.runtime.onInstalled.addListener(details => {
+    if (details.reason === 'install') callback()
+    if (details.reason === 'update') {
+      const options = {
+        type: 'basic',
+        title: chrome.runtime.getManifest().name + ' Updated!',
+        message: `From V${details.previousVersion} updated to V${chrome.runtime.getManifest().version}`,
+        iconUrl: '../images/128x128orange.png',
+      }
+      chrome.notifications.create(options)
+    }
+  })
 }

@@ -19,7 +19,7 @@ contextMenus.create({
 })
 
 
-runtime.onInstalled(tabs.create('https://github.com/willbchang/chrome-read-later#usages'))
+runtime.onInstalled(() => tabs.create('https://github.com/willbchang/chrome-read-later#usages'))
 
 async function savePage() {
   const tab = await tabs.queryCurrent()
