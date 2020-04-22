@@ -35,7 +35,7 @@ a {
     white-space: nowrap;
     text-overflow: ellipsis;
     text-decoration: none;
-    color: #0052cc;
+    color: #202124;
 }
 
 img {
@@ -64,11 +64,11 @@ img {
 
 @media screen and (prefers-color-scheme: dark) {
     html {
-        background-color: #292a2de1;
+        background-color: #292a2d;
     }
 
     li:hover {
-        background-color: #66666666;
+        background-color: #4b4c4f;
     }
 
     img:hover {
@@ -78,7 +78,7 @@ img {
     }
 
     a {
-        color: #00cc9e;
+        color: #e0eaed;
     }
 
     .position {
