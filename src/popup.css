@@ -13,13 +13,21 @@ body {
 
 ul {
     list-style: none;
-    margin: 10px 15px 0;
 }
 
 li {
     display: flex;
-    padding: 5px 0;
-    line-height: 16px;
+    align-items: center;
+    padding: 0 15px;
+    line-height: 30px;
+}
+
+li:first-child {
+    margin-top: 10px;
+}
+
+li:hover {
+    background-color: #c8c8c9;
 }
 
 a {
@@ -30,12 +38,8 @@ a {
     color: #0052cc;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
 img {
-    margin: 0 3px;
+    margin-right: 8px;
     padding: 1px;
     width: 16px;
     height: 16px;
@@ -52,7 +56,7 @@ img:hover {
 }
 
 #report-an-issue {
-    padding: 5px 0;
+    padding: 5px;
     color: gray;
     font-size: 12px;
     float: right;
@@ -62,6 +66,10 @@ img:hover {
 @media screen and (prefers-color-scheme: dark) {
     html {
         background-color: #292a2de1;
+    }
+
+    li:hover {
+        background-color: #66666666;
     }
 
     img:hover {
