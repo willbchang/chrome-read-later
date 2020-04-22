@@ -17,12 +17,12 @@ ul {
 }
 
 li {
+    display: flex;
     padding: 5px 0;
     line-height: 16px;
 }
 
 a {
-    vertical-align: middle;
     text-decoration: none;
     color: #0052cc;
 }
@@ -32,7 +32,6 @@ a:hover {
 }
 
 img {
-    vertical-align: middle;
     margin: 0 3px;
     padding: 1px;
     width: 16px;
@@ -47,7 +46,6 @@ img:hover {
     font-size: 12px;
     font-weight: 500;
     color: #f05f00cc;
-    vertical-align: middle;
 }
 
 #report-an-issue {
