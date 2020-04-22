@@ -1,6 +1,6 @@
 {
   "name": "chrome-read-later",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "A Chrome extension focuses on reading later, rather than closing and removing.",
   "main": "popup.js",
   "scripts": {
