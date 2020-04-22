@@ -29,7 +29,8 @@ a:hover {
 
 img {
     vertical-align: middle;
-    padding: 0 5px;
+    margin: 0 3px;
+    padding: 1px;
     width: 16px;
     height: 16px;
 }
