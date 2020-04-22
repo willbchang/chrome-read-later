@@ -56,7 +56,7 @@ img:hover {
 
 @media screen and (prefers-color-scheme: dark) {
     html {
-        background-color: #202124;
+        background-color: #292a2de1;
     }
 
     img:hover {
