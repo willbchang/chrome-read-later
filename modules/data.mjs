@@ -25,6 +25,10 @@ class PageGenerator {
     return aFavIconUrl.isHttp() ? aFavIconUrl : this.defaultFavIconUrl
   }
 
+  get hasFavIconUrl() {
+    return this.favIconUrl !== this.defaultFavIconUrl
+  }
+
   get date() {
     return Date.now()
   }
@@ -92,13 +96,14 @@ function createPageGenerator(tab, position, selection) {
     : new SelectionGenerator(tab, selection)
 }
 
-export function initPageData({tab, position = {}, selection = {}}) {
+export function initPageData({tab, position, selection}) {
   const page = createPageGenerator(tab, position, selection)
   return {
     url: page.url,
     title: page.title,
     hasTitle: page.hasTitle,
     favIconUrl: page.favIconUrl,
+    hasFavIconUrl: page.hasFavIconUrl,
     date: page.date,
     scroll: {
       top: page.scrollTop,
@@ -108,11 +113,12 @@ export function initPageData({tab, position = {}, selection = {}}) {
   }
 }
 
-export async function completePageData(aPage) {
-  const page = {...aPage}
+export async function completePageData(page) {
   if (!page.hasTitle) page.title = await request.getTitle(page.url)
-  page.favIconUrl = await request.getFavIcon(page.url)
+  if (!page.hasFavIconUrl) page.favIconUrl = await request.getFavIcon(page.url)
+
   delete page.hasTitle
+  delete page.hasFavIconUrl
   return page
 }
 
