@@ -16,24 +16,16 @@ export async function getHtml(url) {
 }
 
 export async function getFavIcon(url) {
-  return await toBase64(`https://s2.googleusercontent.com/s2/favicons?domain=${url}`)
-}
-
-async function toBase64(url) {
   try {
-    const response = await fetch(url)
-    const blob = await response.blob()
-    return await fileReader(blob)
+    const response = await fetch(`https://favicongrabber.com/api/grab/${getDomain(url)}`)
+    const data = await response.json()
+    return data.icons[0].src
   } catch (e) {
     return '../images/32x32gray.png'
   }
 }
 
-async function fileReader(blob) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onloadend = () => resolve(reader.result)
-    reader.onerror = reject
-    reader.readAsDataURL(blob)
-  })
+// https://www.google.com/search?q=test => www.google.com
+function getDomain(url) {
+  return new URL(url).hostname
 }
