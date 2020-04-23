@@ -6,8 +6,6 @@
 body {
     width: 400px;
     font-size: 14px;
-    hyphens: auto;
-    word-spacing: 1px;
 }
 
 ul {
