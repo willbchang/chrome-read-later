@@ -6,8 +6,6 @@
 body {
     width: 400px;
     font-size: 14px;
-    hyphens: auto;
-    word-spacing: 1px;
 }
 
 ul {
@@ -26,7 +24,6 @@ li:first-child {
 }
 
 li:hover {
-    cursor: pointer;
     background-color: #c8c8c9;
 }
 
@@ -35,7 +32,8 @@ a {
     white-space: nowrap;
     text-overflow: ellipsis;
     text-decoration: none;
-    color: #0052cc;
+    color: #202124;
+    cursor: default;
 }
 
 img {
@@ -45,6 +43,19 @@ img {
     max-width: 16px;
     min-height: 16px;
     max-height: 16px;
+    cursor: pointer;
+}
+
+/* Set a fallback on img error */
+/* https://stackoverflow.com/a/980948/9984029 */
+img:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-image: url("../images/32x32black.png");
+    background-size: 16px 16px;
 }
 
 .position {
@@ -52,6 +63,7 @@ img {
     font-weight: 500;
     color: #f05f00cc;
     padding-left: 5px;
+    cursor: default;
 }
 
 #feedback {
@@ -60,15 +72,16 @@ img {
     font-size: 12px;
     float: right;
     margin: 3px;
+    cursor: pointer;
 }
 
 @media screen and (prefers-color-scheme: dark) {
     html {
-        background-color: #292a2de1;
+        background-color: #292a2d;
     }
 
     li:hover {
-        background-color: #66666666;
+        background-color: #4b4c4f;
     }
 
     img:hover {
@@ -78,7 +91,7 @@ img {
     }
 
     a {
-        color: #00cc9e;
+        color: #e0eaed;
     }
 
     .position {
