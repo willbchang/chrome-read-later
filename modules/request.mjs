@@ -1,17 +1,12 @@
 import '../modules_web/jquery.min.js'
 
 export async function getTitle(url) {
-  const html = await getHtml(url)
-  return html.filter('title').text() || url
-}
-
-export async function getHtml(url) {
   try {
     const response = await fetch(url)
     const html = await response.text()
-    return $(html)
+    return $(html).filter('title').text()
   } catch (e) {
-    return $('')
+    return url
   }
 }
 
