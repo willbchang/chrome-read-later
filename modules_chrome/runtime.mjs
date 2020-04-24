@@ -12,14 +12,19 @@ export function onMessage(callback) {
 export function onInstalled(callback) {
   chrome.runtime.onInstalled.addListener(details => {
     if (details.reason === 'install') callback()
-    if (details.reason === 'update') {
-      const options = {
-        type: 'basic',
-        title: chrome.runtime.getManifest().name + ' Updated!',
-        message: `From V${details.previousVersion} updated to V${chrome.runtime.getManifest().version}`,
-        iconUrl: '../images/logo-orange128x128.png',
-      }
-      chrome.notifications.create(options)
-    }
+    if (details.reason === 'update') createNotification(
+      chrome.runtime.getManifest().name + ' Updated!',
+      `From V${details.previousVersion} updated to V${chrome.runtime.getManifest().version}`
+    )
   })
+}
+
+export function createNotification(title, message) {
+  const options = {
+    type: 'basic',
+    title,
+    message,
+    iconUrl: '../images/logo-orange128x128.png',
+  }
+  chrome.notifications.create(options)
 }
