@@ -18,7 +18,6 @@ contextMenus.create({
   id: 'read-later',
 })
 
-
 runtime.onInstalled(() => tabs.create('https://github.com/willbchang/chrome-read-later#usages'))
 
 async function savePage() {
