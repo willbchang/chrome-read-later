@@ -42,7 +42,13 @@ function removeReadingItem(event) {
 
 function showDeleteIcon(event) {
   localStorage.setItem('src', $(event.target).attr('src'))
-  $(event.target).attr('src', '../images/32x32delete.png')
+  let deleteIcon = '../images/32x32delete.png'
+  if (isDarkMode()) deleteIcon = '../images/delete-white32x32.png'
+  $(event.target).attr('src', deleteIcon)
+}
+
+function isDarkMode() {
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 }
 
 function showFavIcon(event) {
