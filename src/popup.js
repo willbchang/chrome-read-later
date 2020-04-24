@@ -49,9 +49,7 @@ function removeReadingItem(event) {
 
 function showDeleteIcon(event) {
   localStorage.setItem('src', event.target.src)
-  let deleteIcon = '../images/32x32delete.png'
-  if (isDarkMode()) deleteIcon = '../images/delete-white32x32.png'
-  event.target.src = deleteIcon
+  event.target.src = isDarkMode() ? '../images/delete-white32x32.png' : '../images/32x32delete.png'
 }
 
 function isDarkMode() {
