@@ -84,12 +84,6 @@ img:before {
         background-color: #4b4c4f;
     }
 
-    img:hover {
-        background-color: cyan;
-        border-radius: 100%;
-        cursor: pointer;
-    }
-
     a {
         color: #e0eaed;
     }
