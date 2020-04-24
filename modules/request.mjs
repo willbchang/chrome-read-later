@@ -1,17 +1,12 @@
 import '../modules_web/jquery.min.js'
 
 export async function getTitle(url) {
-  const html = await getHtml(url)
-  return html.filter('title').text() || url
-}
-
-export async function getHtml(url) {
   try {
     const response = await fetch(url)
     const html = await response.text()
-    return $(html)
+    return $(html).filter('title').text()
   } catch (e) {
-    return $('')
+    return url
   }
 }
 
@@ -21,7 +16,7 @@ export async function getFavIcon(url) {
     const data = await response.json()
     return data.icons[0].src
   } catch (e) {
-    return '../images/32x32gray.png'
+    return '../images/logo-gray32x32.png'
   }
 }
 
