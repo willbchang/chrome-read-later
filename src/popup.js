@@ -2,17 +2,17 @@ import {renderHtmlList} from '../modules/data.mjs'
 import * as extension from '../modules_chrome/runtime.mjs'
 import * as storage from '../modules_chrome/storage.mjs'
 
-const ul = $('ul')
 
-initReadingList().then(() => {
-  ul.on('click', performAction)
-    .on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
-})
-
-async function initReadingList() {
+(async () => {
+  // Init reading list
+  const ul = $('ul')
   const pages = await storage.sortByLatest()
   pages.map(page => ul.append(renderHtmlList(page)))
-}
+
+  // Listen mouse and keyboard events
+  ul.on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
+    .on('click', performAction)
+})()
 
 function performAction(event) {
   // https://devdocs.io/jquery/event.preventdefault
