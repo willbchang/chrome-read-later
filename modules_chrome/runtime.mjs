@@ -17,7 +17,7 @@ export function onInstalled(callback) {
         type: 'basic',
         title: chrome.runtime.getManifest().name + ' Updated!',
         message: `From V${details.previousVersion} updated to V${chrome.runtime.getManifest().version}`,
-        iconUrl: '../images/128x128orange.png',
+        iconUrl: '../images/logo-orange128x128.png',
       }
       chrome.notifications.create(options)
     }

@@ -21,7 +21,7 @@ export async function getFavIcon(url) {
     const data = await response.json()
     return data.icons[0].src
   } catch (e) {
-    return '../images/32x32gray.png'
+    return '../images/logo-gray32x32.png'
   }
 }
 
