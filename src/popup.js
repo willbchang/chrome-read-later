@@ -42,16 +42,16 @@ function sendUrlToBackground(event) {
 
 function removeReadingItem(event) {
   // Current `event.target` is <img>, the parentNode is <li>
-  $(event.target.parentNode).remove()
+  event.target.parentNode.remove()
   // The next sibling of <img> is <a>
   storage.remove(event.target.nextElementSibling.href)
 }
 
 function showDeleteIcon(event) {
-  localStorage.setItem('src', $(event.target).attr('src'))
+  localStorage.setItem('src', event.target.src)
   let deleteIcon = '../images/32x32delete.png'
   if (isDarkMode()) deleteIcon = '../images/delete-white32x32.png'
-  $(event.target).attr('src', deleteIcon)
+  event.target.src = deleteIcon
 }
 
 function isDarkMode() {
@@ -59,7 +59,7 @@ function isDarkMode() {
 }
 
 function showFavIcon(event) {
-  $(event.target).attr('src', localStorage.getItem('src'))
+  event.target.src = localStorage.getItem('src')
   localStorage.clear()
 }
 
