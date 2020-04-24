@@ -22,17 +22,22 @@ function performAction(event) {
   // popup.html will disappear after clicking the link,
   // thus popup.js will be interrupted.
 
-  let url
   if (event.target.tagName === 'IMG') return removeReadingItem(event)
+  sendUrlToBackground(event)
+  // Close popup.html when loading in current tab.
+  // Update current tab won't close popup.html automatically,
+  // but create a new tab does.
+  window.close()
+}
+
+
+function sendUrlToBackground(event) {
+  let url
   if (event.target.tagName === 'A') url = event.target.href
   if (event.target.tagName === 'LI') url = event.target.childNodes[3].href
   if (event.target.tagName === 'SPAN') url = event.target.previousSibling.previousSibling.href
 
   extension.sendMessage({url})
-  // Close popup.html when loading in current tab.
-  // Update current tab won't close popup.html automatically,
-  // but create a new tab does.
-  window.close()
 }
 
 function removeReadingItem(event) {
