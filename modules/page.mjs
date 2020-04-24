@@ -5,22 +5,15 @@ class ScrollPosition {
   }
 
   setTop() {
-    window.scrollTo({
-      top: this.top,
-      behavior: 'smooth'
-    })
+    window.scrollTo({top: this.top, behavior: 'smooth'})
   }
 
   get top() {
-    return this.scrolled.height
-      ? this.dynamicTop
-      : window.pageYOffset
+    return this.scrolled.height ? this.dynamicTop : window.pageYOffset
   }
 
   get dynamicTop() {
-    return this.scrolled.top
-      / this.scrolled.height
-      * this.height
+    return this.scrolled.top / this.scrolled.height * this.height
   }
 
   get height() {
