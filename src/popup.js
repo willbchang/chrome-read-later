@@ -12,6 +12,7 @@ import * as storage from '../modules_chrome/storage.mjs'
   // Listen mouse and keyboard events
   ul.on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
     .on('click', performAction)
+    .on('keydown', listenOnKeyboard)
 })()
 
 function performAction(event) {
@@ -30,6 +31,9 @@ function performAction(event) {
   window.close()
 }
 
+function listenOnKeyboard(event) {
+  if (event.key === 'Enter') sendUrlToBackground(event)
+}
 
 function sendUrlToBackground(event) {
   let url
