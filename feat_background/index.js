@@ -1,4 +1,4 @@
-import * as data from '../modules/data.mjs'
+import * as data from './pageInfo.mjs'
 import * as commands from '../modules_chrome/commands.mjs'
 import * as contextMenus from '../modules_chrome/contextMenus.mjs'
 import * as runtime from '../modules_chrome/runtime.mjs'
