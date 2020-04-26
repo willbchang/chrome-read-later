@@ -1,11 +1,11 @@
 {
   "background": {
     "persistent": true,
-    "page": "feat_background/background.html"
+    "page": "feat_background/index.html"
   },
   "browser_action": {
     "default_icon": "icons/logo-orange32x32.png",
-    "default_popup": "feat_popup/popup.html",
+    "default_popup": "feat_popup/index.html",
     "default_title": "Read Later"
   },
   "content_scripts": [
@@ -14,7 +14,7 @@
         "<all_urls>"
       ],
       "js": [
-        "feat_content/content.js"
+        "feat_content/index.js"
       ]
     }
   ],

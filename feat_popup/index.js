@@ -20,13 +20,13 @@ function performAction(event) {
   event.preventDefault()
   // Get and send reading item's url as message to background,
   // because they are async/await functions,
-  // popup.html will disappear after clicking the link,
-  // thus popup.js will be interrupted.
+  // index.html will disappear after clicking the link,
+  // thus index.js will be interrupted.
 
   if (event.target.tagName === 'IMG') return removeReadingItem(event)
   sendUrlToBackground(event)
-  // Close popup.html when loading in current tab.
-  // Update current tab won't close popup.html automatically,
+  // Close index.html when loading in current tab.
+  // Update current tab won't close index.html automatically,
   // but create a new tab does.
   window.close()
 }
