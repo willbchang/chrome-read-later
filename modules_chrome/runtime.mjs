@@ -24,7 +24,7 @@ export function createNotification(title, message) {
     type: 'basic',
     title,
     message,
-    iconUrl: '../images/logo-orange128x128.png',
+    iconUrl: '../icons/logo-orange128x128.png',
   }
   chrome.notifications.create(options)
 }

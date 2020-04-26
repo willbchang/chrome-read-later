@@ -59,7 +59,7 @@ img:before {
     position: absolute;
     height: 16px;
     width: 16px;
-    background-image: url("../images/logo-black32x32.png");
+    background-image: url("../icons/logo-black32x32.png");
     background-size: 16px 16px;
 }
 
