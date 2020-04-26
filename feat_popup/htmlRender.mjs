@@ -12,7 +12,8 @@ export function renderListFrom(page) {
   }
 
   function encodeTitle() {
-    return $('<div>').text(page.title).html()
+    // eslint-disable-next-line no-undef
+    return he.encode(page.title)
   }
 
   function getScrollPercent() {
