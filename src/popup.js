@@ -12,6 +12,7 @@ import * as storage from '../modules_chrome/storage.mjs'
   // Listen mouse and keyboard events
   ul.on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
     .on('click', performAction)
+    .on('keydown', listenOnKeyboard)
 })()
 
 function performAction(event) {
@@ -30,6 +31,10 @@ function performAction(event) {
   window.close()
 }
 
+function listenOnKeyboard(event) {
+  if (event.key === 'Enter') sendUrlToBackground(event)
+  if (event.key === 'Backspace') removeReadingItem(event)
+}
 
 function sendUrlToBackground(event) {
   let url
@@ -41,10 +46,14 @@ function sendUrlToBackground(event) {
 }
 
 function removeReadingItem(event) {
-  // Current `event.target` is <img>, the parentNode is <li>
-  event.target.parentNode.remove()
-  // The next sibling of <img> is <a>
-  storage.remove(event.target.nextElementSibling.href)
+  if (event.target.tagName === 'LI') {
+    event.target.remove()
+    storage.remove(event.target.childNodes[3].href)
+  }
+  if (event.target.tagName === 'IMG') {
+    event.target.parentNode.remove()
+    storage.remove(event.target.nextElementSibling.href)
+  }
 }
 
 function showDeleteIcon(event) {

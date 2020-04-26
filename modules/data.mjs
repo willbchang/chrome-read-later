@@ -124,9 +124,9 @@ export async function completePageData(page) {
 
 export function renderHtmlList(page) {
   return ` 
-      <li id=${page.date} title="${page.title}\n${page.url}">
+      <li id=${page.date} title="${page.title}\n${page.url}" tabindex="1">
         <img src="${page.favIconUrl}" alt="">
-        <a href="${page.url}" ${getTitleColor()}> ${page.title}</a>
+        <a href="${page.url}" ${getTitleColor()} tabindex="-1">${page.title}</a>
         ${getScrollPercent()}
       </li>
     `

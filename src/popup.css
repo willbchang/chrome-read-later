@@ -27,6 +27,11 @@ li:hover {
     background-color: #c8c8c9;
 }
 
+li:focus {
+    outline: none;
+    background-color: #c8c8c9;
+}
+
 a {
     overflow: hidden;
     white-space: nowrap;
@@ -54,7 +59,7 @@ img:before {
     position: absolute;
     height: 16px;
     width: 16px;
-    background-image: url("images/logo-black32x32.png");
+    background-image: url("../images/logo-black32x32.png");
     background-size: 16px 16px;
 }
 
@@ -81,6 +86,10 @@ img:before {
     }
 
     li:hover {
+        background-color: #4b4c4f;
+    }
+
+    li:focus {
         background-color: #4b4c4f;
     }
 
