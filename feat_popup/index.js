@@ -1,4 +1,4 @@
-import {renderHtmlList} from '../modules/data.mjs'
+import * as html from './htmlRender.mjs'
 import * as extension from '../modules_chrome/runtime.mjs'
 import * as storage from '../modules_chrome/storage.mjs'
 
@@ -7,7 +7,7 @@ import * as storage from '../modules_chrome/storage.mjs'
   // Init reading list
   const ul = $('ul')
   const pages = await storage.sortByLatest()
-  pages.map(page => ul.append(renderHtmlList(page)))
+  pages.map(page => ul.append(html.renderListFrom(page)))
 
   // Listen mouse and keyboard events
   ul.on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
@@ -20,13 +20,13 @@ function performAction(event) {
   event.preventDefault()
   // Get and send reading item's url as message to background,
   // because they are async/await functions,
-  // popup.html will disappear after clicking the link,
-  // thus popup.js will be interrupted.
+  // index.html will disappear after clicking the link,
+  // thus index.js will be interrupted.
 
   if (event.target.tagName === 'IMG') return removeReadingItem(event)
   sendUrlToBackground(event)
-  // Close popup.html when loading in current tab.
-  // Update current tab won't close popup.html automatically,
+  // Close index.html when loading in current tab.
+  // Update current tab won't close index.html automatically,
   // but create a new tab does.
   window.close()
 }
@@ -58,7 +58,7 @@ function removeReadingItem(event) {
 
 function showDeleteIcon(event) {
   localStorage.setItem('src', event.target.src)
-  event.target.src = isDarkMode() ? '../images/delete-white32x32.png' : '../images/delete-black32x32.png'
+  event.target.src = isDarkMode() ? '../assets/icons/delete-white32x32.png' : '../assets/icons/delete-black32x32.png'
 }
 
 function isDarkMode() {

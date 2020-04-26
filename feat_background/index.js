@@ -1,4 +1,4 @@
-import * as data from '../modules/data.mjs'
+import * as data from './pageInfo.mjs'
 import * as commands from '../modules_chrome/commands.mjs'
 import * as contextMenus from '../modules_chrome/contextMenus.mjs'
 import * as runtime from '../modules_chrome/runtime.mjs'
@@ -28,11 +28,11 @@ async function savePage() {
 }
 
 async function updateStorage({tab, position = {}, selection = {}}) {
-  let page = data.initPageData({tab, position, selection})
+  let page = data.initPageInfo({tab, position, selection})
   await storage.set(page)
 
   if (!page.url.isHttp()) return
-  page = await data.completePageData(page)
+  page = await data.completePageInfo(page)
   await storage.set(page)
 }
 

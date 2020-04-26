@@ -1,10 +1,10 @@
-import './prototype.mjs'
+import '../modules/prototype.mjs'
 import * as request from './request.mjs'
 
-class PageGenerator {
+class PageInfo {
   constructor(tab) {
     this.tab = tab
-    this.defaultFavIconUrl = '../images/logo-gray32x32.png'
+    this.defaultFavIconUrl = '../assets/icons/logo-gray32x32.png'
   }
 
   get url() {
@@ -50,7 +50,7 @@ class PageGenerator {
   }
 }
 
-class PositionGenerator extends PageGenerator {
+class PositionInfo extends PageInfo {
   constructor(tab, position) {
     super(tab)
     this.scroll = position.scroll
@@ -69,7 +69,7 @@ class PositionGenerator extends PageGenerator {
   }
 }
 
-class SelectionGenerator extends PageGenerator {
+class SelectionInfo extends PageInfo {
   constructor(tab, selection) {
     super(tab)
     this.selection = selection
@@ -88,16 +88,16 @@ class SelectionGenerator extends PageGenerator {
   }
 }
 
-function createPageGenerator(tab, position, selection) {
+function createPageInfo(tab, position, selection) {
   return selection.isEmpty()
     ? position.isEmpty()
-      ? new PageGenerator(tab)
-      : new PositionGenerator(tab, position)
-    : new SelectionGenerator(tab, selection)
+      ? new PageInfo(tab)
+      : new PositionInfo(tab, position)
+    : new SelectionInfo(tab, selection)
 }
 
-export function initPageData({tab, position, selection}) {
-  const page = createPageGenerator(tab, position, selection)
+export function initPageInfo({tab, position, selection}) {
+  const page = createPageInfo(tab, position, selection)
   return {
     url: page.url,
     title: page.title,
@@ -113,31 +113,11 @@ export function initPageData({tab, position, selection}) {
   }
 }
 
-export async function completePageData(page) {
+export async function completePageInfo(page) {
   if (!page.hasTitle) page.title = await request.getTitle(page.url)
   if (!page.hasFavIconUrl) page.favIconUrl = await request.getFavIcon(page.url)
 
   delete page.hasTitle
   delete page.hasFavIconUrl
   return page
-}
-
-export function renderHtmlList(page) {
-  return ` 
-      <li id=${page.date} title="${page.title}\n${page.url}" tabindex="1">
-        <img src="${page.favIconUrl}" alt="">
-        <a href="${page.url}" ${getTitleColor()} tabindex="-1">${page.title}</a>
-        ${getScrollPercent()}
-      </li>
-    `
-
-  function getTitleColor() {
-    return page.url === page.title ? 'style="color: gray"' : ''
-  }
-
-  function getScrollPercent() {
-    return page.scroll.top
-      ? `<span class="position">${page.scroll.percent}</span>`
-      : ''
-  }
 }

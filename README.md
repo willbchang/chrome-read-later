@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="images/logotype.png" alt="Read Later Logo" height="150px"><br>
+  <img src="assets/images/logotype.png" alt="Read Later Logo" height="150px"><br>
   <sub>Dedicated to my good friend <a href="https://github.com/evestorm">@evestorm</a></sub><br>
   A Chrome extension focuses on reading later, rather than closing and removing.
 </p>
 
 ## Installation
 <a href="https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/">
-  <img src="docs/images/chrome-store-logo.png" width="250px" alt="chrome-store-logo">
+  <img src="assets/images/chrome-store-logo.png" width="250px" alt="chrome-store-logo">
 </a>
 
 ### Manually
@@ -20,23 +20,23 @@
 ### Keyboard Shortcuts
 Config shortcuts: `chrome://extensions/shortcuts`, the last two are unable to config for now.
 - **Save current page info**: <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>s</kbd>
-  ![](docs/images/shortcut-save-page.gif)
+  ![](assets/images/shortcut-save-page.gif)
 - **Zoom out reading list**: <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>z</kbd>
-  ![](docs/images/shortcut-zoom-out-reading-list.gif)
+  ![](assets/images/shortcut-zoom-out-reading-list.gif)
 - Select items by <kbd>tab</kbd> and <kbd>shift</kbd> + <kbd>tab</kbd>.
-  ![](docs/images/shortcut-tab-select-reading-item.gif)
+  ![](assets/images/shortcut-tab-select-reading-item.gif)
 - Use <kbd>enter</kbd> to open selected item.<br>
-  ![](docs/images/shortcut-open-selected-reading-item.gif)
+  ![](assets/images/shortcut-open-selected-reading-item.gif)
 
 ### Mouse Click
 - Left click the icon to open the reading List.
-  ![](docs/images/click-icon-to-open-reading-list.gif)
+  ![](assets/images/click-icon-to-open-reading-list.gif)
 - Left click the link to open in browser.
-  ![](docs/images/click-link-to-open-reading-item.gif)
+  ![](assets/images/click-link-to-open-reading-item.gif)
 - Right click Link and select Read Later in context menus to fetch and save page info.
-  ![](docs/images/right-click-link-to-save.gif)
+  ![](assets/images/right-click-link-to-save.gif)
 - Right click page and select Read Later in context menus to save page info.
-  ![](docs/images/right-lick-page-to-save.gif)
+  ![](assets/images/right-lick-page-to-save.gif)
 
 
 
@@ -76,7 +76,7 @@ Config shortcuts: `chrome://extensions/shortcuts`, the last two are unable to co
 
 ## Contribution
 This is my first real world problem project. If you feel the code is hard to read or understand, pull request is always welcome.
-[data.mjs](https://github.com/willbchang/chrome-read-later/blob/master/modules/data.mjs)'s code structure is learned from [Refactoring Chapter 1](https://learning.oreilly.com/library/view/refactoring-improving-the/9780134757681/).
+[pageInfo.mjs](https://github.com/willbchang/chrome-read-later/blob/master/modules/pageInfo.mjs)'s code structure is learned from [Refactoring Chapter 1](https://learning.oreilly.com/library/view/refactoring-improving-the/9780134757681/).
 
 ### Dependencies
 Run `pnpm install` or `npm install`, check [package.json](https://github.com/willbchang/chrome-read-later/blob/master/package.json#L22) for details. 
@@ -99,7 +99,7 @@ Any improvement to README, issue-template... is welcome.
 |                 [Yasujizr](https://github.com/Yasujizr)                 |
 
 ## Credits
-[![](docs/images/ezgif-logo.png)](https://ezgif.com/)
+[![](assets/images/ezgif-logo.png)](https://ezgif.com/)
 
 ## LICENSE
 [MIT](LICENSE)
