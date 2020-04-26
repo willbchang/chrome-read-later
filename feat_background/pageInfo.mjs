@@ -96,7 +96,7 @@ function createPageInfo(tab, position, selection) {
     : new SelectionInfo(tab, selection)
 }
 
-export function initPageData({tab, position, selection}) {
+export function initPageInfo({tab, position, selection}) {
   const page = createPageInfo(tab, position, selection)
   return {
     url: page.url,
@@ -113,7 +113,7 @@ export function initPageData({tab, position, selection}) {
   }
 }
 
-export async function completePageData(page) {
+export async function completePageInfo(page) {
   if (!page.hasTitle) page.title = await request.getTitle(page.url)
   if (!page.hasFavIconUrl) page.favIconUrl = await request.getFavIcon(page.url)
 
