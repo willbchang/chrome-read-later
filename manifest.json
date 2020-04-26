@@ -14,7 +14,7 @@
         "<all_urls>"
       ],
       "js": [
-        "src/content.js"
+        "feat_content/content.js"
       ]
     }
   ],
