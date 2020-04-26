@@ -1,7 +1,7 @@
-import './prototype.mjs'
-import * as request from './request.mjs'
+import '../modules/prototype.mjs'
+import * as request from '../modules/request.mjs'
 
-class PageGenerator {
+class PageInfo {
   constructor(tab) {
     this.tab = tab
     this.defaultFavIconUrl = '../assets/icons/logo-gray32x32.png'
@@ -50,7 +50,7 @@ class PageGenerator {
   }
 }
 
-class PositionGenerator extends PageGenerator {
+class PositionInfo extends PageInfo {
   constructor(tab, position) {
     super(tab)
     this.scroll = position.scroll
@@ -69,7 +69,7 @@ class PositionGenerator extends PageGenerator {
   }
 }
 
-class SelectionGenerator extends PageGenerator {
+class SelectionInfo extends PageInfo {
   constructor(tab, selection) {
     super(tab)
     this.selection = selection
@@ -88,16 +88,16 @@ class SelectionGenerator extends PageGenerator {
   }
 }
 
-function createPageGenerator(tab, position, selection) {
+function createPageInfo(tab, position, selection) {
   return selection.isEmpty()
     ? position.isEmpty()
-      ? new PageGenerator(tab)
-      : new PositionGenerator(tab, position)
-    : new SelectionGenerator(tab, selection)
+      ? new PageInfo(tab)
+      : new PositionInfo(tab, position)
+    : new SelectionInfo(tab, selection)
 }
 
 export function initPageData({tab, position, selection}) {
-  const page = createPageGenerator(tab, position, selection)
+  const page = createPageInfo(tab, position, selection)
   return {
     url: page.url,
     title: page.title,

@@ -76,7 +76,7 @@ Config shortcuts: `chrome://extensions/shortcuts`, the last two are unable to co
 
 ## Contribution
 This is my first real world problem project. If you feel the code is hard to read or understand, pull request is always welcome.
-[data.mjs](https://github.com/willbchang/chrome-read-later/blob/master/modules/data.mjs)'s code structure is learned from [Refactoring Chapter 1](https://learning.oreilly.com/library/view/refactoring-improving-the/9780134757681/).
+[pageInfo.mjs](https://github.com/willbchang/chrome-read-later/blob/master/modules/pageInfo.mjs)'s code structure is learned from [Refactoring Chapter 1](https://learning.oreilly.com/library/view/refactoring-improving-the/9780134757681/).
 
 ### Dependencies
 Run `pnpm install` or `npm install`, check [package.json](https://github.com/willbchang/chrome-read-later/blob/master/package.json#L22) for details. 
