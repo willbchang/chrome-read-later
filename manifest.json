@@ -4,7 +4,7 @@
     "page": "feat_background/index.html"
   },
   "browser_action": {
-    "default_icon": "icons/logo-orange32x32.png",
+    "default_icon": "assets/icons/logo-orange32x32.png",
     "default_popup": "feat_popup/index.html",
     "default_title": "Read Later"
   },
@@ -36,10 +36,10 @@
   },
   "description": "Read current tab or selected link/page later.",
   "icons": {
-    "128": "icons/logo-orange128x128.png",
-    "16": "icons/logo-orange16x16.png",
-    "32": "icons/logo-orange32x32.png",
-    "48": "icons/logo-orange48x48.png"
+    "128": "assets/icons/logo-orange128x128.png",
+    "16": "assets/icons/logo-orange16x16.png",
+    "32": "assets/icons/logo-orange32x32.png",
+    "48": "assets/icons/logo-orange48x48.png"
   },
   "manifest_version": 2,
   "name": "Read Later",
