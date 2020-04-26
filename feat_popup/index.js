@@ -1,4 +1,4 @@
-import {renderHtmlList} from '../modules/data.mjs'
+import * as html from './htmlRender.mjs'
 import * as extension from '../modules_chrome/runtime.mjs'
 import * as storage from '../modules_chrome/storage.mjs'
 
@@ -7,7 +7,7 @@ import * as storage from '../modules_chrome/storage.mjs'
   // Init reading list
   const ul = $('ul')
   const pages = await storage.sortByLatest()
-  pages.map(page => ul.append(renderHtmlList(page)))
+  pages.map(page => ul.append(html.renderListFrom(page)))
 
   // Listen mouse and keyboard events
   ul.on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
