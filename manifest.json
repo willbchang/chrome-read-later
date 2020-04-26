@@ -1,7 +1,7 @@
 {
   "background": {
     "persistent": true,
-    "page": "src/background.html"
+    "page": "feat_background/background.html"
   },
   "browser_action": {
     "default_icon": "icons/logo-orange32x32.png",
