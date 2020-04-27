@@ -28,32 +28,45 @@ function performAction(event) {
   // Close index.html when loading in current tab.
   // Update current tab won't close index.html automatically,
   // but create a new tab does.
-  window.close()
+  // window.close()
 }
 
 function listenOnKeyboard(event) {
-  if (event.key === 'Enter') sendUrlToBackground(event)
-  if (event.key === 'Backspace') removeReadingItem(event)
+  const keyboardActions = {
+    Enter: () => sendUrlToBackground(event),
+    Backspace: () => removeReadingItem(event),
+  }
+
+  try {
+    keyboardActions[event.key]()
+  } catch (e) {
+    console.log('Catch default keyboard action: ', event.key)
+  }
 }
 
 function sendUrlToBackground(event) {
-  let url
-  if (event.target.tagName === 'A') url = event.target.href
-  if (event.target.tagName === 'LI') url = event.target.childNodes[3].href
-  if (event.target.tagName === 'SPAN') url = event.target.previousSibling.previousSibling.href
+  const urlStore = {
+    A: () => event.target.href,
+    LI: () => event.target.childNodes[3].href,
+    SPAN: () => event.target.previousSibling.previousSibling.href,
+  }
 
-  extension.sendMessage({url})
+  extension.sendMessage({url: urlStore[event.target.tagName]()})
 }
 
 function removeReadingItem(event) {
-  if (event.target.tagName === 'LI') {
-    event.target.remove()
-    storage.remove(event.target.childNodes[3].href)
+  const urlStore = {
+    LI: () => event.target.childNodes[3].href,
+    IMG: () => event.target.nextElementSibling.href
   }
-  if (event.target.tagName === 'IMG') {
-    event.target.parentNode.remove()
-    storage.remove(event.target.nextElementSibling.href)
+
+  const removeActions = {
+    LI: () => event.target.remove(),
+    IMG: () => event.target.parentNode.remove(),
   }
+
+  storage.remove(urlStore[event.target.tagName]())
+  removeActions[event.target.tagName]()
 }
 
 function showDeleteIcon(event) {
