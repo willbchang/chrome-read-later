@@ -1,6 +1,7 @@
 import * as html from './htmlRender.mjs'
 import * as storage from '../modules_chrome/storage.mjs'
-import * as action from './action.js'
+import dispatchClick from './mouse.js'
+import dispatchKeydown from './keyboard.js'
 
 (async () => {
   // Init reading list
@@ -10,8 +11,8 @@ import * as action from './action.js'
 
   // Listen mouse and keys events
   ul.on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
-    .on('click', action.click)
-    .on('keydown', action.keydown)
+    .on('click', dispatchClick)
+    .on('keydown', dispatchKeydown)
 })()
 
 function showDeleteIcon(event) {
