@@ -1,4 +1,4 @@
-import * as html from './htmlRender.mjs'
+import * as html from './virtualDom.js'
 import * as storage from '../modules_chrome/storage.mjs'
 import dispatchClick from './mouse.js'
 import dispatchKeydown from './keyboard.js'
