@@ -1,13 +1,11 @@
 import * as action from './action.js'
+import * as filter from './filter.js'
 
-export const keydown = ({target, key}) => {
+export const keydown = event => {
   try {
-    return {
-      Enter: () => action.open(target),
-      Backspace: () => action.remove(target),
-    }[key]()
+    filter.keyAction(event)
   } catch (e) {
-    console.log('Catch default keys action: ', key)
+    console.log('Catch default keys action: ', event.key)
   }
 }
 
