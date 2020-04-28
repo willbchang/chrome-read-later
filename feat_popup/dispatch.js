@@ -1,6 +1,6 @@
 import * as action from './action.js'
 
-const dispatchKeydown = ({target, key}) => {
+export const keydown = ({target, key}) => {
   try {
     return {
       Enter: () => action.open(target),
@@ -11,4 +11,11 @@ const dispatchKeydown = ({target, key}) => {
   }
 }
 
-export default dispatchKeydown
+
+export const click = event => {
+  event.preventDefault()
+
+  event.target.tagName === 'IMG'
+    ? action.remove(event.target)
+    : action.open(event.target)
+}

@@ -1,7 +1,6 @@
 import * as html from './virtualDom.js'
 import * as storage from '../modules_chrome/storage.mjs'
-import dispatchClick from './mouse.js'
-import dispatchKeydown from './keyboard.js'
+import * as dispatch from './dispatch.js'
 
 (async () => {
   // Init reading list
@@ -11,8 +10,8 @@ import dispatchKeydown from './keyboard.js'
 
   // Listen mouse and keys events
   ul.on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
-    .on('click', dispatchClick)
-    .on('keydown', dispatchKeydown)
+    .on('click', dispatch.click)
+    .on('keydown', dispatch.keydown)
 })()
 
 function showDeleteIcon(event) {
