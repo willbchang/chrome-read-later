@@ -3,12 +3,10 @@ import * as storage from '../modules_chrome/storage.mjs'
 import * as filter from './filter.js'
 
 export const remove = target => {
-  const url = filter.url(target)
   filter.remove(target)
-  storage.remove(url)
+  storage.remove(filter.url(target))
 }
 
 export const open = target => {
-  const url = filter.url(target)
-  extension.sendMessage({url})
+  extension.sendMessage({url: filter.url(target)})
 }
