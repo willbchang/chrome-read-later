@@ -30,3 +30,6 @@ export const key = ({key, metaKey, altKey}, lastKey) => {
     p: () => 'p',
   }[key]()
 }
+
+export const mouse = ({metaKey, altKey}) =>
+  metaKey ? 'Meta + Click' : altKey ? 'Alt + Click' : 'Click'
