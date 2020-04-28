@@ -25,7 +25,7 @@ export const key = ({key, metaKey, altKey}) => {
     Backspace: () => 'Backspace',
     ArrowUp: () => 'ArrowUp',
     ArrowDown: () => 'ArrowDown',
-    z: () => metaKey ? 'Command + z' : 'z',
+    z: () => metaKey ? 'Meta + z' : 'z',
     j: () => 'j',
     k: () => 'k',
     g: () => lastKey === 'g' ? 'gg' : 'g',
