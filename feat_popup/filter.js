@@ -1,3 +1,5 @@
+import * as action from './action.js'
+
 export const url = target => {
   return {
     A: () => target.href,
@@ -17,6 +19,7 @@ export const element = target => {
 
 export const key = ({key, metaKey, altKey}) => {
   const lastKey = localStorage.getItem('lastKey')
+  localStorage.setItem('lastKey', key)
   return {
     Enter: () => metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
     Backspace: () => 'Backspace',
@@ -30,6 +33,19 @@ export const key = ({key, metaKey, altKey}) => {
     y: () => lastKey === 'y' ? 'yy' : 'y',
     p: () => 'p',
   }[key]()
+}
+
+export const keyAction = event => {
+  const {target} = event
+  return {
+    Enter: () => action.open(target),
+    Backspace: () => action.remove(target),
+    j: () => action.down(target),
+    k: () => action.up(target),
+    gg: () => action.top(),
+    G: () => action.bottom(),
+    dd: () => action.remove(target),
+  }[key(event)]()
 }
 
 export const mouse = ({metaKey, altKey}) =>
