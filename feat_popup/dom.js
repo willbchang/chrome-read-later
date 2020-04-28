@@ -1,4 +1,4 @@
-export const getUrlFrom = target => {
+export const url = target => {
   return {
     A: () => target.href,
     LI: () => target.childNodes[3].href,
