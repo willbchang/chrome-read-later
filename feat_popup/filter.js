@@ -8,10 +8,10 @@ export const url = target => {
 }
 
 
-export const remove = target => {
+export const element = target => {
   return {
-    LI: () => target.remove(),
-    IMG: () => target.parentNode.remove(),
+    LI: () => target,
+    IMG: () => target.parentNode,
   }[target.tagName]()
 }
 

@@ -3,7 +3,7 @@ import * as storage from '../modules_chrome/storage.mjs'
 import * as filter from './filter.js'
 
 export const remove = target => {
-  filter.remove(target)
+  filter.element(target).remove()
   storage.remove(filter.url(target))
 }
 
