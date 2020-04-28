@@ -12,6 +12,8 @@ import * as dispatch from './dispatch.js'
   ul.on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
     .on('click', dispatch.click)
     .on('keydown', dispatch.keydown)
+
+  localStorage.clear()
 })()
 
 function showDeleteIcon(event) {
@@ -25,6 +27,5 @@ function isDarkMode() {
 
 function showFavIcon(event) {
   event.target.src = localStorage.getItem('src')
-  localStorage.clear()
 }
 
