@@ -22,6 +22,6 @@ export const down = target => {
 }
 
 
-export const top = () => scroll(0, 0)
+export const top = () => $('li').first().focus()
 
-export const bottom = () => scroll(0, document.body.scrollHeight)
+export const bottom = () => $('li').last().focus()
