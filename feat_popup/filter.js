@@ -23,6 +23,8 @@ export const key = ({key, metaKey, altKey}) => {
   return {
     Enter: () => metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
     Backspace: () => 'Backspace',
+    ArrowUp: () => 'ArrowUp',
+    ArrowDown: () => 'ArrowDown',
     z: () => metaKey ? 'Command + z' : 'z',
     j: () => 'j',
     k: () => 'k',
@@ -40,6 +42,8 @@ export const keyAction = event => {
   return {
     Enter: () => action.open(target),
     Backspace: () => action.remove(target),
+    ArrowUp: () => action.up(target),
+    ArrowDown: () => action.down(target),
     j: () => action.down(target),
     k: () => action.up(target),
     gg: () => action.top(),
