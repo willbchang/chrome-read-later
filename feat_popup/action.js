@@ -10,3 +10,17 @@ export const remove = target => {
 export const open = target => {
   extension.sendMessage({url: filter.url(target)})
 }
+
+
+export const up = target => {
+  $(target).closest('li').prev('li').focus()
+}
+
+export const down = target => {
+  $(target).closest('li').next('li').focus()
+}
+
+
+export const top = () => scroll(0, 0)
+
+export const bottom = () => scroll(0, document.body.scrollHeight)
