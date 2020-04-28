@@ -15,7 +15,8 @@ export const element = target => {
   }[target.tagName]()
 }
 
-export const key = ({key, metaKey, altKey}, lastKey) => {
+export const key = ({key, metaKey, altKey}) => {
+  const lastKey = localStorage.getItem('lastKey')
   return {
     Enter: () => metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
     Backspace: () => 'Backspace',
