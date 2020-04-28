@@ -13,7 +13,8 @@ import * as dispatch from './dispatch.js'
     .on('click', dispatch.click)
     .on('keydown', dispatch.keydown)
 
-  localStorage.clear()
+  localStorage.removeItem('lastKey')
+  localStorage.removeItem('src')
 })()
 
 function showDeleteIcon(event) {
