@@ -13,6 +13,8 @@ import * as dispatch from './dispatch.js'
     .on('click', dispatch.click)
     .on('keydown', dispatch.keydown)
 
+  $('li')[0].focus()
+
   localStorage.removeItem('lastKey')
   localStorage.removeItem('src')
 })()
