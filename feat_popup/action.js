@@ -1,12 +1,13 @@
 import * as extension from '../modules_chrome/runtime.mjs'
-import * as storage from '../modules_chrome/storage.mjs'
 import * as filter from './filter.js'
 
 export const remove = target => {
   filter.element(target).fadeOut()
   down(target)
-  filter.element(target).remove()
-  storage.remove(filter.url(target))
+  const dependingUrls = JSON.parse(localStorage.getItem('dependingUrls') || '[]')
+  dependingUrls.push(filter.url(target))
+  console.log(dependingUrls)
+  localStorage.setItem('dependingUrls', JSON.stringify(dependingUrls))
 }
 
 export const open = target => {

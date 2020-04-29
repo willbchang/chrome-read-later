@@ -3,6 +3,10 @@ import * as storage from '../modules_chrome/storage.mjs'
 import * as dispatch from './dispatch.js'
 
 (async () => {
+  JSON.parse(localStorage.getItem('dependingUrls') || '[]')
+    .forEach(storage.remove)
+  localStorage.removeItem('dependingUrls')
+
   // Init reading list
   const ul = $('ul')
   const pages = await storage.sortByLatest()
