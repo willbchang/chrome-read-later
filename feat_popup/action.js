@@ -11,6 +11,14 @@ export const remove = target => {
   localStorage.setItem('dependingUrls', JSON.stringify(dependingUrls))
 }
 
+export const restore = () => {
+  const dependingUrls = JSON.parse(localStorage.getItem('dependingUrls') || '[]')
+  const url = dependingUrls.pop()
+  // eslint-disable-next-line no-undef
+  $(`a[href="${url}"]`).parent().fadeIn().focus()
+  localStorage.setItem('dependingUrls', JSON.stringify(dependingUrls))
+}
+
 export const open = target => {
   extension.sendMessage({url: filter.url(target)})
 }
