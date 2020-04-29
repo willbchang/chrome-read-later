@@ -20,18 +20,18 @@ export const open = target => {
 
 
 export const up = target => {
-  $(target).closest('li').prev('li').focus()
+  $(target).prevAll(':visible:first').focus()
 }
 
 export const down = target => {
-  $(target).closest('li').next('li').focus()
+  $(target).nextAll(':visible:first').focus()
 }
 
 
 export const top = () => {
-  $('li').first().focus()
+  $('li:visible').first().focus()
 }
 
 export const bottom = () => {
-  $('li').last().focus()
+  $('li:visible').last().focus()
 }
