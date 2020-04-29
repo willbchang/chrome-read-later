@@ -19,6 +19,7 @@ export const restore = () => {
 }
 
 export const open = ({target, currentTab = false, active = true}) => {
+  onChange(target)
   extension.sendMessage({url: filter.url(target), currentTab, active})
   if (currentTab) window.close()
 }
