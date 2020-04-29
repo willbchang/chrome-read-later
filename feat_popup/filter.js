@@ -12,8 +12,8 @@ export const url = target => {
 
 export const element = target => {
   return {
-    LI: () => target,
-    IMG: () => target.parentNode,
+    LI: () => $(target),
+    IMG: () => $(target.parentNode),
   }[target.tagName]()
 }
 
