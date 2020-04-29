@@ -2,10 +2,14 @@ import * as extension from '../modules_chrome/runtime.mjs'
 import * as filter from './filter.js'
 import * as local from './localStorage.mjs'
 
+function onChange(target) {
+  filter.element(target)
+    .fadeOut()
+    .is(':last-child') ? up(target) : down(target)
+}
+
 export const remove = target => {
-  const li = filter.element(target)
-  li.fadeOut()
-  li.is(':last-child') ? up(target) : down(target)
+  onChange(target)
   local.setArray('dependingUrls', filter.url(target))
 }
 
