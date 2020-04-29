@@ -24,6 +24,10 @@ export const down = target => {
 }
 
 
-export const top = () => $('li').first().focus()
+export const top = () => {
+  $('li').first().focus()
+}
 
-export const bottom = () => $('li').last().focus()
+export const bottom = () => {
+  $('li').last().focus()
+}
