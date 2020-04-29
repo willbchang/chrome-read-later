@@ -10,11 +10,8 @@ export const remove = target => {
 }
 
 export const restore = () => {
-  const dependingUrls = JSON.parse(localStorage.getItem('dependingUrls') || '[]')
-  const url = dependingUrls.pop()
-  // eslint-disable-next-line no-undef
+  const url = local.popArray('dependingUrls')
   $(`a[href="${url}"]`).parent().fadeIn().focus()
-  localStorage.setItem('dependingUrls', JSON.stringify(dependingUrls))
 }
 
 export const open = target => {
