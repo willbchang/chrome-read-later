@@ -19,8 +19,7 @@ export const element = target => {
 
 export const key = ({key, metaKey, altKey}) => {
   const lastKey = localStorage.getItem('lastKey')
-  localStorage.setItem('lastKey', key)
-  return {
+  const keyBinding = {
     Enter: () => metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
     Backspace: () => 'Backspace',
     ArrowUp: () => 'ArrowUp',
@@ -35,6 +34,9 @@ export const key = ({key, metaKey, altKey}) => {
     y: () => lastKey === 'y' ? 'yy' : 'y',
     p: () => 'p',
   }[key]()
+
+  localStorage.setItem('lastKey', keyBinding)
+  return keyBinding
 }
 
 export const keyAction = event => {
