@@ -37,12 +37,12 @@ async function updateStorage({tab, position = {}, selection = {}}) {
 }
 
 async function openPage({url, currentTab, active}) {
-  const newTab = currentTab ? await tabs.update(url) : await tabs.create(url, active)
+  const tab = currentTab ? await tabs.update(url) : await tabs.create(url, active)
 
   const position = await storage.getScrollPosition(url)
   storage.remove(url)
 
-  const tabId = await tabs.onComplete(newTab)
+  const tabId = await tabs.onComplete(tab)
   await tabs.sendMessage(tabId, {...position, info: 'set position'})
 }
 
