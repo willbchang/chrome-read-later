@@ -5,7 +5,7 @@ import * as local from './localStorage.mjs'
 
 (async () => {
   local.getArray('dependingUrls').forEach(storage.remove)
-  localStorage.removeItem('dependingUrls')
+  localStorage.clear()
 
   // Init reading list
   const ul = $('ul')
@@ -18,9 +18,6 @@ import * as local from './localStorage.mjs'
     .on('keydown', dispatch.keydown)
 
   $('li')[0].focus()
-
-  localStorage.removeItem('lastKey')
-  localStorage.removeItem('src')
 })()
 
 function showDeleteIcon(event) {
