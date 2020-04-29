@@ -42,6 +42,7 @@ export const keyAction = event => {
   return {
     Enter: () => action.open(target),
     Backspace: () => action.remove(target),
+    'Meta + z': () => action.restore(),
     ArrowUp: () => action.up(target),
     ArrowDown: () => action.down(target),
     j: () => action.down(target),
@@ -49,6 +50,7 @@ export const keyAction = event => {
     gg: () => action.top(),
     G: () => action.bottom(),
     dd: () => action.remove(target),
+    u: () => action.restore(),
   }[key(event)]()
 }
 
