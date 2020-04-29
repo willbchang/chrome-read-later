@@ -22,13 +22,13 @@ export function remove(tab) {
 }
 
 // https://developer.chrome.com/extensions/tabs#method-create
-export function create(href, active) {
-  return new Promise(resolve => chrome.tabs.create({url: href, active}, resolve))
+export function create(url, active) {
+  return new Promise(resolve => chrome.tabs.create({url, active}, resolve))
 }
 
 // https://developer.chrome.com/extensions/tabs#method-update
-export function update(href) {
-  return new Promise(resolve => chrome.tabs.update(null, {url: href}, resolve))
+export function update(url) {
+  return new Promise(resolve => chrome.tabs.update(null, {url}, resolve))
 }
 
 export function empty() {
