@@ -1,14 +1,12 @@
 import * as extension from '../modules_chrome/runtime.mjs'
 import * as filter from './filter.js'
+import * as local from './localStorage.mjs'
 
 export const remove = target => {
   const li = filter.element(target)
   li.fadeOut()
   li.is(':last-child') ? up(target) : down(target)
-
-  const dependingUrls = JSON.parse(localStorage.getItem('dependingUrls') || '[]')
-  dependingUrls.push(filter.url(target))
-  localStorage.setItem('dependingUrls', JSON.stringify(dependingUrls))
+  local.setArray('dependingUrls', filter.url(target))
 }
 
 export const restore = () => {
