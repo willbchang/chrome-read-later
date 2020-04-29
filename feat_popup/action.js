@@ -19,7 +19,6 @@ export const open = ({target, currentTab = false, active = true}) => {
   if (currentTab) window.close()
 }
 
-
 export const up = target => {
   $(target).prevAll(':visible:first').focus()
 }
@@ -27,7 +26,6 @@ export const up = target => {
 export const down = target => {
   $(target).nextAll(':visible:first').focus()
 }
-
 
 export const top = () => {
   $('li:visible').first().focus()
