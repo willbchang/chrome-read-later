@@ -15,5 +15,5 @@ export const click = event => {
 
   event.target.tagName === 'IMG'
     ? action.remove(event.target)
-    : action.open(event.target)
+    : action.open(event)
 }

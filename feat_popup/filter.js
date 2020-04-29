@@ -42,7 +42,9 @@ export const key = ({key, metaKey, altKey}) => {
 export const keyAction = event => {
   const {target} = event
   return {
-    Enter: () => action.open(target),
+    Enter: () => action.open({target}),
+    'Meta + Enter': () => action.open({target, active: false}),
+    'Alt + Enter': () => action.open({target, currentTab: true}),
     Backspace: () => action.remove(target),
     'Meta + z': () => action.restore(),
     ArrowUp: () => action.up(target),

@@ -36,10 +36,8 @@ async function updateStorage({tab, position = {}, selection = {}}) {
   await storage.set(page)
 }
 
-async function openPage({url}) {
-  const newTab = await tabs.isEmptyTab()
-    ? await tabs.update(url)
-    : await tabs.create(url)
+async function openPage({url, currentTab, active}) {
+  const newTab = currentTab ? await tabs.update(url) : await tabs.create(url, active)
 
   const position = await storage.getScrollPosition(url)
   storage.remove(url)

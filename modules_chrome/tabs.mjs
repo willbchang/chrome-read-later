@@ -22,8 +22,8 @@ export function remove(tab) {
 }
 
 // https://developer.chrome.com/extensions/tabs#method-create
-export function create(href) {
-  return new Promise(resolve => chrome.tabs.create({url: href}, resolve))
+export function create(href, active) {
+  return new Promise(resolve => chrome.tabs.create({url: href, active}, resolve))
 }
 
 // https://developer.chrome.com/extensions/tabs#method-update

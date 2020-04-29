@@ -14,8 +14,9 @@ export const restore = () => {
   $(`a[href="${url}"]`).parent().fadeIn().focus()
 }
 
-export const open = target => {
-  extension.sendMessage({url: filter.url(target)})
+export const open = ({target, currentTab = false, active = true}) => {
+  extension.sendMessage({url: filter.url(target), currentTab, active})
+  if (currentTab) window.close()
 }
 
 
