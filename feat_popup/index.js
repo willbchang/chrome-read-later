@@ -1,10 +1,10 @@
+import '../modules/prototype.mjs'
 import * as html from './virtualDom.js'
 import * as storage from '../modules_chrome/storage.mjs'
 import * as dispatch from './dispatch.js'
-import * as local from './localStorage.mjs'
 
 (async () => {
-  local.getArray('dependingUrls').forEach(storage.remove)
+  localStorage.getArray('dependingUrls').forEach(storage.remove)
   localStorage.clear()
 
   // Init reading list

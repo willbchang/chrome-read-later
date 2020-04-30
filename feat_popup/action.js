@@ -1,6 +1,5 @@
 import * as extension from '../modules_chrome/runtime.mjs'
 import * as filter from './filter.js'
-import * as local from './localStorage.mjs'
 
 function onHide(target) {
   const li = filter.element(target)
@@ -10,11 +9,11 @@ function onHide(target) {
 
 export const remove = target => {
   onHide(target)
-  local.setArray('dependingUrls', filter.url(target))
+  localStorage.setArray('dependingUrls', filter.url(target))
 }
 
 export const restore = () => {
-  const url = local.popArray('dependingUrls')
+  const url = localStorage.popArray('dependingUrls')
   $(`a[href="${url}"]`).parent().fadeIn().focus()
 }
 
