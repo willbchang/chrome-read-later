@@ -3,9 +3,10 @@ import * as filter from './filter.js'
 
 function onHide(target) {
   const li = filter.element(target)
-  li.fadeOut('normal', () =>
-    li.is(':last-child') ? up(target) : down(target)
-  )
+  li.fadeOut('normal', () => {
+    const isLastLi = li.prevAll(':visible:first').attr('id') === $('li:visible').last().attr('id')
+    isLastLi ? up(target) : down(target)
+  })
 }
 
 export const remove = target => {
