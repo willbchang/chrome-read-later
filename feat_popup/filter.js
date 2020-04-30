@@ -14,6 +14,8 @@ export const element = target => {
   return {
     LI: () => $(target),
     IMG: () => $(target.parentNode),
+    A: () => $(target.parentNode),
+    SPAN: () => $(target.parentNode),
   }[target.tagName]()
 }
 
