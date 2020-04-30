@@ -2,14 +2,14 @@ import * as extension from '../modules_chrome/runtime.mjs'
 import * as filter from './filter.js'
 import * as local from './localStorage.mjs'
 
-function onChange(target) {
+function onHide(target) {
   const li = filter.element(target)
   li.is(':last-child') ? up(target) : down(target)
   li.fadeOut()
 }
 
 export const remove = target => {
-  onChange(target)
+  onHide(target)
   local.setArray('dependingUrls', filter.url(target))
 }
 
@@ -19,7 +19,7 @@ export const restore = () => {
 }
 
 export const open = ({target, currentTab = false, active = true}) => {
-  onChange(target)
+  onHide(target)
   extension.sendMessage({url: filter.url(target), currentTab, active})
   if (currentTab) window.close()
 }
