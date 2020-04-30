@@ -15,7 +15,7 @@ import * as dispatch from './dispatch.js'
   // Listen mouse and keys events
   ul.on({mouseenter: showDeleteIcon, mouseleave: showFavIcon}, 'img')
     .on('click', dispatch.click)
-    .on('keydown', dispatch.keydown)
+  $('body').on('keydown', dispatch.keydown)
 
   $('li')[0].focus()
 })()
