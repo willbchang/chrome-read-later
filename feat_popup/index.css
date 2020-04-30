@@ -41,6 +41,10 @@ a {
     cursor: default;
 }
 
+a:focus {
+    outline: none;
+}
+
 img {
     margin-right: 8px;
     padding: 1px;
