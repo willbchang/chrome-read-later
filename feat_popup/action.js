@@ -3,9 +3,9 @@ import * as filter from './filter.js'
 import * as local from './localStorage.mjs'
 
 function onChange(target) {
-  filter.element(target)
-    .fadeOut()
-    .is(':last-child') ? up(target) : down(target)
+  const li = filter.element(target)
+  li.is(':last-child') ? up(target) : down(target)
+  li.fadeOut()
 }
 
 export const remove = target => {
