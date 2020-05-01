@@ -62,3 +62,13 @@ export const keyAction = event => {
 
 export const mouse = ({metaKey, altKey}) =>
   metaKey ? 'Meta + Click' : altKey ? 'Alt + Click' : 'Click'
+
+export const mouseAction = (event) => {
+  const {target} = event
+  if (target.tagName === 'IMG') return action.remove(target)
+  return {
+    Click:          () => action.open({target}),
+    'Meta + Click': () => action.open({target, active: false}),
+    'Alt + Click':  () => action.open({target, currentTab: true}),
+  }[mouse(event)]()
+}

@@ -1,4 +1,3 @@
-import * as action from './action.js'
 import * as filter from './filter.js'
 
 export const keydown = event => {
@@ -13,7 +12,9 @@ export const keydown = event => {
 export const click = event => {
   event.preventDefault()
 
-  event.target.tagName === 'IMG'
-    ? action.remove(event.target)
-    : action.open(event)
+  try {
+    filter.mouseAction(event)
+  } catch (e) {
+    console.log('Catch click action error: ', e)
+  }
 }
