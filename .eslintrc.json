@@ -30,6 +30,13 @@
     "semi": [
       "error",
       "never"
+    ],
+    "key-spacing": [
+      "error",
+      {
+        "mode": "minimum",
+        "align": "value"
+      }
     ]
   }
 }
