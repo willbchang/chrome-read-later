@@ -14,37 +14,39 @@
 
 ## Usages
 ### Mouse Click
-In the browser:
-- <kbd>Right Click</kbd> link and select **Read Later** in context menus to save the target link info.
-- <kbd>Right Click</kbd> page and select **Read Later** in context menus to save page info and close current tab.
-- <kbd>Click</kbd> the icon to open the reading List.
+**Current Page**:
+- `Right Click` a link and select **Read Later** in context menus to save the target link info.
+- `Right Click` current page and select **Read Later** in context menus to save page info and close current tab.
+- `Click` the icon to open the **Reading List**(Popup Window).
 
-In the reading list:
-- <kbd>Click</kbd>(image): delete current link.
-- <kbd>Click</kbd>(link): open link in a new tab.
-- <kbd>Alt</kbd> + <kbd>Click</kbd>(link): open select link in the current tab.
-- <kbd>Command</kbd> + <kbd>Click</kbd>(link): open select link in a new tab and stay in the current tab.
+**Reading List**(Popup Window):
+- `Mouse Hover`: **show** full title and link.
+- `Mouse Hover`: **show** the delete icon.
+- `Click(image)`: **delete** current link.
+- `Click(image)`: **open** link in a new tab.
+- <kbd>Alt</kbd> + `Click`: **open** link in current tab.
+- <kbd>Command</kbd> + `Click`: **open** link in a new tab and stay in current tab.
 
 ### Keyboard Shortcuts
-In the browser:
+**Current Page**:
 - <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>: **Save** current page info.
 - <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>: **Zoom Out** reading list.
 
-In the reading list:
-- <kbd>↑</kbd>: move to next link.
-- <kbd>↓</kbd>: move to previous link.
-- <kbd>Backspace</kbd>: delete current link.
-- <kbd>Enter</kbd>: open select link in a new tab.
-- <kbd>Alt</kbd> + <kbd>Enter</kbd>: open select link in the current tab.
-- <kbd>Command</kbd> + <kbd>Enter</kbd>: open select link in a new tab and stay in the current tab.
+**Reading List**(Popup Window):
+- <kbd>↑</kbd>: **move** to **next** link.
+- <kbd>↓</kbd>: **move** to **previous** link.
+- <kbd>Backspace</kbd>: **delete** current link.
+- <kbd>Enter</kbd>: **open** select link in a new tab.
+- <kbd>Alt</kbd> + <kbd>Enter</kbd>: **open** link in current tab.
+- <kbd>Command</kbd> + <kbd>Enter</kbd>: **open** link in a new tab and stay in current tab.
 
 For Vim user:
-- <kbd>j</kbd>: move to next link.
-- <kbd>k</kbd>: move to previous link.
-- <kbd>gg</kbd>: move to the first link.
-- <kbd>G</kbd>: move to the last link.
-- <kbd>dd</kbd>: delete a link.
-- <kbd>u</kbd>: restore a deletion.
+- <kbd>j</kbd>: **move** to **next** link.
+- <kbd>k</kbd>: **move** to **previous** link.
+- <kbd>gg</kbd>: **move** to the **first** link.
+- <kbd>G</kbd>: **move** to the **last** link.
+- <kbd>dd</kbd>: **delete** a link.
+- <kbd>u</kbd>: **restore** a deletion.
 
 ## Features
 - It saves almost all kinds of pages in any situation: `http://`, `https://`, `chrome://`, `localhost:`...
