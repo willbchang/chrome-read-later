@@ -11,6 +11,14 @@
 
 [Manual Installation](https://github.com/willbchang/chrome-read-later/wiki/Manual-Installation)
 
+## Features
+- It saves almost all kinds of pages in any situation: `http://`, `https://`, `chrome://`, `localhost:`...
+- It saves the reading progress of current page, **works on most pages**(I'm improving it).
+- It syncs the reading list to your browser automatically, you can use one reading list in multiple Chrome browsers with one google account.
+
+Check [todo list](https://github.com/willbchang/chrome-read-later/wiki/TODO) for the future features.
+
+Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bilibili.com/*`, or some sites has multiple scroll bars.
 
 ## Usages
 ### Mouse Click
@@ -21,11 +29,11 @@
 
 **Reading List**(Popup Window):
 - `Mouse Hover`: **show** full title and link.
-- `Mouse Hover`: **show** the delete icon.
+- `Mouse Hover(image)`: **show** the delete icon.
+- `Click`: **open** link in a **new tab**.
 - `Click(image)`: **delete** current link.
-- `Click(image)`: **open** link in a new tab.
-- <kbd>Alt</kbd> + `Click`: **open** link in current tab.
-- <kbd>Command</kbd> + `Click`: **open** link in a new tab and stay in current tab.
+- <kbd>Alt</kbd> + `Click`:  **update** link in **current tab**.
+- <kbd>Command</kbd> + `Click`: **open** link in a **new tab** and **stay** in **current tab**, and **keep reading list**.
 
 ### Keyboard Shortcuts
 **Current Page**:
@@ -36,9 +44,9 @@
 - <kbd>↑</kbd>: **move** to **next** link.
 - <kbd>↓</kbd>: **move** to **previous** link.
 - <kbd>Backspace</kbd>: **delete** current link.
-- <kbd>Enter</kbd>: **open** select link in a new tab.
-- <kbd>Alt</kbd> + <kbd>Enter</kbd>: **open** link in current tab.
-- <kbd>Command</kbd> + <kbd>Enter</kbd>: **open** link in a new tab and stay in current tab.
+- <kbd>Enter</kbd>: **open** select link in a **new tab**.
+- <kbd>Alt</kbd> + <kbd>Enter</kbd>: **update** link in **current tab**.
+- <kbd>Command</kbd> + <kbd>Enter</kbd>: **open** link in a **new tab** and **stay** in **current tab**, and **keep reading list**.
 
 For Vim user:
 - <kbd>j</kbd>: **move** to **next** link.
@@ -47,13 +55,6 @@ For Vim user:
 - <kbd>G</kbd>: **move** to the **last** link.
 - <kbd>dd</kbd>: **delete** a link.
 - <kbd>u</kbd>: **restore** a deletion.
-
-## Features
-- It saves almost all kinds of pages in any situation: `http://`, `https://`, `chrome://`, `localhost:`...
-- It saves the reading progress of current page, **works on most pages**(I'll improving it).
-- It syncs the reading list to your browser(sign in google account first) automatically, you can use one reading list with multiple Chrome Browsers.
-Check [todo list](https://github.com/willbchang/chrome-read-later/wiki/TODO).
-Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bilibili.com/*`, or some sites has multiple scroll bars.
 
 ## Contribution
 Please read [contribution guide](https://github.com/willbchang/chrome-read-later/wiki/Contribution-Guide) first.
