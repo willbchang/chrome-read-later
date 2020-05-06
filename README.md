@@ -38,17 +38,19 @@ Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bi
 ### Keyboard Shortcuts
 **Current Page**:
 - <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>: **Save** current page info.
-- <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>: **Zoom Out** reading list.
+- <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>: **Zoom In/Out** reading list.
 
 **Reading List**(Popup Window):
 - <kbd>↑</kbd>: **move** to **next** link.
 - <kbd>↓</kbd>: **move** to **previous** link.
 - <kbd>Backspace</kbd>: **delete** current link.
+- <kbd>Command</kbd> + <kbd>z</kbd>: **restore** a deletion.
 - <kbd>Enter</kbd>: **open** select link in a **new tab**.
 - <kbd>Alt</kbd> + <kbd>Enter</kbd>: **update** link in **current tab**.
 - <kbd>Command</kbd> + <kbd>Enter</kbd>: **open** link in a **new tab** and **stay** in **current tab**, and **keep reading list**.
 
-For Vim user:
+**For Vim user**(Reading List):
+- <kbd>Esc</kbd>: **close reading list**.
 - <kbd>j</kbd>: **move** to **next** link.
 - <kbd>k</kbd>: **move** to **previous** link.
 - <kbd>gg</kbd>: **move** to the **first** link.
