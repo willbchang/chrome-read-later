@@ -21,7 +21,7 @@ export function onInstalled(callback) {
 
 export function createNotification(title, message) {
   const options = {
-    type: 'basic',
+    type:    'basic',
     title,
     message,
     iconUrl: '../assets/icons/logo-orange128x128.png',

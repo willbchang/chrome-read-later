@@ -33,7 +33,7 @@ export function getPosition() {
   const scroll = new ScrollPosition({})
   return {
     scroll: {
-      top: scroll.top,
+      top:    scroll.top,
       bottom: scroll.bottom,
       height: scroll.height,
     },
