@@ -12,6 +12,7 @@
 [Manual Installation](https://github.com/willbchang/chrome-read-later/wiki/Manual-Installation)
 
 ## Features
+*Note: The Read Later in chrome store is 2.3.0, the intro is for 3.0.0 and it's pending review(please wait 3 ~ 7 days).*
 - It saves almost all kinds of pages in any situation: `http://`, `https://`, `chrome://`, `localhost:`...
 - It saves the reading progress of current page, **works on most pages**(I'm improving it).
 - It syncs the reading list to your browser automatically, you can use one reading list in multiple Chrome browsers with one google account.
@@ -49,7 +50,7 @@ Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bi
 - <kbd>Alt</kbd> + <kbd>Enter</kbd>: **update** link in **current tab**.
 - <kbd>Command</kbd> + <kbd>Enter</kbd>: **open** link in a **new tab** and **stay** in **current tab**, and **keep reading list**.
 
-**For Vim user**(Reading List):
+**For Vim user**(Popup Window):
 - <kbd>Esc</kbd>: **close reading list**.
 - <kbd>j</kbd>: **move** to **next** link.
 - <kbd>k</kbd>: **move** to **previous** link.
