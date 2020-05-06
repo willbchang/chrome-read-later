@@ -21,21 +21,22 @@ export const element = target => {
 
 export const key = ({key, metaKey, altKey}) => {
   const lastKey = localStorage.getItem('lastKey')
+
   const keyBinding = {
-    Enter:     () => metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
-    Backspace: () => 'Backspace',
-    ArrowUp:   () => 'ArrowUp',
-    ArrowDown: () => 'ArrowDown',
-    z:         () => metaKey ? 'Meta + z' : 'z',
-    j:         () => 'j',
-    k:         () => 'k',
-    g:         () => lastKey === 'g' ? 'gg' : 'g',
-    G:         () => 'G',
-    d:         () => lastKey === 'd' ? 'dd' : 'd',
-    u:         () => 'u',
-    y:         () => lastKey === 'y' ? 'yy' : 'y',
-    p:         () => 'p',
-  }[key]()
+    Enter:     metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
+    Backspace: 'Backspace',
+    ArrowUp:   'ArrowUp',
+    ArrowDown: 'ArrowDown',
+    z:         metaKey ? 'Meta + z' : 'z',
+    j:         'j',
+    k:         'k',
+    g:         lastKey === 'g' ? 'gg' : 'g',
+    G:         'G',
+    d:         lastKey === 'd' ? 'dd' : 'd',
+    u:         'u',
+    y:         lastKey === 'y' ? 'yy' : 'y',
+    p:         'p',
+  }[key]
 
   localStorage.setItem('lastKey', keyBinding)
   return keyBinding
