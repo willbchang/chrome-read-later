@@ -16,7 +16,7 @@ export const remove = target => {
 
 export const restore = () => {
   const url = localStorage.popArray('dependingUrls')
-  $(`a[href="${url}"]`).parent().fadeIn().focus()
+  $(`a[href="${url}"]`).parent().fadeIn().trigger('focus')
 }
 
 export const open = ({target, currentTab = false, active = true}) => {
@@ -26,17 +26,17 @@ export const open = ({target, currentTab = false, active = true}) => {
 }
 
 export const up = target => {
-  $(target).prevAll(':visible:first').focus()
+  $(target).prevAll(':visible:first').trigger('focus')
 }
 
 export const down = target => {
-  $(target).nextAll(':visible:first').focus()
+  $(target).nextAll(':visible:first').trigger('focus')
 }
 
 export const top = () => {
-  $('li:visible').first().focus()
+  $('li:visible').first().trigger('focus')
 }
 
 export const bottom = () => {
-  $('li:visible').last().focus()
+  $('li:visible').last().trigger('focus')
 }
