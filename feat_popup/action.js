@@ -5,7 +5,7 @@ function onHide(target) {
   const li = filter.element(target)
   li.fadeOut('normal', () => {
     const isLastLi = li.prevAll(':visible:first').attr('id') === $('li:visible').last().attr('id')
-    isLastLi ? up(target) : down(target)
+    isLastLi ? up(li) : down(li)
   })
 }
 
