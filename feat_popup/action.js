@@ -7,8 +7,7 @@ const hide = (target, move) => {
 }
 
 const move = li => {
-  const isLastLi = li.prevAll(':visible:first').attr('id') === $('li:visible:last').attr('id')
-  isLastLi ? up(li) : down(li)
+  li.attr('id') < $('li:visible:last').attr('id') ? up(li) : down(li)
 }
 
 export const remove = target => {
