@@ -1,7 +1,7 @@
 import * as extension from '../modules_chrome/runtime.mjs'
 import * as filter from './filter.js'
 
-function onHide(target) {
+const hide = target => {
   const li = filter.element(target)
   li.fadeOut('normal', () => {
     const isLastLi = li.prevAll(':visible:first').attr('id') === $('li:visible').last().attr('id')
@@ -10,7 +10,7 @@ function onHide(target) {
 }
 
 export const remove = target => {
-  onHide(target)
+  hide(target)
   localStorage.setArray('dependingUrls', filter.url(target))
 }
 
@@ -20,7 +20,7 @@ export const restore = () => {
 }
 
 export const open = ({target, currentTab = false, active = true}) => {
-  onHide(target)
+  hide(target)
   extension.sendMessage({url: filter.url(target), currentTab, active})
   if (currentTab) window.close()
 }
