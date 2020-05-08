@@ -1,13 +1,11 @@
 import * as extension from '../modules_chrome/runtime.mjs'
 import * as filter from './filter.js'
 
-const hide = (target, move) => {
-  const li = filter.element(target)
-  li.fadeOut('normal', () => move(li))
-}
 
-const move = li => {
-  li.attr('id') < $('li:visible:last').attr('id') ? up(li) : down(li)
+export const open = ({target, currentTab = false, active = true}) => {
+  hide(target, move)
+  extension.sendMessage({url: filter.url(target), currentTab, active})
+  if (currentTab) window.close()
 }
 
 export const remove = target => {
@@ -20,10 +18,13 @@ export const restore = () => {
   $(`a[href="${url}"]`).parent().fadeIn().trigger('focus')
 }
 
-export const open = ({target, currentTab = false, active = true}) => {
-  hide(target, move)
-  extension.sendMessage({url: filter.url(target), currentTab, active})
-  if (currentTab) window.close()
+const hide = (target, move) => {
+  const li = filter.element(target)
+  li.fadeOut('normal', () => move(li))
+}
+
+const move = li => {
+  li.attr('id') < $('li:visible:last').attr('id') ? up(li) : down(li)
 }
 
 export const up = target => {
