@@ -1,7 +1,7 @@
 import '../modules/prototype.mjs'
 import * as dom from './dom.js'
 import * as storage from '../modules_chrome/storage.mjs'
-import * as dispatch from './dispatch.js'
+import * as filter from './filter.js'
 
 (async () => {
   localStorage.getArray('dependingUrls').forEach(storage.remove)
@@ -12,14 +12,30 @@ import * as dispatch from './dispatch.js'
   const pages = await storage.sortByLatest()
   pages.map(page => ul.append(dom.renderListFrom(page)))
 
-  // Listen mouse and keys events
+  // Focus the first li on init
+  $('li')[0].focus()
+
   ul.on({
     mouseenter: dom.showDeleteIcon,
     mouseleave: dom.showFavIcon
   }, 'img')
-    .on('click', dispatch.click)
-  $('body').on('keydown', dispatch.keydown)
 
-  $('li')[0].focus()
+  ul.on('click', event => {
+    event.preventDefault()
+
+    try {
+      filter.mouseAction(event)
+    } catch (e) {
+      console.log('Catch click action error: ', e)
+    }
+  })
+
+  $('body').on('keydown', event => {
+    try {
+      filter.keyAction(event)
+    } catch (e) {
+      console.log('Catch default key action: ', event.key)
+    }
+  })
 })()
 
