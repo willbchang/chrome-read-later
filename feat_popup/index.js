@@ -1,5 +1,5 @@
 import '../modules/prototype.mjs'
-import * as html from './virtualDom.js'
+import * as dom from './dom.js'
 import * as storage from '../modules_chrome/storage.mjs'
 import * as dispatch from './dispatch.js'
 
@@ -10,12 +10,12 @@ import * as dispatch from './dispatch.js'
   // Init reading list
   const ul = $('ul')
   const pages = await storage.sortByLatest()
-  pages.map(page => ul.append(html.renderListFrom(page)))
+  pages.map(page => ul.append(dom.renderListFrom(page)))
 
   // Listen mouse and keys events
   ul.on({
-    mouseenter: html.showDeleteIcon,
-    mouseleave: html.showFavIcon
+    mouseenter: dom.showDeleteIcon,
+    mouseleave: dom.showFavIcon
   }, 'img')
     .on('click', dispatch.click)
   $('body').on('keydown', dispatch.keydown)
