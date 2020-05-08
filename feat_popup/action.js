@@ -7,7 +7,7 @@ const hide = (target, move) => {
 }
 
 const move = li => {
-  const isLastLi = li.prevAll(':visible:first').attr('id') === $('li:visible').last().attr('id')
+  const isLastLi = li.prevAll(':visible:first').attr('id') === $('li:visible:last').attr('id')
   isLastLi ? up(li) : down(li)
 }
 
@@ -36,9 +36,9 @@ export const down = target => {
 }
 
 export const top = () => {
-  $('li:visible').first().trigger('focus')
+  $('li:visible:first').trigger('focus')
 }
 
 export const bottom = () => {
-  $('li:visible').last().trigger('focus')
+  $('li:visible:last').trigger('focus')
 }
