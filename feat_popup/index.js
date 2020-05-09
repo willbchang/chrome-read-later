@@ -17,10 +17,12 @@ import * as filter from './filter.js'
   // Focus the first li on init
   $('li')[0].focus()
 
+
   ul.on({
     mouseenter: dom.showDeleteIcon,
     mouseleave: dom.showFavIcon
   }, 'img')
+
 
   ul.on('click', event => {
     event.preventDefault()
@@ -31,6 +33,7 @@ import * as filter from './filter.js'
       console.log('Catch click action error: ', e)
     }
   })
+
 
   $('body').on('keydown', event => {
     try {
