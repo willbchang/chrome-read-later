@@ -1,4 +1,4 @@
-import * as data from './pageInfo.mjs'
+import * as data from './pageInfo.js'
 import * as storage from '../modules_chrome/storage.mjs'
 import * as tabs from '../modules_chrome/tabs.mjs'
 

@@ -19,7 +19,7 @@
     }
   ],
   "web_accessible_resources": [
-    "feat_content/pagePosition.mjs"
+    "feat_content/pagePosition.js"
   ],
   "commands": {
     "read-later": {

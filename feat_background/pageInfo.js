@@ -1,5 +1,5 @@
 import '../modules/prototype.mjs'
-import * as request from './request.mjs'
+import * as request from './request.js'
 
 class PageInfo {
   constructor(tab) {
