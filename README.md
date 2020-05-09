@@ -12,7 +12,6 @@
 [Manual Installation](https://github.com/willbchang/chrome-read-later/wiki/Manual-Installation)
 
 ## Features
-*Note: The Read Later in chrome store is 2.3.0, the intro is for 3.0.0 and it's pending review(please wait 3 ~ 7 days).*
 - It saves almost all kinds of pages in any situation: `http://`, `https://`, `chrome://`, `localhost:`...
 - It saves the reading progress of current page, **works on most pages**(I'm improving it).
 - It syncs the reading list to your browser automatically, you can use one reading list in multiple Chrome browsers with one google account.
