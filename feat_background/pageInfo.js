@@ -1,5 +1,5 @@
 import '../modules/prototype.mjs'
-import * as request from './request.mjs'
+import * as request from './request.js'
 
 class PageInfo {
   constructor(tab) {
@@ -99,15 +99,15 @@ function createPageInfo(tab, position, selection) {
 export function initPageInfo({tab, position, selection}) {
   const page = createPageInfo(tab, position, selection)
   return {
-    url: page.url,
-    title: page.title,
-    hasTitle: page.hasTitle,
-    favIconUrl: page.favIconUrl,
+    url:           page.url,
+    title:         page.title,
+    hasTitle:      page.hasTitle,
+    favIconUrl:    page.favIconUrl,
     hasFavIconUrl: page.hasFavIconUrl,
-    date: page.date,
-    scroll: {
-      top: page.scrollTop,
-      height: page.scrollHeight,
+    date:          page.date,
+    scroll:        {
+      top:     page.scrollTop,
+      height:  page.scrollHeight,
       percent: page.scrollPercent,
     }
   }

@@ -19,7 +19,7 @@
     }
   ],
   "web_accessible_resources": [
-    "feat_content/pagePosition.mjs"
+    "feat_content/pagePosition.js"
   ],
   "commands": {
     "read-later": {
@@ -34,7 +34,7 @@
       }
     }
   },
-  "description": "Read current tab or selected link/page later.",
+  "description": "A temporary bookmark focuses on reading later, rather than closing and removing.",
   "icons": {
     "128": "assets/icons/logo-orange128x128.png",
     "16": "assets/icons/logo-orange16x16.png",

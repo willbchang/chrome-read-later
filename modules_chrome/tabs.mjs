@@ -9,7 +9,7 @@ export async function queryAll() {
 
 export async function queryCurrent() {
   const info = {
-    active: true,
+    active:        true,
     currentWindow: true,
   }
   const tabs = await query(info)

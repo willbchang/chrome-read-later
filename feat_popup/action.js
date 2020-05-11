@@ -1,42 +1,44 @@
 import * as extension from '../modules_chrome/runtime.mjs'
 import * as filter from './filter.js'
 
-function onHide(target) {
-  const li = filter.element(target)
-  li.fadeOut('normal', () => {
-    const isLastLi = li.prevAll(':visible:first').attr('id') === $('li:visible').last().attr('id')
-    isLastLi ? up(target) : down(target)
-  })
+
+export const open = ({target, currentTab = false, active = true}) => {
+  hide(target, move)
+  extension.sendMessage({url: filter.url(target), currentTab, active})
+  if (currentTab) window.close()
 }
 
 export const remove = target => {
-  onHide(target)
+  hide(target, move)
   localStorage.setArray('dependingUrls', filter.url(target))
 }
 
 export const restore = () => {
   const url = localStorage.popArray('dependingUrls')
-  $(`a[href="${url}"]`).parent().fadeIn().focus()
+  $(`a[href="${url}"]`).parent().fadeIn().trigger('focus')
 }
 
-export const open = ({target, currentTab = false, active = true}) => {
-  onHide(target)
-  extension.sendMessage({url: filter.url(target), currentTab, active})
-  if (currentTab) window.close()
+const hide = (target, move) => {
+  const li = filter.element(target)
+  li.fadeOut('normal', () => move(li))
+}
+
+const move = li => {
+  li.attr('id') < $('li:visible:last').attr('id') ? up(li) : down(li)
 }
 
 export const up = target => {
-  $(target).prevAll(':visible:first').focus()
+  $(target).prevAll(':visible:first').trigger('focus')
 }
 
 export const down = target => {
-  $(target).nextAll(':visible:first').focus()
+  $(target).nextAll(':visible:first').trigger('focus')
 }
 
 export const top = () => {
-  $('li:visible').first().focus()
+  $('li:visible:first').trigger('focus')
 }
 
 export const bottom = () => {
-  $('li:visible').last().focus()
+  $('li:visible:last').trigger('focus')
 }
