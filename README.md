@@ -41,8 +41,8 @@ Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bi
 - <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>: **Zoom In/Out** reading list.
 
 **Reading List**(Popup Window):
-- <kbd>↑</kbd>: **move** to **next** link.
-- <kbd>↓</kbd>: **move** to **previous** link.
+- <kbd>↑</kbd>: **move** to **previous** link.
+- <kbd>↓</kbd>: **move** to **next** link.
 - <kbd>Backspace</kbd>: **delete** current link.
 - <kbd>Command</kbd> + <kbd>z</kbd>: **restore** a deletion.
 - <kbd>Enter</kbd>: **open** select link in a **new tab**.
@@ -55,7 +55,7 @@ Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bi
 - <kbd>k</kbd>: **move** to **previous** link.
 - <kbd>gg</kbd>: **move** to the **first** link.
 - <kbd>G</kbd>: **move** to the **last** link.
-- <kbd>dd</kbd>: **delete** a link.
+- <kbd>dd</kbd>: **delete** current link.
 - <kbd>u</kbd>: **restore** a deletion.
 
 ## Contribution
