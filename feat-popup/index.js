@@ -1,6 +1,6 @@
 import '../modules/prototype.mjs'
 import * as dom from './dom.js'
-import * as storage from '../modules_chrome/storage.mjs'
+import * as storage from '../modules-chrome/storage.mjs'
 import * as filter from './filter.js'
 
 (async () => {

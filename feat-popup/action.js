@@ -1,4 +1,4 @@
-import * as extension from '../modules_chrome/runtime.mjs'
+import * as extension from '../modules-chrome/runtime.mjs'
 import * as filter from './filter.js'
 
 

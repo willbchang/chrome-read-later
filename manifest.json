@@ -1,11 +1,11 @@
 {
   "background": {
     "persistent": true,
-    "page": "feat_background/index.html"
+    "page": "feat-background/index.html"
   },
   "browser_action": {
     "default_icon": "assets/icons/logo-orange32x32.png",
-    "default_popup": "feat_popup/index.html",
+    "default_popup": "feat-popup/index.html",
     "default_title": "Read Later"
   },
   "content_scripts": [
@@ -14,12 +14,12 @@
         "<all_urls>"
       ],
       "js": [
-        "feat_content/index.js"
+        "feat-content/index.js"
       ]
     }
   ],
   "web_accessible_resources": [
-    "feat_content/pagePosition.js"
+    "feat-content/pagePosition.js"
   ],
   "commands": {
     "read-later": {

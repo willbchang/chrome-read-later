@@ -1,7 +1,7 @@
 // https://developer.chrome.com/apps/runtime#event-onMessage
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   (async () => {
-    const page = await dynamicImport('feat_content/pagePosition.js')
+    const page = await dynamicImport('feat-content/pagePosition.js')
     if (message.info === 'get position') sendResponse(page.getPosition())
     if (message.info === 'set position') page.setPosition(message)
   })()
