@@ -83,15 +83,15 @@ img:before {
 
 @media screen and (prefers-color-scheme: dark) {
     html {
-        background-color: #292a2d;
+        background-color: #202124;
     }
 
     li:hover {
-        background-color: #4b4c4f;
+        background-color: #37383a;
     }
 
     li:focus {
-        background-color: #4b4c4f;
+        background-color: #444547;
     }
 
     a {
