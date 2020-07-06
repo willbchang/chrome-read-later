@@ -1,5 +1,5 @@
 export function renderListFrom(page) {
-  return ` 
+  return `
       <li id=${page.date} title="${encodeTitle()}\n\n${page.url}" tabindex="1">
         <img src="${page.favIconUrl}" alt="">
         <a href="${page.url}" ${getTitleColor()} tabindex="-1">${encodeTitle()}</a>
