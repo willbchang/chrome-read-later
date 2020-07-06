@@ -15,7 +15,8 @@ import * as filter from './filter.js'
   pages.map(page => ul.append(dom.renderListFrom(page)))
 
   // Focus the first li on init
-  $('li')[0].focus()
+  const li = $('li')
+  if (li.length !== 0) li[0].focus()
 
 
   ul.on({
