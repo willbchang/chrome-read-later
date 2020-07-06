@@ -57,6 +57,7 @@ Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bi
 - <kbd>G</kbd>: **move** to the **last** link.
 - <kbd>dd</kbd>: **delete** current link.
 - <kbd>u</kbd>: **restore** a deletion.
+- <kbd>yy</kbd>: **copy** current link.
 
 ## Contribution
 Please read [contribution guide](https://github.com/willbchang/chrome-read-later/wiki/Contribution-Guide) first.

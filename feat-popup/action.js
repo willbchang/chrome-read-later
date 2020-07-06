@@ -42,3 +42,7 @@ export const top = () => {
 export const bottom = () => {
   $('li:visible:last').trigger('focus')
 }
+
+export const copy = async target => {
+  await navigator.clipboard.writeText(filter.url(target))
+}
