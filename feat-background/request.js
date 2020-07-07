@@ -14,7 +14,7 @@ export async function getFavIcon(url) {
   try {
     const response = await fetch(`https://favicongrabber.com/api/grab/${getDomain(url)}`)
     const data = await response.json()
-    return await toBase64(data.icons[0].src)
+    return data.icons[0].src
   } catch (e) {
     return '../assets/icons/logo-gray32x32.png'
   }
@@ -26,7 +26,7 @@ function getDomain(url) {
 }
 
 
-async function toBase64(url) {
+export async function toBase64(url) {
   try {
     const response = await fetch(url)
     const blob = await response.blob()
