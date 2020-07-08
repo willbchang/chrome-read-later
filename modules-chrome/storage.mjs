@@ -3,13 +3,14 @@
 export const sync = {}
 sync.remove = url => chrome.storage.sync.remove(url)
 sync.get = () => new Promise(resolve => chrome.storage.sync.get(resolve))
+
 // NOTICE: This returns an Array of objects.
 sync.sortByLatest = async () => {
   const pages = await sync.get()
   return Object.values(pages).sort((a, b) => b.date - a.date)
 }
 
-export async function getScrollPosition(url) {
+sync.getScrollPosition = async url => {
   const pages = await sync.get()
   const page = pages[url]
   return {
