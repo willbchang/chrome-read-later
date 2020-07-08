@@ -11,7 +11,7 @@ import * as filter from './filter.js'
 
   // Init reading list from storage.
   const ul = $('ul')
-  const pages = await storage.sortByLatest()
+  const pages = await storage.sync.sortByLatest()
   pages.map(page => ul.append(dom.renderListFrom(page)))
 
   // Focus the first li on init
