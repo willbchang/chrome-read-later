@@ -6,13 +6,14 @@ import * as filter from './filter.js'
 (async () => {
   // Remove the deleted urls from storage before init reading list.
   // Clear all the local items, includes dependingUrls, lastKey, and src.
-  localStorage.getArray('dependingUrls').forEach(storage.remove)
+  localStorage.getArray('dependingUrls').forEach(storage.sync.remove)
   localStorage.clear()
 
   // Init reading list from storage.
   const ul = $('ul')
-  const pages = await storage.sortByLatest()
-  pages.map(page => ul.append(dom.renderListFrom(page)))
+  const pages = await storage.sync.sortByLatest()
+  const favIcons = await storage.local.get()
+  pages.map(page => ul.append(dom.renderListFrom(page, favIcons[page.favIconUrl])))
 
   // Focus the first li on init
   const li = $('li')

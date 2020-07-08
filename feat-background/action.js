@@ -1,6 +1,7 @@
 import * as data from './pageInfo.js'
 import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
+import * as request from './request.js'
 
 
 export async function saveSelection(tab, selection) {
@@ -10,11 +11,17 @@ export async function saveSelection(tab, selection) {
 
 async function updateStorage({tab, position = {}, selection = {}}) {
   let page = data.initPageInfo({tab, position, selection})
-  await storage.set(page)
+  await storage.sync.set(page)
 
   if (!page.url.isHttp()) return
   page = await data.completePageInfo(page)
-  await storage.set(page)
+  await storage.sync.set(page)
+
+  const favIcons = await storage.local.get()
+  if (page.favIconUrl in favIcons) return
+
+  const favIconBase64 = await request.toBase64(page.favIconUrl)
+  await storage.local.set(page.favIconUrl, favIconBase64)
 }
 
 
@@ -28,8 +35,8 @@ export async function savePage() {
 
 export async function openPage({url, currentTab, active}) {
   const tab = currentTab ? await tabs.update(url) : await tabs.create(url, active)
-  const position = await storage.getScrollPosition(url)
-  storage.remove(url)
+  const position = await storage.sync.getScrollPosition(url)
+  storage.sync.remove(url)
   const tabId = await tabs.onComplete(tab)
   await tabs.sendMessage(tabId, {...position, info: 'set position'})
 }

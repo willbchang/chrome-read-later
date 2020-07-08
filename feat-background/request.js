@@ -24,3 +24,23 @@ export async function getFavIcon(url) {
 function getDomain(url) {
   return new URL(url).hostname
 }
+
+
+export async function toBase64(url) {
+  try {
+    const response = await fetch(url)
+    const blob = await response.blob()
+    return await fileReader(blob)
+  } catch (e) {
+    return '../images/32x32gray.png'
+  }
+}
+
+async function fileReader(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onloadend = () => resolve(reader.result)
+    reader.onerror = reject
+    reader.readAsDataURL(blob)
+  })
+}
