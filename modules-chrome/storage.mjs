@@ -26,3 +26,5 @@ sync.getScrollPosition = async url => {
     },
   }
 }
+
+export const local = {}
