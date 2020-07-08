@@ -3,6 +3,9 @@
 export const sync = {}
 sync.remove = url => chrome.storage.sync.remove(url)
 sync.get = () => new Promise(resolve => chrome.storage.sync.get(resolve))
+sync.set = page => new Promise(resolve =>
+  chrome.storage.sync.set({[page.url]: page}, resolve)
+)
 
 // NOTICE: This returns an Array of objects.
 sync.sortByLatest = async () => {
@@ -19,10 +22,4 @@ sync.getScrollPosition = async url => {
       height: page.scroll.height,
     },
   }
-}
-
-export async function set(page) {
-  return new Promise(resolve =>
-    chrome.storage.sync.set({[page.url]: page}, resolve)
-  )
 }

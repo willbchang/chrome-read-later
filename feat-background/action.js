@@ -10,11 +10,11 @@ export async function saveSelection(tab, selection) {
 
 async function updateStorage({tab, position = {}, selection = {}}) {
   let page = data.initPageInfo({tab, position, selection})
-  await storage.set(page)
+  await storage.sync.set(page)
 
   if (!page.url.isHttp()) return
   page = await data.completePageInfo(page)
-  await storage.set(page)
+  await storage.sync.set(page)
 }
 
 
