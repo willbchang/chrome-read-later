@@ -1,6 +1,7 @@
 import * as data from './pageInfo.js'
 import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
+import * as request from './request.js'
 
 
 export async function saveSelection(tab, selection) {
@@ -15,6 +16,9 @@ async function updateStorage({tab, position = {}, selection = {}}) {
   if (!page.url.isHttp()) return
   page = await data.completePageInfo(page)
   await storage.sync.set(page)
+
+  const favIconBase64 = await request.toBase64(page.favIconUrl)
+  await storage.local.set(page.favIconUrl, favIconBase64)
 }
 
 
