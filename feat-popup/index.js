@@ -6,7 +6,7 @@ import * as filter from './filter.js'
 (async () => {
   // Remove the deleted urls from storage before init reading list.
   // Clear all the local items, includes dependingUrls, lastKey, and src.
-  localStorage.getArray('dependingUrls').forEach(storage.remove)
+  localStorage.getArray('dependingUrls').forEach(storage.sync.remove)
   localStorage.clear()
 
   // Init reading list from storage.

@@ -1,10 +1,7 @@
 // For chrome.storage functions:
 // https://developer.chrome.com/extensions/storage
 export const sync = {}
-
-export function remove(url) {
-  chrome.storage.sync.remove(url)
-}
+sync.remove = url => chrome.storage.sync.remove(url)
 
 export function get() {
   return new Promise(resolve => chrome.storage.sync.get(resolve))
