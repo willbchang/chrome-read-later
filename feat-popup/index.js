@@ -38,8 +38,6 @@ import * as filter from './filter.js'
 
 
   $('body').on('keydown', event => {
-    event.preventDefault()
-
     try {
       filter.keyAction(event)
     } catch (e) {

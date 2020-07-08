@@ -19,8 +19,11 @@ export const element = target => {
   }[target.tagName]()
 }
 
-export const key = ({key, metaKey, altKey}) => {
+export const key = event => {
+  const {key, metaKey, altKey} = event
   const lastKey = localStorage.getItem('lastKey')
+  // Avoid native arrow behavior, it overflows the focus behavior on long reading list.
+  if (key.includes('Arrow')) event.preventDefault()
 
   const keyBinding = {
     Enter:     metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
