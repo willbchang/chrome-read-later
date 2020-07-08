@@ -17,6 +17,9 @@ async function updateStorage({tab, position = {}, selection = {}}) {
   page = await data.completePageInfo(page)
   await storage.sync.set(page)
 
+  const favIcons = await storage.local.get()
+  if (page.favIconUrl in favIcons) return
+
   const favIconBase64 = await request.toBase64(page.favIconUrl)
   await storage.local.set(page.favIconUrl, favIconBase64)
 }
