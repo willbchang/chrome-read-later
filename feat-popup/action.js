@@ -19,7 +19,7 @@ export const restore = () => {
 }
 
 const hide = (target, move) => {
-  const li = filter.element(target)
+  const li = filter.li(target)
   li.fadeOut('normal', () => move(li))
 }
 

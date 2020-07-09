@@ -10,7 +10,7 @@ export const url = target => {
 }
 
 
-export const element = target => {
+export const li = target => {
   return {
     LI:   () => $(target),
     IMG:  () => $(target.parentNode),
@@ -46,7 +46,7 @@ export const key = event => {
 }
 
 export const keyAction = event => {
-  const target = element(event.target)
+  const target = li(event.target)
   return {
     Enter:          () => action.open({target}),
     'Meta + Enter': () => action.open({target, active: false}),
