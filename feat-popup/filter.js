@@ -41,6 +41,8 @@ export const key = event => {
 
   // Avoid native arrow behavior, it overflows the focus behavior on long reading list.
   if (key.includes('Arrow')) event.preventDefault()
+  // Empty Selection on pressing expected key.
+  if (key in keyBindings) document.getSelection().empty()
 
   localStorage.setItem('lastKey', keyBindings[key])
   return keyBindings[key]
