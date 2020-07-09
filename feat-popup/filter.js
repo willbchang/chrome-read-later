@@ -49,7 +49,7 @@ export const key = event => {
 }
 
 export const keyAction = event => {
-  const target = li(event.target)
+  const target = li(event.target)[0]
   return {
     Enter:          () => action.open({target}),
     'Meta + Enter': () => action.open({target, active: false}),
