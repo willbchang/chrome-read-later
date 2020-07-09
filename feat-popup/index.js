@@ -26,8 +26,16 @@ import * as filter from './filter.js'
   }, 'img')
 
 
+  let selections = []
+  document.addEventListener('selectionchange', () => {
+    selections.push(document.getSelection().toString())
+  })
+
   ul.on('click', event => {
     event.preventDefault()
+    // Right click will give 2 selection history
+    // This prevents open link after selecting text.
+    if (selections.length > 2)  return selections = []
 
     try {
       filter.mouseAction(event)
