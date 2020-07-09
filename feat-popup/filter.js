@@ -39,10 +39,10 @@ export const key = event => {
     u:         'u',
     y:         lastKey === 'y' ? 'yy' : 'y',
     p:         'p',
-  }[key]
+  }
 
-  localStorage.setItem('lastKey', keyBindings)
-  return keyBindings
+  localStorage.setItem('lastKey', keyBindings[key])
+  return keyBindings[key]
 }
 
 export const keyAction = event => {
