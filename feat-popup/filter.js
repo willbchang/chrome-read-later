@@ -22,8 +22,6 @@ export const li = target => {
 export const key = event => {
   const {key, metaKey, altKey} = event
   const lastKey = localStorage.getItem('lastKey')
-  // Avoid native arrow behavior, it overflows the focus behavior on long reading list.
-  if (key.includes('Arrow')) event.preventDefault()
 
   const keyBindings = {
     Enter:     metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
@@ -40,6 +38,9 @@ export const key = event => {
     y:         lastKey === 'y' ? 'yy' : 'y',
     p:         'p',
   }
+
+  // Avoid native arrow behavior, it overflows the focus behavior on long reading list.
+  if (key.includes('Arrow')) event.preventDefault()
 
   localStorage.setItem('lastKey', keyBindings[key])
   return keyBindings[key]
