@@ -25,7 +25,7 @@ export const key = event => {
   // Avoid native arrow behavior, it overflows the focus behavior on long reading list.
   if (key.includes('Arrow')) event.preventDefault()
 
-  const keyBinding = {
+  const keyBindings = {
     Enter:     metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
     Backspace: 'Backspace',
     ArrowUp:   'ArrowUp',
@@ -41,8 +41,8 @@ export const key = event => {
     p:         'p',
   }[key]
 
-  localStorage.setItem('lastKey', keyBinding)
-  return keyBinding
+  localStorage.setItem('lastKey', keyBindings)
+  return keyBindings
 }
 
 export const keyAction = event => {
