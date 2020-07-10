@@ -1,6 +1,6 @@
 {
   "name": "chrome-read-later",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "description": "A temporary bookmark focuses on reading later, rather than closing and removing.",
   "main": "popup.js",
   "scripts": {
