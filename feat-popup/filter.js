@@ -49,6 +49,13 @@ export const key = event => {
 }
 
 export const keyAction = event => {
+  // This way still make action work if it loses focus by clicking the blank area.
+  // If it loses focus, event.target will be <body> instead of <li>.
+  if (event.target.tagName === 'BODY')
+    return $('li:visible:first').trigger('focus')
+
+  // This way still make action work if it loses focus by right click text.
+  // If it loses focus, event.target will be <a> instead of <li>.
   const target = li(event.target)[0]
   return {
     Enter:          () => action.open({target}),
