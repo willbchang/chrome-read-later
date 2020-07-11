@@ -1,8 +1,8 @@
 export function renderListFrom(page, favIconBase64) {
   return `
-      <li id=${page.date} title="${getTitleAttribute()}" tabindex="1">
+      <li id=${page.date} tabindex="1">
         <img src="${favIconBase64 || page.favIconUrl}" alt="">
-        <a href="${page.url}" ${getTitleColor()} tabindex="-1">${encodeTitle()}</a>
+        <a href="${page.url}" title="${getTitleAttribute()}" ${getTitleColor()} tabindex="-1">${encodeTitle()}</a>
         ${getScrollPercent()}
       </li>
     `
