@@ -2,20 +2,20 @@ export function renderListFrom(page, favIconBase64) {
   return `
       <li id=${page.date} tabindex="1">
         <img src="${favIconBase64 || page.favIconUrl}" alt="">
-        <a href="${page.url}" title="${getTitleAttribute()}" ${getInnerTextColor()} tabindex="-1">${encodeTitle()}</a>
+        <a href="${page.url}" title="${getTitleAttribute()}" ${getInnerTextColor()} tabindex="-1">${encodeInnerText()}</a>
         ${getScrollPercent()}
       </li>
     `
 
   function getTitleAttribute() {
-    return page.title === page.url ? page.url : `${encodeTitle()}\n\n${page.url}`
+    return page.title === page.url ? page.url : `${encodeInnerText()}\n\n${page.url}`
   }
 
   function getInnerTextColor() {
     return page.url === page.title ? 'style="color: gray"' : ''
   }
 
-  function encodeTitle() {
+  function encodeInnerText() {
     // eslint-disable-next-line no-undef
     return he.encode(page.title)
   }
