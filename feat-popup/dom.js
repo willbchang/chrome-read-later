@@ -2,7 +2,7 @@ export function renderListFrom(page, favIconBase64) {
   return `
       <li id=${page.date} tabindex="1">
         <img src="${favIconBase64 || page.favIconUrl}" alt="">
-        <a href="${page.url}" title="${getTitleAttribute()}" ${getTitleColor()} tabindex="-1">${encodeTitle()}</a>
+        <a href="${page.url}" title="${getTitleAttribute()}" ${getInnerTextColor()} tabindex="-1">${encodeTitle()}</a>
         ${getScrollPercent()}
       </li>
     `
@@ -11,7 +11,7 @@ export function renderListFrom(page, favIconBase64) {
     return page.title === page.url ? page.url : `${encodeTitle()}\n\n${page.url}`
   }
 
-  function getTitleColor() {
+  function getInnerTextColor() {
     return page.url === page.title ? 'style="color: gray"' : ''
   }
 
