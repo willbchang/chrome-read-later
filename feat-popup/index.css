@@ -20,10 +20,6 @@ li {
     line-height: 30px;
 }
 
-li:hover {
-    background-color: #dfdfdf;
-}
-
 li:focus {
     outline: none;
     background-color: #c8c8c9;
