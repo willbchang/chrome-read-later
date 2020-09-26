@@ -14,7 +14,7 @@ contextMenus.onClicked(async (selection, tab) => {
 contextMenus.create({
   title:    'Read later',
   contexts: ['all'],
-  id:       'read-later',
+  id:       'chrome-read-later.willbc.cn',
 })
 
 runtime.onInstalled(() =>
