@@ -25,6 +25,10 @@ import * as filter from './filter.js'
     mouseleave: dom.showFavIcon
   }, 'img')
 
+  // Focus on li when mouse move, do the same behavior like keyboard navigation
+  ul.on('mousemove', 'li', event => {
+    filter.li(event.target).trigger('focus')
+  })
 
   let selections = []
   document.addEventListener('selectionchange', () => {
