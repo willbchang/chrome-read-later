@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/willbchang/chrome-read-later#readme",
   "dependencies": {
-    "@types/chrome": "0.0.123",
+    "@types/chrome": "0.0.124",
     "@types/jquery": "^3.3.31"
   },
   "devDependencies": {
