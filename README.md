@@ -46,8 +46,12 @@ Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bi
 
 ### Keyboard Shortcuts
 **Current Page**:
-- <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>: **Save** current page info.
+- <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>: **Save** to reading list.
 - <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>: **Zoom In/Out** reading list.
+
+If you pressed the shortcuts and it didn't work, please enter `chrome://extensions/shortcuts` in your address bar.
+Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflicts)
+![chrome://extensions/shortcuts](assets/images/chrome-extensions-shortcuts.png)
 
 **Reading List**(Popup Window):
 - <kbd>↑</kbd>: **move** to **previous** link.
