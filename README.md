@@ -21,6 +21,15 @@ Check [todo list](https://github.com/willbchang/chrome-read-later/wiki/TODO) for
 Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bilibili.com/*`, or some sites has multiple scroll bars.
 
 ## Usages
+**Windows and Mac Keyboard Differences**
+
+| Mac Key  | Windows Key |
+|:--------:|:-----------:|
+| Control  | Ctrl        |
+| Option   | Alt         |
+| Command  | Windows     |
+| Delete   | Backspace   |
+
 ### Mouse Click
 **Current Page**:
 - `Right Click` a link and select **Read Later** in context menus to save the target link info.
@@ -43,7 +52,7 @@ Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bi
 **Reading List**(Popup Window):
 - <kbd>↑</kbd>: **move** to **previous** link.
 - <kbd>↓</kbd>: **move** to **next** link.
-- <kbd>Backspace</kbd>: **delete** current link.
+- <kbd>Delete</kbd>: **delete** current link.
 - <kbd>Command</kbd> + <kbd>z</kbd>: **restore** a deletion.
 - <kbd>Enter</kbd>: **open** select link in a **new tab**.
 - <kbd>Alt</kbd> + <kbd>Enter</kbd>: **update** link in **current tab**.
