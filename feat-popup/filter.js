@@ -39,8 +39,6 @@ export const key = event => {
     p:         'p',
   }
 
-  // Avoid native arrow behavior, it overflows the focus behavior on long reading list.
-  if (key.includes('Arrow')) event.preventDefault()
   // Empty Selection on pressing expected key.
   if (key in keyBindings) document.getSelection().empty()
 
@@ -49,6 +47,9 @@ export const key = event => {
 }
 
 export const keyAction = event => {
+  // Avoid native arrow behavior, it overflows the focus behavior on long reading list.
+  if (event.key.includes('Arrow')) event.preventDefault()
+
   // This way still make action work if it loses focus by clicking the blank area.
   // If it loses focus, event.target will be <body> instead of <li>.
   if (event.target.tagName === 'BODY')
