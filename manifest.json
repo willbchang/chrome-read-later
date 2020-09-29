@@ -22,7 +22,7 @@
     "feat-content/pagePosition.js"
   ],
   "commands": {
-    "read-later": {
+    "chrome-read-later.willbc.cn": {
       "description": "Save to reading list",
       "suggested_key": {
         "default": "Alt+Shift+S"
