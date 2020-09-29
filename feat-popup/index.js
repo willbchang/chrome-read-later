@@ -27,6 +27,8 @@ import * as filter from './filter.js'
 
   // Focus on li when mouse move, do the same behavior like keyboard navigation
   ul.on('mousemove', 'li', event => {
+    // Empty selection on mouse move.
+    document.getSelection().empty()
     filter.li(event.target).trigger('focus')
   })
 
