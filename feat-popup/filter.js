@@ -16,7 +16,7 @@ export const li = target => {
     IMG:  () => $(target.parentNode),
     A:    () => $(target.parentNode),
     SPAN: () => $(target.parentNode),
-  }[target.tagName]()
+  }[target.tagName]() || ''
 }
 
 export const key = event => {
@@ -50,14 +50,18 @@ export const keyAction = event => {
   // Avoid native arrow behavior, it overflows the focus behavior on long reading list.
   if (event.key.includes('Arrow')) event.preventDefault()
 
-  // This way still make action work if it loses focus by clicking the blank area.
-  // If it loses focus, event.target will be <body> instead of <li>.
-  if (event.target.tagName === 'BODY')
+  // 1. This way still make action work if it loses focus by clicking the blank area.
+  //    If it loses focus, event.target will be <body> instead of <li>.
+  // 2. If delete the list to empty, press u won't able to do undo because current tag is BODY.
+  //    This way makes the undo be able to continue.
+  if (event.target.tagName === 'BODY' && event.key !== 'u')
     return $('li:visible:first').trigger('focus')
 
-  // This way still make action work if it loses focus by right click text.
-  // If it loses focus, event.target will be <a> instead of <li>.
-  const target = li(event.target)[0]
+  // 1. This way still make action work if it loses focus by right click text.
+  //    If it loses focus, event.target will be <a> instead of <li>.
+  // 2. If tag is BODY, the li() will produce an error the action will not able to proceed.
+  //    This way make it continue to work.
+  const target = event.target.tagName === 'BODY' ? '' : li(event.target)[0]
   return {
     Enter:          () => action.open({target}),
     'Meta + Enter': () => action.open({target, active: false}),
