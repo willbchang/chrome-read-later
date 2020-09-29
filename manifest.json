@@ -23,7 +23,7 @@
   ],
   "commands": {
     "read-later": {
-      "description": "Add to reading list",
+      "description": "Save to reading list",
       "suggested_key": {
         "default": "Alt+Shift+S"
       }
