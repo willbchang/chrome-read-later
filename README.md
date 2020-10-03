@@ -16,8 +16,6 @@
 - It saves the reading progress of current page, **works on most pages**(I'm improving it).
 - It syncs the reading list to your browser automatically, you can use one reading list in multiple Chrome browsers with one google account.(Remove the extension will delete the reading list)
 
-Check [todo list](https://github.com/willbchang/chrome-read-later/wiki/TODO) for the future features.
-
 Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bilibili.com/*`, or some sites has multiple scroll bars.
 
 ## Usages
@@ -71,6 +69,13 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - <kbd>dd</kbd>: **delete** current link.
 - <kbd>u</kbd>: **restore** a deletion.
 - <kbd>yy</kbd>: **copy** current link.
+
+## TODO
+- [ ] Record/Set video/audio progress.
+- [ ] Get/Set all scroll bars' position.
+- [ ] Cache the reading list to instantly open.
+- [ ] Create my own grab favicon server.
+- [ ] Improve the vim code logic(more dynamic). 
 
 ## Contribution
 Please read [contribution guide](https://github.com/willbchang/chrome-read-later/wiki/Contribution-Guide) first.
