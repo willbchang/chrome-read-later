@@ -14,7 +14,7 @@
 ## Features
 - It saves almost all kinds of pages in any situation: `http://`, `https://`, `chrome://`, `localhost:`...
 - It saves the reading progress of current page, **works on most pages**(I'm improving it).
-- It syncs the reading list to your browser automatically, you can use one reading list in multiple Chrome browsers with one google account.
+- It syncs the reading list to your browser automatically, you can use one reading list in multiple Chrome browsers with one google account.(Remove the extension will delete the reading list)
 
 Check [todo list](https://github.com/willbchang/chrome-read-later/wiki/TODO) for the future features.
 
