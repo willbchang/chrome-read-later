@@ -16,7 +16,7 @@ export const li = target => {
     IMG:  () => $(target.parentNode),
     A:    () => $(target.parentNode),
     SPAN: () => $(target.parentNode),
-  }[target.tagName]() || ''
+  }[target.tagName]()
 }
 
 export const key = event => {
