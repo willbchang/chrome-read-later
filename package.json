@@ -21,7 +21,7 @@
   "homepage": "https://github.com/willbchang/chrome-read-later#readme",
   "dependencies": {
     "@types/chrome": "0.0.124",
-    "@types/jquery": "^3.5.2"
+    "@types/jquery": "^3.5.3"
   },
   "devDependencies": {
     "eslint": "7.11.0"
