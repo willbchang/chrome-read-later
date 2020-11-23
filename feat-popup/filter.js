@@ -26,8 +26,8 @@ export const key = event => {
   const keyBindings = {
     Enter:     metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
     Backspace: 'Backspace',
-    ArrowUp:   'ArrowUp',
-    ArrowDown: 'ArrowDown',
+    ArrowUp:   metaKey ? 'Meta + ArrowUp' : 'ArrowUp',
+    ArrowDown: metaKey ? 'Meta + ArrowDown' : 'ArrowDown',
     z:         metaKey ? 'Meta + z' : 'z',
     j:         'j',
     k:         'k',
@@ -63,20 +63,22 @@ export const keyAction = event => {
   //    This way make it continue to work.
   const target = event.target.tagName === 'BODY' ? '' : li(event.target)[0]
   return {
-    Enter:          () => action.open({target}),
-    'Meta + Enter': () => action.open({target, active: false}),
-    'Alt + Enter':  () => action.open({target, currentTab: true}),
-    Backspace:      () => action.remove(target),
-    'Meta + z':     () => action.restore(),
-    ArrowUp:        () => action.up(target),
-    ArrowDown:      () => action.down(target),
-    j:              () => action.down(target),
-    k:              () => action.up(target),
-    gg:             () => action.top(),
-    G:              () => action.bottom(),
-    dd:             () => action.remove(target),
-    u:              () => action.restore(),
-    yy:             () => action.copy(target),
+    Enter:              () => action.open({target}),
+    'Meta + Enter':     () => action.open({target, active: false}),
+    'Alt + Enter':      () => action.open({target, currentTab: true}),
+    Backspace:          () => action.remove(target),
+    'Meta + z':         () => action.restore(),
+    'Meta + ArrowUp':   () => action.top(),
+    'Meta + ArrowDown': () => action.bottom(),
+    ArrowUp:            () => action.up(target),
+    ArrowDown:          () => action.down(target),
+    j:                  () => action.down(target),
+    k:                  () => action.up(target),
+    gg:                 () => action.top(),
+    G:                  () => action.bottom(),
+    dd:                 () => action.remove(target),
+    u:                  () => action.restore(),
+    yy:                 () => action.copy(target),
   }[key(event)]()
 }
 
