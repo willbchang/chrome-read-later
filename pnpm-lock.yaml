@@ -2,7 +2,7 @@ dependencies:
   '@types/chrome': 0.0.126
   '@types/jquery': 3.5.3
 devDependencies:
-  eslint: 7.13.0
+  eslint: 7.14.0
 lockfileVersion: 5.2
 packages:
   /@babel/code-frame/7.10.4:
@@ -285,7 +285,7 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
-  /eslint/7.13.0:
+  /eslint/7.14.0:
     dependencies:
       '@babel/code-frame': 7.10.4
       '@eslint/eslintrc': 0.2.1
@@ -329,7 +329,7 @@ packages:
       node: ^10.12.0 || >=12.0.0
     hasBin: true
     resolution:
-      integrity: sha512-uCORMuOO8tUzJmsdRtrvcGq5qposf7Rw0LwkTJkoDbOycVQtQjmnhZSuLQnozLE4TmAzlMVV45eCHmQ1OpDKUQ==
+      integrity: sha512-5YubdnPXrlrYAFCKybPuHIAH++PINe1pmKNc5wQRB9HSbqIK1ywAnntE3Wwua4giKu0bjligf1gLF6qxMGOYRA==
   /espree/7.3.0:
     dependencies:
       acorn: 7.4.1
@@ -804,4 +804,4 @@ packages:
 specifiers:
   '@types/chrome': 0.0.126
   '@types/jquery': ^3.5.3
-  eslint: 7.13.0
+  eslint: 7.14.0
