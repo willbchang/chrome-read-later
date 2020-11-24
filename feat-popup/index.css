@@ -95,6 +95,7 @@ body {
 #status-bar #count {
     padding-left: 15px;
     color: darkorange;
+    cursor: default;
 }
 
 @media screen and (prefers-color-scheme: dark) {
