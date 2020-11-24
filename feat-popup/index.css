@@ -75,9 +75,15 @@ body {
     padding: 5px;
 }
 
-#status-bar a {
+#status-bar li {
+    padding: 0 5px;
     color: gray;
     font-size: 12px;
+}
+
+#status-bar a {
+    color: inherit;
+    font-size: inherit;
     cursor: pointer;
     text-decoration: none;
 }
