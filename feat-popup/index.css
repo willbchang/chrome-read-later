@@ -8,24 +8,24 @@ body {
     font-size: 14px;
 }
 
-ul {
+#reading-list {
     list-style: none;
     padding-top: 10px;
 }
 
-li {
+#reading-list li {
     display: flex;
     align-items: center;
     padding: 0 15px;
     line-height: 30px;
 }
 
-li:focus {
+#reading-list li:focus {
     outline: none;
     background-color: #c8c8c9;
 }
 
-a {
+#reading-list a {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -34,11 +34,11 @@ a {
     cursor: default;
 }
 
-a:focus {
+#reading-list a:focus {
     outline: none;
 }
 
-img {
+#reading-list img {
     margin-right: 8px;
     padding: 1px;
     min-width: 16px;
@@ -50,7 +50,7 @@ img {
 
 /* Set a fallback on img error */
 /* https://stackoverflow.com/a/980948/9984029 */
-img:before {
+#reading-list img:before {
     content: ' ';
     display: block;
     position: absolute;
@@ -60,7 +60,7 @@ img:before {
     background-size: 16px 16px;
 }
 
-.position {
+#reading-list .position {
     font-size: 12px;
     font-weight: 500;
     color: #f05f00cc;
@@ -72,9 +72,11 @@ img:before {
     padding: 5px;
     color: gray;
     font-size: 12px;
-    float: right;
-    margin: 3px;
     cursor: pointer;
+}
+
+#reading-list-count {
+    align-self: flex-start;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -82,19 +84,19 @@ img:before {
         background-color: #202124;
     }
 
-    li:hover {
+    #reading-list li:hover {
         background-color: #37383a;
     }
 
-    li:focus {
+    #reading-list li:focus {
         background-color: #444547;
     }
 
-    a {
+    #reading-list a {
         color: #e0eaed;
     }
 
-    .position {
+    #reading-list .position {
         color: #f05f00;
     }
 }
