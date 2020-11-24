@@ -92,8 +92,9 @@ body {
     margin-left: auto; /* Push the count item to the start. */
 }
 
-#reading-list-count {
-    align-self: flex-start;
+#status-bar #count {
+    padding-left: 15px;
+    color: darkorange;
 }
 
 @media screen and (prefers-color-scheme: dark) {
