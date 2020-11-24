@@ -103,10 +103,6 @@ body {
         background-color: #202124;
     }
 
-    #reading-list li:hover {
-        background-color: #37383a;
-    }
-
     #reading-list li:focus {
         background-color: #444547;
     }
