@@ -15,6 +15,9 @@ import * as filter from './filter.js'
   const favIcons = await storage.local.get()
   pages.map(page => ul.append(dom.renderListFrom(page, favIcons[page.favIconUrl])))
 
+  // Count the reading list
+  $('#count span').text(pages.length)
+
   // Focus the first li on init
   const li = $('#reading-list li')
   if (li.length !== 0) li[0].focus()
