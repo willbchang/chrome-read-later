@@ -68,11 +68,15 @@ body {
     cursor: default;
 }
 
-#feedback {
-    padding: 5px;
+#status-bar a {
     color: gray;
     font-size: 12px;
     cursor: pointer;
+    text-decoration: none;
+}
+
+#feedback {
+    padding: 5px;
 }
 
 #reading-list-count {
