@@ -88,8 +88,8 @@ body {
     text-decoration: none;
 }
 
-#feedback {
-    padding: 5px;
+#status-bar #document  {
+    margin-left: auto; /* Push the count item to the start. */
 }
 
 #reading-list-count {
