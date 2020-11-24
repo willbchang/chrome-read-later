@@ -10,13 +10,13 @@ import * as filter from './filter.js'
   localStorage.clear()
 
   // Init reading list from storage.
-  const ul = $('ul')
+  const ul = $('#reading-list')
   const pages = await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()
   pages.map(page => ul.append(dom.renderListFrom(page, favIcons[page.favIconUrl])))
 
   // Focus the first li on init
-  const li = $('li')
+  const li = $('#reading-list li')
   if (li.length !== 0) li[0].focus()
 
 

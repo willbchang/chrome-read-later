@@ -24,7 +24,7 @@ const hide = (target, move) => {
 }
 
 const move = li => {
-  li.attr('id') < $('li:visible:last').attr('id') ? up(li) : down(li)
+  li.attr('id') < $('#reading-list li:visible:last').attr('id') ? up(li) : down(li)
 }
 
 export const up = target => {
@@ -36,11 +36,11 @@ export const down = target => {
 }
 
 export const top = () => {
-  $('li:visible:first').trigger('focus')
+  $('#reading-list li:visible:first').trigger('focus')
 }
 
 export const bottom = () => {
-  $('li:visible:last').trigger('focus')
+  $('#reading-list li:visible:last').trigger('focus')
 }
 
 export const copy = async target => {
