@@ -68,6 +68,13 @@ body {
     cursor: default;
 }
 
+#status-bar {
+    display: flex;
+    list-style-type: none;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
 #status-bar a {
     color: gray;
     font-size: 12px;
