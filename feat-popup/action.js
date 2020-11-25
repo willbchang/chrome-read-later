@@ -24,8 +24,7 @@ export const restore = () => {
   $(`a[href="${url}"]`).parent().fadeIn().trigger('focus')
 }
 
-const hide = (target, move) => {
-  const li = filter.li(target)
+const hide = (li, move) => {
   li.fadeOut('normal', () => move(li))
 }
 
