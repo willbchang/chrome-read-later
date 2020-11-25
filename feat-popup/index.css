@@ -96,6 +96,7 @@ body {
     padding-left: 15px;
     color: #f05f00cc;
     cursor: default;
+    letter-spacing: 1px;
 }
 
 @media screen and (prefers-color-scheme: dark) {
