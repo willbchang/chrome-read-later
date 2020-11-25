@@ -33,8 +33,9 @@ const move = li => {
   li.attr('id') < $('#reading-list li:visible:last').attr('id') ? up(li) : down(li)
 }
 
-export const up = target => {
-  $(target).prevAll(':visible:first').trigger('focus')
+export const up = () => {
+  const li = $('.active').prevAll(':visible:first')
+  reactive(li)
 }
 
 export const down = target => {
