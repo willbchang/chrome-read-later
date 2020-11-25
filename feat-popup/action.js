@@ -2,8 +2,8 @@ import * as extension from '../modules-chrome/runtime.mjs'
 import * as filter from './filter.js'
 
 const reactive = li => {
-  $('#active').removeAttr('id')
-  li.attr('id', 'active')
+  $('.active').removeClass('active')
+  li.addClass('active')
 }
 
 export const open = ({target, currentTab = false, active = true}) => {

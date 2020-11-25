@@ -21,7 +21,7 @@ body {
 }
 
 #reading-list li:focus,
-#reading-list li#active {
+#reading-list li.active {
     outline: none;
     background-color: #c8c8c9;
 }
@@ -106,7 +106,7 @@ body {
     }
 
     #reading-list li:focus,
-    #reading-list li#active {
+    #reading-list li.active {
         background-color: #444547;
     }
 
