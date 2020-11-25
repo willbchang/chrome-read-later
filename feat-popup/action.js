@@ -49,7 +49,8 @@ export const top = () => {
 }
 
 export const bottom = () => {
-  $('#reading-list li:visible:last').trigger('focus')
+  const li = $('#reading-list li:visible:last')
+  reactive(li)
 }
 
 export const copy = async target => {
