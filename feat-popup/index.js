@@ -2,6 +2,7 @@ import '../modules/prototype.mjs'
 import * as dom from './dom.js'
 import * as storage from '../modules-chrome/storage.mjs'
 import * as filter from './filter.js'
+import * as action from './action.js'
 
 (async () => {
   // Remove the deleted urls from storage before init reading list.
@@ -32,7 +33,7 @@ import * as filter from './filter.js'
   ul.on('mousemove', 'li', event => {
     // Empty selection on mouse move.
     document.getSelection().empty()
-    filter.li(event.target).trigger('focus')
+    action.reactive(filter.li(event.target))
   })
 
   let selections = []
