@@ -13,6 +13,10 @@ body {
     padding-top: 10px;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 #reading-list li {
     display: flex;
     align-items: center;
