@@ -38,8 +38,9 @@ export const up = () => {
   reactive(li)
 }
 
-export const down = target => {
-  $(target).nextAll(':visible:first').trigger('focus')
+export const down = () => {
+  const li = $('.active').nextAll(':visible:first')
+  reactive(li)
 }
 
 export const top = () => {
