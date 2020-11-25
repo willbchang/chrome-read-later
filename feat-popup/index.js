@@ -33,7 +33,7 @@ import * as action from './action.js'
   ul.on('mousemove', 'li', event => {
     // Empty selection on mouse move.
     document.getSelection().empty()
-    action.reactive(filter.li(event.target))
+    action.reactive(filter.li(event.target), false)
   })
 
   let selections = []
