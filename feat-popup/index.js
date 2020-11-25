@@ -20,7 +20,7 @@ import * as filter from './filter.js'
 
   // Focus the first li on init
   const li = $('#reading-list li')
-  if (li.length !== 0) li[0].focus()
+  if (li.length !== 0) li.first().attr('id', 'active')
 
 
   ul.on({
