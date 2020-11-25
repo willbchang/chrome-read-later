@@ -44,7 +44,8 @@ export const down = () => {
 }
 
 export const top = () => {
-  $('#reading-list li:visible:first').trigger('focus')
+  const li = $('#reading-list li:visible:first')
+  reactive(li)
 }
 
 export const bottom = () => {
