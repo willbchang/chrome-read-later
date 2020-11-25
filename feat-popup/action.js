@@ -1,7 +1,9 @@
 import * as extension from '../modules-chrome/runtime.mjs'
 import * as filter from './filter.js'
 
-const reactive = li => {
+export const reactive = li => {
+  // Execute up action on first visible li, and down action on last visible li will get empty target li
+  if (li.html() === undefined) return
   $('.active').removeClass('active')
   li.addClass('active')
 }
