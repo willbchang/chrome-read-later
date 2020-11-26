@@ -18,9 +18,12 @@ export const open = ({target, currentTab = false, active = true}) => {
   if (currentTab) window.close()
 }
 
-export const remove = target => {
-  hide(target, move)
-  localStorage.setArray('dependingUrls', filter.url(target))
+export const remove = () => {
+  const li = $('.active')
+  const url = li.find('a').attr('href')
+  li.fadeOut('normal')
+  move(li)
+  localStorage.setArray('dependingUrls', url)
 }
 
 export const restore = () => {

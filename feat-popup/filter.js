@@ -66,7 +66,7 @@ export const keyAction = event => {
     Enter:              () => action.open({target}),
     'Meta + Enter':     () => action.open({target, active: false}),
     'Alt + Enter':      () => action.open({target, currentTab: true}),
-    Backspace:          () => action.remove(target),
+    Backspace:          () => action.remove(),
     'Meta + z':         () => action.restore(),
     'Meta + ArrowUp':   () => action.top(),
     'Meta + ArrowDown': () => action.bottom(),
@@ -76,7 +76,7 @@ export const keyAction = event => {
     k:                  () => action.up(),
     gg:                 () => action.top(),
     G:                  () => action.bottom(),
-    dd:                 () => action.remove(target),
+    dd:                 () => action.remove(),
     u:                  () => action.restore(),
     yy:                 () => action.copy(target),
   }[key(event)]()
@@ -87,7 +87,7 @@ export const mouse = ({metaKey, altKey}) =>
 
 export const mouseAction = (event) => {
   const {target} = event
-  if (target.tagName === 'IMG') return action.remove(target)
+  if (target.tagName === 'IMG') return action.remove()
   return {
     Click:          () => action.open({target}),
     'Meta + Click': () => action.open({target, active: false}),
