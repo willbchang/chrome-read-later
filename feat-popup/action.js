@@ -10,6 +10,7 @@ export const reactive = (li, isKeyboard = true) => {
   //  assign active class will not make the overflowed view visible.
   //  scrollIntoView can solve this problem.
   if (isKeyboard) li[0].scrollIntoView({behavior: 'smooth'})
+  updateRowNumber()
 }
 
 const move = li => {
