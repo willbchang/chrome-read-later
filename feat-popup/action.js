@@ -21,6 +21,11 @@ const updateTotalCount = () => {
   $('#total').text(ul.length)
 }
 
+const updateRowNumber = () => {
+  const rowNumber = $('#reading-list li:visible').index($('.active')) + 1
+  $('#row').text(rowNumber)
+}
+
 export const open = ({currentTab = false, active = true}) => {
   const li = $('.active')
   const url = li.find('a').attr('href')
