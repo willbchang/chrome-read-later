@@ -39,11 +39,14 @@ export const open = ({currentTab = false, active = true}) => {
 }
 
 export const remove = () => {
+  if (localStorage.getItem('isMoving') === 'true') return
+  localStorage.setItem('isMoving', 'true')
   const li = $('.active')
   const url = li.find('a').attr('href')
   li.fadeOut('normal', () => {
     updateTotalCount()
     move(li)
+    localStorage.setItem('isMoving', 'false')
   })
   localStorage.setArray('dependingUrls', url)
 }
