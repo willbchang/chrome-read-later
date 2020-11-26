@@ -109,7 +109,8 @@ body {
 }
 
 @media screen and (prefers-color-scheme: dark) {
-    html {
+    html,
+    #status-bar {
         background-color: #202124;
     }
 
