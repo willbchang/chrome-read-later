@@ -103,6 +103,10 @@ body {
     margin-left: auto; /* Push the count item to the start. */
 }
 
+#status-bar #feedback {
+    margin-right: 10px;
+}
+
 #status-bar #count {
     padding-left: 15px;
     color: #f05f00cc;
