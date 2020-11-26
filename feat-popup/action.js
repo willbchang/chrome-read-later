@@ -1,9 +1,10 @@
 import * as extension from '../modules-chrome/runtime.mjs'
 
 export const reactive = (li, isKeyboard = true) => {
-  // Execute up action on first visible li,
+  // 1. Execute up action on first visible li,
   //  and down action on last visible li will get empty target li
-  if (li.html() === undefined) return
+  // 2. Update row number on delete last li
+  if (li.html() === undefined) return updateRowNumber()
   $('.active').removeClass('active')
   li.addClass('active')
   // The reading list will be overflowed if it's longer than 17,
