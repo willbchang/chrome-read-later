@@ -1,13 +1,14 @@
 import * as extension from '../modules-chrome/runtime.mjs'
 
 export const reactive = (li, isKeyboard = true) => {
-  // Execute up action on first visible li, and down action on last visible li will get empty target li
+  // Execute up action on first visible li,
+  //  and down action on last visible li will get empty target li
   if (li.html() === undefined) return
   $('.active').removeClass('active')
   li.addClass('active')
   // The reading list will be overflowed if it's longer than 17,
-  //   assign active class will not make the overflowed view visible.
-  //   scrollIntoView can solve this problem.
+  //  assign active class will not make the overflowed view visible.
+  //  scrollIntoView can solve this problem.
   if (isKeyboard) li[0].scrollIntoView({behavior: 'smooth'})
 }
 
@@ -32,10 +33,6 @@ export const restore = () => {
   const url = localStorage.popArray('dependingUrls')
   const li = $(`a[href="${url}"]`).parent().fadeIn()
   reactive(li)
-}
-
-const move = li => {
-  li.attr('id') < $('#reading-list li:visible:last').attr('id') ? up(li) : down(li)
 }
 
 export const up = () => {
