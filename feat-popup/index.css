@@ -25,9 +25,7 @@ body {
     line-height: 30px;
 }
 
-#reading-list li:focus,
 #reading-list li.active {
-    outline: none;
     background-color: #c8c8c9;
 }
 
@@ -38,10 +36,6 @@ body {
     text-decoration: none;
     color: #202124;
     cursor: default;
-}
-
-#reading-list a:focus {
-    outline: none;
 }
 
 #reading-list img {
@@ -119,7 +113,6 @@ body {
         background-color: #202124;
     }
 
-    #reading-list li:focus,
     #reading-list li.active {
         background-color: #444547;
     }
