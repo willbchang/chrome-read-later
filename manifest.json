@@ -34,7 +34,7 @@
       }
     }
   },
-  "description": "A temporary bookmark focuses on reading later, rather than closing and removing.",
+  "description": "A temporary bookmark focuses on reading later, rather than closing and removing, with several Vim keybindings!",
   "icons": {
     "128": "assets/icons/logo-orange128x128.png",
     "16": "assets/icons/logo-orange16x16.png",
