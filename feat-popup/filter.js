@@ -1,14 +1,5 @@
 import * as action from './action.js'
 
-export const url = target => {
-  return {
-    A:    () => target.href,
-    LI:   () => target.childNodes[3].href,
-    SPAN: () => target.previousSibling.previousSibling.href,
-    IMG:  () => target.nextElementSibling.href,
-  }[target.tagName]()
-}
-
 
 export const li = target => {
   return {
