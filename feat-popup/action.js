@@ -30,8 +30,10 @@ const updateRowNumber = () => {
 export const open = ({currentTab = false, active = true}) => {
   const li = $('.active')
   const url = li.find('a').attr('href')
-  li.fadeOut('normal', () => updateTotalCount())
-  move(li)
+  li.fadeOut('normal', () => {
+    updateTotalCount()
+    move(li)
+  })
   extension.sendMessage({url, currentTab, active})
   if (currentTab) window.close()
 }
@@ -39,8 +41,10 @@ export const open = ({currentTab = false, active = true}) => {
 export const remove = () => {
   const li = $('.active')
   const url = li.find('a').attr('href')
-  li.fadeOut('normal', () => updateTotalCount())
-  move(li)
+  li.fadeOut('normal', () => {
+    updateTotalCount()
+    move(li)
+  })
   localStorage.setArray('dependingUrls', url)
 }
 
