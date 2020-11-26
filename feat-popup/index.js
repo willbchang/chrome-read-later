@@ -2,6 +2,7 @@ import '../modules/prototype.mjs'
 import * as dom from './dom.js'
 import * as storage from '../modules-chrome/storage.mjs'
 import * as filter from './filter.js'
+import * as action from './action.js'
 
 (async () => {
   // Remove the deleted urls from storage before init reading list.
@@ -10,15 +11,18 @@ import * as filter from './filter.js'
   localStorage.clear()
 
   // Init reading list from storage.
-  const ul = $('ul')
+  const ul = $('#reading-list')
   const pages = await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()
   pages.map(page => ul.append(dom.renderListFrom(page, favIcons[page.favIconUrl])))
 
   // Focus the first li on init
-  const li = $('li')
-  if (li.length !== 0) li[0].focus()
+  const li = $('#reading-list li')
+  if (li.length !== 0) li.first().addClass('active')
 
+  // Count the reading list
+  $('#total').text(pages.length)
+  $('#row').text($('.active').index() + 1)
 
   ul.on({
     mouseenter: dom.showDeleteIcon,
@@ -29,7 +33,7 @@ import * as filter from './filter.js'
   ul.on('mousemove', 'li', event => {
     // Empty selection on mouse move.
     document.getSelection().empty()
-    filter.li(event.target).trigger('focus')
+    action.reactive(filter.li(event.target), false)
   })
 
   let selections = []

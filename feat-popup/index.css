@@ -8,24 +8,28 @@ body {
     font-size: 14px;
 }
 
-ul {
+#reading-list {
     list-style: none;
     padding-top: 10px;
+    padding-bottom: 25px;
 }
 
-li {
+::-webkit-scrollbar {
+    display: none;
+}
+
+#reading-list li {
     display: flex;
     align-items: center;
     padding: 0 15px;
     line-height: 30px;
 }
 
-li:focus {
-    outline: none;
+#reading-list li.active {
     background-color: #c8c8c9;
 }
 
-a {
+#reading-list a {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -34,11 +38,7 @@ a {
     cursor: default;
 }
 
-a:focus {
-    outline: none;
-}
-
-img {
+#reading-list img {
     margin-right: 8px;
     padding: 1px;
     min-width: 16px;
@@ -50,7 +50,7 @@ img {
 
 /* Set a fallback on img error */
 /* https://stackoverflow.com/a/980948/9984029 */
-img:before {
+#reading-list img:before {
     content: ' ';
     display: block;
     position: absolute;
@@ -60,7 +60,7 @@ img:before {
     background-size: 16px 16px;
 }
 
-.position {
+#reading-list .position {
     font-size: 12px;
     font-weight: 500;
     color: #f05f00cc;
@@ -68,13 +68,44 @@ img:before {
     cursor: default;
 }
 
-#feedback {
+#status-bar {
+    display: flex;
+    list-style-type: none;
+    justify-content: flex-end;
     padding: 5px;
+    /*Fix status bar*/
+    position: fixed;
+    bottom: 0;
+    background-color: white; /* Hide contents under status bar */
+    width: 100%; /* Make the status bar full width */
+}
+
+#status-bar li {
+    padding: 0 5px;
     color: gray;
     font-size: 12px;
-    float: right;
-    margin: 3px;
+}
+
+#status-bar a {
+    color: inherit;
+    font-size: inherit;
     cursor: pointer;
+    text-decoration: none;
+}
+
+#status-bar #document  {
+    margin-left: auto; /* Push the count item to the start. */
+}
+
+#status-bar #feedback {
+    margin-right: 10px;
+}
+
+#status-bar #count {
+    padding-left: 15px;
+    color: #f05f00cc;
+    cursor: default;
+    letter-spacing: 1px;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -82,19 +113,16 @@ img:before {
         background-color: #202124;
     }
 
-    li:hover {
-        background-color: #37383a;
-    }
-
-    li:focus {
+    #reading-list li.active {
         background-color: #444547;
     }
 
-    a {
+    #reading-list a {
         color: #e0eaed;
     }
 
-    .position {
+    #reading-list .position,
+    #status-bar #count {
         color: #f05f00;
     }
 }
