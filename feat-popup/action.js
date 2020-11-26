@@ -12,6 +12,10 @@ export const reactive = (li, isKeyboard = true) => {
   if (isKeyboard) li[0].scrollIntoView({behavior: 'smooth'})
 }
 
+const move = li => {
+  li.attr('id') < $('#reading-list li:visible:last').attr('id') ? up(li) : down(li)
+}
+
 export const open = ({currentTab = false, active = true}) => {
   const li = $('.active')
   const url = li.find('a').attr('href')
