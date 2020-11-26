@@ -63,9 +63,9 @@ export const keyAction = event => {
   //    This way make it continue to work.
   const target = event.target.tagName === 'BODY' ? '' : li(event.target)[0]
   return {
-    Enter:              () => action.open({target}),
-    'Meta + Enter':     () => action.open({target, active: false}),
-    'Alt + Enter':      () => action.open({target, currentTab: true}),
+    Enter:              () => action.open({}),
+    'Meta + Enter':     () => action.open({active: false}),
+    'Alt + Enter':      () => action.open({currentTab: true}),
     Backspace:          () => action.remove(),
     'Meta + z':         () => action.restore(),
     'Meta + ArrowUp':   () => action.top(),
@@ -89,8 +89,8 @@ export const mouseAction = (event) => {
   const {target} = event
   if (target.tagName === 'IMG') return action.remove()
   return {
-    Click:          () => action.open({target}),
-    'Meta + Click': () => action.open({target, active: false}),
-    'Alt + Click':  () => action.open({target, currentTab: true}),
+    Click:          () => action.open({}),
+    'Meta + Click': () => action.open({active: false}),
+    'Alt + Click':  () => action.open({currentTab: true}),
   }[mouse(event)]()
 }

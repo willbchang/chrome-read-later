@@ -12,9 +12,12 @@ export const reactive = (li, isKeyboard = true) => {
   if (isKeyboard) li[0].scrollIntoView({behavior: 'smooth'})
 }
 
-export const open = ({target, currentTab = false, active = true}) => {
-  hide(target, move)
-  extension.sendMessage({url: filter.url(target), currentTab, active})
+export const open = ({currentTab = false, active = true}) => {
+  const li = $('.active')
+  const url = li.find('a').attr('href')
+  li.fadeOut('normal')
+  move(li)
+  extension.sendMessage({url, currentTab, active})
   if (currentTab) window.close()
 }
 
