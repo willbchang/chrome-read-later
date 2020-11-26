@@ -31,7 +31,8 @@ export const remove = () => {
 
 export const restore = () => {
   const url = localStorage.popArray('dependingUrls')
-  $(`a[href="${url}"]`).parent().fadeIn().trigger('focus')
+  const li = $(`a[href="${url}"]`).parent().fadeIn()
+  reactive(li)
 }
 
 const hide = (li, move) => {
