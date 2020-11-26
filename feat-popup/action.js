@@ -1,5 +1,4 @@
 import * as extension from '../modules-chrome/runtime.mjs'
-import * as filter from './filter.js'
 
 export const reactive = (li, isKeyboard = true) => {
   // Execute up action on first visible li, and down action on last visible li will get empty target li
