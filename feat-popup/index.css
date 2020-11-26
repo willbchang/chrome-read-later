@@ -11,6 +11,7 @@ body {
 #reading-list {
     list-style: none;
     padding-top: 10px;
+    padding-bottom: 25px;
 }
 
 ::-webkit-scrollbar {
@@ -78,6 +79,11 @@ body {
     list-style-type: none;
     justify-content: flex-end;
     padding: 5px;
+    /*Fix status bar*/
+    position: fixed;
+    bottom: 0;
+    background-color: white; /* Hide contents under status bar */
+    width: 100%; /* Make the status bar full width */
 }
 
 #status-bar li {
