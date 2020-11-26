@@ -78,7 +78,7 @@ export const keyAction = event => {
     G:                  () => action.bottom(),
     dd:                 () => action.remove(),
     u:                  () => action.restore(),
-    yy:                 () => action.copy(target),
+    yy:                 () => action.copy(),
   }[key(event)]()
 }
 

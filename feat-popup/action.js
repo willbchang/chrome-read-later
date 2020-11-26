@@ -59,6 +59,7 @@ export const bottom = () => {
   reactive(li)
 }
 
-export const copy = async target => {
-  await navigator.clipboard.writeText(filter.url(target))
+export const copy = async () => {
+  const url = $('.active').find('a').attr('href')
+  await navigator.clipboard.writeText(url)
 }
