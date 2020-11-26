@@ -35,10 +35,6 @@ export const restore = () => {
   reactive(li)
 }
 
-const hide = (li, move) => {
-  li.fadeOut('normal', () => move(li))
-}
-
 const move = li => {
   li.attr('id') < $('#reading-list li:visible:last').attr('id') ? up(li) : down(li)
 }
