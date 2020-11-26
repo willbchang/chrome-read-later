@@ -16,10 +16,16 @@ const move = li => {
   li.attr('id') < $('#reading-list li:visible:last').attr('id') ? up(li) : down(li)
 }
 
+const recount = () => {
+  const count = $('#reading-list li:visible').length
+  console.log(count)
+  $('#count span').text(count)
+}
+
 export const open = ({currentTab = false, active = true}) => {
   const li = $('.active')
   const url = li.find('a').attr('href')
-  li.fadeOut('normal')
+  li.fadeOut('normal', () => recount())
   move(li)
   extension.sendMessage({url, currentTab, active})
   if (currentTab) window.close()
@@ -28,7 +34,7 @@ export const open = ({currentTab = false, active = true}) => {
 export const remove = () => {
   const li = $('.active')
   const url = li.find('a').attr('href')
-  li.fadeOut('normal')
+  li.fadeOut('normal', () => recount())
   move(li)
   localStorage.setArray('dependingUrls', url)
 }
@@ -37,6 +43,7 @@ export const restore = () => {
   const url = localStorage.popArray('dependingUrls')
   const li = $(`a[href="${url}"]`).parent().fadeIn()
   reactive(li)
+  recount()
 }
 
 export const up = () => {
