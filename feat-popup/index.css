@@ -11,7 +11,7 @@ body {
 #reading-list {
     list-style: none;
     padding-top: 10px;
-    padding-bottom: 25px;
+    padding-bottom: 24px;
 }
 
 ::-webkit-scrollbar {
