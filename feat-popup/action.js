@@ -37,6 +37,7 @@ export const open = ({currentTab = false, active = true}) => {
     updateTotalCount()
     move(li)
   })
+  localStorage.setArray('dependingUrls', url)
   extension.sendMessage({url, currentTab, active})
   if (currentTab) window.close()
 }
