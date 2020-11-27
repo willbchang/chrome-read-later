@@ -73,6 +73,7 @@ body {
     list-style-type: none;
     justify-content: flex-end;
     padding: 5px;
+    height: 15px;
     /*Fix status bar*/
     position: fixed;
     bottom: 0;
