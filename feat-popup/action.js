@@ -42,7 +42,8 @@ export const open = ({currentTab = false, active = true}) => {
   if (currentTab) window.close()
 }
 
-export const remove = () => {
+// dele is synonym of delete, delete is a keyword in JavasScript
+export const dele = () => {
   if (localStorage.getItem('isMoving') === 'true') return
   localStorage.setItem('isMoving', 'true')
   const li = $('.active')
