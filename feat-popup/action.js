@@ -55,7 +55,7 @@ export const remove = () => {
   localStorage.setArray('dependingUrls', url)
 }
 
-export const restore = () => {
+export const undo = () => {
   const url = localStorage.popArray('dependingUrls')
   const li = $(`a[href="${url}"]`).parent().fadeIn()
   reactive(li)

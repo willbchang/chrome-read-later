@@ -46,7 +46,7 @@ export const keyAction = event => {
     'Meta + Enter':     () => action.open({active: false}),
     'Alt + Enter':      () => action.open({currentTab: true}),
     Backspace:          () => action.remove(),
-    'Meta + z':         () => action.restore(),
+    'Meta + z':         () => action.undo(),
     'Meta + ArrowUp':   () => action.top(),
     'Meta + ArrowDown': () => action.bottom(),
     ArrowUp:            () => action.up(),
@@ -56,7 +56,7 @@ export const keyAction = event => {
     gg:                 () => action.top(),
     G:                  () => action.bottom(),
     dd:                 () => action.remove(),
-    u:                  () => action.restore(),
+    u:                  () => action.undo(),
     yy:                 () => action.copy(),
   }[key(event)]()
 }
