@@ -21,7 +21,7 @@ const scrollTo = li => {
 }
 
 const move = li => {
-  li.attr('id') < $('#reading-list li:visible:last').attr('id') ? up(li) : down(li)
+  li.attr('id') < $('#reading-list li:visible:last').attr('id') ? moveTo('previous') : moveTo('next')
 }
 
 const updateTotalCount = () => {
@@ -68,30 +68,17 @@ export const undo = () => {
   updateTotalCount()
 }
 
-export const up = () => {
-  const li = $('.active').prevAll(':visible:first')
+export const moveTo = direction => {
+  const li = {
+    previous: () => $('.active').prevAll(':visible:first'),
+    next:     () => $('.active').nextAll(':visible:first'),
+    top:      () => $('#reading-list li:visible:first'),
+    bottom:   () => $('#reading-list li:visible:last'),
+  }[direction]()
+
   reactive(li)
   scrollTo(li)
 }
-
-export const down = () => {
-  const li = $('.active').nextAll(':visible:first')
-  reactive(li)
-  scrollTo(li)
-}
-
-export const top = () => {
-  const li = $('#reading-list li:visible:first')
-  reactive(li)
-  scrollTo(li)
-}
-
-export const bottom = () => {
-  const li = $('#reading-list li:visible:last')
-  reactive(li)
-  scrollTo(li)
-}
-
 export const copy = async () => {
   const url = $('.active').find('a').attr('href')
   await navigator.clipboard.writeText(url)
