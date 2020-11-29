@@ -48,7 +48,7 @@ export const keyAction = event => {
     G:                  () => action.moveTo('bottom'),
     dd:                 () => action.dele(),
     u:                  () => action.undo(),
-    yy:                 () => action.copy(),
+    yy:                 () => action.copyUrl(),
   }[key(event)]()
 }
 

@@ -79,7 +79,7 @@ export const moveTo = direction => {
   reactive(li)
   scrollTo(li)
 }
-export const copy = async () => {
+export const copyUrl = async () => {
   const url = $('.active').find('a').attr('href')
   await navigator.clipboard.writeText(url)
 }
