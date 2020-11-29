@@ -14,9 +14,9 @@ export const reactive = (li, isKeyboard = true) => {
   if (!isKeyboard) return
   const isFirstLi = $('#reading-list li:visible').index(li) === 0
   // https://stackoverflow.com/questions/14613498/how-to-prevent-this-strange-jquery-animate-lag
-  isFirstLi
-    ? $('html, body').stop(true, true).animate({scrollTop: 0}, 'fast')
-    : $('html, body').stop(true, true).animate({scrollTop: li.offset().top}, 'fast')
+  $('html, body')
+    .stop(true, true)
+    .animate({scrollTop: isFirstLi ? 0 : li.offset().top}, 'fast')
 }
 
 const move = li => {
