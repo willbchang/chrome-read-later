@@ -30,10 +30,10 @@ import * as action from './action.js'
   }, 'img')
 
   // Focus on li when mouse move, do the same behavior like keyboard navigation
-  ul.on('mousemove', 'li', event => {
+  ul.on('mousemove', 'li', ({target}) => {
     // Empty selection on mouse move.
     document.getSelection().empty()
-    const li = event.target.tagName === 'LI' ? $(event.target) : $(event.target.parentNode)
+    const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
     action.reactive(li)
   })
 
@@ -46,7 +46,7 @@ import * as action from './action.js'
     event.preventDefault()
     // Right click will give 2 selection history
     // This prevents open link after selecting text.
-    if (selections.length > 2)  return selections = []
+    if (selections.length > 2) return selections = []
 
     try {
       filter.mouseAction(event)
