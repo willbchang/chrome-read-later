@@ -11,9 +11,11 @@ export const reactive = (li, isKeyboard = true) => {
   //  assign active class will not make the overflowed view visible.
   //  scrollIntoView can solve this problem.
   updateRowNumber()
+  if (!isKeyboard) return
   const isFirstLi = $('#reading-list li:visible').index(li) === 0
-  if (isFirstLi) return $('html, body').animate({scrollTop: 0}, 'fast')
-  if (isKeyboard) li[0].scrollIntoView({behavior: 'smooth'})
+  isFirstLi
+    ? $('html, body').animate({scrollTop: 0}, 'fast')
+    : li[0].scrollIntoView({behavior: 'smooth'})
 }
 
 const move = li => {
