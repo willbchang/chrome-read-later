@@ -1,6 +1,6 @@
 import * as extension from '../modules-chrome/runtime.mjs'
 
-export const reactive = (li, isKeyboard = true) => {
+export const reactive = li => {
   // 1. Execute up() on first visible li, and down() on last visible li
   //     will get empty target li.
   // 2. Update row number on deleting last li, row number will be 0
@@ -8,6 +8,9 @@ export const reactive = (li, isKeyboard = true) => {
   $('.active').removeClass('active')
   li.addClass('active')
   updateRowNumber()
+}
+
+const scrollTo = (li, isKeyboard = true) => {
   if (!isKeyboard) return
   // The reading list will be overflowed if it's longer than 17,
   //  assign active class will not make the overflowed view visible.
@@ -62,27 +65,32 @@ export const undo = () => {
   const url = localStorage.popArray('dependingUrls')
   const li = $(`a[href="${url}"]`).parent().fadeIn()
   reactive(li)
+  scrollTo(li)
   updateTotalCount()
 }
 
 export const up = () => {
   const li = $('.active').prevAll(':visible:first')
   reactive(li)
+  scrollTo(li)
 }
 
 export const down = () => {
   const li = $('.active').nextAll(':visible:first')
   reactive(li)
+  scrollTo(li)
 }
 
 export const top = () => {
   const li = $('#reading-list li:visible:first')
   reactive(li)
+  scrollTo(li)
 }
 
 export const bottom = () => {
   const li = $('#reading-list li:visible:last')
   reactive(li)
+  scrollTo(li)
 }
 
 export const copy = async () => {
