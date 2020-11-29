@@ -15,7 +15,7 @@ export const reactive = (li, isKeyboard = true) => {
   const isFirstLi = $('#reading-list li:visible').index(li) === 0
   isFirstLi
     ? $('html, body').animate({scrollTop: 0}, 'fast')
-    : li[0].scrollIntoView({behavior: 'smooth'})
+    : $('html, body').animate({scrollTop: li.offset().top}, 'fast')
 }
 
 const move = li => {
