@@ -1,15 +1,6 @@
 import * as action from './action.js'
 
 
-export const li = target => {
-  return {
-    LI:   () => $(target),
-    IMG:  () => $(target.parentNode),
-    A:    () => $(target.parentNode),
-    SPAN: () => $(target.parentNode),
-  }[target.tagName]()
-}
-
 export const key = event => {
   const {key, metaKey, altKey} = event
   const lastKey = localStorage.getItem('lastKey')
