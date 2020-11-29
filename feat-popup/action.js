@@ -4,9 +4,10 @@ export const reactive = li => {
   // 1. Execute up() on first visible li, and down() on last visible li
   //     will get empty target li.
   // 2. Update row number on deleting last li, row number will be 0
-  if (li.html() === undefined) return updateRowNumber()
-  $('.active').removeClass('active')
-  li.addClass('active')
+  if (li.html()) {
+    $('.active').removeClass('active')
+    li.addClass('active')
+  }
   updateRowNumber()
 }
 
