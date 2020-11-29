@@ -10,8 +10,7 @@ export const reactive = li => {
   updateRowNumber()
 }
 
-const scrollTo = (li, isKeyboard = true) => {
-  if (!isKeyboard) return
+const scrollTo = li => {
   // The reading list will be overflowed if it's longer than 17,
   //  assign active class will not make the overflowed view visible.
   //  $.animate() can solve this problem.
