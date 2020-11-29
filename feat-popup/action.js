@@ -1,21 +1,20 @@
 import * as extension from '../modules-chrome/runtime.mjs'
 
 export const reactive = (li, isKeyboard = true) => {
-  // 1. Execute up action on first visible li,
-  //  and down action on last visible li will get empty target li
-  // 2. Update row number on delete last li
+  // 1. Execute up() on first visible li, and down() on last visible li
+  //     will get empty target li.
+  // 2. Update row number on deleting last li, row number will be 0
   if (li.html() === undefined) return updateRowNumber()
   $('.active').removeClass('active')
   li.addClass('active')
-  // The reading list will be overflowed if it's longer than 17,
-  //  assign active class will not make the overflowed view visible.
-  //  scrollIntoView can solve this problem.
   updateRowNumber()
   if (!isKeyboard) return
+  // The reading list will be overflowed if it's longer than 17,
+  //  assign active class will not make the overflowed view visible.
+  //  $.animate() can solve this problem.
   const isFirstLi = $('#reading-list li:visible').index(li) === 0
-  // https://stackoverflow.com/questions/14613498/how-to-prevent-this-strange-jquery-animate-lag
   $('html, body')
-    .stop(true, true)
+    .stop(true, true) // Stop jQuery animation delay on continuous movement.
     .animate({scrollTop: isFirstLi ? 0 : li.offset().top}, 'fast')
 }
 
