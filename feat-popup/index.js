@@ -14,7 +14,9 @@ import * as action from './action.js'
   const ul = $('#reading-list')
   const pages = await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()
-  pages.map(page => ul.append(dom.renderListFrom(page, favIcons[page.favIconUrl])))
+  pages.map(page => ul.append(
+    dom.renderListFrom(page, favIcons[page.favIconUrl])
+  ))
 
   // Focus the first li on init
   const li = $('#reading-list li')
@@ -30,10 +32,11 @@ import * as action from './action.js'
   }, 'img')
 
   // Focus on li when mouse move, do the same behavior like keyboard navigation
-  ul.on('mousemove', 'li', event => {
+  ul.on('mousemove', 'li', ({target}) => {
     // Empty selection on mouse move.
     document.getSelection().empty()
-    action.reactive(filter.li(event.target), false)
+    const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
+    action.reactive(li)
   })
 
   let selections = []
@@ -45,7 +48,7 @@ import * as action from './action.js'
     event.preventDefault()
     // Right click will give 2 selection history
     // This prevents open link after selecting text.
-    if (selections.length > 2)  return selections = []
+    if (selections.length > 2) return selections = []
 
     try {
       filter.mouseAction(event)

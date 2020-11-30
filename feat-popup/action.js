@@ -1,87 +1,92 @@
 import * as extension from '../modules-chrome/runtime.mjs'
 
-export const reactive = (li, isKeyboard = true) => {
-  // 1. Execute up action on first visible li,
-  //  and down action on last visible li will get empty target li
-  // 2. Update row number on delete last li
-  if (li.html() === undefined) return updateRowNumber()
-  $('.active').removeClass('active')
-  li.addClass('active')
-  // The reading list will be overflowed if it's longer than 17,
-  //  assign active class will not make the overflowed view visible.
-  //  scrollIntoView can solve this problem.
+const activeLi = () => $('.active')
+const visibleLis = () => $('#reading-list li:visible')
+
+export const reactive = li => {
+  // 1. Execute up() on first visible li, and down() on last visible li
+  //     will get empty target li.
+  // 2. Update row number on deleting last li, row number will be 0
+  if (li.html()) {
+    activeLi().removeClass('active')
+    li.addClass('active')
+  }
   updateRowNumber()
-  const isFirstLi = $('#reading-list li:visible').index(li) === 0
-  if (isFirstLi) return $('html, body').animate({scrollTop: 0}, 'fast')
-  if (isKeyboard) li[0].scrollIntoView({behavior: 'smooth'})
 }
 
-const move = li => {
-  li.attr('id') < $('#reading-list li:visible:last').attr('id') ? up(li) : down(li)
+const scrollTo = li => {
+  // Don't make scroll on empty li, which is deleting the last li.
+  if (li.html() === undefined) return
+  // The reading list will be overflowed if it's longer than 17,
+  //  assign active class will not make the overflowed view visible.
+  //  $.animate() can solve this problem.
+  const isFirstLi = visibleLis().index(li) === 0
+  $('html, body')
+    .stop(true, true) // Stop jQuery animation delay on continuous movement.
+    .animate({scrollTop: isFirstLi ? 0 : li.offset().top}, 'fast')
+}
+
+const moveToPreviousOrNext = li => {
+  li.attr('id') < visibleLis().last().attr('id') ? moveTo('previous') : moveTo('next')
 }
 
 const updateTotalCount = () => {
-  const ul = $('#reading-list li:visible')
+  const ul = visibleLis()
   $('#total').text(ul.length)
 }
 
 const updateRowNumber = () => {
-  const rowNumber = $('#reading-list li:visible').index($('.active')) + 1
+  const rowNumber = visibleLis().index(activeLi()) + 1
   $('#row').text(rowNumber)
 }
 
 export const open = ({currentTab = false, active = true}) => {
-  const li = $('.active')
+  const li = activeLi()
   const url = li.find('a').attr('href')
   li.fadeOut('normal', () => {
     updateTotalCount()
-    move(li)
+    moveToPreviousOrNext(li)
   })
+  localStorage.setArray('dependingUrls', url)
   extension.sendMessage({url, currentTab, active})
   if (currentTab) window.close()
 }
 
-export const remove = () => {
+// dele is synonym of delete, delete is a keyword in JavasScript
+export const dele = () => {
   if (localStorage.getItem('isMoving') === 'true') return
   localStorage.setItem('isMoving', 'true')
-  const li = $('.active')
+  const li = activeLi()
   const url = li.find('a').attr('href')
   li.fadeOut('normal', () => {
     updateTotalCount()
-    move(li)
+    moveToPreviousOrNext(li)
     localStorage.setItem('isMoving', 'false')
   })
   localStorage.setArray('dependingUrls', url)
 }
 
-export const restore = () => {
+export const undo = () => {
   const url = localStorage.popArray('dependingUrls')
   const li = $(`a[href="${url}"]`).parent().fadeIn()
   reactive(li)
+  scrollTo(li)
   updateTotalCount()
 }
 
-export const up = () => {
-  const li = $('.active').prevAll(':visible:first')
+export const moveTo = direction => {
+  const li = {
+    previous: () => activeLi().prevAll(':visible').first(),
+    next:     () => activeLi().nextAll(':visible').first(),
+    top:      () => visibleLis().first(),
+    bottom:   () => visibleLis().last(),
+  }[direction]()
+
   reactive(li)
+  scrollTo(li)
 }
 
-export const down = () => {
-  const li = $('.active').nextAll(':visible:first')
-  reactive(li)
-}
-
-export const top = () => {
-  const li = $('#reading-list li:visible:first')
-  reactive(li)
-}
-
-export const bottom = () => {
-  const li = $('#reading-list li:visible:last')
-  reactive(li)
-}
-
-export const copy = async () => {
-  const url = $('.active').find('a').attr('href')
+export const copyUrl = async () => {
+  const url = activeLi().find('a').attr('href')
   await navigator.clipboard.writeText(url)
 }

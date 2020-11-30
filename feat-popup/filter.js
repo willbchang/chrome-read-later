@@ -1,15 +1,6 @@
 import * as action from './action.js'
 
 
-export const li = target => {
-  return {
-    LI:   () => $(target),
-    IMG:  () => $(target.parentNode),
-    A:    () => $(target.parentNode),
-    SPAN: () => $(target.parentNode),
-  }[target.tagName]()
-}
-
 export const key = event => {
   const {key, metaKey, altKey} = event
   const lastKey = localStorage.getItem('lastKey')
@@ -45,19 +36,19 @@ export const keyAction = event => {
     Enter:              () => action.open({}),
     'Meta + Enter':     () => action.open({active: false}),
     'Alt + Enter':      () => action.open({currentTab: true}),
-    Backspace:          () => action.remove(),
-    'Meta + z':         () => action.restore(),
-    'Meta + ArrowUp':   () => action.top(),
-    'Meta + ArrowDown': () => action.bottom(),
-    ArrowUp:            () => action.up(),
-    ArrowDown:          () => action.down(),
-    j:                  () => action.down(),
-    k:                  () => action.up(),
-    gg:                 () => action.top(),
-    G:                  () => action.bottom(),
-    dd:                 () => action.remove(),
-    u:                  () => action.restore(),
-    yy:                 () => action.copy(),
+    Backspace:          () => action.dele(),
+    'Meta + z':         () => action.undo(),
+    'Meta + ArrowUp':   () => action.moveTo('top'),
+    'Meta + ArrowDown': () => action.moveTo('bottom'),
+    ArrowUp:            () => action.moveTo('previous'),
+    ArrowDown:          () => action.moveTo('next'),
+    j:                  () => action.moveTo('next'),
+    k:                  () => action.moveTo('previous'),
+    gg:                 () => action.moveTo('top'),
+    G:                  () => action.moveTo('bottom'),
+    dd:                 () => action.dele(),
+    u:                  () => action.undo(),
+    yy:                 () => action.copyUrl(),
   }[key(event)]()
 }
 
@@ -66,7 +57,7 @@ export const mouse = ({metaKey, altKey}) =>
 
 export const mouseAction = (event) => {
   const {target} = event
-  if (target.tagName === 'IMG') return action.remove()
+  if (target.tagName === 'IMG') return action.dele()
   return {
     Click:          () => action.open({}),
     'Meta + Click': () => action.open({active: false}),
