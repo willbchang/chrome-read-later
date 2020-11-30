@@ -85,6 +85,7 @@ export const moveTo = direction => {
   reactive(li)
   scrollTo(li)
 }
+
 export const copyUrl = async () => {
   const url = activeLi().find('a').attr('href')
   await navigator.clipboard.writeText(url)
