@@ -25,7 +25,7 @@ const scrollTo = li => {
 }
 
 const moveToPreviousOrNext = li => {
-  li.attr('id') < $('#reading-list li:visible').last().attr('id') ? moveTo('previous') : moveTo('next')
+  li.attr('id') < visibleLis().last().attr('id') ? moveTo('previous') : moveTo('next')
 }
 
 const updateTotalCount = () => {
