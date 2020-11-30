@@ -1,6 +1,6 @@
-export function renderListFrom(page, favIconBase64) {
+export function renderListFrom(page, favIconBase64, isHidden) {
   return `
-      <li id=${page.date}>
+      <li id=${page.date} ${isHidden ? 'style="display: none;"' : ''}>
         <img src="${favIconBase64 || page.favIconUrl}" alt="">
         <a href="${page.url}" title="${getTitleAttribute()}" ${getInnerTextColor()} tabindex="-1">${encodeInnerText()}</a>
         ${getScrollPercent()}
