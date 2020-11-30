@@ -21,7 +21,7 @@ const scrollTo = li => {
     .animate({scrollTop: isFirstLi ? 0 : li.offset().top}, 'fast')
 }
 
-const move = li => {
+const moveToPreviousOrNext = li => {
   li.attr('id') < $('#reading-list li:visible:last').attr('id') ? moveTo('previous') : moveTo('next')
 }
 
@@ -40,7 +40,7 @@ export const open = ({currentTab = false, active = true}) => {
   const url = li.find('a').attr('href')
   li.fadeOut('normal', () => {
     updateTotalCount()
-    move(li)
+    moveToPreviousOrNext(li)
   })
   localStorage.setArray('dependingUrls', url)
   extension.sendMessage({url, currentTab, active})
@@ -55,7 +55,7 @@ export const dele = () => {
   const url = li.find('a').attr('href')
   li.fadeOut('normal', () => {
     updateTotalCount()
-    move(li)
+    moveToPreviousOrNext(li)
     localStorage.setItem('isMoving', 'false')
   })
   localStorage.setArray('dependingUrls', url)
