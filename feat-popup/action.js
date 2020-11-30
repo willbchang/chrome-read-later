@@ -15,6 +15,8 @@ export const reactive = li => {
 }
 
 const scrollTo = li => {
+  // Don't make scroll on empty li, which is deleting the last li.
+  if (li.html() === undefined) return
   // The reading list will be overflowed if it's longer than 17,
   //  assign active class will not make the overflowed view visible.
   //  $.animate() can solve this problem.
