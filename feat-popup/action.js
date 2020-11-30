@@ -24,7 +24,7 @@ const scrollTo = li => {
 }
 
 const moveToPreviousOrNext = li => {
-  li.attr('id') < $('#reading-list li:visible:last').attr('id') ? moveTo('previous') : moveTo('next')
+  li.attr('id') < $('#reading-list li:visible').last().attr('id') ? moveTo('previous') : moveTo('next')
 }
 
 const updateTotalCount = () => {
@@ -73,10 +73,10 @@ export const undo = () => {
 
 export const moveTo = direction => {
   const li = {
-    previous: () => activeLi().prevAll(':visible:first'),
-    next:     () => activeLi().nextAll(':visible:first'),
-    top:      () => $('#reading-list li:visible:first'),
-    bottom:   () => $('#reading-list li:visible:last'),
+    previous: () => activeLi().prevAll(':visible').first(),
+    next:     () => activeLi().nextAll(':visible').first(),
+    top:      () => $('#reading-list li:visible').first(),
+    bottom:   () => $('#reading-list li:visible').last(),
   }[direction]()
 
   reactive(li)
