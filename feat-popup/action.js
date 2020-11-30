@@ -1,11 +1,13 @@
 import * as extension from '../modules-chrome/runtime.mjs'
 
+const activeLi = () => $('.active')
+
 export const reactive = li => {
   // 1. Execute up() on first visible li, and down() on last visible li
   //     will get empty target li.
   // 2. Update row number on deleting last li, row number will be 0
   if (li.html()) {
-    $('.active').removeClass('active')
+    activeLi().removeClass('active')
     li.addClass('active')
   }
   updateRowNumber()
@@ -31,12 +33,12 @@ const updateTotalCount = () => {
 }
 
 const updateRowNumber = () => {
-  const rowNumber = $('#reading-list li:visible').index($('.active')) + 1
+  const rowNumber = $('#reading-list li:visible').index(activeLi()) + 1
   $('#row').text(rowNumber)
 }
 
 export const open = ({currentTab = false, active = true}) => {
-  const li = $('.active')
+  const li = activeLi()
   const url = li.find('a').attr('href')
   li.fadeOut('normal', () => {
     updateTotalCount()
@@ -51,7 +53,7 @@ export const open = ({currentTab = false, active = true}) => {
 export const dele = () => {
   if (localStorage.getItem('isMoving') === 'true') return
   localStorage.setItem('isMoving', 'true')
-  const li = $('.active')
+  const li = activeLi()
   const url = li.find('a').attr('href')
   li.fadeOut('normal', () => {
     updateTotalCount()
@@ -71,8 +73,8 @@ export const undo = () => {
 
 export const moveTo = direction => {
   const li = {
-    previous: () => $('.active').prevAll(':visible:first'),
-    next:     () => $('.active').nextAll(':visible:first'),
+    previous: () => activeLi().prevAll(':visible:first'),
+    next:     () => activeLi().nextAll(':visible:first'),
     top:      () => $('#reading-list li:visible:first'),
     bottom:   () => $('#reading-list li:visible:last'),
   }[direction]()
@@ -81,6 +83,6 @@ export const moveTo = direction => {
   scrollTo(li)
 }
 export const copyUrl = async () => {
-  const url = $('.active').find('a').attr('href')
+  const url = activeLi().find('a').attr('href')
   await navigator.clipboard.writeText(url)
 }
