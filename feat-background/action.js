@@ -36,7 +36,6 @@ export async function savePage() {
 export async function openPage({url, currentTab, active}) {
   const tab = currentTab ? await tabs.update(url) : await tabs.create(url, active)
   const position = await storage.sync.getScrollPosition(url)
-  storage.sync.remove(url)
   const tabId = await tabs.onComplete(tab)
   await tabs.sendMessage(tabId, {...position, info: 'set position'})
 }
