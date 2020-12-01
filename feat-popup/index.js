@@ -1,6 +1,7 @@
 import '../modules/prototype.mjs'
 import * as dom from './dom.js'
 import * as storage from '../modules-chrome/storage.mjs'
+import * as tabs from '../modules-chrome/tabs.mjs'
 import * as filter from './filter.js'
 import * as action from './action.js'
 
@@ -64,6 +65,10 @@ import * as action from './action.js'
     } catch (e) {
       console.log('Catch default key action: ', event.key)
     }
+  })
+
+  $('#history').on('click', async () => {
+    await tabs.create(chrome.runtime.getURL('history/index.html'))
   })
 })()
 
