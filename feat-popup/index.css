@@ -94,10 +94,6 @@ body {
     text-decoration: none;
 }
 
-#status-bar #document  {
-    margin-left: auto; /* Push the count item to the start. */
-}
-
 #status-bar #feedback {
     margin-right: 10px;
 }
@@ -107,6 +103,7 @@ body {
     color: #f05f00cc;
     cursor: default;
     letter-spacing: 1px;
+    margin-right: auto; /* Push the count item to the start. */
 }
 
 @media screen and (prefers-color-scheme: dark) {
