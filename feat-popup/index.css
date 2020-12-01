@@ -94,16 +94,16 @@ body {
     text-decoration: none;
 }
 
-#status-bar #feedback {
-    margin-right: 10px;
-}
-
 #status-bar #count {
     padding-left: 15px;
     color: #f05f00cc;
     cursor: default;
     letter-spacing: 1px;
     margin-right: auto; /* Push the count item to the start. */
+}
+
+#status-bar #feedback {
+    margin-right: 10px;
 }
 
 @media screen and (prefers-color-scheme: dark) {
