@@ -1,0 +1,71 @@
+#reading-list {
+    list-style: none;
+    /* Reading list greater than 17 will make the covered li (by status bar) active */
+    padding-top: 11px;
+    /* Reading list less than 17 will make 1px drag on moving */
+    padding-bottom: 24px;
+}
+
+#reading-list li {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    line-height: 30px;
+}
+
+#reading-list li.active {
+    background-color: #c8c8c9;
+}
+
+#reading-list a {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: #202124;
+    cursor: default;
+}
+
+#reading-list img {
+    margin-right: 8px;
+    padding: 1px;
+    min-width: 16px;
+    max-width: 16px;
+    min-height: 16px;
+    max-height: 16px;
+    cursor: pointer;
+}
+
+/* Set a fallback on img error */
+/* https://stackoverflow.com/a/980948/9984029 */
+#reading-list img:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-image: url("../assets/icons/logo-black32x32.png");
+    background-size: 16px 16px;
+}
+
+#reading-list .position {
+    font-size: 12px;
+    font-weight: 500;
+    color: #f05f00cc;
+    padding-left: 5px;
+    cursor: default;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    #reading-list li.active {
+        background-color: #444547;
+    }
+
+    #reading-list a {
+        color: #e0eaed;
+    }
+
+    #reading-list .position {
+        color: #f05f00;
+    }
+}
