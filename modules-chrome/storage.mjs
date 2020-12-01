@@ -44,3 +44,9 @@ local.setHistory = async page => {
   history[page.url] = page
   await local.set('history', history)
 }
+
+// NOTICE: This returns an Array of objects.
+local.sortHistoryByLatest = async () => {
+  const {history} = await local.get('history')
+  return Object.values(history).sort((a, b) => b.date - a.date)
+}
