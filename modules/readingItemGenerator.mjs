@@ -1,4 +1,4 @@
-export function renderListFrom(page, favIconBase64) {
+export function renderLiFrom(page, favIconBase64) {
   return `
       <li id=${page.date}>
         <img src="${favIconBase64 || page.favIconUrl}" alt="">

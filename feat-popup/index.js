@@ -16,7 +16,7 @@ import * as action from './action.js'
   const pages = await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()
   pages.map(page => ul.append(
-    generator.renderListFrom(page, favIcons[page.favIconUrl])
+    generator.renderLiFrom(page, favIcons[page.favIconUrl])
   ))
 
   // Focus the first li on init

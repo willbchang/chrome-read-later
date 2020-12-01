@@ -9,6 +9,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   console.log(pages, pages[0])
   const favIcons = await storage.local.get()
   pages.map(page => readingList.append(
-    generator.renderListFrom(page, favIcons[page.favIconUrl])
+    generator.renderLiFrom(page, favIcons[page.favIconUrl])
   ))
 })
