@@ -1,5 +1,5 @@
 import '../modules/prototype.mjs'
-import * as dom from '../modules/dom.js'
+import * as dom from '../modules/readingItemGenerator.mjs'
 import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
 import * as filter from './filter.js'
