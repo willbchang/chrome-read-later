@@ -1,5 +1,5 @@
 import '../modules/prototype.mjs'
-import * as dom from '../modules/readingItemGenerator.mjs'
+import * as generator from '../modules/readingItemGenerator.mjs'
 import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
 import * as filter from './filter.js'
@@ -16,7 +16,7 @@ import * as action from './action.js'
   const pages = await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()
   pages.map(page => ul.append(
-    dom.renderListFrom(page, favIcons[page.favIconUrl])
+    generator.renderListFrom(page, favIcons[page.favIconUrl])
   ))
 
   // Focus the first li on init
@@ -28,8 +28,8 @@ import * as action from './action.js'
   $('#row').text($('.active').index() + 1)
 
   ul.on({
-    mouseenter: dom.showDeleteIcon,
-    mouseleave: dom.showFavIcon
+    mouseenter: generator.showDeleteIcon,
+    mouseleave: generator.showFavIcon
   }, 'img')
 
   // Focus on li when mouse move, do the same behavior like keyboard navigation

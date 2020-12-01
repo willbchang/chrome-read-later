@@ -1,5 +1,5 @@
 import * as storage from '../modules-chrome/storage.mjs'
-import * as dom from '../modules/readingItemGenerator.mjs'
+import * as generator from '../modules/readingItemGenerator.mjs'
 
 
 // Init history reading list from storage.
@@ -9,6 +9,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   console.log(pages, pages[0])
   const favIcons = await storage.local.get()
   pages.map(page => readingList.append(
-    dom.renderListFrom(page, favIcons[page.favIconUrl])
+    generator.renderListFrom(page, favIcons[page.favIconUrl])
   ))
 })
