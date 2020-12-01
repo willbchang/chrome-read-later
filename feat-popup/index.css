@@ -10,7 +10,9 @@ body {
 
 #reading-list {
     list-style: none;
+    /* Reading list greater than 17 will make the covered li (by status bar) active */
     padding-top: 11px;
+    /* Reading list less than 17 will make 1px drag on moving */
     padding-bottom: 24px;
 }
 
@@ -73,7 +75,7 @@ body {
     list-style-type: none;
     padding: 5px;
     height: 15px;
-    /*Fix status bar*/
+    /* Fix status bar position at bottom */
     position: fixed;
     bottom: 0;
     background-color: white; /* Hide contents under status bar */
