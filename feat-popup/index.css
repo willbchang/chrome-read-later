@@ -71,7 +71,6 @@ body {
 #status-bar {
     display: flex;
     list-style-type: none;
-    justify-content: flex-end;
     padding: 5px;
     height: 15px;
     /*Fix status bar*/
@@ -99,7 +98,7 @@ body {
     color: #f05f00cc;
     cursor: default;
     letter-spacing: 1px;
-    margin-right: auto; /* Push the count item to the start. */
+    margin-right: auto; /* Push other items to the end. */
 }
 
 #status-bar #feedback {
