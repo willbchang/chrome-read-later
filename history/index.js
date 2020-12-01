@@ -1,5 +1,5 @@
 import * as storage from '../modules-chrome/storage.mjs'
-import * as dom from '../feat-popup/dom.js'
+import * as dom from '../modules/dom.js'
 
 
 // Init history reading list from storage.
