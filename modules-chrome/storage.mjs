@@ -29,7 +29,9 @@ sync.getScrollPosition = async url => {
 
 export const local = {}
 
-local.get = () => new Promise(resolve => chrome.storage.local.get(resolve))
+local.get = (key = null) => new Promise(resolve =>
+  chrome.storage.local.get(key, resolve)
+)
 
 local.set = (key, value) => new Promise(resolve =>
   chrome.storage.local.set({[key]: value}, resolve)
