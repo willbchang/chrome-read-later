@@ -36,3 +36,11 @@ local.get = (key = null) => new Promise(resolve =>
 local.set = (key, value) => new Promise(resolve =>
   chrome.storage.local.set({[key]: value}, resolve)
 )
+
+local.setHistory = async page => {
+  // It gets an object instead of the value
+  let {history} = await local.get('history')
+  if (history === undefined) history = {}
+  history[page.url] = page
+  await local.set('history', history)
+}
