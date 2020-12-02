@@ -12,10 +12,10 @@ $(async () => {
   localStorage.clear()
 
   // Init reading list from storage.
-  const ul = $('#reading-list')
+  const readingList = $('#reading-list')
   const pages = await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()
-  pages.map(page => ul.append(
+  pages.map(page => readingList.append(
     generator.renderLiFrom(page, favIcons[page.favIconUrl])
   ))
 
@@ -27,13 +27,13 @@ $(async () => {
   $('#total').text(pages.length)
   $('#row').text($('.active').index() + 1)
 
-  ul.on({
+  readingList.on({
     mouseenter: generator.showDeleteIcon,
     mouseleave: generator.showFavIcon
   }, 'img')
 
   // Focus on li when mouse move, do the same behavior like keyboard navigation
-  ul.on('mousemove', 'li', ({target}) => {
+  readingList.on('mousemove', 'li', ({target}) => {
     // Empty selection on mouse move.
     document.getSelection().empty()
     const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
@@ -45,7 +45,7 @@ $(async () => {
     selections.push(document.getSelection().toString())
   })
 
-  ul.on('click', event => {
+  readingList.on('click', event => {
     event.preventDefault()
     // Right click will give 2 selection history
     // This prevents open link after selecting text.
