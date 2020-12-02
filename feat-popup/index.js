@@ -4,6 +4,7 @@ import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
 import * as filter from './filter.js'
 import * as action from './action.js'
+import * as dom from '../modules/domEvents.mjs'
 
 $(async () => {
   // Remove the deleted urls from storage before init reading list.
@@ -28,8 +29,8 @@ $(async () => {
   $('#row').text($('.active').index() + 1)
 
   readingList.on({
-    mouseenter: generator.showDeleteIcon,
-    mouseleave: generator.showFavIcon
+    mouseenter: dom.showDeleteIcon,
+    mouseleave: dom.showFavIcon
   }, 'img')
 
   // Focus on li when mouse move, do the same behavior like keyboard navigation
