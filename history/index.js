@@ -3,7 +3,7 @@ import * as generator from '../modules/readingItemGenerator.mjs'
 
 
 // Init history reading list from storage.
-document.addEventListener('DOMContentLoaded', async () => {
+$(async () => {
   const readingList = $('#reading-list')
   const pages = await storage.local.sortHistoryByLatest()
   console.log(pages, pages[0])

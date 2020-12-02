@@ -5,7 +5,7 @@ import * as tabs from '../modules-chrome/tabs.mjs'
 import * as filter from './filter.js'
 import * as action from './action.js'
 
-(async () => {
+$(async () => {
   // Remove the deleted urls from storage before init reading list.
   // Clear all the local items, includes dependingUrls, lastKey, and src.
   localStorage.getArray('dependingUrls').forEach(storage.sync.remove)
@@ -70,5 +70,5 @@ import * as action from './action.js'
   $('#history').on('click', async () => {
     await tabs.create(chrome.runtime.getURL('history/index.html'))
   })
-})()
+})
 
