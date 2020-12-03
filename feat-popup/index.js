@@ -5,6 +5,7 @@ import * as tabs from '../modules-chrome/tabs.mjs'
 import * as filter from './filter.js'
 import * as action from '../modules/domActions.mjs'
 import * as dom from '../modules/domEvents.mjs'
+import * as keyboard from '../modules/keyboard.mjs'
 
 $(async () => {
   // Remove the deleted urls from storage before init reading list.
@@ -54,7 +55,7 @@ $(async () => {
 
   $('body').on('keydown', event => {
     try {
-      filter.keyAction(event)
+      keyboard.keyAction(event)
     } catch (e) {
       console.log('Catch default key action: ', event.key)
     }
