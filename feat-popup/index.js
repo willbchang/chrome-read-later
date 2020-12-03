@@ -2,10 +2,10 @@ import '../modules/prototype.mjs'
 import * as generator from '../modules/readingItemGenerator.mjs'
 import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
-import * as filter from './filter.js'
 import * as action from '../modules/domActions.mjs'
 import * as dom from '../modules/domEvents.mjs'
 import * as keyboard from '../modules/keyboard.mjs'
+import {mouseAction} from '../modules/mouse.mjs'
 
 $(async () => {
   // Remove the deleted urls from storage before init reading list.
@@ -46,7 +46,7 @@ $(async () => {
     event.preventDefault()
 
     try {
-      filter.mouseAction(event)
+      mouseAction(event)
     } catch (e) {
       console.log('Catch click action error: ', e)
     }

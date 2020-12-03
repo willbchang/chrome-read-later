@@ -1,5 +1,4 @@
-import * as action from '../modules/domActions.mjs'
-
+import * as action from './domActions.mjs'
 
 export const mouse = ({metaKey, altKey}) =>
   metaKey ? 'Meta + Click' : altKey ? 'Alt + Click' : 'Click'
