@@ -11,7 +11,6 @@ export const reactive = li => {
     activeLi().removeClass('active')
     li.addClass('active')
   }
-  updateRowNumber()
 }
 
 const scrollTo = li => {
@@ -35,7 +34,7 @@ const updateTotalCount = () => {
   $('#total').text(ul.length)
 }
 
-const updateRowNumber = () => {
+export const updateRowNumber = () => {
   const rowNumber = visibleLis().index(activeLi()) + 1
   $('#row').text(rowNumber)
 }
@@ -71,6 +70,7 @@ export const undo = () => {
   const li = $(`a[href="${url}"]`).parent().fadeIn()
   reactive(li)
   scrollTo(li)
+  updateRowNumber()
   updateTotalCount()
 }
 
@@ -84,6 +84,7 @@ export const moveTo = direction => {
 
   reactive(li)
   scrollTo(li)
+  updateRowNumber()
 }
 
 export const copyUrl = async () => {

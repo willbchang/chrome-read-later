@@ -38,6 +38,7 @@ $(async () => {
   readingList.on('mousemove', 'li', ({target}) => {
     const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
     action.reactive(li)
+    action.updateRowNumber()
   })
 
   readingList.on('click', event => {
