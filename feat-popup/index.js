@@ -11,7 +11,7 @@ $(async () => {
   // Clear all the local items, includes dependingUrls, lastKey, and src.
   localStorage.getArray('dependingUrls').forEach(storage.sync.remove)
   const localStorageKeys = ['dependingUrls', 'lastKey', 'isMoving']
-  localStorageKeys.forEach(localStorage.removeItem)
+  localStorageKeys.forEach(key => localStorage.removeItem(key))
 
   // Init reading list from storage.
   const readingList = $('#reading-list')
