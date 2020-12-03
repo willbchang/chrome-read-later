@@ -1,4 +1,4 @@
-import * as action from './action.js'
+import * as action from '../modules/domActions.mjs'
 
 
 export const key = event => {

@@ -3,7 +3,7 @@ import * as generator from '../modules/readingItemGenerator.mjs'
 import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
 import * as filter from './filter.js'
-import * as action from './action.js'
+import * as action from '../modules/domActions.mjs'
 import * as dom from '../modules/domEvents.mjs'
 
 $(async () => {
