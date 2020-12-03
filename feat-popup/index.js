@@ -10,7 +10,8 @@ $(async () => {
   // Remove the deleted urls from storage before init reading list.
   // Clear all the local items, includes dependingUrls, lastKey, and src.
   localStorage.getArray('dependingUrls').forEach(storage.sync.remove)
-  localStorage.clear()
+  const localStorageKeys = ['dependingUrls', 'lastKey', 'isMoving']
+  localStorageKeys.forEach(localStorage.removeItem)
 
   // Init reading list from storage.
   const readingList = $('#reading-list')
