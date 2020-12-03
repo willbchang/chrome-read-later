@@ -4,18 +4,11 @@ const activeLi = () => $('.active')
 const visibleLis = () => $('#reading-list li:visible')
 
 export const reactive = li => {
-  // 1. Execute up() on first visible li, and down() on last visible li
-  //     will get empty target li.
-  // 2. Update row number on deleting last li, row number will be 0
-  if (li.html()) {
-    activeLi().removeClass('active')
-    li.addClass('active')
-  }
+  activeLi().removeClass('active')
+  li.addClass('active')
 }
 
 const scrollTo = li => {
-  // Don't make scroll on empty li, which is deleting the last li.
-  if (li.html() === undefined) return
   // The reading list will be overflowed if it's longer than 17,
   //  assign active class will not make the overflowed view visible.
   //  $.animate() can solve this problem.
@@ -68,8 +61,12 @@ export const dele = () => {
 export const undo = () => {
   const url = localStorage.popArray('dependingUrls')
   const li = $(`a[href="${url}"]`).parent().fadeIn()
-  reactive(li)
-  scrollTo(li)
+
+  if (li.html()) {
+    reactive(li)
+    scrollTo(li)
+  }
+
   updateRowNumber()
   updateTotalCount()
 }
@@ -82,8 +79,11 @@ export const moveTo = direction => {
     bottom:   () => visibleLis().last(),
   }[direction]()
 
-  reactive(li)
-  scrollTo(li)
+  if (li.html()) {
+    reactive(li)
+    scrollTo(li)
+  }
+
   updateRowNumber()
 }
 
