@@ -85,6 +85,10 @@ export const updateRowNumber = () => {
 }
 
 const moveToPreviousOrNext = li => {
-  li.attr('id') < visibleLis().last().attr('id') ? moveTo('previous') : moveTo('next')
+  // The reading list is sort by the latest, the id is the timestamp,
+  //  so the current id should be larger than last li, otherwise itself
+  //  is the last li.
+  const isLastLi = li.attr('id') < visibleLis().last().attr('id')
+  isLastLi ? moveTo('previous') : moveTo('next')
 }
 
