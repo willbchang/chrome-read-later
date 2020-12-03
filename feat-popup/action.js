@@ -4,16 +4,7 @@ const activeLi = () => $('.active')
 const visibleLis = () => $('#reading-list li:visible')
 
 export const open = ({currentTab = false, active = true}) => {
-  if (localStorage.getItem('isMoving') === 'true') return
-  localStorage.setItem('isMoving', 'true')
-  const li = activeLi()
-  const url = li.find('a').attr('href')
-  li.fadeOut('normal', () => {
-    updateTotalCount()
-    moveToPreviousOrNext(li)
-    localStorage.setItem('isMoving', 'false')
-  })
-  localStorage.setArray('dependingUrls', url)
+  const url = dele()
   extension.sendMessage({url, currentTab, active})
   if (currentTab) window.close()
 }
@@ -30,6 +21,8 @@ export const dele = () => {
     localStorage.setItem('isMoving', 'false')
   })
   localStorage.setArray('dependingUrls', url)
+
+  return url
 }
 
 export const undo = () => {
