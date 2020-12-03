@@ -35,22 +35,12 @@ $(async () => {
 
   // Focus on li when mouse move, do the same behavior like keyboard navigation
   readingList.on('mousemove', 'li', ({target}) => {
-    // Empty selection on mouse move.
-    document.getSelection().empty()
     const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
     action.reactive(li)
   })
 
-  let selections = []
-  document.addEventListener('selectionchange', () => {
-    selections.push(document.getSelection().toString())
-  })
-
   readingList.on('click', event => {
     event.preventDefault()
-    // Right click will give 2 selection history
-    // This prevents open link after selecting text.
-    if (selections.length > 2) return selections = []
 
     try {
       filter.mouseAction(event)
