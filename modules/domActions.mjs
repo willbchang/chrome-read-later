@@ -74,7 +74,7 @@ const scrollTo = li => {
     .animate({scrollTop: isFirstLi ? 0 : li.offset().top}, 'fast')
 }
 
-const updateTotalCount = () => {
+export const updateTotalCount = () => {
   const ul = visibleLis()
   $('#total').text(ul.length)
 }

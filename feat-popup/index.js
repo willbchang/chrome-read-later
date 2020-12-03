@@ -6,6 +6,7 @@ import * as action from '../modules/domActions.mjs'
 import * as dom from '../modules/domEvents.mjs'
 import * as keyboard from '../modules/keyboard.mjs'
 import {mouseAction} from '../modules/mouse.mjs'
+import {updateRowNumber} from '../modules/domActions.mjs'
 
 $(async () => {
   // Remove the deleted urls from storage before init reading list.
@@ -27,7 +28,7 @@ $(async () => {
   if (li.length !== 0) li.first().addClass('active')
 
   // Count the reading list
-  $('#total').text(pages.length)
+  updateRowNumber()
   $('#row').text($('.active').index() + 1)
 
   readingList.on({
