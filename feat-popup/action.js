@@ -3,35 +3,6 @@ import * as extension from '../modules-chrome/runtime.mjs'
 const activeLi = () => $('.active')
 const visibleLis = () => $('#reading-list li:visible')
 
-export const reactive = li => {
-  activeLi().removeClass('active')
-  li.addClass('active')
-}
-
-const scrollTo = li => {
-  // The reading list will be overflowed if it's longer than 17,
-  //  assign active class will not make the overflowed view visible.
-  //  $.animate() can solve this problem.
-  const isFirstLi = visibleLis().index(li) === 0
-  $('html, body')
-    .stop(true, true) // Stop jQuery animation delay on continuous movement.
-    .animate({scrollTop: isFirstLi ? 0 : li.offset().top}, 'fast')
-}
-
-const moveToPreviousOrNext = li => {
-  li.attr('id') < visibleLis().last().attr('id') ? moveTo('previous') : moveTo('next')
-}
-
-const updateTotalCount = () => {
-  const ul = visibleLis()
-  $('#total').text(ul.length)
-}
-
-export const updateRowNumber = () => {
-  const rowNumber = visibleLis().index(activeLi()) + 1
-  $('#row').text(rowNumber)
-}
-
 export const open = ({currentTab = false, active = true}) => {
   const li = activeLi()
   const url = li.find('a').attr('href')
@@ -91,3 +62,33 @@ export const copyUrl = async () => {
   const url = activeLi().find('a').attr('href')
   await navigator.clipboard.writeText(url)
 }
+
+export const reactive = li => {
+  activeLi().removeClass('active')
+  li.addClass('active')
+}
+
+const scrollTo = li => {
+  // The reading list will be overflowed if it's longer than 17,
+  //  assign active class will not make the overflowed view visible.
+  //  $.animate() can solve this problem.
+  const isFirstLi = visibleLis().index(li) === 0
+  $('html, body')
+    .stop(true, true) // Stop jQuery animation delay on continuous movement.
+    .animate({scrollTop: isFirstLi ? 0 : li.offset().top}, 'fast')
+}
+
+const updateTotalCount = () => {
+  const ul = visibleLis()
+  $('#total').text(ul.length)
+}
+
+export const updateRowNumber = () => {
+  const rowNumber = visibleLis().index(activeLi()) + 1
+  $('#row').text(rowNumber)
+}
+
+const moveToPreviousOrNext = li => {
+  li.attr('id') < visibleLis().last().attr('id') ? moveTo('previous') : moveTo('next')
+}
+
