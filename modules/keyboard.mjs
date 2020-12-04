@@ -20,9 +20,6 @@ export const key = event => {
     p:         'p',
   }
 
-  // Empty Selection on pressing expected key.
-  if (key in keyBindings) document.getSelection().empty()
-
   localStorage.setItem('lastKey', keyBindings[key])
   return keyBindings[key]
 }
