@@ -52,14 +52,7 @@ $(async () => {
     }
   })
 
-
-  $('body').on('keydown', event => {
-    try {
-      keyboard.keyAction(event)
-    } catch (e) {
-      console.log('Catch default key action: ', event.key)
-    }
-  })
+  keyboard.handleKeyDownOn($('body'))
 
   $('#history').on('click', async () => {
     await tabs.create(chrome.runtime.getURL('history/index.html'))

@@ -47,3 +47,13 @@ export const keyAction = event => {
     yy:                 () => action.copyUrl(),
   }[key(event)]()
 }
+
+export function handleKeyDownOn(selector) {
+  selector.on('keydown', event => {
+    try {
+      keyAction(event)
+    } catch (e) {
+      console.log('Catch default key action: ', event.key)
+    }
+  })
+}
