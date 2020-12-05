@@ -24,8 +24,7 @@ export const getKeyBinding = event => {
   return keyBindings[key]
 }
 
-export const getKeyAction = event => {
-
+export const getKeyAction = keyBinding => {
   return {
     Enter:              () => action.open({}),
     'Meta + Enter':     () => action.open({active: false}),
@@ -43,13 +42,15 @@ export const getKeyAction = event => {
     dd:                 () => action.dele(),
     u:                  () => action.undo(),
     yy:                 () => action.copyUrl(),
-  }[getKeyBinding(event)]()
+  }[keyBinding]
 }
 
 export function handleKeyDownOn(selector) {
   selector.on('keydown', event => {
     try {
-      getKeyAction(event)
+      const keyBinding = getKeyBinding(event)
+      const keyAction = getKeyAction(keyBinding)
+      keyAction()
     } catch (e) {
       console.log('Catch default key action: ', event.key)
     }
