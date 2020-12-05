@@ -25,8 +25,6 @@ export const getKeyBinding = event => {
 }
 
 export const keyAction = event => {
-  // Avoid native arrow behavior, it overflows the focus behavior on long reading list.
-  if (event.key.includes('Arrow')) event.preventDefault()
 
   return {
     Enter:              () => action.open({}),
