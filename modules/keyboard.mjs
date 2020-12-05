@@ -1,6 +1,6 @@
 import * as action from './domActions.mjs'
 
-export const key = event => {
+export const getKeyBinding = event => {
   const {key, metaKey, altKey} = event
   const lastKey = localStorage.getItem('lastKey')
 
@@ -45,7 +45,7 @@ export const keyAction = event => {
     dd:                 () => action.dele(),
     u:                  () => action.undo(),
     yy:                 () => action.copyUrl(),
-  }[key(event)]()
+  }[getKeyBinding(event)]()
 }
 
 export function handleKeyDownOn(selector) {
