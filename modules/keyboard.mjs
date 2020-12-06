@@ -45,8 +45,8 @@ export const getKeyAction = keyBinding => {
   }[keyBinding]
 }
 
-export function handleKeyDownOn(selector) {
-  selector.on('keydown', event => {
+export function doActionOnKeyDown() {
+  $('body').on('keydown', event => {
     try {
       const keyBinding = getKeyBinding(event)
       const keyAction = getKeyAction(keyBinding)

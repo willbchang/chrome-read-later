@@ -52,7 +52,7 @@ $(async () => {
     }
   })
 
-  keyboard.handleKeyDownOn($('body'))
+  keyboard.doActionOnKeyDown()
 
   $('#history').on('click', async () => {
     await tabs.create(chrome.runtime.getURL('history/index.html'))
