@@ -12,12 +12,3 @@ export const mouseAction = (event) => {
     'Alt + Click':  () => action.open({currentTab: true}),
   }[mouse(event)]()
 }
-
-
-export function updateStateOnMouseMove() {
-  $('#reading-list').on('mousemove', 'li', ({target}) => {
-    const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
-    action.reactive(li)
-    action.updateRowNumber()
-  })
-}

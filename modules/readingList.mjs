@@ -1,6 +1,7 @@
 import * as storage from '../modules-chrome/storage.mjs'
 import * as generator from './readingItemGenerator.mjs'
 import * as mouse from './mouse.mjs'
+import * as action from './domActions.mjs'
 
 const readingList = $('#reading-list')
 
@@ -32,6 +33,16 @@ export function doActionOnMouseClick() {
     }
   })
 }
+
+
+export function updateStateOnMouseMove() {
+  readingList.on('mousemove', 'li', ({target}) => {
+    const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
+    action.reactive(li)
+    action.updateRowNumber()
+  })
+}
+
 
 function showDeleteIcon(event) {
   localStorage.setItem('src', event.target.src)

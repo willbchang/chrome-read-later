@@ -3,7 +3,6 @@ import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
 import * as action from '../modules/domActions.mjs'
 import * as keyboard from '../modules/keyboard.mjs'
-import * as mouse from '../modules/mouse.mjs'
 import * as readingList from '../modules/readingList.mjs'
 
 $(async () => {
@@ -16,6 +15,7 @@ $(async () => {
   await readingList.init()
   readingList.changeIconOnMouseEnterLeave()
   readingList.doActionOnMouseClick()
+  readingList.updateStateOnMouseMove()
 
   // Focus the first li on init
   const li = $('#reading-list li')
@@ -24,11 +24,6 @@ $(async () => {
   // Count the reading list
   action.updateRowNumber()
   action.updateTotalCount()
-
-
-  mouse.updateStateOnMouseMove()
-
-
   keyboard.doActionOnKeyDown()
 
   $('#history').on('click', async () => {
