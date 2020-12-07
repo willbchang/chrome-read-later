@@ -14,8 +14,9 @@ $(async () => {
 
   await readingList.init()
   readingList.changeIconOnMouseEnterLeave()
-  readingList.doActionOnMouseClick()
   readingList.updateStateOnMouseMove()
+  readingList.doActionOnMouseClick()
+  keyboard.doActionOnKeyDown()
 
   // Focus the first li on init
   const li = $('#reading-list li')
@@ -24,7 +25,6 @@ $(async () => {
   // Count the reading list
   action.updateRowNumber()
   action.updateTotalCount()
-  keyboard.doActionOnKeyDown()
 
   $('#history').on('click', async () => {
     await tabs.create(chrome.runtime.getURL('history/index.html'))
