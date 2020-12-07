@@ -1,7 +1,6 @@
 import '../modules/prototype.mjs'
 import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
-import * as action from '../modules/domActions.mjs'
 import * as keyboard from '../modules/keyboard.mjs'
 import * as readingList from '../modules/readingList.mjs'
 
@@ -13,6 +12,7 @@ $(async () => {
   localStorageKeys.forEach(key => localStorage.removeItem(key))
 
   await readingList.init()
+  readingList.updateStatusBar()
   readingList.changeIconOnMouseEnterLeave()
   readingList.updateStateOnMouseMove()
   readingList.doActionOnMouseClick()
@@ -21,10 +21,6 @@ $(async () => {
   // Focus the first li on init
   const li = $('#reading-list li')
   if (li.length !== 0) li.first().addClass('active')
-
-  // Count the reading list
-  action.updateRowNumber()
-  action.updateTotalCount()
 
   $('#history').on('click', async () => {
     await tabs.create(chrome.runtime.getURL('history/index.html'))

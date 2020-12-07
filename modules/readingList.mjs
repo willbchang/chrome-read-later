@@ -13,6 +13,11 @@ export async function init() {
   ))
 }
 
+export function updateStatusBar() {
+  action.updateRowNumber()
+  action.updateTotalCount()
+}
+
 
 export function changeIconOnMouseEnterLeave() {
   readingList.on({
