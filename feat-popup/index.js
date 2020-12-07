@@ -16,6 +16,7 @@ $(async () => {
   localStorageKeys.forEach(key => localStorage.removeItem(key))
 
   await readingList.init()
+  readingList.changeIconOnMouseEnterLeave()
 
   // Focus the first li on init
   const li = $('#reading-list li')
@@ -25,10 +26,6 @@ $(async () => {
   action.updateRowNumber()
   action.updateTotalCount()
 
-  readingList.on({
-    mouseenter: dom.showDeleteIcon,
-    mouseleave: dom.showFavIcon
-  }, 'img')
 
   mouse.updateStateOnMouseMove()
 
