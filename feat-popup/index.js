@@ -6,6 +6,7 @@ import * as action from '../modules/domActions.mjs'
 import * as dom from '../modules/domEvents.mjs'
 import * as keyboard from '../modules/keyboard.mjs'
 import {mouseAction} from '../modules/mouse.mjs'
+import * as mouse from '../modules/mouse.mjs'
 
 $(async () => {
   // Remove the deleted urls from storage before init reading list.
@@ -35,12 +36,7 @@ $(async () => {
     mouseleave: dom.showFavIcon
   }, 'img')
 
-  // Focus on li when mouse move, do the same behavior like keyboard navigation
-  readingList.on('mousemove', 'li', ({target}) => {
-    const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
-    action.reactive(li)
-    action.updateRowNumber()
-  })
+  mouse.updateStateOnMouseMove()
 
   readingList.on('click', event => {
     event.preventDefault()
