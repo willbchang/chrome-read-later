@@ -3,7 +3,6 @@ import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
 import * as action from '../modules/domActions.mjs'
 import * as keyboard from '../modules/keyboard.mjs'
-import {mouseAction} from '../modules/mouse.mjs'
 import * as mouse from '../modules/mouse.mjs'
 import * as readingList from '../modules/readingList.mjs'
 
@@ -16,6 +15,7 @@ $(async () => {
 
   await readingList.init()
   readingList.changeIconOnMouseEnterLeave()
+  readingList.doActionOnMouseClick()
 
   // Focus the first li on init
   const li = $('#reading-list li')
@@ -28,15 +28,6 @@ $(async () => {
 
   mouse.updateStateOnMouseMove()
 
-  readingList.on('click', event => {
-    event.preventDefault()
-
-    try {
-      mouseAction(event)
-    } catch (e) {
-      console.log('Catch click action error: ', e)
-    }
-  })
 
   keyboard.doActionOnKeyDown()
 

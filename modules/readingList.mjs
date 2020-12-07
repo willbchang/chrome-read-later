@@ -1,5 +1,6 @@
 import * as storage from '../modules-chrome/storage.mjs'
 import * as generator from './readingItemGenerator.mjs'
+import * as mouse from './mouse.mjs'
 
 const readingList = $('#reading-list')
 
@@ -17,6 +18,19 @@ export function changeIconOnMouseEnterLeave() {
     mouseenter: showDeleteIcon,
     mouseleave: showFavIcon
   }, 'img')
+}
+
+
+export function doActionOnMouseClick() {
+  readingList.on('click', event => {
+    event.preventDefault()
+
+    try {
+      mouse.mouseAction(event)
+    } catch (e) {
+      console.log('Catch click action error: ', e)
+    }
+  })
 }
 
 function showDeleteIcon(event) {
