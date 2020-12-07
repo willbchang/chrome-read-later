@@ -1,5 +1,4 @@
 import '../modules/prototype.mjs'
-import * as generator from '../modules/readingItemGenerator.mjs'
 import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
 import * as action from '../modules/domActions.mjs'
@@ -7,6 +6,7 @@ import * as dom from '../modules/domEvents.mjs'
 import * as keyboard from '../modules/keyboard.mjs'
 import {mouseAction} from '../modules/mouse.mjs'
 import * as mouse from '../modules/mouse.mjs'
+import * as readingList from '../modules/readingList.mjs'
 
 $(async () => {
   // Remove the deleted urls from storage before init reading list.
@@ -15,13 +15,7 @@ $(async () => {
   const localStorageKeys = ['dependingUrls', 'lastKey', 'isMoving']
   localStorageKeys.forEach(key => localStorage.removeItem(key))
 
-  // Init reading list from storage.
-  const readingList = $('#reading-list')
-  const pages = await storage.sync.sortByLatest()
-  const favIcons = await storage.local.get()
-  pages.map(page => readingList.append(
-    generator.renderLiFrom(page, favIcons[page.favIconUrl])
-  ))
+  await readingList.init()
 
   // Focus the first li on init
   const li = $('#reading-list li')
