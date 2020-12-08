@@ -5,7 +5,7 @@
   },
   "browser_action": {
     "default_icon": "assets/icons/logo-orange32x32.png",
-    "default_popup": "feat-popup/popup.html",
+    "default_popup": "core/popup/popup.html",
     "default_title": "Read Later"
   },
   "content_scripts": [
