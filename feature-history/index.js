@@ -1,5 +1,5 @@
 import * as storage from '../modules-chrome/storage.mjs'
-import * as generator from '../modules/readingItemGenerator.mjs'
+import * as generator from '../feature-reading-list/readingItemGenerator.mjs'
 
 
 // Init history reading list from storage.

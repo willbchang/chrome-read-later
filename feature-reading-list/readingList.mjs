@@ -1,8 +1,8 @@
 import * as storage from '../modules-chrome/storage.mjs'
 import * as generator from './readingItemGenerator.mjs'
-import * as mouse from './mouse.mjs'
-import * as keyboard from './keyboard.mjs'
-import * as action from './domActions.mjs'
+import * as mouse from '../modules/mouse.mjs'
+import * as keyboard from '../modules/keyboard.mjs'
+import * as action from '../modules/domActions.mjs'
 
 const readingList = $('#reading-list')
 
