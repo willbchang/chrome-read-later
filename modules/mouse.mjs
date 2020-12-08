@@ -1,6 +1,6 @@
 import * as action from './domActions.mjs'
 
-export const mouse = ({metaKey, altKey}) =>
+export const getModifiedClick = ({metaKey, altKey}) =>
   metaKey ? 'Meta + Click' : altKey ? 'Alt + Click' : 'Click'
 
 export const mouseAction = (event) => {
@@ -10,5 +10,5 @@ export const mouseAction = (event) => {
     Click:          () => action.open({}),
     'Meta + Click': () => action.open({active: false}),
     'Alt + Click':  () => action.open({currentTab: true}),
-  }[mouse(event)]()
+  }[getModifiedClick(event)]()
 }
