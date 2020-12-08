@@ -1,5 +1,5 @@
-import * as tabs from '../modules-chrome/tabs.mjs'
-import * as action from '../modules/domActions.mjs'
+import * as tabs from '../../modules-chrome/tabs.mjs'
+import * as action from '../../modules/domActions.mjs'
 
 export function setup() {
   updateCountNumber()
