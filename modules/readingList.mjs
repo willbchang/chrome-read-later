@@ -6,6 +6,16 @@ import * as action from './domActions.mjs'
 
 const readingList = $('#reading-list')
 
+export async function setup() {
+  await initDomFromStorage()
+  activeFirstLi()
+  updateStatusBar()
+  changeIconOnMouseEnterLeave()
+  updateStateOnMouseMove()
+  doActionOnMouseClick()
+  doActionOnBodyKeyDown()
+}
+
 export async function initDomFromStorage() {
   const pages = await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()

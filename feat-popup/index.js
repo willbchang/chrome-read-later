@@ -10,13 +10,7 @@ $(async () => {
   const localStorageKeys = ['dependingUrls', 'lastKey', 'isMoving']
   localStorageKeys.forEach(key => localStorage.removeItem(key))
 
-  await readingList.initDomFromStorage()
-  readingList.updateStatusBar()
-  readingList.activeFirstLi()
-  readingList.changeIconOnMouseEnterLeave()
-  readingList.updateStateOnMouseMove()
-  readingList.doActionOnMouseClick()
-  readingList.doActionOnBodyKeyDown()
+  await readingList.setup()
 
 
   $('#history').on('click', async () => {
