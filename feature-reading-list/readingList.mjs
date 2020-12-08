@@ -57,7 +57,9 @@ function doActionOnMouseClick() {
     event.preventDefault()
 
     try {
-      mouse.getClickAction(event)
+      const modifiedClick = mouse.getModifiedClick(event)
+      const clickAction = mouse.getClickAction(modifiedClick, event.target.tagName)
+      clickAction()
     } catch (e) {
       console.log('Catch click action error: ', e)
     }
