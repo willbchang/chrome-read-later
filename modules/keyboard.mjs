@@ -44,15 +44,3 @@ export const getKeyAction = keyBinding => {
     yy:                 () => action.copyUrl(),
   }[keyBinding]
 }
-
-export function doActionOnKeyDown() {
-  $('body').on('keydown', event => {
-    try {
-      const keyBinding = getKeyBinding(event)
-      const keyAction = getKeyAction(keyBinding)
-      keyAction()
-    } catch (e) {
-      console.log('Catch default key action: ', event.key)
-    }
-  })
-}

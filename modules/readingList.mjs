@@ -1,6 +1,7 @@
 import * as storage from '../modules-chrome/storage.mjs'
 import * as generator from './readingItemGenerator.mjs'
 import * as mouse from './mouse.mjs'
+import * as keyboard from './keyboard.mjs'
 import * as action from './domActions.mjs'
 
 const readingList = $('#reading-list')
@@ -53,6 +54,18 @@ export function updateStateOnMouseMove() {
   })
 }
 
+
+export function doActionOnBodyKeyDown() {
+  $('body').on('keydown', event => {
+    try {
+      const keyBinding = keyboard.getKeyBinding(event)
+      const keyAction = keyboard.getKeyAction(keyBinding)
+      keyAction()
+    } catch (e) {
+      console.log('Catch default key action: ', event.key)
+    }
+  })
+}
 
 function showDeleteIcon(event) {
   localStorage.setItem('src', event.target.src)

@@ -1,7 +1,6 @@
 import '../modules/prototype.mjs'
 import * as storage from '../modules-chrome/storage.mjs'
 import * as tabs from '../modules-chrome/tabs.mjs'
-import * as keyboard from '../modules/keyboard.mjs'
 import * as readingList from '../modules/readingList.mjs'
 
 $(async () => {
@@ -17,7 +16,7 @@ $(async () => {
   readingList.changeIconOnMouseEnterLeave()
   readingList.updateStateOnMouseMove()
   readingList.doActionOnMouseClick()
-  keyboard.doActionOnKeyDown()
+  readingList.doActionOnBodyKeyDown()
 
 
   $('#history').on('click', async () => {
