@@ -14,12 +14,12 @@
         "<all_urls>"
       ],
       "js": [
-        "feat-content/index.js"
+        "core/content/index.js"
       ]
     }
   ],
   "web_accessible_resources": [
-    "feat-content/pagePosition.js"
+    "core/content/pagePosition.js"
   ],
   "commands": {
     "chrome-read-later.willbc.cn": {
