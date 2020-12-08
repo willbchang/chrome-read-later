@@ -13,6 +13,6 @@ function updateCountNumber() {
 
 function openHistoryPageOnClick() {
   $('#history').on('click', async () => {
-    await tabs.create(chrome.runtime.getURL('feature-history/index.html'))
+    await tabs.create(chrome.runtime.getURL('features/history/index.html'))
   })
 }
