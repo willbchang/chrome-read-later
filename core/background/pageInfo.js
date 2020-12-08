@@ -1,10 +1,10 @@
-import '../modules/prototype.mjs'
+import '../../modules/prototype.mjs'
 import * as request from './request.js'
 
 class PageInfo {
   constructor(tab) {
     this.tab = tab
-    this.defaultFavIconUrl = '../assets/icons/logo-gray32x32.png'
+    this.defaultFavIconUrl = '../../assets/icons/logo-gray32x32.png'
   }
 
   get url() {

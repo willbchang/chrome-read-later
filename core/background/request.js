@@ -1,4 +1,4 @@
-import '../modules-web/jquery.min.js'
+import '../../modules-web/jquery.min.js'
 
 export async function getTitle(url) {
   try {
@@ -16,7 +16,7 @@ export async function getFavIcon(url) {
     const data = await response.json()
     return data.icons[0].src
   } catch (e) {
-    return '../assets/icons/logo-gray32x32.png'
+    return '../../assets/icons/logo-gray32x32.png'
   }
 }
 
