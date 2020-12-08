@@ -3,7 +3,7 @@ import * as action from './domActions.mjs'
 export const getModifiedClick = ({metaKey, altKey}) =>
   metaKey ? 'Meta + Click' : altKey ? 'Alt + Click' : 'Click'
 
-export const mouseAction = (event) => {
+export const getClickAction = (event) => {
   const {target} = event
   if (target.tagName === 'IMG') return action.dele()
   return {

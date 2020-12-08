@@ -57,7 +57,7 @@ function doActionOnMouseClick() {
     event.preventDefault()
 
     try {
-      mouse.mouseAction(event)
+      mouse.getClickAction(event)
     } catch (e) {
       console.log('Catch click action error: ', e)
     }
