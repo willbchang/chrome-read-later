@@ -34,7 +34,6 @@ export function updateStatusBar() {
   action.updateTotalCount()
 }
 
-
 export function changeIconOnMouseEnterLeave() {
   readingList.on({
     mouseenter: showDeleteIcon,
@@ -42,6 +41,13 @@ export function changeIconOnMouseEnterLeave() {
   }, 'img')
 }
 
+export function updateStateOnMouseMove() {
+  readingList.on('mousemove', 'li', ({target}) => {
+    const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
+    action.reactive(li)
+    action.updateRowNumber()
+  })
+}
 
 export function doActionOnMouseClick() {
   readingList.on('click', event => {
@@ -54,16 +60,6 @@ export function doActionOnMouseClick() {
     }
   })
 }
-
-
-export function updateStateOnMouseMove() {
-  readingList.on('mousemove', 'li', ({target}) => {
-    const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
-    action.reactive(li)
-    action.updateRowNumber()
-  })
-}
-
 
 export function doActionOnBodyKeyDown() {
   $('body').on('keydown', event => {
