@@ -14,7 +14,7 @@
         "<all_urls>"
       ],
       "js": [
-        "core/content/index.js"
+        "core/content/content.js"
       ]
     }
   ],
