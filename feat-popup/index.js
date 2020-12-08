@@ -4,8 +4,6 @@ import * as statusBar from '../modules/statusBar.js'
 
 $(async () => {
   await readingList.setup()
-
-  statusBar.openHistoryPageOnClick()
-
+  statusBar.setup()
 })
 

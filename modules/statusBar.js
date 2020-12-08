@@ -1,6 +1,11 @@
 import * as tabs from '../modules-chrome/tabs'
 import * as action from './domActions'
 
+export function setup() {
+  updateCountNumber()
+  openHistoryPageOnClick()
+}
+
 export function updateCountNumber() {
   action.updateRowNumber()
   action.updateTotalNumber()
