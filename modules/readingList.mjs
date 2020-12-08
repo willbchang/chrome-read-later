@@ -7,6 +7,7 @@ import * as action from './domActions.mjs'
 const readingList = $('#reading-list')
 
 export async function setup() {
+  removeDeletedReadingItems()
   await initDomFromStorage()
   activeFirstLi()
   updateStatusBar()
@@ -14,6 +15,14 @@ export async function setup() {
   updateStateOnMouseMove()
   doActionOnMouseClick()
   doActionOnBodyKeyDown()
+}
+
+// Remove the deleted urls from storage before init reading list.
+// Clear all the local items, includes dependingUrls, lastKey, and src.
+function removeDeletedReadingItems() {
+  localStorage.getArray('dependingUrls').forEach(storage.sync.remove)
+  const localStorageKeys = ['dependingUrls', 'lastKey', 'isMoving']
+  localStorageKeys.forEach(key => localStorage.removeItem(key))
 }
 
 export async function initDomFromStorage() {
