@@ -3,7 +3,7 @@ import * as action from './domActions'
 
 export function updateCountNumber() {
   action.updateRowNumber()
-  action.updateTotalCount()
+  action.updateTotalNumber()
 }
 
 export function openHistoryPageOnClick() {

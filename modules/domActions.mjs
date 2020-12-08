@@ -16,7 +16,7 @@ export const dele = () => {
   const li = activeLi()
   const url = li.find('a').attr('href')
   li.fadeOut('normal', () => {
-    updateTotalCount()
+    updateTotalNumber()
     moveToPreviousOrNext(li)
     localStorage.setItem('isMoving', 'false')
   })
@@ -35,7 +35,7 @@ export const undo = () => {
   }
 
   updateRowNumber()
-  updateTotalCount()
+  updateTotalNumber()
 }
 
 export const moveTo = direction => {
@@ -74,7 +74,7 @@ const scrollTo = li => {
     .animate({scrollTop: isFirstLi ? 0 : li.offset().top}, 'fast')
 }
 
-export const updateTotalCount = () => {
+export const updateTotalNumber = () => {
   const ul = visibleLis()
   $('#total').text(ul.length)
 }
