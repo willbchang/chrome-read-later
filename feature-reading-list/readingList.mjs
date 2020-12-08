@@ -24,7 +24,7 @@ function removeDeletedReadingItems() {
   localStorageKeys.forEach(key => localStorage.removeItem(key))
 }
 
-export async function initDomFromStorage() {
+async function initDomFromStorage() {
   const pages = await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()
   pages.map(page => readingList.append(
@@ -32,19 +32,19 @@ export async function initDomFromStorage() {
   ))
 }
 
-export function activeFirstLi() {
+function activeFirstLi() {
   const li = $('#reading-list li')
   if (li.length !== 0) li.first().addClass('active')
 }
 
-export function changeIconOnMouseEnterLeave() {
+function changeIconOnMouseEnterLeave() {
   readingList.on({
     mouseenter: showDeleteIcon,
     mouseleave: showFavIcon
   }, 'img')
 }
 
-export function updateStateOnMouseMove() {
+function updateStateOnMouseMove() {
   readingList.on('mousemove', 'li', ({target}) => {
     const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
     action.reactive(li)
@@ -52,7 +52,7 @@ export function updateStateOnMouseMove() {
   })
 }
 
-export function doActionOnMouseClick() {
+function doActionOnMouseClick() {
   readingList.on('click', event => {
     event.preventDefault()
 
@@ -64,7 +64,7 @@ export function doActionOnMouseClick() {
   })
 }
 
-export function doActionOnBodyKeyDown() {
+function doActionOnBodyKeyDown() {
   $('body').on('keydown', event => {
     try {
       const keyBinding = keyboard.getKeyBinding(event)
