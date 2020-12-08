@@ -10,7 +10,6 @@ export async function setup() {
   removeDeletedReadingItems()
   await initDomFromStorage()
   activeFirstLi()
-  updateStatusBar()
   changeIconOnMouseEnterLeave()
   updateStateOnMouseMove()
   doActionOnMouseClick()
@@ -36,11 +35,6 @@ export async function initDomFromStorage() {
 export function activeFirstLi() {
   const li = $('#reading-list li')
   if (li.length !== 0) li.first().addClass('active')
-}
-
-export function updateStatusBar() {
-  action.updateRowNumber()
-  action.updateTotalCount()
 }
 
 export function changeIconOnMouseEnterLeave() {
