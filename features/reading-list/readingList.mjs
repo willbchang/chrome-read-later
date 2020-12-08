@@ -1,4 +1,4 @@
-import * as storage from '../../modules-chrome/storage.mjs'
+import * as storage from '../../modules/chrome/storage.mjs'
 import * as generator from './readingItemGenerator.mjs'
 import * as mouse from '../../modules/mouse.mjs'
 import * as keyboard from '../../modules/keyboard.mjs'

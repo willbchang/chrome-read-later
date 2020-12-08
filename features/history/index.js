@@ -1,4 +1,4 @@
-import * as storage from '../../modules-chrome/storage.mjs'
+import * as storage from '../../modules/chrome/storage.mjs'
 import * as generator from '../reading-list/readingItemGenerator.mjs'
 
 

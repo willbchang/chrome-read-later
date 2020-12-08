@@ -1,7 +1,7 @@
-import * as commands from '../../modules-chrome/commands.mjs'
-import * as contextMenus from '../../modules-chrome/contextMenus.mjs'
-import * as runtime from '../../modules-chrome/runtime.mjs'
-import * as tabs from '../../modules-chrome/tabs.mjs'
+import * as commands from '../../modules/chrome/commands.mjs'
+import * as contextMenus from '../../modules/chrome/contextMenus.mjs'
+import * as runtime from '../../modules/chrome/runtime.mjs'
+import * as tabs from '../../modules/chrome/tabs.mjs'
 import * as action from './action.js'
 
 commands.onCommand(action.savePage)
