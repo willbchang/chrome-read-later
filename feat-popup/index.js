@@ -13,14 +13,12 @@ $(async () => {
 
   await readingList.init()
   readingList.updateStatusBar()
+  readingList.activeFirstLi()
   readingList.changeIconOnMouseEnterLeave()
   readingList.updateStateOnMouseMove()
   readingList.doActionOnMouseClick()
   keyboard.doActionOnKeyDown()
 
-  // Focus the first li on init
-  const li = $('#reading-list li')
-  if (li.length !== 0) li.first().addClass('active')
 
   $('#history').on('click', async () => {
     await tabs.create(chrome.runtime.getURL('history/index.html'))

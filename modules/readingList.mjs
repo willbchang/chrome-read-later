@@ -13,6 +13,11 @@ export async function init() {
   ))
 }
 
+export function activeFirstLi() {
+  const li = $('#reading-list li')
+  if (li.length !== 0) li.first().addClass('active')
+}
+
 export function updateStatusBar() {
   action.updateRowNumber()
   action.updateTotalCount()
