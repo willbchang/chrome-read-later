@@ -1,5 +1,5 @@
 @import url(../feature-reading-list/reading-list.css);
-@import "../modules/status-bar.css";
+@import "../feature-status-bar/status-bar.css";
 
 * {
     margin: 0;
