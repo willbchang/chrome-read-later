@@ -5,7 +5,7 @@ import * as action from './domActions.mjs'
 
 const readingList = $('#reading-list')
 
-export async function init() {
+export async function initDomFromStorage() {
   const pages = await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()
   pages.map(page => readingList.append(

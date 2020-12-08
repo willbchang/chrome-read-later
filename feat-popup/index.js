@@ -11,7 +11,7 @@ $(async () => {
   const localStorageKeys = ['dependingUrls', 'lastKey', 'isMoving']
   localStorageKeys.forEach(key => localStorage.removeItem(key))
 
-  await readingList.init()
+  await readingList.initDomFromStorage()
   readingList.updateStatusBar()
   readingList.activeFirstLi()
   readingList.changeIconOnMouseEnterLeave()
