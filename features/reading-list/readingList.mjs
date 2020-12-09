@@ -29,8 +29,9 @@ function isLocal() {
 // Remove the deleted urls from storage before init reading list.
 // Clear all the local items, includes dependingUrls and src.
 function removeDeletedReadingItems() {
-  localStorage.getArray('dependingUrls').forEach(storage.sync.remove)
-  const localStorageKeys = ['dependingUrls']
+  localStorage.getArray('deletedLocalUrls').forEach(storage.local.removeHistory)
+  localStorage.getArray('deletedSyncUrls').forEach(storage.sync.remove)
+  const localStorageKeys = ['deletedLocalUrls', 'deletedSyncUrls']
   localStorageKeys.forEach(key => localStorage.removeItem(key))
 }
 
