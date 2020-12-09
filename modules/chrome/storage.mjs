@@ -37,8 +37,6 @@ local.set = (key, value) => new Promise(resolve =>
   chrome.storage.local.set({[key]: value}, resolve)
 )
 
-local.remove = url => chrome.storage.local.remove(url)
-
 local.setHistory = async page => {
   // It gets an object instead of the value
   let {history} = await local.get('history')
@@ -46,6 +44,14 @@ local.setHistory = async page => {
   history[page.url] = page
   await local.set('history', history)
 }
+
+local.removeHistory = async url => {
+  let {history} = await local.get('history')
+  if (history === undefined) return
+  delete history[url]
+  await local.set('history', history)
+}
+
 
 // NOTICE: This returns an Array of objects.
 local.sortHistoryByLatest = async () => {
