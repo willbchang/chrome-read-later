@@ -5,7 +5,7 @@ const activeUrl = () => activeLi().find('a').attr('href')
 const visibleLis = () => $('#reading-list li:visible')
 
 export const open = ({currentTab = false, active = true}) => {
-  dele()
+  if (!window.isLocal) dele()
   extension.sendMessage({url: activeUrl(), currentTab, active})
   if (currentTab) window.close()
 }
