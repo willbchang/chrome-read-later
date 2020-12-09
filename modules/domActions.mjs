@@ -12,13 +12,13 @@ export const open = ({currentTab = false, active = true}) => {
 
 // dele is synonym of delete, delete is a keyword in JavasScript
 export const dele = () => {
-  if (localStorage.getItem('isMoving') === 'true') return
-  localStorage.setItem('isMoving', 'true')
+  if (window.isMoving) return
+  window.isMoving = true
   const li = activeLi()
   li.fadeOut('normal', () => {
     updateTotalNumber()
     moveToPreviousOrNext(li)
-    localStorage.setItem('isMoving', 'false')
+    window.isMoving = false
   })
   localStorage.setArray('dependingUrls', activeUrl())
 }

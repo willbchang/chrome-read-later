@@ -30,7 +30,7 @@ function isLocal() {
 // Clear all the local items, includes dependingUrls, lastKey, and src.
 function removeDeletedReadingItems() {
   localStorage.getArray('dependingUrls').forEach(storage.sync.remove)
-  const localStorageKeys = ['dependingUrls', 'lastKey', 'isMoving']
+  const localStorageKeys = ['dependingUrls', 'lastKey']
   localStorageKeys.forEach(key => localStorage.removeItem(key))
 }
 
