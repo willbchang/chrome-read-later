@@ -1,4 +1,5 @@
 #reading-list {
+    font-size: 14px;
     list-style: none;
     /* Reading list greater than 17 will make the covered li (by status bar) active */
     padding-top: 11px;
