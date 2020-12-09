@@ -1,4 +1,5 @@
 import '../../modules/prototype.mjs'
+import '../../modules/prototypes/String.mjs'
 import * as request from './request.js'
 
 class PageInfo {
