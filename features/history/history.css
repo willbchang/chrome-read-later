@@ -5,6 +5,10 @@
     padding: 0;
 }
 
+#reading-list {
+    margin: 0 50px;
+}
+
 @media screen and (prefers-color-scheme: dark) {
     html {
         background-color: #202124;
