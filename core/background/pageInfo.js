@@ -1,4 +1,4 @@
-import '../../modules/prototype.mjs'
+import '../../modules/prototypes/Object.mjs'
 import '../../modules/prototypes/String.mjs'
 import * as request from './request.js'
 
