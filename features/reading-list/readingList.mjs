@@ -8,7 +8,6 @@ const readingList = $('#reading-list')
 
 export async function setup() {
   window.isLocal = isLocal()
-  removeDeletedReadingItems()
   await initDomFromStorage()
   activeFirstLi()
   changeIconOnMouseEnterLeave()
@@ -28,7 +27,7 @@ function isLocal() {
 
 // Remove the deleted urls from storage before init reading list.
 // Clear all the local items, includes dependingUrls and src.
-function removeDeletedReadingItems() {
+export function removeDeletedReadingItems() {
   localStorage.getArray('deletedLocalUrls').forEach(storage.local.removeHistory)
   localStorage.getArray('deletedSyncUrls').forEach(storage.sync.remove)
   const localStorageKeys = ['deletedLocalUrls', 'deletedSyncUrls']

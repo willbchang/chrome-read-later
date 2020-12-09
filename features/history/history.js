@@ -8,4 +8,6 @@ import * as statusBar from '../status-bar/statusBar.js'
 $(async () => {
   await readingList.setup()
   statusBar.setup()
+
+  window.onbeforeunload = readingList.removeDeletedReadingItems
 })
