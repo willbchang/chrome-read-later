@@ -5,8 +5,8 @@ const activeUrl = () => activeLi().find('a').attr('href')
 const visibleLis = () => $('#reading-list li:visible')
 
 export const open = ({currentTab = false, active = true}) => {
-  const url = dele()
-  extension.sendMessage({url, currentTab, active})
+  dele()
+  extension.sendMessage({url: activeUrl(), currentTab, active})
   if (currentTab) window.close()
 }
 
@@ -15,15 +15,12 @@ export const dele = () => {
   if (localStorage.getItem('isMoving') === 'true') return
   localStorage.setItem('isMoving', 'true')
   const li = activeLi()
-  const url = activeUrl()
   li.fadeOut('normal', () => {
     updateTotalNumber()
     moveToPreviousOrNext(li)
     localStorage.setItem('isMoving', 'false')
   })
-  localStorage.setArray('dependingUrls', url)
-
-  return url
+  localStorage.setArray('dependingUrls', activeUrl())
 }
 
 export const undo = () => {
@@ -56,8 +53,7 @@ export const moveTo = direction => {
 }
 
 export const copyUrl = async () => {
-  const url = activeUrl()
-  await navigator.clipboard.writeText(url)
+  await navigator.clipboard.writeText(activeUrl())
 }
 
 export const reactive = li => {
