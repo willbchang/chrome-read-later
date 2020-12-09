@@ -1,6 +1,7 @@
 import * as extension from './chrome/runtime.mjs'
 
 const activeLi = () => $('.active')
+const activeUrl = () => activeLi().find('a').attr('href')
 const visibleLis = () => $('#reading-list li:visible')
 
 export const open = ({currentTab = false, active = true}) => {
@@ -14,7 +15,7 @@ export const dele = () => {
   if (localStorage.getItem('isMoving') === 'true') return
   localStorage.setItem('isMoving', 'true')
   const li = activeLi()
-  const url = li.find('a').attr('href')
+  const url = activeUrl()
   li.fadeOut('normal', () => {
     updateTotalNumber()
     moveToPreviousOrNext(li)
@@ -55,7 +56,7 @@ export const moveTo = direction => {
 }
 
 export const copyUrl = async () => {
-  const url = activeLi().find('a').attr('href')
+  const url = activeUrl()
   await navigator.clipboard.writeText(url)
 }
 
