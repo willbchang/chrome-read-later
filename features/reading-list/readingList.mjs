@@ -16,6 +16,15 @@ export async function setup() {
   doActionOnBodyKeyDown()
 }
 
+// Get the script file path and check if it's in history/
+function isLocal() {
+  return $('script')
+    .filter((_, script) =>
+      script.src.includes('history/')
+    )
+    .length !== 0
+}
+
 // Remove the deleted urls from storage before init reading list.
 // Clear all the local items, includes dependingUrls, lastKey, and src.
 function removeDeletedReadingItems() {
