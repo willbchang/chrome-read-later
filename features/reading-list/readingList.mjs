@@ -35,7 +35,9 @@ function removeDeletedReadingItems() {
 }
 
 async function initDomFromStorage() {
-  const pages = await storage.sync.sortByLatest()
+  const pages = window.isLocal
+    ? await storage.local.sortHistoryByLatest()
+    : await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()
   pages.map(page => readingList.append(
     generator.renderLiFrom(page, favIcons[page.favIconUrl])
