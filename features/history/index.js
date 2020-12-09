@@ -1,14 +1,8 @@
-import * as storage from '../../modules/chrome/storage.mjs'
-import * as generator from '../reading-list/readingItemGenerator.mjs'
+import '../../modules/prototype.mjs'
+import * as readingList from '../reading-list/readingList.mjs'
 
 
 // Init history reading list from storage.
 $(async () => {
-  const readingList = $('#reading-list')
-  const pages = await storage.local.sortHistoryByLatest()
-  console.log(pages, pages[0])
-  const favIcons = await storage.local.get()
-  pages.map(page => readingList.append(
-    generator.renderLiFrom(page, favIcons[page.favIconUrl])
-  ))
+  await readingList.setup()
 })
