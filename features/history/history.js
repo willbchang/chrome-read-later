@@ -6,8 +6,8 @@ import * as statusBar from '../status-bar/statusBar.js'
 
 // Init history reading list from storage.
 $(async () => {
+  window.isLocal = readingList.isLocal()
   await readingList.setup()
   statusBar.setup()
-
   window.onbeforeunload = readingList.removeDeletedReadingItems
 })

@@ -7,7 +7,6 @@ import * as action from '../../modules/domActions.mjs'
 const readingList = $('#reading-list')
 
 export async function setup() {
-  window.isLocal = isLocal()
   await initDomFromStorage()
   activeFirstLi()
   changeIconOnMouseEnterLeave()
@@ -17,7 +16,7 @@ export async function setup() {
 }
 
 // Get the script file path and check if it's in history/
-function isLocal() {
+export function isLocal() {
   return $('script')
     .filter((_, script) =>
       script.src.includes('history/')
