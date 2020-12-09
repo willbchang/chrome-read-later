@@ -1,4 +1,5 @@
 @import "../reading-list/reading-list.css";
+@import "../status-bar/status-bar.css";
 
 * {
     margin: 0;
