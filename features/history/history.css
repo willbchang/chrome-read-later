@@ -14,6 +14,14 @@ h1 {
     margin: 0 50px;
 }
 
+#status-bar #count {
+    margin-left: 50px;
+}
+
+#status-bar #feedback {
+    margin-right: 50px;
+}
+
 @media screen and (prefers-color-scheme: dark) {
     html {
         background-color: #202124;
