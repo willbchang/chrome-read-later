@@ -1,4 +1,5 @@
 import '../../modules/prototype.mjs'
+import '../../modules/prototypes/localStorage.mjs'
 import * as readingList from '../../features/reading-list/readingList.mjs'
 import * as statusBar from '../../features/status-bar/statusBar.js'
 
