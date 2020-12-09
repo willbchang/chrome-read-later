@@ -2,7 +2,6 @@ import * as action from './domActions.mjs'
 
 export const getKeyBinding = event => {
   const {key, metaKey, altKey} = event
-  const lastKey = localStorage.getItem('lastKey')
 
   const keyBindings = {
     Enter:     metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
@@ -12,15 +11,15 @@ export const getKeyBinding = event => {
     z:         metaKey ? 'Meta + z' : 'z',
     j:         'j',
     k:         'k',
-    g:         lastKey === 'g' ? 'gg' : 'g',
+    g:         window.lastKey === 'g' ? 'gg' : 'g',
     G:         'G',
-    d:         lastKey === 'd' ? 'dd' : 'd',
+    d:         window.lastKey === 'd' ? 'dd' : 'd',
     u:         'u',
-    y:         lastKey === 'y' ? 'yy' : 'y',
+    y:         window.lastKey === 'y' ? 'yy' : 'y',
     p:         'p',
   }
 
-  localStorage.setItem('lastKey', keyBindings[key])
+  window.lastKey = keyBindings[key]
   return keyBindings[key]
 }
 
