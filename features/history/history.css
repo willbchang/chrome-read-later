@@ -5,6 +5,10 @@
     padding: 0;
 }
 
+h1 {
+    text-align: center;
+}
+
 #reading-list {
     margin: 0 50px;
 }
