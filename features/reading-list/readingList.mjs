@@ -1,8 +1,8 @@
 import * as storage from '../../modules/chrome/storage.mjs'
 import * as generator from './readingItemGenerator.mjs'
 import * as mouse from '../../modules/mouse.mjs'
-import * as keyboard from '../../modules/keyboard.mjs'
 import * as action from './action.js'
+import * as filter from './filter.js'
 
 const readingList = $('#reading-list')
 
@@ -77,8 +77,8 @@ function doActionOnMouseClick() {
 function doActionOnBodyKeyDown() {
   $('body').on('keydown', event => {
     try {
-      const keyBinding = keyboard.getKeyBinding(event)
-      const keyAction = keyboard.getKeyAction(keyBinding)
+      const keyBinding = filter.getKeyBinding(event)
+      const keyAction = filter.getKeyAction(keyBinding)
       keyAction()
     } catch (e) {
       console.log('Catch default key action: ', event.key)

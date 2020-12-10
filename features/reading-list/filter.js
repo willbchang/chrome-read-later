@@ -1,4 +1,4 @@
-import * as action from '../features/reading-list/action.js'
+import * as action from './action.js'
 
 export const getKeyBinding = event => {
   const {key, metaKey, altKey} = event
@@ -22,7 +22,6 @@ export const getKeyBinding = event => {
   window.lastKey = keyBindings[key]
   return keyBindings[key]
 }
-
 export const getKeyAction = keyBinding => {
   return {
     Enter:              () => action.open({}),
