@@ -5,9 +5,18 @@ import * as statusBar from '../status-bar/statusBar.js'
 
 // Init history reading list from storage.
 $(async () => {
-  window.isLocal = readingList.isLocal()
+  window.isLocal = isLocal()
   window.isMoving = false
   window.lastKey = ''
   await readingList.setup()
   statusBar.setup()
 })
+
+// Get the script file path and check if it's in history/
+function isLocal() {
+  return $('script')
+    .filter((_, script) =>
+      script.src.includes('history/')
+    )
+    .length !== 0
+}
