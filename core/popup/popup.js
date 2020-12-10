@@ -7,6 +7,5 @@ $(async () => {
   window.isLocal = readingList.isLocal()
   await readingList.setup()
   statusBar.setup()
-  window.onbeforeunload = readingList.removeDeletedReadingItems
 })
 

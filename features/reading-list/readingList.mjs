@@ -7,6 +7,7 @@ import * as action from '../../modules/domActions.mjs'
 const readingList = $('#reading-list')
 
 export async function setup() {
+  await removeDeletedReadingItems()
   await initDomFromStorage()
   activeFirstLi()
   changeIconOnMouseEnterLeave()
