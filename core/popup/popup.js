@@ -4,7 +4,9 @@ import * as readingList from '../../features/reading-list/readingList.mjs'
 import * as statusBar from '../../features/status-bar/statusBar.js'
 
 $(async () => {
-  window.isLocal = readingList.isLocal()
+  window.isHistoryPage = false
+  window.isHidingLi = false
+  window.lastKey = ''
   await readingList.setup()
   statusBar.setup()
 })
