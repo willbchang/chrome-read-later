@@ -29,8 +29,32 @@ sync.getScrollPosition = async url => {
 
 export const local = {}
 
-local.get = () => new Promise(resolve => chrome.storage.local.get(resolve))
+local.get = (key = null) => new Promise(resolve =>
+  chrome.storage.local.get(key, resolve)
+)
 
 local.set = (key, value) => new Promise(resolve =>
   chrome.storage.local.set({[key]: value}, resolve)
 )
+
+local.setHistory = async page => {
+  // It gets an object instead of the value
+  let {history} = await local.get('history')
+  if (history === undefined) history = {}
+  history[page.url] = page
+  await local.set('history', history)
+}
+
+local.removeHistory = async url => {
+  let {history} = await local.get('history')
+  if (history === undefined) return
+  delete history[url]
+  await local.set('history', history)
+}
+
+
+// NOTICE: This returns an Array of objects.
+local.sortHistoryByLatest = async () => {
+  const {history} = await local.get('history')
+  return Object.values(history).sort((a, b) => b.date - a.date)
+}

@@ -1,23 +1,10 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    width: 400px;
-    font-size: 14px;
-}
-
 #reading-list {
+    font-size: 14px;
     list-style: none;
     /* Reading list greater than 17 will make the covered li (by status bar) active */
     padding-top: 11px;
     /* Reading list less than 17 will make 1px drag on moving */
     padding-bottom: 24px;
-}
-
-::-webkit-scrollbar {
-    display: none;
 }
 
 #reading-list li {
@@ -32,6 +19,7 @@ body {
 }
 
 #reading-list a {
+    outline: none;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -58,7 +46,7 @@ body {
     position: absolute;
     height: 16px;
     width: 16px;
-    background-image: url("../assets/icons/logo-black32x32.png");
+    background-image: url("../../assets/icons/logo-black32x32.png");
     background-size: 16px 16px;
 }
 
@@ -70,49 +58,7 @@ body {
     cursor: default;
 }
 
-#status-bar {
-    display: flex;
-    list-style-type: none;
-    padding: 5px;
-    height: 15px;
-    /* Fix status bar position at bottom */
-    position: fixed;
-    bottom: 0;
-    background-color: white; /* Hide contents under status bar */
-    width: 100%; /* Make the status bar full width */
-}
-
-#status-bar li {
-    padding: 0 5px;
-    color: gray;
-    font-size: 12px;
-}
-
-#status-bar a {
-    color: inherit;
-    font-size: inherit;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-#status-bar #count {
-    padding-left: 15px;
-    color: #f05f00cc;
-    cursor: default;
-    letter-spacing: 1px;
-    margin-right: auto; /* Push other items to the end. */
-}
-
-#status-bar #feedback {
-    margin-right: 10px;
-}
-
 @media screen and (prefers-color-scheme: dark) {
-    html,
-    #status-bar {
-        background-color: #202124;
-    }
-
     #reading-list li.active {
         background-color: #444547;
     }
@@ -121,8 +67,7 @@ body {
         color: #e0eaed;
     }
 
-    #reading-list .position,
-    #status-bar #count {
+    #reading-list .position {
         color: #f05f00;
     }
 }

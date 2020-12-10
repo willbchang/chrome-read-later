@@ -1,9 +1,7 @@
 import * as action from './action.js'
 
-
-export const key = event => {
+export const getKeyBinding = event => {
   const {key, metaKey, altKey} = event
-  const lastKey = localStorage.getItem('lastKey')
 
   const keyBindings = {
     Enter:     metaKey ? 'Meta + Enter' : altKey ? 'Alt + Enter' : 'Enter',
@@ -13,25 +11,20 @@ export const key = event => {
     z:         metaKey ? 'Meta + z' : 'z',
     j:         'j',
     k:         'k',
-    g:         lastKey === 'g' ? 'gg' : 'g',
+    g:         window.lastKey === 'g' ? 'gg' : 'g',
     G:         'G',
-    d:         lastKey === 'd' ? 'dd' : 'd',
+    d:         window.lastKey === 'd' ? 'dd' : 'd',
     u:         'u',
-    y:         lastKey === 'y' ? 'yy' : 'y',
+    y:         window.lastKey === 'y' ? 'yy' : 'y',
     p:         'p',
   }
 
-  // Empty Selection on pressing expected key.
-  if (key in keyBindings) document.getSelection().empty()
-
-  localStorage.setItem('lastKey', keyBindings[key])
+  window.lastKey = keyBindings[key]
   return keyBindings[key]
 }
 
-export const keyAction = event => {
-  // Avoid native arrow behavior, it overflows the focus behavior on long reading list.
-  if (event.key.includes('Arrow')) event.preventDefault()
 
+export const getKeyAction = keyBinding => {
   return {
     Enter:              () => action.open({}),
     'Meta + Enter':     () => action.open({active: false}),
@@ -49,18 +42,19 @@ export const keyAction = event => {
     dd:                 () => action.dele(),
     u:                  () => action.undo(),
     yy:                 () => action.copyUrl(),
-  }[key(event)]()
+  }[keyBinding]
 }
 
-export const mouse = ({metaKey, altKey}) =>
+
+export const getModifiedClick = ({metaKey, altKey}) =>
   metaKey ? 'Meta + Click' : altKey ? 'Alt + Click' : 'Click'
 
-export const mouseAction = (event) => {
-  const {target} = event
-  if (target.tagName === 'IMG') return action.dele()
+
+export const getClickAction = (modifiedClick, tagName) => {
+  if (tagName === 'IMG') return action.dele()
   return {
     Click:          () => action.open({}),
     'Meta + Click': () => action.open({active: false}),
     'Alt + Click':  () => action.open({currentTab: true}),
-  }[mouse(event)]()
+  }[modifiedClick]
 }

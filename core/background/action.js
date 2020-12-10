@@ -1,6 +1,6 @@
 import * as data from './pageInfo.js'
-import * as storage from '../modules-chrome/storage.mjs'
-import * as tabs from '../modules-chrome/tabs.mjs'
+import * as storage from '../../modules/chrome/storage.mjs'
+import * as tabs from '../../modules/chrome/tabs.mjs'
 import * as request from './request.js'
 
 
@@ -12,10 +12,12 @@ export async function saveSelection(tab, selection) {
 async function updateStorage({tab, position = {}, selection = {}}) {
   let page = data.initPageInfo({tab, position, selection})
   await storage.sync.set(page)
+  await storage.local.setHistory(page)
 
   if (!page.url.isHttp()) return
   page = await data.completePageInfo(page)
   await storage.sync.set(page)
+  await storage.local.setHistory(page)
 
   const favIcons = await storage.local.get()
   if (page.favIconUrl in favIcons) return

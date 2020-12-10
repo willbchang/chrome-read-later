@@ -1,0 +1,21 @@
+@import "../../features/reading-list/reading-list.css";
+@import "../../features/status-bar/status-bar.css";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 400px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    html {
+        background-color: #202124;
+    }
+}
