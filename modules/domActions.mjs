@@ -3,10 +3,10 @@ import * as extension from './chrome/runtime.mjs'
 const activeLi = () => $('.active')
 const activeUrl = () => activeLi().find('a').attr('href')
 const visibleLis = () => $('#reading-list li:visible')
-const getLocalStorageKey = () => window.isHistory ? 'deletedLocalUrls' : 'deletedSyncUrls'
+const getLocalStorageKey = () => window.isHistoryPage ? 'deletedLocalUrls' : 'deletedSyncUrls'
 
 export const open = ({currentTab = false, active = true}) => {
-  if (!window.isHistory) dele()
+  if (!window.isHistoryPage) dele()
   extension.sendMessage({url: activeUrl(), currentTab, active})
   if (currentTab) window.close()
 }

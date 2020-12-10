@@ -29,7 +29,7 @@ export async function removeDeletedReadingItems() {
 }
 
 async function initDomFromStorage() {
-  const pages = window.isHistory
+  const pages = window.isHistoryPage
     ? await storage.local.sortHistoryByLatest()
     : await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()
