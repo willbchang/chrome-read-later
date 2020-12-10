@@ -1,6 +1,5 @@
 import * as storage from '../../modules/chrome/storage.mjs'
 import * as generator from './readingItemGenerator.mjs'
-import * as mouse from '../../modules/mouse.mjs'
 import * as action from './action.js'
 import * as filter from './filter.js'
 
@@ -65,8 +64,8 @@ function doActionOnMouseClick() {
     event.preventDefault()
 
     try {
-      const modifiedClick = mouse.getModifiedClick(event)
-      const clickAction = mouse.getClickAction(modifiedClick, event.target.tagName)
+      const modifiedClick = filter.getModifiedClick(event)
+      const clickAction = filter.getClickAction(modifiedClick, event.target.tagName)
       clickAction()
     } catch (e) {
       console.log('Catch click action error: ', e)
