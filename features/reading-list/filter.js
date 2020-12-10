@@ -22,6 +22,8 @@ export const getKeyBinding = event => {
   window.lastKey = keyBindings[key]
   return keyBindings[key]
 }
+
+
 export const getKeyAction = keyBinding => {
   return {
     Enter:              () => action.open({}),
@@ -42,8 +44,12 @@ export const getKeyAction = keyBinding => {
     yy:                 () => action.copyUrl(),
   }[keyBinding]
 }
+
+
 export const getModifiedClick = ({metaKey, altKey}) =>
   metaKey ? 'Meta + Click' : altKey ? 'Alt + Click' : 'Click'
+
+
 export const getClickAction = (modifiedClick, tagName) => {
   if (tagName === 'IMG') return action.dele()
   return {
