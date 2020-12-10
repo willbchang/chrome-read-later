@@ -1,4 +1,4 @@
-import * as action from './domActions.mjs'
+import * as action from '../features/reading-list/action.js'
 
 export const getKeyBinding = event => {
   const {key, metaKey, altKey} = event
