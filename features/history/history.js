@@ -5,7 +5,7 @@ import * as statusBar from '../status-bar/statusBar.js'
 
 // Init history reading list from storage.
 $(async () => {
-  window.isLocal = isHistory()
+  window.isHistory = isHistory()
   window.isMoving = false
   window.lastKey = ''
   await readingList.setup()
