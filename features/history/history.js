@@ -5,7 +5,7 @@ import * as statusBar from '../status-bar/statusBar.js'
 
 // Init history reading list from storage.
 $(async () => {
-  window.isHistory = isHistory()
+  window.isHistory = isHistoryPage()
   window.isHidingLi = false
   window.lastKey = ''
   await readingList.setup()
@@ -13,7 +13,7 @@ $(async () => {
 })
 
 // Get the script file path and check if it's in history/
-function isHistory() {
+function isHistoryPage() {
   return $('script')
     .filter((_, script) =>
       script.src.includes('history/')
