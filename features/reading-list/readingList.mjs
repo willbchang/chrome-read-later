@@ -68,7 +68,7 @@ function doActionOnMouseClick() {
       const clickAction = filter.getClickAction(modifiedClick, event.target.tagName)
       clickAction()
     } catch (e) {
-      console.log('Catch click action error: ', e)
+      console.log('Catch click action error: ', e, event.target.tagName)
     }
   })
 }
@@ -80,7 +80,7 @@ function doActionOnBodyKeyDown() {
       const keyAction = filter.getKeyAction(keyBinding)
       keyAction()
     } catch (e) {
-      console.log('Catch default key action: ', event.key)
+      console.log('Catch default key action: ', e, event.key, event.target.tagName)
     }
   })
 }
