@@ -54,6 +54,7 @@ export const moveTo = direction => {
 }
 
 export const copyUrl = async () => {
+  activeLi().fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
   await navigator.clipboard.writeText(activeUrl())
 }
 
