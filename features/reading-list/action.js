@@ -60,9 +60,13 @@ export const copyUrl = async () => {
 export const reactive = li => {
   activeLi().removeClass('active')
   li.addClass('active')
+  localStorage.setItem(
+    `${window.isHistoryPage ? 'local' : 'sync'}ActivatedLiId`,
+    li.attr('id')
+  )
 }
 
-const scrollTo = li => {
+export const scrollTo = li => {
   // The reading list will be overflowed if it's longer than 17,
   //  assign active class will not make the overflowed view visible.
   //  $.animate() can solve this problem.
