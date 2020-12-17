@@ -66,14 +66,14 @@ export const reactive = li => {
   )
 }
 
-export const scrollTo = li => {
+export const scrollTo = (li, duration = 'fast') => {
   // The reading list will be overflowed if it's longer than 17,
   //  assign active class will not make the overflowed view visible.
   //  $.animate() can solve this problem.
   const isFirstLi = visibleLis().index(li) === 0
   $('html, body')
     .stop(true, true) // Stop jQuery animation delay on continuous movement.
-    .animate({scrollTop: isFirstLi ? 0 : li.offset().top}, 'fast')
+    .animate({scrollTop: isFirstLi ? 0 : li.offset().top}, duration)
 }
 
 export const updateTotalNumber = () => {
