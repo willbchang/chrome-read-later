@@ -50,7 +50,7 @@ function activeLastActivatedLi() {
 
   if (li.length !== 0) {
     action.reactive(li)
-    action.scrollTo(li)
+    action.scrollTo(li, 0)
   }
 }
 
