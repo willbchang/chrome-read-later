@@ -38,6 +38,7 @@
 #history.highlight {
     color: green;
     background-color: lightgreen;
+    border-radius: 20px;
 }
 
 @media screen and (prefers-color-scheme: dark) {
