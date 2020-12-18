@@ -6,8 +6,8 @@ import * as filter from './filter.js'
 const readingList = $('#reading-list')
 
 export async function setup() {
-  await removeDeletedReadingItems()
   resetEventListeners()
+  await removeDeletedReadingItems()
   await initDomFromStorage()
   activeLastActivatedLi()
   changeIconOnMouseEnterLeave()
