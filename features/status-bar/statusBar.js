@@ -5,7 +5,7 @@ import * as readingList from '../reading-list/readingList.js'
 export function setup() {
   init()
   updateCountNumber()
-  openHistoryPageOnClick()
+  switchHistoryPageOnClick()
 }
 
 function init() {
@@ -24,7 +24,7 @@ function updateCountNumber() {
   action.updateTotalNumber()
 }
 
-function openHistoryPageOnClick() {
+function switchHistoryPageOnClick() {
   $('#history').on('click', async () => {
     window.isHistoryPage = !window.isHistoryPage
     window.lastKey = ''
