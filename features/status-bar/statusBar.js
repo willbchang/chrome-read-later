@@ -27,6 +27,7 @@ function updateCountNumber() {
 function openHistoryPageOnClick() {
   $('#history').on('click', async () => {
     window.isHistoryPage = !window.isHistoryPage
+    window.lastKey = ''
     await readingList.setup()
     updateCountNumber()
   })
