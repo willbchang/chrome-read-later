@@ -7,7 +7,7 @@ const readingList = $('#reading-list')
 
 export async function setup() {
   await removeDeletedReadingItems()
-  reset()
+  resetEventListeners()
   await initDomFromStorage()
   activeLastActivatedLi()
   changeIconOnMouseEnterLeave()
@@ -16,8 +16,8 @@ export async function setup() {
   doActionOnBodyKeyDown()
 }
 
-function reset() {
-  // Remove all events handlers
+function resetEventListeners() {
+  // Remove all events listeners
   readingList.off()
   $('body').off()
 }
