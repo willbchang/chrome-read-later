@@ -35,6 +35,10 @@
     margin-right: 10px;
 }
 
+#history {
+    cursor: pointer;
+}
+
 #history.highlight {
     color: green;
     background-color: #99EDC3;
