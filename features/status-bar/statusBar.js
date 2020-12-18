@@ -11,7 +11,7 @@ export function setup() {
 function init() {
   $('#status-bar').append(`
      <li id="count"><span id="row">0</span>:<span id="total">0</span></li>
-     ${window.isHistoryPage ? '' : '<li id="history"><a href="#">History</a></li>'}
+     <li id="history">History</li>
      <li id="document"><a href="https://github.com/willbchang/chrome-read-later#features" target="_blank">Document</a>
      </li>
      <li id="feedback"><a href="https://github.com/willbchang/chrome-read-later/issues/new" target="_blank">Feedback</a>
