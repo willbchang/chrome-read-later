@@ -53,7 +53,8 @@
     }
 
     #history.highlight {
-        color: lightgreen;
-        background-color: darkgreen;
+        color: #FAFCFE;
+        text-shadow: 0 0 2px #00FF41, 0 0 3px #008F11, 0 0 4px #003B00, 0 0 5px #0D0208;
+        background-color: transparent;
     }
 }
