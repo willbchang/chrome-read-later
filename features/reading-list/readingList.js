@@ -7,12 +7,22 @@ const readingList = $('#reading-list')
 
 export async function setup() {
   await removeDeletedReadingItems()
+  reset()
   await initDomFromStorage()
   activeLastActivatedLi()
   changeIconOnMouseEnterLeave()
   updateStateOnMouseMove()
   doActionOnMouseClick()
   doActionOnBodyKeyDown()
+}
+
+function reset() {
+  // Remove all events handlers
+  readingList.off()
+  $('body').off()
+
+  // Remove all reading items
+  readingList.empty()
 }
 
 // Remove the deleted urls from storage before init reading list.
