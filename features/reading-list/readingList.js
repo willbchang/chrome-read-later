@@ -20,9 +20,6 @@ function reset() {
   // Remove all events handlers
   readingList.off()
   $('body').off()
-
-  // Remove all reading items
-  readingList.empty()
 }
 
 // Remove the deleted urls from storage before init reading list.
@@ -44,9 +41,14 @@ async function initDomFromStorage() {
     ? await storage.local.sortHistoryByLatest()
     : await storage.sync.sortByLatest()
   const favIcons = await storage.local.get()
+  const oldReadingItemsLength = readingList.children().length
+
   pages.map(page => readingList.append(
     generator.renderLiFrom(page, favIcons[page.favIconUrl])
   ))
+
+  // This way improve the UX, readingList.empty() will flash the screen.
+  readingList.children().slice(0, oldReadingItemsLength).remove()
 }
 
 function activeLastActivatedLi() {
