@@ -39,7 +39,7 @@
     color: green;
     background-color: lightgreen;
     border-radius: 20px;
-    transition: background-color 0.5s linear;
+    transition: background-color 0.3s linear;
 }
 
 @media screen and (prefers-color-scheme: dark) {
