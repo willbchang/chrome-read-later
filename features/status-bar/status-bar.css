@@ -37,7 +37,7 @@
 
 #history.highlight {
     color: green;
-    background-color: lightgreen;
+    background-color: #99EDC3;
     border-radius: 20px;
     transition: background-color 0.3s linear;
 }
