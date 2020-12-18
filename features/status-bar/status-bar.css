@@ -37,6 +37,7 @@
 
 #history {
     cursor: pointer;
+    user-select: none;
 }
 
 #history.highlight {
