@@ -1,5 +1,6 @@
 import * as tabs from '../../modules/chrome/tabs.mjs'
 import * as action from '../reading-list/action.js'
+import * as readingList from '../reading-list/readingList.js'
 
 export function setup() {
   init()
@@ -25,6 +26,8 @@ function updateCountNumber() {
 
 function openHistoryPageOnClick() {
   $('#history').on('click', async () => {
-    await tabs.create(chrome.runtime.getURL('features/history/history.html'))
+    window.isHistoryPage = !window.isHistoryPage
+    await readingList.setup()
+    updateCountNumber()
   })
 }
