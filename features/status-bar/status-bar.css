@@ -35,6 +35,11 @@
     margin-right: 10px;
 }
 
+#history.highlight {
+    color: green;
+    background-color: lightgreen;
+}
+
 @media screen and (prefers-color-scheme: dark) {
     html,
     #status-bar {
@@ -43,5 +48,10 @@
 
     #status-bar #count {
         color: #f05f00;
+    }
+
+    #history.highlight {
+        color: lightgreen;
+        background-color: darkgreen;
     }
 }
