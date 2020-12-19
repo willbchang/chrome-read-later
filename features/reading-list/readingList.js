@@ -9,7 +9,7 @@ export async function setup() {
   resetEventListeners()
   await removeDeletedReadingItems()
   await initDomFromStorage()
-  activeLastActivatedLi()
+  activeFirstLi()
   changeIconOnMouseEnterLeave()
   updateStateOnMouseMove()
   doActionOnMouseClick()
@@ -51,19 +51,9 @@ async function initDomFromStorage() {
   readingList.children().slice(0, oldReadingItemsLength).remove()
 }
 
-function activeLastActivatedLi() {
-  const lastActivatedLiId = localStorage.getItem(
-    `${window.isHistoryPage ? 'local' : 'sync'}ActivatedLiId`
-  )
-
-  const li = lastActivatedLiId
-    ? $(`#${lastActivatedLiId}`)
-    : $('#reading-list li').first()
-
-  if (li.length !== 0) {
-    action.reactive(li)
-    action.scrollTo(li, 0)
-  }
+function activeFirstLi() {
+  const li = $('#reading-list li').first()
+  if (li.length !== 0) action.reactive(li)
 }
 
 function changeIconOnMouseEnterLeave() {

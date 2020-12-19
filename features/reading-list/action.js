@@ -61,10 +61,6 @@ export const copyUrl = async () => {
 export const reactive = li => {
   activeLi().removeClass('active')
   li.addClass('active')
-  localStorage.setItem(
-    `${window.isHistoryPage ? 'local' : 'sync'}ActivatedLiId`,
-    li.attr('id')
-  )
 }
 
 export const scrollTo = (li, duration = 'fast') => {
