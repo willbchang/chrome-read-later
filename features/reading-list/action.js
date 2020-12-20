@@ -65,8 +65,8 @@ export const reactive = li => {
 
 export const scrollTo = (li) => {
   const isFirstLi = visibleLis().index(li) === 0
-  if (isFirstLi) return window.scrollTo({top: 0, behavior: 'smooth'})
-  li[0].scrollIntoView({behavior: 'smooth', block: 'nearest'})
+  if (isFirstLi) return window.scrollTo({top: 0})
+  li[0].scrollIntoView({ block: 'nearest'})
 }
 
 export const updateTotalNumber = () => {
