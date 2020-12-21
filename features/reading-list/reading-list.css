@@ -1,3 +1,11 @@
+header {
+    height: 11px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: white;
+}
+
 #reading-list {
     font-size: 14px;
     list-style: none;
@@ -60,6 +68,10 @@
 }
 
 @media screen and (prefers-color-scheme: dark) {
+    header {
+        background-color: #202124;
+    }
+
     #reading-list li.active {
         background-color: #444547;
     }
