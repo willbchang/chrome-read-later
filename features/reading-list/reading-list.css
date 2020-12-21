@@ -1,10 +1,16 @@
+header {
+    height: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: white;
+}
+
 #reading-list {
     font-size: 14px;
     list-style: none;
-    /* Reading list greater than 17 will make the covered li (by status bar) active */
-    padding-top: 11px;
-    /* Reading list less than 17 will make 1px drag on moving */
-    padding-bottom: 24px;
+    padding-top: 10px;
+    padding-bottom: 25px;
 }
 
 #reading-list li {
@@ -12,6 +18,7 @@
     align-items: center;
     padding: 0 15px;
     line-height: 30px;
+    scroll-margin-top: 10px;
     scroll-margin-bottom: 25px;
 }
 
@@ -60,6 +67,10 @@
 }
 
 @media screen and (prefers-color-scheme: dark) {
+    header {
+        background-color: #202124;
+    }
+
     #reading-list li.active {
         background-color: #444547;
     }
