@@ -54,7 +54,11 @@ async function initDomFromStorage() {
 function activeFirstLi() {
   const li = $('#reading-list li').first()
   const hasReadingItem = li.length !== 0
-  if (hasReadingItem) action.reactive(li)
+
+  if (hasReadingItem) {
+    action.reactive(li)
+    action.scrollTo(li)
+  }
 }
 
 function changeIconOnMouseEnterLeave() {
