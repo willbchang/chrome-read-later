@@ -1,4 +1,3 @@
-import * as tabs from '../../modules/chrome/tabs.mjs'
 import * as action from '../reading-list/action.js'
 import * as readingList from '../reading-list/readingList.js'
 

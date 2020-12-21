@@ -31,10 +31,6 @@
     margin-right: auto; /* Push other items to the end. */
 }
 
-#status-bar #feedback {
-    margin-right: 10px;
-}
-
 #history {
     cursor: pointer;
     user-select: none;
@@ -47,8 +43,11 @@
     transition: background-color 0.3s linear;
 }
 
+#status-bar #feedback {
+    margin-right: 10px;
+}
+
 @media screen and (prefers-color-scheme: dark) {
-    html,
     #status-bar {
         background-color: #202124;
     }
