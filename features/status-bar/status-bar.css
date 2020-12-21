@@ -48,7 +48,6 @@
 }
 
 @media screen and (prefers-color-scheme: dark) {
-    html,
     #status-bar {
         background-color: #202124;
     }
