@@ -20,6 +20,7 @@ header {
     align-items: center;
     padding: 0 15px;
     line-height: 30px;
+    scroll-margin-top: 11px;
     scroll-margin-bottom: 25px;
 }
 
