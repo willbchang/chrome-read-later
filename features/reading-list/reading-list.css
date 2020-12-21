@@ -1,5 +1,5 @@
 header {
-    height: 11px;
+    height: 10px;
     position: fixed;
     width: 100%;
     top: 0;
@@ -10,9 +10,9 @@ header {
     font-size: 14px;
     list-style: none;
     /* Reading list greater than 17 will make the covered li (by status bar) active */
-    padding-top: 11px;
+    padding-top: 10px;
     /* Reading list less than 17 will make 1px drag on moving */
-    padding-bottom: 24px;
+    padding-bottom: 25px;
 }
 
 #reading-list li {
@@ -20,7 +20,7 @@ header {
     align-items: center;
     padding: 0 15px;
     line-height: 30px;
-    scroll-margin-top: 11px;
+    scroll-margin-top: 10px;
     scroll-margin-bottom: 25px;
 }
 
