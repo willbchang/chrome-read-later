@@ -53,7 +53,8 @@ async function initDomFromStorage() {
 
 function activeFirstLi() {
   const li = $('#reading-list li').first()
-  if (li.length !== 0) action.reactive(li)
+  const hasReadingItem = li.length !== 0
+  if (hasReadingItem) action.reactive(li)
 }
 
 function changeIconOnMouseEnterLeave() {
