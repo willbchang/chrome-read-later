@@ -5,7 +5,7 @@ import * as runtime from '../../modules/chrome/runtime.mjs'
 export function setup() {
   init()
   updateCountNumber()
-  switchHistoryPageOnClick()
+  changeStatusOnClick()
 }
 
 function init() {
@@ -28,7 +28,7 @@ function updateCountNumber() {
   action.updateTotalNumber()
 }
 
-function switchHistoryPageOnClick() {
+function changeStatusOnClick() {
   const history = $('#history')
   history.on('click', async () => {
     window.isHistoryPage = !window.isHistoryPage
