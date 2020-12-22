@@ -40,14 +40,12 @@ local.set = (key, value) => new Promise(resolve =>
 local.setHistory = async page => {
   // It gets an object instead of the value
   let {history} = await local.get('history')
-  if (history === undefined) history = {}
   history[page.url] = page
   await local.set('history', history)
 }
 
 local.removeHistory = async url => {
   let {history} = await local.get('history')
-  if (history === undefined) return
   delete history[url]
   await local.set('history', history)
 }

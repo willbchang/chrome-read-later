@@ -43,3 +43,7 @@ export async function removeDeletePages() {
   localStorage.removeItem('deletedLocalUrls')
   localStorage.removeItem('deletedSyncUrls')
 }
+
+export async function initHistoryStorage() {
+  await storage.local.set('history', {})
+}
