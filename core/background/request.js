@@ -16,7 +16,7 @@ export async function getFavIcon(url) {
     const data = await response.json()
     return data.icons[0].src
   } catch (e) {
-    return `chrome://favicon/${getOrigin(url)}`
+    return `chrome://favicon/size/16@2x/${getOrigin(url)}`
   }
 }
 
