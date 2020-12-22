@@ -13,6 +13,10 @@ export function onConnect(callback) {
   chrome.runtime.onConnect.addListener(callback)
 }
 
+export function onPopupDisconnect(callback) {
+  onConnect(popup => popup.onDisconnect.addListener(callback))
+}
+
 // https://developer.chrome.com/extensions/runtime#event-onInstalled
 export function onInstalled(callback) {
   chrome.runtime.onInstalled.addListener(details => {

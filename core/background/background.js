@@ -8,15 +8,13 @@ import * as storage from '../../modules/chrome/storage.mjs'
 
 commands.onCommand(action.savePage)
 runtime.onMessage(action.openPage)
-runtime.onConnect.addListener(function (externalPort) {
-  externalPort.onDisconnect.addListener(async function () {
-    for (const url of localStorage.getArray('deletedLocalUrls')) {
-      await storage.local.removeHistory(url)
-    }
-    localStorage.removeItem('deletedLocalUrls')
-    localStorage.getArray('deletedSyncUrls').forEach(storage.sync.remove)
-    localStorage.removeItem('deletedSyncUrls')
-  })
+runtime.onPopupDisconnect(async () => {
+  for (const url of localStorage.getArray('deletedLocalUrls')) {
+    await storage.local.removeHistory(url)
+  }
+  localStorage.removeItem('deletedLocalUrls')
+  localStorage.getArray('deletedSyncUrls').forEach(storage.sync.remove)
+  localStorage.removeItem('deletedSyncUrls')
 })
 
 contextMenus.onClicked(async (selection, tab) => {
