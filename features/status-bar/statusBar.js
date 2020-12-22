@@ -28,13 +28,14 @@ function updateCountNumber() {
 }
 
 function switchHistoryPageOnClick() {
-  $('#history').on('click', async () => {
+  const history = $('#history')
+  history.on('click', async () => {
     window.isHistoryPage = !window.isHistoryPage
     window.lastKey = ''
     await readingList.setup()
     updateCountNumber()
     window.isHistoryPage
-      ? $('#history').addClass('highlight')
-      : $('#history').removeClass('highlight')
+      ? history.addClass('highlight')
+      : history.removeClass('highlight')
   })
 }

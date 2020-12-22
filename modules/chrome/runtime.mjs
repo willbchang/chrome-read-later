@@ -24,12 +24,18 @@ export function onPopupDisconnect(callback) {
 
 // https://developer.chrome.com/extensions/runtime#event-onInstalled
 export function onInstalled(callback) {
-  chrome.runtime.onInstalled.addListener(details => {
+  chrome.runtime.onInstalled.addListener(callback)
+}
+
+export function onInstall(callback) {
+  onInstalled(details => {
     if (details.reason === 'install') callback()
-    if (details.reason === 'update') createNotification(
-      chrome.runtime.getManifest().name + ' Updated!',
-      `From V${details.previousVersion} updated to V${chrome.runtime.getManifest().version}`
-    )
+  })
+}
+
+export function onUpdate(callback) {
+  onInstalled(details => {
+    if (details.reason === 'update') callback(details)
   })
 }
 
@@ -41,4 +47,8 @@ export function createNotification(title, message) {
     iconUrl: '../../assets/icons/logo-orange128x128.png',
   }
   chrome.notifications.create(options)
+}
+
+export function getCurrentVersion() {
+  return chrome.runtime.getManifest().version
 }
