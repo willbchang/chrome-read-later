@@ -7,7 +7,6 @@ const readingList = $('#reading-list')
 
 export async function setup() {
   resetEventListeners()
-  await removeDeletedReadingItems()
   await initDomFromStorage()
   activeFirstLi()
   changeIconOnMouseEnterLeave()
@@ -20,20 +19,6 @@ function resetEventListeners() {
   // Remove all events listeners
   readingList.off()
   $('body').off()
-}
-
-// Remove the deleted urls from storage before init reading list.
-// Clear all the local items, includes dependingUrls and src.
-export async function removeDeletedReadingItems() {
-  if (window.isHistoryPage) {
-    // for..of and await make removeHistory work on reload history page.
-    for (const url of localStorage.getArray('deletedLocalUrls')) {
-      await storage.local.removeHistory(url)
-    }
-    return localStorage.removeItem('deletedLocalUrls')
-  }
-  localStorage.getArray('deletedSyncUrls').forEach(storage.sync.remove)
-  localStorage.removeItem('deletedSyncUrls')
 }
 
 async function initDomFromStorage() {

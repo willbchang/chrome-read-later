@@ -34,3 +34,12 @@ export async function openPage({url, currentTab, active}) {
   const tabId = await tabs.onComplete(tab)
   await tabs.sendMessage(tabId, {...position, info: 'set position'})
 }
+
+export async function removeDeletePages() {
+  for (const url of localStorage.getArray('deletedLocalUrls')) {
+    await storage.local.removeHistory(url)
+  }
+  localStorage.removeItem('deletedLocalUrls')
+  localStorage.getArray('deletedSyncUrls').forEach(storage.sync.remove)
+  localStorage.removeItem('deletedSyncUrls')
+}
