@@ -32,7 +32,7 @@ export async function toBase64(url) {
     const blob = await response.blob()
     return await fileReader(blob)
   } catch (e) {
-    return '../images/32x32gray.png'
+    return '../../assets/icons/logo-gray32x32.png'
   }
 }
 
