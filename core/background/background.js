@@ -21,4 +21,9 @@ contextMenus.create({
 
 runtime.onInstall(() =>
   tabs.create('https://github.com/willbchang/chrome-read-later#usages'))
-
+runtime.onUpdate(details => {
+  runtime.createNotification(
+    chrome.runtime.getManifest().name + ' Updated!',
+    `From V${details.previousVersion} updated to V${chrome.runtime.getManifest().version}`
+  )
+})

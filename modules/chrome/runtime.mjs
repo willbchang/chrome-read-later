@@ -24,17 +24,18 @@ export function onPopupDisconnect(callback) {
 
 // https://developer.chrome.com/extensions/runtime#event-onInstalled
 export function onInstalled(callback) {
-  chrome.runtime.onInstalled.addListener(details => {
-    if (details.reason === 'update') createNotification(
-      chrome.runtime.getManifest().name + ' Updated!',
-      `From V${details.previousVersion} updated to V${chrome.runtime.getManifest().version}`
-    )
-  })
+  chrome.runtime.onInstalled.addListener(callback)
 }
 
 export function onInstall(callback) {
   onInstalled(details => {
     if (details.reason === 'install') callback()
+  })
+}
+
+export function onUpdate(callback) {
+  onInstalled(details => {
+    if (details.reason === 'update') callback(details)
   })
 }
 
