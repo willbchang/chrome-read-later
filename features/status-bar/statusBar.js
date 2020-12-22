@@ -1,10 +1,11 @@
 import * as action from '../reading-list/action.js'
 import * as readingList from '../reading-list/readingList.js'
+import * as runtime from '../../modules/chrome/runtime.mjs'
 
 export function setup() {
   init()
   updateCountNumber()
-  switchHistoryPageOnClick()
+  changeStatusOnClick()
 }
 
 function init() {
@@ -27,11 +28,13 @@ function updateCountNumber() {
   action.updateTotalNumber()
 }
 
-function switchHistoryPageOnClick() {
+function changeStatusOnClick() {
   const history = $('#history')
   history.on('click', async () => {
     window.isHistoryPage = !window.isHistoryPage
     window.lastKey = ''
+    window.port.disconnect()
+    window.port = runtime.connect()
     await readingList.setup()
     updateCountNumber()
     window.isHistoryPage
