@@ -27,10 +27,6 @@ class PageInfo {
     return `chrome://favicon/size/16@2x/${origin}`
   }
 
-  get hasFavIconUrl() {
-    return this.favIconUrl !== this.defaultFavIconUrl
-  }
-
   get date() {
     return Date.now()
   }
@@ -117,9 +113,7 @@ export function initPageInfo({tab, position, selection}) {
 
 export async function completePageInfo(page) {
   if (!page.hasTitle) page.title = await request.getTitle(page.url)
-  if (!page.hasFavIconUrl) page.favIconUrl = await request.getFavIcon(page.url)
 
   delete page.hasTitle
-  delete page.hasFavIconUrl
   return page
 }
