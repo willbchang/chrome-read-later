@@ -10,7 +10,7 @@ export function onMessage(callback) {
 
 // https://developer.chrome.com/docs/extensions/reference/runtime/#method-connect
 export function connect() {
-  chrome.runtime.connect()
+  return chrome.runtime.connect()
 }
 
 // https://developer.chrome.com/docs/extensions/reference/runtime/#event-onConnect
