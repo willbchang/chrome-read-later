@@ -19,6 +19,6 @@ contextMenus.create({
   id:       'chrome-read-later.willbc.cn',
 })
 
-runtime.onInstalled(() =>
+runtime.onInstall(() =>
   tabs.create('https://github.com/willbchang/chrome-read-later#usages'))
 
