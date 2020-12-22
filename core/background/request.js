@@ -20,6 +20,11 @@ export async function getFavIcon(url) {
   }
 }
 
+// https://www.google.com/search?q=test => https://www.google.com
+function getOrigin(url) {
+  return new URL(url).origin
+}
+
 // https://www.google.com/search?q=test => www.google.com
 function getDomain(url) {
   return new URL(url).hostname
