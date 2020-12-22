@@ -1,7 +1,7 @@
-export function renderLiFrom(page, favIconBase64) {
+export function renderLiFrom(page) {
   return `
       <li id=${page.date}>
-        <img src="${favIconBase64 || page.favIconUrl}" alt="">
+        <img src="${page.favIconUrl}" alt="">
         <a href="${page.url}" title="${getTitleAttribute()}" ${getInnerTextColor()} tabindex="-1">${encodeInnerText()}</a>
         ${getScrollPercent()}
       </li>

@@ -40,11 +40,10 @@ async function initDomFromStorage() {
   const pages = window.isHistoryPage
     ? await storage.local.sortHistoryByLatest()
     : await storage.sync.sortByLatest()
-  const favIcons = await storage.local.get()
   const oldReadingItemsLength = readingList.children().length
 
   pages.map(page => readingList.append(
-    generator.renderLiFrom(page, favIcons[page.favIconUrl])
+    generator.renderLiFrom(page)
   ))
 
   // This way improve the UX, readingList.empty() will flash the screen.
