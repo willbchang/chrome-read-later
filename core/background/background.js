@@ -8,8 +8,7 @@ import * as storage from '../../modules/chrome/storage.mjs'
 
 commands.onCommand(action.savePage)
 runtime.onMessage(action.openPage)
-
-chrome.runtime.onConnect.addListener(function (externalPort) {
+runtime.onConnect.addListener(function (externalPort) {
   externalPort.onDisconnect.addListener(async function () {
     for (const url of localStorage.getArray('deletedLocalUrls')) {
       await storage.local.removeHistory(url)
