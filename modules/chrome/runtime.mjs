@@ -8,6 +8,11 @@ export function onMessage(callback) {
   chrome.runtime.onMessage.addListener(callback)
 }
 
+// https://developer.chrome.com/docs/extensions/reference/runtime/#method-connect
+export function connect() {
+  chrome.runtime.connect()
+}
+
 // https://developer.chrome.com/docs/extensions/reference/runtime/#event-onConnect
 export function onConnect(callback) {
   chrome.runtime.onConnect.addListener(callback)
