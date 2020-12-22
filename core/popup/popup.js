@@ -9,7 +9,7 @@ $(async () => {
   window.isHistoryPage = false
   window.isHidingLi = false
   window.lastKey = ''
-  runtime.connect()
+  window.port = runtime.connect()
   await readingList.setup()
   statusBar.setup()
 })
