@@ -16,8 +16,13 @@ export async function getFavIcon(url) {
     const data = await response.json()
     return data.icons[0].src
   } catch (e) {
-    return '../../assets/icons/logo-gray32x32.png'
+    return `chrome://favicon/size/16@2x/${getOrigin(url)}`
   }
+}
+
+// https://www.google.com/search?q=test => https://www.google.com
+function getOrigin(url) {
+  return new URL(url).origin
 }
 
 // https://www.google.com/search?q=test => www.google.com
@@ -32,7 +37,7 @@ export async function toBase64(url) {
     const blob = await response.blob()
     return await fileReader(blob)
   } catch (e) {
-    return '../images/32x32gray.png'
+    return '../../assets/icons/logo-gray32x32.png'
   }
 }
 

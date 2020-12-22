@@ -21,6 +21,7 @@ async function updateStorage({tab, position = {}, selection = {}}) {
 
   const favIcons = await storage.local.get()
   if (page.favIconUrl in favIcons) return
+  if (page.favIconUrl.isChromeFavicon()) return
 
   const favIconBase64 = await request.toBase64(page.favIconUrl)
   await storage.local.set(page.favIconUrl, favIconBase64)
