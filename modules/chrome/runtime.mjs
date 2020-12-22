@@ -39,7 +39,6 @@ export function onUpdate(callback) {
   })
 }
 
-
 export function createNotification(title, message) {
   const options = {
     type:    'basic',
@@ -48,4 +47,8 @@ export function createNotification(title, message) {
     iconUrl: '../../assets/icons/logo-orange128x128.png',
   }
   chrome.notifications.create(options)
+}
+
+export function getCurrentVersion() {
+  return chrome.runtime.getManifest().version
 }
