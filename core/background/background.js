@@ -19,8 +19,9 @@ contextMenus.create({
   id:       'chrome-read-later.willbc.cn',
 })
 
-runtime.onInstall(() =>
-  tabs.create('https://github.com/willbchang/chrome-read-later#usages'))
+runtime.onInstall(async () => {
+  await tabs.create('https://github.com/willbchang/chrome-read-later#usages')
+})
 
 runtime.onUpdate(details => {
   runtime.createNotification(
