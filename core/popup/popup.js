@@ -7,6 +7,7 @@ $(async () => {
   window.isHistoryPage = false
   window.isHidingLi = false
   window.lastKey = ''
+  chrome.runtime.connect()
   await readingList.setup()
   statusBar.setup()
 })
