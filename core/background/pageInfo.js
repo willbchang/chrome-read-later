@@ -5,7 +5,6 @@ import * as request from './request.js'
 class PageInfo {
   constructor(tab) {
     this.tab = tab
-    this.defaultFavIconUrl = '../../assets/icons/logo-gray32x32.png'
   }
 
   get url() {
@@ -21,13 +20,10 @@ class PageInfo {
       && this.url !== this.tab.pendingUrl
   }
 
+  // https://www.google.com/search?q=test => https://www.google.com
   get favIconUrl() {
-    const aFavIconUrl = this.tab.favIconUrl || this.defaultFavIconUrl
-    return aFavIconUrl.isHttp() ? aFavIconUrl : this.defaultFavIconUrl
-  }
-
-  get hasFavIconUrl() {
-    return this.favIconUrl !== this.defaultFavIconUrl
+    const origin = new URL(this.tab.url).origin
+    return `chrome://favicon/size/16@2x/${origin}`
   }
 
   get date() {
@@ -116,9 +112,7 @@ export function initPageInfo({tab, position, selection}) {
 
 export async function completePageInfo(page) {
   if (!page.hasTitle) page.title = await request.getTitle(page.url)
-  if (!page.hasFavIconUrl) page.favIconUrl = await request.getFavIcon(page.url)
 
   delete page.hasTitle
-  delete page.hasFavIconUrl
   return page
 }
