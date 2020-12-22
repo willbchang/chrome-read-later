@@ -10,27 +10,6 @@ export async function getTitle(url) {
   }
 }
 
-export async function getFavIcon(url) {
-  try {
-    const response = await fetch(`https://favicongrabber.com/api/grab/${getDomain(url)}`)
-    const data = await response.json()
-    return data.icons[0].src
-  } catch (e) {
-    return `chrome://favicon/size/16@2x/${getOrigin(url)}`
-  }
-}
-
-// https://www.google.com/search?q=test => https://www.google.com
-function getOrigin(url) {
-  return new URL(url).origin
-}
-
-// https://www.google.com/search?q=test => www.google.com
-function getDomain(url) {
-  return new URL(url).hostname
-}
-
-
 export async function toBase64(url) {
   try {
     const response = await fetch(url)
