@@ -21,9 +21,10 @@ class PageInfo {
       && this.url !== this.tab.pendingUrl
   }
 
+  // https://www.google.com/search?q=test => https://www.google.com
   get favIconUrl() {
-    const aFavIconUrl = this.tab.favIconUrl || this.defaultFavIconUrl
-    return aFavIconUrl.isHttp() ? aFavIconUrl : this.defaultFavIconUrl
+    const origin = new URL(this.tab.url).origin
+    return `chrome://favicon/size/16@2x/${origin}`
   }
 
   get hasFavIconUrl() {
