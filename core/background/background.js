@@ -1,19 +1,23 @@
+import '../../modules/prototypes/localStorage.mjs'
 import * as commands from '../../modules/chrome/commands.mjs'
 import * as contextMenus from '../../modules/chrome/contextMenus.mjs'
 import * as runtime from '../../modules/chrome/runtime.mjs'
 import * as tabs from '../../modules/chrome/tabs.mjs'
 import * as action from './action.js'
+import * as storage from '../../modules/chrome/storage.mjs'
 
 commands.onCommand(action.savePage)
 runtime.onMessage(action.openPage)
 
 chrome.runtime.onConnect.addListener(function (externalPort) {
-  externalPort.onDisconnect.addListener(function () {
-    console.log('onDisconnect')
-    // Do stuff that should happen when popup window closes here
+  externalPort.onDisconnect.addListener(async function () {
+    for (const url of localStorage.getArray('deletedLocalUrls')) {
+      await storage.local.removeHistory(url)
+    }
+    localStorage.removeItem('deletedLocalUrls')
+    localStorage.getArray('deletedSyncUrls').forEach(storage.sync.remove)
+    localStorage.removeItem('deletedSyncUrls')
   })
-
-  console.log('onConnect')
 })
 
 contextMenus.onClicked(async (selection, tab) => {
