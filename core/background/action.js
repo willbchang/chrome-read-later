@@ -11,12 +11,12 @@ export async function saveSelection(tab, selection) {
 async function updateStorage({tab, position = {}, selection = {}}) {
   let page = data.initPageInfo({tab, position, selection})
   await storage.sync.set(page)
-  await storage.local.setHistory(page)
+  await storage.local.set(page)
 
   if (!page.url.isHttp()) return
   page = await data.completePageInfo(page)
   await storage.sync.set(page)
-  await storage.local.setHistory(page)
+  await storage.local.set(page)
 }
 
 
@@ -36,14 +36,8 @@ export async function openPage({url, currentTab, active}) {
 }
 
 export async function removeDeletePages() {
-  for (const url of localStorage.getArray('deletedLocalUrls')) {
-    await storage.local.removeHistory(url)
-  }
+  localStorage.getArray('deletedLocalUrls').forEach(storage.local.remove)
   localStorage.getArray('deletedSyncUrls').forEach(storage.sync.remove)
   localStorage.removeItem('deletedLocalUrls')
   localStorage.removeItem('deletedSyncUrls')
-}
-
-export async function initHistoryStorage() {
-  await storage.local.set('history', {})
 }
