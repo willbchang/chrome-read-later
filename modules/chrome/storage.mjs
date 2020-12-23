@@ -41,6 +41,6 @@ local.remove = url => chrome.storage.local.remove(url)
 
 // NOTICE: This returns an Array of objects.
 local.sortHistoryByLatest = async () => {
-  const {history} = await local.get('history')
-  return Object.values(history).sort((a, b) => b.date - a.date)
+  const pages = await local.get()
+  return Object.values(pages).sort((a, b) => b.date - a.date)
 }
