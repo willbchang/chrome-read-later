@@ -23,7 +23,7 @@ function resetEventListeners() {
 
 async function initDomFromStorage() {
   const pages = window.isHistoryPage
-    ? await storage.local.sortHistoryByLatest()
+    ? await storage.local.sortByLatest()
     : await storage.sync.sortByLatest()
   const oldReadingItemsLength = readingList.children().length
 
