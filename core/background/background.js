@@ -23,7 +23,11 @@ runtime.onInstall(async () => {
   await tabs.create('https://github.com/willbchang/chrome-read-later#usages')
 })
 
-runtime.onUpdate(details => {
+runtime.onUpdate(async details => {
+  if (details.previousVersion[0] < '5' && runtime.getCurrentVersion() === '5.0.0') {
+    await action.migrateStorage()
+  }
+
   runtime.createNotification(
     chrome.runtime.getManifest().name + ' Updated!',
     `From V${details.previousVersion} updated to V${runtime.getCurrentVersion()}`

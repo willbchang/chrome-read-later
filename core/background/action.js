@@ -41,3 +41,11 @@ export async function removeDeletePages() {
   localStorage.removeItem('deletedLocalUrls')
   localStorage.removeItem('deletedSyncUrls')
 }
+
+export async function migrateStorage() {
+  chrome.storage.local.clear()
+  const pages = await storage.sync.get()
+  for (const url of Object.keys(pages)) {
+    await storage.local.set(pages[url])
+  }
+}
