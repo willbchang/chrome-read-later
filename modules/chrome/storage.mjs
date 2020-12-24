@@ -1,6 +1,15 @@
 // For chrome.storage functions:
 // https://developer.chrome.com/extensions/storage
-export const sync = {}
+
+class Storage {
+  constructor(where) {
+    this.where = where
+  }
+}
+
+export const sync = new Storage('sync')
+export const local = new Storage('local')
+
 
 sync.get = () => new Promise(resolve => chrome.storage.sync.get(resolve))
 
@@ -13,6 +22,8 @@ sync.remove = url => chrome.storage.sync.remove(url)
 // NOTICE: This returns an Array of objects.
 sync.sortByLatest = async () => {
   const pages = await sync.get()
+  console.log(pages)
+  debugger
   return Object.values(pages).sort((a, b) => b.date - a.date)
 }
 
@@ -27,7 +38,6 @@ sync.getScrollPosition = async url => {
   }
 }
 
-export const local = {}
 
 local.clear = () => chrome.storage.local.clear()
 
