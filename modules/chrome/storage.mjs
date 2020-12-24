@@ -24,19 +24,17 @@ class Storage {
   clear() {
     return this.storage.clear()
   }
+
+  // NOTICE: This returns an Array of objects.
+  async sortByLatest() {
+    const pages = await this.get()
+    return Object.values(pages).sort((a, b) => b.date - a.date)
+  }
 }
 
 export const sync = new Storage('sync')
 export const local = new Storage('local')
 
-
-// NOTICE: This returns an Array of objects.
-sync.sortByLatest = async () => {
-  const pages = await sync.get()
-  console.log(pages)
-  debugger
-  return Object.values(pages).sort((a, b) => b.date - a.date)
-}
 
 sync.getScrollPosition = async url => {
   const pages = await sync.get()
@@ -47,10 +45,4 @@ sync.getScrollPosition = async url => {
       height: page.scroll.height,
     },
   }
-}
-
-// NOTICE: This returns an Array of objects.
-local.sortHistoryByLatest = async () => {
-  const pages = await local.get()
-  return Object.values(pages).sort((a, b) => b.date - a.date)
 }
