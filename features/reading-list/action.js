@@ -7,7 +7,7 @@ const getLocalStorageKey = () => window.isHistoryPage ? 'deletedLocalUrls' : 'de
 
 export const open = ({currentTab = false, active = true}) => {
   if (!window.isHistoryPage) dele()
-  extension.sendMessage({url: activeUrl(), currentTab, active})
+  extension.sendMessage({url: activeUrl(), currentTab, active, isHistory: window.isHistoryPage})
   if (currentTab) window.close()
 }
 
