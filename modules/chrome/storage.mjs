@@ -9,14 +9,16 @@ class Storage {
   get() {
     return new Promise(resolve => chrome.storage[this.where].get(resolve))
   }
+
+  set(page) {
+    return new Promise(resolve =>
+      chrome.storage[this.where].set({[page.url]: page}, resolve)
+    )
+  }
 }
 
 export const sync = new Storage('sync')
 export const local = new Storage('local')
-
-sync.set = page => new Promise(resolve =>
-  chrome.storage.sync.set({[page.url]: page}, resolve)
-)
 
 sync.remove = url => chrome.storage.sync.remove(url)
 
@@ -41,10 +43,6 @@ sync.getScrollPosition = async url => {
 
 
 local.clear = () => chrome.storage.local.clear()
-
-local.set = page => new Promise(resolve =>
-  chrome.storage.local.set({[page.url]: page}, resolve)
-)
 
 local.remove = url => chrome.storage.local.remove(url)
 
