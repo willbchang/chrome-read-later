@@ -20,6 +20,10 @@ class Storage {
     console.log(this.storage, url)
     return this.storage.remove(url)
   }
+
+  clear() {
+    return this.storage.clear()
+  }
 }
 
 export const sync = new Storage('sync')
@@ -44,9 +48,6 @@ sync.getScrollPosition = async url => {
     },
   }
 }
-
-
-local.clear = () => chrome.storage.local.clear()
 
 // NOTICE: This returns an Array of objects.
 local.sortHistoryByLatest = async () => {
