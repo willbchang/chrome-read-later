@@ -30,19 +30,18 @@ class Storage {
     const pages = await this.get()
     return Object.values(pages).sort((a, b) => b.date - a.date)
   }
+
+  async getScrollPosition(url) {
+    const pages = await this.get()
+    const page = pages[url]
+    return {
+      scroll: {
+        top:    page.scroll.top,
+        height: page.scroll.height,
+      },
+    }
+  }
 }
 
 export const sync = new Storage('sync')
 export const local = new Storage('local')
-
-
-sync.getScrollPosition = async url => {
-  const pages = await sync.get()
-  const page = pages[url]
-  return {
-    scroll: {
-      top:    page.scroll.top,
-      height: page.scroll.height,
-    },
-  }
-}
