@@ -5,7 +5,6 @@ import * as request from './request.js'
 class PageInfo {
   constructor(tab) {
     this.tab = tab
-  }
 
   get url() {
     return this.tab.pendingUrl || this.tab.url
@@ -22,7 +21,7 @@ class PageInfo {
 
   // https://www.google.com/search?q=test => https://www.google.com
   get favIconUrl() {
-    const origin = new URL(this.tab.url).origin
+    const origin = new URL(this.url).origin
     return `chrome://favicon/size/16@2x/${origin}`
   }
 
