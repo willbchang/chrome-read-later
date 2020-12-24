@@ -43,7 +43,7 @@ export async function removeDeletePages() {
 }
 
 export async function migrateStorage() {
-  chrome.storage.local.clear()
+  storage.local.clear()
   const pages = await storage.sync.get()
   for (const url of Object.keys(pages)) {
     await storage.local.set(pages[url])
