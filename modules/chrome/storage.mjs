@@ -15,12 +15,16 @@ class Storage {
       this.storage.set({[page.url]: page}, resolve)
     )
   }
+
+  remove(url) {
+    console.log(this.storage, url)
+    return this.storage.remove(url)
+  }
 }
 
 export const sync = new Storage('sync')
 export const local = new Storage('local')
 
-sync.remove = url => chrome.storage.sync.remove(url)
 
 // NOTICE: This returns an Array of objects.
 sync.sortByLatest = async () => {
@@ -43,8 +47,6 @@ sync.getScrollPosition = async url => {
 
 
 local.clear = () => chrome.storage.local.clear()
-
-local.remove = url => chrome.storage.local.remove(url)
 
 // NOTICE: This returns an Array of objects.
 local.sortHistoryByLatest = async () => {
