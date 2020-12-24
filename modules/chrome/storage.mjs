@@ -3,16 +3,16 @@
 
 class Storage {
   constructor(where) {
-    this.where = where
+    this.storage = chrome.storage[where]
   }
 
   get() {
-    return new Promise(resolve => chrome.storage[this.where].get(resolve))
+    return new Promise(resolve => this.storage.get(resolve))
   }
 
   set(page) {
     return new Promise(resolve =>
-      chrome.storage[this.where].set({[page.url]: page}, resolve)
+      this.storage.set({[page.url]: page}, resolve)
     )
   }
 }
