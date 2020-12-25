@@ -17,11 +17,11 @@
 ### Reading List
 - **Reading Progress**: It saves the reading progress of current page.
 - **Sync in Cloud**: Sync across Chrome browsers with one google account.
-- **Local History**: The items you read are stored in local chrome storage.
+- **Local History**: The links you saved in cloud are stored in local chrome storage.
 
 ### Status Bar
-- **History Mode**: Change history mode and current reading mode by click `History`.
 - **Row Number : Total Count**
+- **History Mode**: Change history mode and current reading mode by click `History`.
 
 
 ## Usages
