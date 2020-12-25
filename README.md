@@ -14,11 +14,15 @@
 [Manual Installation](https://github.com/willbchang/chrome-read-later/wiki/Manual-Installation)
 
 ## Features
-- It saves almost all kinds of pages in any situation: `http://`, `https://`, `chrome://`, `localhost:`...
-- It saves the reading progress of current page, **works on most pages**(I'm improving it).
-- It syncs the reading list to your browser automatically, you can use one reading list in multiple Chrome browsers with one google account.(Remove the extension will delete the reading list)
+### Reading List
+- **Reading Progress**: It saves the reading progress of current page.
+- **Sync in Cloud**: Sync across Chrome browsers with one google account.
+- **Local History**: The items you read are stored in local chrome storage.
 
-Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bilibili.com/*`, or some sites has multiple scroll bars.
+### Status Bar
+- **History Mode**: Change history mode and current reading mode by click `History`.
+- **Row Number : Total Count**
+
 
 ## Usages
 **Windows and Mac Keyboard Differences**
