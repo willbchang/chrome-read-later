@@ -4,6 +4,8 @@
   A temporary bookmark focuses on reading later, rather than closing and removing.
 </p>
 
+![Chrome Read Later](assets/images/white.png)
+
 ## Installation
 <a href="https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/">
   <img src="assets/images/chrome-store-logo.png" width="250px" alt="chrome-store-logo">
@@ -12,11 +14,15 @@
 [Manual Installation](https://github.com/willbchang/chrome-read-later/wiki/Manual-Installation)
 
 ## Features
-- It saves almost all kinds of pages in any situation: `http://`, `https://`, `chrome://`, `localhost:`...
-- It saves the reading progress of current page, **works on most pages**(I'm improving it).
-- It syncs the reading list to your browser automatically, you can use one reading list in multiple Chrome browsers with one google account.(Remove the extension will delete the reading list)
+### Reading List
+- **Reading Progress**: It saves the reading progress of current page.
+- **Sync in Cloud**: Sync across Chrome browsers with one google account.
+- **Local History**: The links you saved in cloud are stored in local chrome storage.
 
-Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bilibili.com/*`, or some sites has multiple scroll bars.
+### Status Bar
+- **Row Number : Total Count**
+- **History Mode**: Change history mode and current reading mode by click `History`.
+
 
 ## Usages
 **Windows and Mac Keyboard Differences**
@@ -30,12 +36,12 @@ Known Issues: cannot save scroll position from `*.google.com`, `https://manga.bi
 
 ### Mouse Click
 **Current Page**:
-- `Right Click` a link and select **Read Later** in context menus to save the target link info.
-- `Right Click` current page and select **Read Later** in context menus to save page info and close current tab.
-- `Click` the icon to open the **Reading List**(Popup Window).
+- `Right Click` a *link* and select **Read Later** in context menus to save the target link info.
+- `Right Click` *current page* and select **Read Later** in context menus to save page info and close current tab.
+- `Click` the read later icon to open the **Reading List**(Popup Window).
 
 **Reading List**(Popup Window):
-- `Mouse Hover`: **show** full title and link.
+- `Mouse Hover(Text)`: **show** full title and link.
 - `Mouse Hover(image)`: **show** the delete icon.
 - `Click`: **open** link in a **new tab**.
 - `Click(image)`: **delete** current link.
@@ -59,6 +65,8 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - <kbd>Enter</kbd>: **open** select link in a **new tab**.
 - <kbd>Alt</kbd> + <kbd>Enter</kbd>: **update** link in **current tab**.
 - <kbd>Command</kbd> + <kbd>Enter</kbd>: **open** link in a **new tab** and **stay** in **current tab**, and **keep reading list**.
+- <kbd>Command</kbd> + <kbd>↑</kbd>: **move** to the **first** link.
+- <kbd>Command</kbd> + <kbd>↓</kbd>: **move** to the **last** link.
 
 **For Vim user**(Popup Window):
 - <kbd>Esc</kbd>: **close reading list**.
@@ -74,8 +82,13 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - [ ] Record/Set video/audio progress.
 - [ ] Get/Set all scroll bars' position.
 - [ ] Cache the reading list to instantly open.
-- [ ] Create my own grab favicon server.
 - [ ] Improve the vim code logic(more dynamic). 
+
+## Note
+- Save reading progress works on most pages(I'm improving it).
+- Remove the extension will delete the reading list in the cloud, **it cannot be restored**.
+- The maximum reading list in cloud is up to 250 items, due to google's limits.
+- It may be slow if the reading list in history is near to 10,000 items.
 
 ## Contribution
 Please read [contribution guide](https://github.com/willbchang/chrome-read-later/wiki/Contribution-Guide) first.
