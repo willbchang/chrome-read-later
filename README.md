@@ -65,6 +65,8 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - <kbd>Enter</kbd>: **open** select link in a **new tab**.
 - <kbd>Alt</kbd> + <kbd>Enter</kbd>: **update** link in **current tab**.
 - <kbd>Command</kbd> + <kbd>Enter</kbd>: **open** link in a **new tab** and **stay** in **current tab**, and **keep reading list**.
+- <kbd>Command</kbd> + <kbd>↑</kbd>: **move** to the **first** link.
+- <kbd>Command</kbd> + <kbd>↓</kbd>: **move** to the **last** link.
 
 **For Vim user**(Popup Window):
 - <kbd>Esc</kbd>: **close reading list**.
