@@ -17,7 +17,6 @@ class Storage {
   }
 
   remove(url) {
-    console.log(this.storage, url)
     return this.storage.remove(url)
   }
 
