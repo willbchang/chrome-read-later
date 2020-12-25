@@ -84,6 +84,12 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - [ ] Cache the reading list to instantly open.
 - [ ] Improve the vim code logic(more dynamic). 
 
+## Note
+- Save reading progress works on most pages(I'm improving it).
+- Remove the extension will delete the reading list in the cloud, **it cannot be restored**.
+- The maximum reading list in cloud is up to 250 items, due to google's limits.
+- It may be slow if the reading list in history is near to 10,000 items.
+
 ## Contribution
 Please read [contribution guide](https://github.com/willbchang/chrome-read-later/wiki/Contribution-Guide) first.
 I explained the code structure and conventions to help you understand quickly. 😄
