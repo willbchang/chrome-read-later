@@ -82,7 +82,6 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - [ ] Record/Set video/audio progress.
 - [ ] Get/Set all scroll bars' position.
 - [ ] Cache the reading list to instantly open.
-- [ ] Create my own grab favicon server.
 - [ ] Improve the vim code logic(more dynamic). 
 
 ## Contribution
