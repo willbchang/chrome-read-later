@@ -36,12 +36,12 @@
 
 ### Mouse Click
 **Current Page**:
-- `Right Click` a link and select **Read Later** in context menus to save the target link info.
-- `Right Click` current page and select **Read Later** in context menus to save page info and close current tab.
-- `Click` the icon to open the **Reading List**(Popup Window).
+- `Right Click` a *link* and select **Read Later** in context menus to save the target link info.
+- `Right Click` *current page* and select **Read Later** in context menus to save page info and close current tab.
+- `Click` the read later icon to open the **Reading List**(Popup Window).
 
 **Reading List**(Popup Window):
-- `Mouse Hover`: **show** full title and link.
+- `Mouse Hover(Text)`: **show** full title and link.
 - `Mouse Hover(image)`: **show** the delete icon.
 - `Click`: **open** link in a **new tab**.
 - `Click(image)`: **delete** current link.
