@@ -8,6 +8,7 @@
 
 ## Installation
 **Click the image** below to install:
+
 <a href="https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/">
   <img src="assets/images/chrome-store-logo.png" width="250px" alt="chrome-store-logo">
 </a>
