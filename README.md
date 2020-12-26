@@ -7,11 +7,17 @@
 ![Chrome Read Later](assets/images/white.png)
 
 ## Installation
+**Click the image** below to install:
 <a href="https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/">
   <img src="assets/images/chrome-store-logo.png" width="250px" alt="chrome-store-logo">
 </a>
 
-[Manual Installation](https://github.com/willbchang/chrome-read-later/wiki/Manual-Installation)
+**Manual Installation**:
+1. Download [chrome-read-later.zip](https://github.com/willbchang/chrome-read-later/releases/latest).
+2. Unzip it and move it to the safe path(you won't delete it accidentally).
+3. Go to `chrome://extensions/`
+4. Open `Developer mode`.
+5. Drag the folder to chrome or Click `Load unpacked` and select the folder.
 
 ## Features
 ### Reading List
