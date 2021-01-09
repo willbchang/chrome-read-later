@@ -19,11 +19,9 @@
     "url": "https://github.com/willbchang/chrome-read-later/issues"
   },
   "homepage": "https://github.com/willbchang/chrome-read-later#readme",
-  "dependencies": {
-    "@types/chrome": "0.0.128",
-    "@types/jquery": "^3.5.3"
-  },
   "devDependencies": {
+    "@types/chrome": "0.0.128",
+    "@types/jquery": "^3.5.5",
     "eslint": "7.17.0"
   }
 }
