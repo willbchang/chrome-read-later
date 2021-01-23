@@ -1,7 +1,7 @@
 devDependencies:
   '@types/chrome': 0.0.128
   '@types/jquery': 3.5.5
-  eslint: 7.17.0
+  eslint: 7.18.0
 lockfileVersion: 5.2
 packages:
   /@babel/code-frame/7.12.11:
@@ -22,7 +22,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-i6rgnR/YgPEQzZZnbTHHuZdlE8qyoBNalD6F+q4vAFlcMEcqmkoG+mPqJYJCo63qPf74+Y1UZsl3l6f7/RIkmA==
-  /@eslint/eslintrc/0.2.2:
+  /@eslint/eslintrc/0.3.0:
     dependencies:
       ajv: 6.12.6
       debug: 4.3.1
@@ -38,7 +38,7 @@ packages:
     engines:
       node: ^10.12.0 || >=12.0.0
     resolution:
-      integrity: sha512-EfB5OHNYp1F4px/LI/FEnGylop7nOqkQ1LRzCM0KccA2U8tvV8w01KBv37LbO7nW4H+YhKyo2LcJhRwjjV17QQ==
+      integrity: sha512-1JTKgrOKAHVivSvOYw+sJOunkBjUOvjqWk1DPja7ZFhIS2mX/4EgTT8M7eTK9jrKhL/FvXXEbQwIs3pg1xp3dg==
   /@types/chrome/0.0.128:
     dependencies:
       '@types/filesystem': 0.0.29
@@ -287,10 +287,10 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
-  /eslint/7.17.0:
+  /eslint/7.18.0:
     dependencies:
       '@babel/code-frame': 7.12.11
-      '@eslint/eslintrc': 0.2.2
+      '@eslint/eslintrc': 0.3.0
       ajv: 6.12.6
       chalk: 4.1.0
       cross-spawn: 7.0.3
@@ -331,7 +331,7 @@ packages:
       node: ^10.12.0 || >=12.0.0
     hasBin: true
     resolution:
-      integrity: sha512-zJk08MiBgwuGoxes5sSQhOtibZ75pz0J35XTRlZOk9xMffhpA9BTbQZxoXZzOl5zMbleShbGwtw+1kGferfFwQ==
+      integrity: sha512-fbgTiE8BfUJZuBeq2Yi7J3RB3WGUQ9PNuNbmgi6jt9Iv8qrkxfy19Ds3OpL1Pm7zg3BtTVhvcUZbIRQ0wmSjAQ==
   /espree/7.3.1:
     dependencies:
       acorn: 7.4.1
@@ -802,4 +802,4 @@ packages:
 specifiers:
   '@types/chrome': 0.0.128
   '@types/jquery': ^3.5.5
-  eslint: 7.17.0
+  eslint: 7.18.0
