@@ -109,6 +109,7 @@ I explained the code structure and conventions to help you understand quickly. ð
 
 ## Credits
 - Special thanks to my girl friend YangYang, she gave me a lot of helpful suggestions, feedback and encouragement.
+- I use [JetBrains' IDE](https://www.jetbrains.com/?from=chrome-read-later) with open source license to make this extension, it improves my productivity a lot! 
 - Delete icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com </a>
 
 ## LICENSE
