@@ -57,10 +57,6 @@
 }
 
 @media screen and (prefers-color-scheme: dark) {
-    header {
-        background-color: #202124;
-    }
-
     #reading-list li.active {
         background-color: #444547;
     }
