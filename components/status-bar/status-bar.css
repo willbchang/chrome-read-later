@@ -3,8 +3,8 @@
     list-style-type: none;
     padding: 5px 0;
     height: 15px;
-    background-color: white; /* Hide contents under status bar */
-    width: 100%; /* Make the status bar full width */
+    background-color: white;
+    width: 100%;
 }
 
 #status-bar li {
