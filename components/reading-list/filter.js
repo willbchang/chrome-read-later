@@ -28,9 +28,9 @@ export const getKeyBinding = event => {
 
 export const getKeyAction = keyBinding => {
   return {
-    Enter:              () => action.open({}),
+    Enter:              () => action.open({currentTab: true}),
     'Meta + Enter':     () => action.open({active: false}),
-    'Alt + Enter':      () => action.open({currentTab: true}),
+    'Alt + Enter':      () => action.open({}),
     Backspace:          () => action.dele(),
     'Meta + z':         () => action.undo(),
     'Meta + ArrowUp':   () => action.moveTo('top'),
@@ -57,8 +57,8 @@ export const getModifiedClick = ({metaKey, altKey}) =>
 export const getClickAction = (modifiedClick, tagName) => {
   if (tagName === 'IMG') return action.dele()
   return {
-    Click:          () => action.open({}),
+    Click:          () => action.open({currentTab: true}),
     'Meta + Click': () => action.open({active: false}),
-    'Alt + Click':  () => action.open({currentTab: true}),
+    'Alt + Click':  () => action.open({}),
   }[modifiedClick]
 }
