@@ -20,6 +20,10 @@
     text-decoration: none;
 }
 
+#status-bar li:hover {
+    color: black;
+}
+
 #status-bar #count {
     padding-left: 15px;
     color: #f05f00cc;
@@ -47,6 +51,10 @@
 @media screen and (prefers-color-scheme: dark) {
     #status-bar {
         background-color: #202124;
+    }
+
+    #status-bar li:hover {
+        color: #FAFCFE;
     }
 
     #status-bar #count {
