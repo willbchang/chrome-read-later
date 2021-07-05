@@ -6,7 +6,7 @@ const visibleLis = () => $('#reading-list li:visible')
 const localStorageKey = 'deletedSyncUrls'
 
 export const open = ({currentTab = false, active = true}) => {
-  if (!window.isHistoryPage) dele()
+  dele()
   extension.sendMessage({url: activeUrl(), currentTab, active, isHistory: window.isHistoryPage})
   if (currentTab) window.close()
 }
