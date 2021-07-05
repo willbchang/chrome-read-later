@@ -21,15 +21,15 @@
 5. Drag the folder to chrome or Click `Load unpacked` and select the folder.
 
 ## Features
+*History mode is no longer supported, Chrome has browser history.*
+
 ### Reading List
 - **Reading Progress**: It saves the reading progress of current page.
 - **Sync in Cloud**: Sync across Chrome browsers with one google account.
-- **Local History**: The links you saved in cloud are stored in local chrome storage.
 
 ### Status Bar
 - **Row Number : Total Count**
-- **History Mode**: Change history mode and current reading mode by click `History`.
-
+- **Question Mark**: Open this page.
 
 ## Usages
 **Windows and Mac Keyboard Differences**
@@ -43,17 +43,16 @@
 
 ### Mouse Click
 **Current Page**:
-- `Right Click` a *link* and select **Read Later** in context menus to save the target link info.
-- `Right Click` *current page* and select **Read Later** in context menus to save page info and close current tab.
+- `Right Click` a *link* and select **Save to Read Later** in context menus to save the target link info.
+- `Right Click` *current page* and select **Save to Read Later** in context menus to save page info and close current tab.
 - `Click` the read later icon to open the **Reading List**(Popup Window).
 
 **Reading List**(Popup Window):
 - `Mouse Hover(Text)`: **show** full title and link.
 - `Mouse Hover(image)`: **show** the delete icon.
-- `Click`: **open** link in a **new tab**.
+- `Click`: **open** link in **current tab**.
 - `Click(image)`: **delete** current link.
-- <kbd>Alt</kbd> + `Click`:  **update** link in **current tab**.
-- <kbd>Command</kbd> + `Click`: **open** link in a **new tab** and **stay** in **current tab**, and **keep reading list**.
+- <kbd>Command</kbd> + `Click`: **open** link in a **new tab** and **stay** in **current tab** with **reading list** stay.
 
 ### Keyboard Shortcuts
 **Current Page**:
@@ -69,9 +68,8 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - <kbd>↓</kbd>: **move** to **next** link.
 - <kbd>Delete</kbd>: **delete** current link.
 - <kbd>Command</kbd> + <kbd>z</kbd>: **restore** a deletion.
-- <kbd>Enter</kbd>: **open** select link in a **new tab**.
-- <kbd>Alt</kbd> + <kbd>Enter</kbd>: **update** link in **current tab**.
-- <kbd>Command</kbd> + <kbd>Enter</kbd>: **open** link in a **new tab** and **stay** in **current tab**, and **keep reading list**.
+- <kbd>Enter</kbd>: **open** select link in **current tab**.
+- <kbd>Command</kbd> + <kbd>Enter</kbd>: **open** link in a **new tab** and **stay** in **current tab** with **reading list** stay.
 - <kbd>Command</kbd> + <kbd>↑</kbd>: **move** to the **first** link.
 - <kbd>Command</kbd> + <kbd>↓</kbd>: **move** to the **last** link.
 
@@ -81,6 +79,8 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - <kbd>k</kbd>: **move** to **previous** link.
 - <kbd>gg</kbd>: **move** to the **first** link.
 - <kbd>G</kbd>: **move** to the **last** link.
+- <kbd>o</kbd>: **open** select link in **current tab**.
+- <kbd>O</kbd>: **open** link in a **new tab** and **stay** in **current tab** with **reading list** stay.
 - <kbd>dd</kbd>: **delete** current link.
 - <kbd>u</kbd>: **restore** a deletion.
 - <kbd>yy</kbd>: **copy** current link.
