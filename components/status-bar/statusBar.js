@@ -9,8 +9,6 @@ export function setup() {
 }
 
 function init() {
-  const documentUrl = 'https://github.com/willbchang/chrome-read-later#features'
-  const feedbackUrl = 'https://github.com/willbchang/chrome-read-later/issues/new'
   $('#status-bar').append(`
      <li id="count" title="Row Number: Total Count"><span id="row">0</span>:<span id="total">0</span></li>
      <li id="feedback"><a href="https://github.com/willbchang/chrome-read-later#readme" target="_blank">?</a></li>
