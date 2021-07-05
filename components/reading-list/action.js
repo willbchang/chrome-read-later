@@ -58,6 +58,8 @@ export const copyUrl = async () => {
   await navigator.clipboard.writeText(activeUrl())
 }
 
+export const question = () => window.open('https://github.com/willbchang/chrome-read-later#readme')
+
 export const reactive = li => {
   activeLi().removeClass('active')
   li.addClass('active')
