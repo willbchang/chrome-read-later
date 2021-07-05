@@ -6,7 +6,6 @@ import * as runtime from '../../modules/chrome/runtime.mjs'
 
 
 $(async () => {
-  window.isHistoryPage = false
   window.isHidingLi = false
   window.lastKey = ''
   window.port = runtime.connect()
