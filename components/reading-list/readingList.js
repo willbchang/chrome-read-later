@@ -22,17 +22,11 @@ function resetEventListeners() {
 }
 
 async function initDomFromStorage() {
-  const pages = window.isHistoryPage
-    ? await storage.local.sortByLatest()
-    : await storage.sync.sortByLatest()
-  const oldReadingItemsLength = readingList.children().length
+  const pages =  await storage.sync.sortByLatest()
 
   pages.map(page => readingList.append(
     generator.renderLiFrom(page)
   ))
-
-  // This way improve the UX, readingList.empty() will flash the screen.
-  readingList.children().slice(0, oldReadingItemsLength).remove()
 }
 
 function activeFirstLi() {
