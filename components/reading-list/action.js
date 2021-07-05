@@ -7,7 +7,7 @@ const localStorageKey = 'deletedSyncUrls'
 
 export const open = ({currentTab = false, active = true}) => {
   dele()
-  extension.sendMessage({url: activeUrl(), currentTab, active, isHistory: window.isHistoryPage})
+  extension.sendMessage({url: activeUrl(), currentTab, active})
   if (currentTab) window.close()
 }
 
