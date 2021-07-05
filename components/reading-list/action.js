@@ -3,11 +3,11 @@ import * as extension from '../../modules/chrome/runtime.mjs'
 const activeLi = () => $('.active')
 const activeUrl = () => activeLi().find('a').attr('href')
 const visibleLis = () => $('#reading-list li:visible')
-const getLocalStorageKey = () => window.isHistoryPage ? 'deletedLocalUrls' : 'deletedSyncUrls'
+export const deletedSyncUrls = 'deletedSyncUrls'
 
 export const open = ({currentTab = false, active = true}) => {
-  if (!window.isHistoryPage) dele()
-  extension.sendMessage({url: activeUrl(), currentTab, active, isHistory: window.isHistoryPage})
+  dele()
+  extension.sendMessage({url: activeUrl(), currentTab, active})
   if (currentTab) window.close()
 }
 
@@ -21,11 +21,11 @@ export const dele = () => {
     moveToPreviousOrNext(li)
     window.isHidingLi = false
   })
-  localStorage.setArray(getLocalStorageKey(), activeUrl())
+  localStorage.setArray(deletedSyncUrls, activeUrl())
 }
 
 export const undo = () => {
-  const url = localStorage.popArray(getLocalStorageKey())
+  const url = localStorage.popArray(deletedSyncUrls)
   const li = $(`a[href="${url}"]`).parent().fadeIn()
 
   if (li.html()) {

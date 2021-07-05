@@ -32,18 +32,6 @@
     margin-right: auto; /* Push other items to the end. */
 }
 
-#history {
-    cursor: pointer;
-    user-select: none;
-}
-
-#history.highlight {
-    color: green;
-    background-color: #99EDC3;
-    border-radius: 20px;
-    transition: background-color 0.3s linear;
-}
-
 #status-bar #feedback {
     margin-right: 10px;
 }
@@ -59,11 +47,5 @@
 
     #status-bar #count {
         color: #f05f00;
-    }
-
-    #history.highlight {
-        color: #FAFCFE;
-        text-shadow: 0 0 2px #00FF41, 0 0 3px #008F11, 0 0 4px #003B00, 0 0 5px #0D0208;
-        background-color: transparent;
     }
 }
