@@ -1,6 +1,7 @@
 import * as data from './pageInfo.js'
 import * as storage from '../../modules/chrome/storage.mjs'
 import * as tabs from '../../modules/chrome/tabs.mjs'
+import {deletedSyncUrls} from "../../components/reading-list/action";
 
 
 export async function saveSelection(tab, selection) {
@@ -36,8 +37,8 @@ export async function openPage({url, currentTab, active}) {
 }
 
 export async function removeDeletePages() {
-  localStorage.getArray('deletedSyncUrls').forEach(url => storage.sync.remove(url))
-  localStorage.removeItem('deletedSyncUrls')
+  localStorage.getArray(deletedSyncUrls).forEach(url => storage.sync.remove(url))
+  localStorage.removeItem(deletedSyncUrls)
 }
 
 export async function migrateStorage() {
