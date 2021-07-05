@@ -6,19 +6,12 @@ import * as filter from './filter.js'
 const readingList = $('#reading-list')
 
 export async function setup() {
-  resetEventListeners()
   await initDomFromStorage()
   activeFirstLi()
   changeIconOnMouseEnterLeave()
   updateStateOnMouseMove()
   doActionOnMouseClick()
   doActionOnBodyKeyDown()
-}
-
-function resetEventListeners() {
-  // Remove all events listeners
-  readingList.off()
-  $('body').off()
 }
 
 async function initDomFromStorage() {
