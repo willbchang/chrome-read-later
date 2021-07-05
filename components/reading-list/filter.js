@@ -19,6 +19,7 @@ export const getKeyBinding = event => {
     u:         'u',
     y:         window.lastKey === 'y' ? 'yy' : 'y',
     p:         'p',
+    '?':       '?',
   }
 
   window.lastKey = keyBindings[key]
@@ -46,6 +47,7 @@ export const getKeyAction = keyBinding => {
     dd:                 () => action.dele(),
     u:                  () => action.undo(),
     yy:                 () => action.copyUrl(),
+    '?':                () => action.question(),
   }[keyBinding]
 }
 
