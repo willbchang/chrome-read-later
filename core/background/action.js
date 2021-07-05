@@ -36,9 +36,7 @@ export async function openPage({url, currentTab, active}) {
 }
 
 export async function removeDeletePages() {
-  localStorage.getArray('deletedLocalUrls').forEach(url => storage.local.remove(url))
   localStorage.getArray('deletedSyncUrls').forEach(url => storage.sync.remove(url))
-  localStorage.removeItem('deletedLocalUrls')
   localStorage.removeItem('deletedSyncUrls')
 }
 
