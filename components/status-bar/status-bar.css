@@ -20,7 +20,7 @@
     text-decoration: none;
 }
 
-#status-bar li:hover {
+#status-bar li a:hover {
     color: black;
 }
 
@@ -41,7 +41,7 @@
         background-color: #202124;
     }
 
-    #status-bar li:hover {
+    #status-bar li a:hover {
         color: #FAFCFE;
     }
 
