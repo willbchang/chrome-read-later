@@ -8,7 +8,7 @@ import * as runtime from '../../modules/chrome/runtime.mjs'
 $(async () => {
   window.isHidingLi = false
   window.lastKey = ''
-  window.port = runtime.connect()
+  runtime.connect()
   await readingList.setup()
   statusBar.setup()
 })
