@@ -1,7 +1,7 @@
 import * as data from './pageInfo.js'
 import * as storage from '../../modules/chrome/storage.mjs'
 import * as tabs from '../../modules/chrome/tabs.mjs'
-import {deletedSyncUrls} from "../../components/reading-list/action";
+import {deletedSyncUrls} from "../../components/reading-list/action.js";
 
 
 export async function saveSelection(tab, selection) {
