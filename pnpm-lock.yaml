@@ -3,12 +3,12 @@ lockfileVersion: 5.3
 specifiers:
   '@types/chrome': 0.0.145
   '@types/jquery': ^3.5.5
-  eslint: 7.29.0
+  eslint: 7.30.0
 
 devDependencies:
   '@types/chrome': 0.0.145
   '@types/jquery': 3.5.5
-  eslint: 7.29.0
+  eslint: 7.30.0
 
 packages:
 
@@ -45,6 +45,21 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@humanwhocodes/config-array/0.5.0:
+    resolution: {integrity: sha512-FagtKFz74XrTl7y6HCzQpwDfXP0yhxe9lHLD1UZxjvZIcbyRz8zTFF/yYNfSfzU414eDwZ1SrO0Qvtyf+wFMQg==}
+    engines: {node: '>=10.10.0'}
+    dependencies:
+      '@humanwhocodes/object-schema': 1.2.0
+      debug: 4.3.1
+      minimatch: 3.0.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@humanwhocodes/object-schema/1.2.0:
+    resolution: {integrity: sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==}
     dev: true
 
   /@types/chrome/0.0.145:
@@ -281,13 +296,14 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint/7.29.0:
-    resolution: {integrity: sha512-82G/JToB9qIy/ArBzIWG9xvvwL3R86AlCjtGw+A29OMZDqhTybz/MByORSukGxeI+YPCR4coYyITKk8BFH9nDA==}
+  /eslint/7.30.0:
+    resolution: {integrity: sha512-VLqz80i3as3NdloY44BQSJpFw534L9Oh+6zJOUaViV4JPd+DaHwutqP7tcpkW3YiXbK6s05RZl7yl7cQn+lijg==}
     engines: {node: ^10.12.0 || >=12.0.0}
     hasBin: true
     dependencies:
       '@babel/code-frame': 7.12.11
       '@eslint/eslintrc': 0.4.2
+      '@humanwhocodes/config-array': 0.5.0
       ajv: 6.12.6
       chalk: 4.1.0
       cross-spawn: 7.0.3
