@@ -6,6 +6,8 @@ const visibleLis = () => $('#reading-list li:visible')
 export const deletedSyncUrls = 'deletedSyncUrls'
 
 export const open = ({currentTab = false, active = true}) => {
+  if (window.isHidingLi) return
+  window.isHidingLi = true
   dele()
   extension.sendMessage({url: activeUrl(), currentTab, active})
   if (currentTab) window.close()
@@ -13,8 +15,6 @@ export const open = ({currentTab = false, active = true}) => {
 
 // dele is synonym of delete, delete is a keyword in JavasScript
 export const dele = () => {
-  if (window.isHidingLi) return
-  window.isHidingLi = true
   const li = activeLi()
   li.fadeOut('normal', () => {
     updateTotalNumber()
