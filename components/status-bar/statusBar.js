@@ -8,7 +8,11 @@ export function setup() {
 function init() {
   $('#status-bar').append(`
      <li id="count" title="Row Number: Total Count"><span id="row">0</span>:<span id="total">0</span></li>
-     <li id="question-mark"><a href="https://github.com/willbchang/chrome-read-later#readme" target="_blank">?</a></li>
+     <li id="info">
+        <a href="https://github.com/willbchang/chrome-read-later#readme" target="_blank">
+            <img src="../../assets/icons/info.svg"> 
+        </a>
+     </li>
   `)
 }
 

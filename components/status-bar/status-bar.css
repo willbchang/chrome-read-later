@@ -32,7 +32,11 @@
     margin-right: auto; /* Push other items to the end. */
 }
 
-#status-bar #question-mark {
+#status-bar img {
+    width: 16px;
+}
+
+#status-bar #info {
     margin-right: 10px;
 }
 
@@ -47,5 +51,10 @@
 
     #status-bar #count {
         color: #f05f00;
+    }
+
+    #status-bar img {
+        /* #adbac7 */
+        filter: invert(78%) sepia(17%) saturate(217%) hue-rotate(169deg) brightness(92%) contrast(89%);
     }
 }
