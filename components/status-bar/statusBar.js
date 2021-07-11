@@ -1,8 +1,12 @@
 import * as action from '../reading-list/action.js'
+import * as readingList from '../reading-list/readingList.js'
+import * as runtime from '../../modules/chrome/runtime.mjs'
+
 
 export function setup() {
   init()
   updateCountNumber()
+  changeStatusOnClick()
 }
 
 function init() {
@@ -22,4 +26,19 @@ function init() {
 function updateCountNumber() {
   action.updateRowNumber()
   action.updateTotalNumber()
+}
+
+function changeStatusOnClick() {
+  const history = $('#history img')
+  history.on('click', async () => {
+    window.isHistory = !window.isHistory
+    window.lastKey = ''
+    window.port.disconnect()
+    window.port = runtime.connect()
+    await readingList.setup()
+    updateCountNumber()
+    window.isHistory
+        ? history.addClass('highlight')
+        : history.removeClass('highlight')
+  })
 }

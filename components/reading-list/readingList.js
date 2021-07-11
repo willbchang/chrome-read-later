@@ -6,6 +6,7 @@ import * as filter from './filter.js'
 const readingList = $('#reading-list')
 
 export async function setup() {
+  resetEventListeners()
   await initDomFromStorage()
   activeFirstLi()
   changeIconOnMouseEnterLeave()
@@ -14,12 +15,24 @@ export async function setup() {
   doActionOnBodyKeyDown()
 }
 
+function resetEventListeners() {
+  // Remove all events listeners
+  readingList.off()
+  $('body').off()
+}
+
 async function initDomFromStorage() {
-  const pages =  await storage.sync.sortByLatest()
+  const pages = window.isHistory
+      ? await storage.local.sortByLatest()
+      : await storage.sync.sortByLatest()
+  const oldReadingItemsLength = readingList.children().length
 
   pages.map(page => readingList.append(
     generator.renderLiFrom(page)
   ))
+
+  // This way improve the UX, readingList.empty() will flash the screen.
+  readingList.children().slice(0, oldReadingItemsLength).remove()
 }
 
 function activeFirstLi() {

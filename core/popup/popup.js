@@ -6,9 +6,10 @@ import * as runtime from '../../modules/chrome/runtime.mjs'
 
 
 $(async () => {
+  window.isHistory = false
   window.isHidingLi = false
   window.lastKey = ''
-  runtime.connect()
+  window.port = runtime.connect()
   await readingList.setup()
   statusBar.setup()
 })
