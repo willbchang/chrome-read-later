@@ -11,7 +11,9 @@ export function setup() {
 
 function init() {
   $('#status-bar').append(`
-     <li id="count" title="Row Number: Total Count"><span id="row">0</span>:<span id="total">0</span></li>
+     <li id="count" title="Row Number: Total Count">
+        <span id="row">0</span>:<span id="total">0</span>
+     </li>
      <li id="history" title="Reading List History">
         <img src="../../assets/icons/history.svg">
      </li>
