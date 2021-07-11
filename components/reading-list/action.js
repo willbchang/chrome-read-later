@@ -6,8 +6,7 @@ const visibleLis = () => $('#reading-list li:visible')
 const getLocalStorageKey = () => window.isHistory ? 'deletedLocalUrls' : 'deletedSyncUrls'
 
 export const open = ({currentTab = false, active = true}) => {
-  if (window.isHidingLi) return
-  window.isHidingLi = true
+  if (window.isHidingLi) return // prevents open same instant multiple times
   if (!window.isHistory) dele()
   extension.sendMessage({url: activeUrl(), currentTab, active, isHistory})
   if (currentTab) window.close()
@@ -15,6 +14,8 @@ export const open = ({currentTab = false, active = true}) => {
 
 // dele is synonym of delete, delete is a keyword in JavasScript
 export const dele = () => {
+  if (window.isHidingLi) return // prevents hold d key and the deletion will jump around.
+  window.isHidingLi = true
   const li = activeLi()
   li.fadeOut('normal', () => {
     updateTotalNumber()
