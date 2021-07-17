@@ -44,7 +44,6 @@
   "manifest_version": 2,
   "name": "Read Later",
   "permissions": [
-    "activeTab",
     "tabs",
     "storage",
     "contextMenus",
