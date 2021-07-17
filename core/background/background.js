@@ -20,7 +20,7 @@ contextMenus.create({
 })
 
 runtime.onInstall(async () => {
-  await tabs.create('https://github.com/willbchang/chrome-read-later#usages')
+  await tabs.create('https://github.com/willbchang/chrome-read-later#readme')
 })
 
 runtime.onUpdate(async details => {
