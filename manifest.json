@@ -47,7 +47,6 @@
     "tabs",
     "storage",
     "contextMenus",
-    "notifications",
     "chrome://favicon/"
   ],
   "version": "5.0.0"

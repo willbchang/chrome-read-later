@@ -27,9 +27,4 @@ runtime.onUpdate(async details => {
   if (details.previousVersion[0] < '5' && runtime.getCurrentVersion() === '5.0.0') {
     await action.migrateStorage()
   }
-
-  runtime.createNotification(
-    chrome.runtime.getManifest().name + ' Updated!',
-    `From V${details.previousVersion} updated to V${runtime.getCurrentVersion()}`
-  )
 })
