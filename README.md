@@ -4,7 +4,10 @@
   A temporary bookmark focuses on reading later, rather than closing and removing.
 </p>
 
-![Chrome Read Later](assets/images/white.png)
+![Chrome Read Later](assets/images/sample-white.png)
+![Chrome Read Later](assets/images/sample-dark.png)
+
+Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/) or star it on github if you like it. Your encouragement will help me make it better, thanks!
 
 ## Installation
 **Click the image** below to install:
@@ -21,15 +24,15 @@
 5. Drag the folder to chrome or Click `Load unpacked` and select the folder.
 
 ## Features
-*History mode is no longer supported, Chrome has browser history.*
-
 ### Reading List
 - **Reading Progress**: It saves the reading progress of current page.
 - **Sync in Cloud**: Sync across Chrome browsers with one google account.
+- **Local History**: Save the reading list history locally.
 
 ### Status Bar
 - **Row Number : Total Count**
-- **Question Mark**: Open this page.
+- **History Icon**: Click to on/off history mode.
+- **Info Icon**: Click to open the documentation & feedback page.
 
 ## Usages
 **Windows and Mac Keyboard Differences**
@@ -52,6 +55,7 @@
 - `Mouse Hover(image)`: **show** the delete icon.
 - `Click`: **open** link in **current tab**.
 - `Click(image)`: **delete** current link.
+- <kbd>Alt</kbd> + `Click`: **open** link in a **new tab**.
 - <kbd>Command</kbd> + `Click`: **open** link in a **new tab** and **stay** in **current tab** with **reading list** stay.
 
 ### Keyboard Shortcuts
@@ -69,6 +73,7 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - <kbd>Delete</kbd>: **delete** current link.
 - <kbd>Command</kbd> + <kbd>z</kbd>: **restore** a deletion.
 - <kbd>Enter</kbd>: **open** select link in **current tab**.
+- <kbd>Alt</kbd> + <kbd>Enter</kbd>: **open** link in a **new tab**.
 - <kbd>Command</kbd> + <kbd>Enter</kbd>: **open** link in a **new tab** and **stay** in **current tab** with **reading list** stay.
 - <kbd>Command</kbd> + <kbd>↑</kbd>: **move** to the **first** link.
 - <kbd>Command</kbd> + <kbd>↓</kbd>: **move** to the **last** link.
@@ -84,12 +89,8 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - <kbd>dd</kbd>: **delete** current link.
 - <kbd>u</kbd>: **restore** a deletion.
 - <kbd>yy</kbd>: **copy** current link.
+- <kbd>?</kbd>: **open** documentation & feedback site.
 
-## TODO
-- [ ] Record/Set video/audio progress.
-- [ ] Get/Set all scroll bars' position.
-- [ ] Cache the reading list to instantly open.
-- [ ] Improve the vim code logic(more dynamic). 
 
 ## Note
 - Save reading progress works on most pages(I'm improving it).
@@ -98,19 +99,25 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - It may be slow if the reading list in history is near to 10,000 items.
 
 ## Contribution
-Please read [contribution guide](https://github.com/willbchang/chrome-read-later/wiki/Contribution-Guide) first.
-I explained the code structure and conventions to help you understand quickly. 😄
+Any suggestions / PR are welcome, if you feel like there is room to improve. Please open an issue to discussion first.
+- UI
+- UX
+- Refactoring / Code Quality
+- New Features
 
-### Contributor
-|                              Logo Designer                              |
-| :---------------------------------------------------------------------: |
-| ![Yasujizr](https://avatars0.githubusercontent.com/u/36993664?s=88&v=4) |
-|                 [Yasujizr](https://github.com/Yasujizr)                 |
+### TODO
+- [ ] Record/Set video/audio progress.
+- [ ] Get/Set all scroll bars' position.
+- [ ] Cache the reading list to instantly open.
+- [ ] Improve the vim code logic(more dynamic).
+
 
 ## Credits
+- Logo is designed by [Yasujizr](https://github.com/Yasujizr).
+- Delete icon is made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com </a>
+- Icons in status bar are [Octicons](https://primer.style/octicons/)
+- I use [RubyMine](https://www.jetbrains.com/ruby/) to make this extension, it improves my productivity a lot!
 - Special thanks to my girl friend YangYang, she gave me a lot of helpful suggestions, feedback and encouragement.
-- I use [RubyMine EAP](https://www.jetbrains.com/ruby/nextversion/) to make this extension, it improves my productivity a lot! 
-- Delete icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com </a>
 
 ## LICENSE
 [AGPL-3.0](./LICENSE)
