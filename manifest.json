@@ -4,7 +4,7 @@
     "page": "core/background/background.html"
   },
   "browser_action": {
-    "default_icon": "assets/icons/logo-orange32x32.png",
+    "default_icon": "assets/icons/logo-orange48x48.png",
     "default_popup": "core/popup/popup.html",
     "default_title": "Read Later"
   },
