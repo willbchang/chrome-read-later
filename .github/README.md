@@ -7,6 +7,15 @@
 ![Chrome Read Later](images/sample-white.png)
 ![Chrome Read Later](images/sample-dark.png)
 
+Video Demo:
+
+<a href="https://youtu.be/fnaFiMabPq8">
+  <img src="images/youtube-logo.png" width="250px" alt="youtube-logo">
+</a>
+<a href="https://www.bilibili.com/video/BV1Ag411M7W1">
+  <img src="images/bilibili-logo.png" width="250px" alt="bilibili-logo">
+</a>
+
 Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/) or star it on github if you like it. Your encouragement will help me make it better, thanks!
 
 ## Installation
