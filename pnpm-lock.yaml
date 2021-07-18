@@ -1,12 +1,12 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@types/chrome': 0.0.145
+  '@types/chrome': 0.0.146
   '@types/jquery': ^3.5.5
   eslint: 7.30.0
 
 devDependencies:
-  '@types/chrome': 0.0.145
+  '@types/chrome': 0.0.146
   '@types/jquery': 3.5.5
   eslint: 7.30.0
 
@@ -62,8 +62,8 @@ packages:
     resolution: {integrity: sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==}
     dev: true
 
-  /@types/chrome/0.0.145:
-    resolution: {integrity: sha512-vLvTMmfc8mvwOZzkmn2UwlWSNu0t0txBkyuIv8NgihRkvFCe6XJX65YZAgAP/RdBit3enhU2GTxCr+prn4uZmA==}
+  /@types/chrome/0.0.146:
+    resolution: {integrity: sha512-gghzXAVEGCWzo6ygME/sFAuU/PFNI8peDft3Eu8AA0GWHi2minRzB+uA2bGGJQYubdtt/qgPdXvZ45KThbGfSA==}
     dependencies:
       '@types/filesystem': 0.0.29
       '@types/har-format': 1.2.5
