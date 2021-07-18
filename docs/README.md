@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="assets/images/logotype.png" alt="Read Later Logo" height="150px"><br>
+  <img src="docs/images/logotype.png" alt="Read Later Logo" height="150px"><br>
   <sub>Dedicated to my good friend <a href="https://github.com/evestorm">@evestorm</a></sub><br>
   A temporary bookmark focuses on reading later, rather than closing and removing.
 </p>
 
-![Chrome Read Later](assets/images/sample-white.png)
-![Chrome Read Later](assets/images/sample-dark.png)
+![Chrome Read Later](docs/images/sample-white.png)
+![Chrome Read Later](docs/images/sample-dark.png)
 
 Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/) or star it on github if you like it. Your encouragement will help me make it better, thanks!
 
@@ -13,7 +13,7 @@ Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/f
 **Click the image** below to install:
 
 <a href="https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/">
-  <img src="assets/images/chrome-store-logo.png" width="250px" alt="chrome-store-logo">
+  <img src="docs/images/chrome-store-logo.png" width="250px" alt="chrome-store-logo">
 </a>
 
 **Manual Installation**:
@@ -65,7 +65,7 @@ Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/f
 
 If you pressed the shortcuts and it didn't work, please enter `chrome://extensions/shortcuts` in your address bar.
 Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflicts)
-![chrome://extensions/shortcuts](assets/images/chrome-extensions-shortcuts.png)
+![chrome://extensions/shortcuts](docs/images/chrome-extensions-shortcuts.png)
 
 **Reading List**(Popup Window):
 - <kbd>↑</kbd>: **move** to **previous** link.
@@ -120,4 +120,4 @@ Any suggestions / PR are welcome, if you feel like there is room to improve. Ple
 - Special thanks to my girl friend YangYang, she gave me a lot of helpful suggestions, feedback and encouragement.
 
 ## LICENSE
-[AGPL-3.0](./LICENSE)
+[AGPL-3.0](LICENSE)
