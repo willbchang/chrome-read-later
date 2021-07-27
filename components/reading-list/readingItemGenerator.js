@@ -3,7 +3,7 @@ export function renderLiFrom(page) {
       <li id=${page.date}>
         <img src="${page.favIconUrl}" alt="">
         <a href="${page.url}" title="${getTitleAttribute()}" ${getInnerTextColor()} tabindex="-1">${encodeInnerText()}</a>
-        ${getScrollPercent()}
+        ${getVideoPercent() || getScrollPercent()}
       </li>
     `
 
@@ -18,6 +18,12 @@ export function renderLiFrom(page) {
   function encodeInnerText() {
     // eslint-disable-next-line no-undef
     return he.encode(page.title)
+  }
+
+  function getVideoPercent() {
+    return page.video.percent !== '0%'
+        ? `<span class="video">${page.video.percent}</span>`
+        : ''
   }
 
   function getScrollPercent() {
