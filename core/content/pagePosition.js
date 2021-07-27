@@ -29,18 +29,44 @@ class ScrollPosition {
   }
 }
 
+class VideoPosition {
+  constructor(played) {
+    this.played = played
+    this.video = document.getElementsByTagName('video')[0]
+  }
+
+  setCurrentTime() {
+    this.video.currentTime = this.played.currentTime
+  }
+
+  get currentTime() {
+    return this.video.currentTime
+  }
+
+  get duration () {
+    return this.video.duration
+  }
+}
+
 export function getPosition() {
   const scroll = new ScrollPosition({})
+  const video = new VideoPosition({})
   return {
     scroll: {
       top:    scroll.top,
       bottom: scroll.bottom,
       height: scroll.height,
     },
+    video: {
+      currentTime: video.currentTime,
+      duration: video.duration,
+    }
   }
 }
 
 export function setPosition(position) {
   const scroll = new ScrollPosition(position.scroll)
+  const video = new VideoPosition(position.video)
   scroll.setTop()
+  video.setCurrentTime()
 }
