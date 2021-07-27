@@ -6,19 +6,15 @@
 
 ![Chrome Read Later](images/sample-white.png)
 
-Video Demo:
+<p align="center">  
+  <a href="https://youtu.be/fnaFiMabPq8">
+    <img src="images/youtube-logo.png" width="200px" alt="youtube-logo">
+  </a>
 
-<code>    
-    <a href="https://youtu.be/fnaFiMabPq8">
-      <img src="images/youtube-logo.png" width="200px" alt="youtube-logo">
-    </a>
-</code>
-
-<code>
-    <a href="https://www.bilibili.com/video/BV1Ag411M7W1">
-      <img src="images/bilibili-logo.png" width="200px" alt="bilibili-logo">
-    </a>
-</code>
+  <a href="https://www.bilibili.com/video/BV1Ag411M7W1">
+    <img src="images/bilibili-logo.png" width="200px" alt="bilibili-logo">
+  </a>
+</p>
 
 Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/) or star it on github if you like it. Your encouragement will help me make it better, thanks!
 
