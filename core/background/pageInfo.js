@@ -51,6 +51,7 @@ class PositionInfo extends PageInfo {
   constructor(tab, position) {
     super(tab)
     this.scroll = position.scroll
+    this.video = position.video
   }
 
   get scrollTop() {
@@ -63,6 +64,14 @@ class PositionInfo extends PageInfo {
 
   get scrollPercent() {
     return this.percent(this.scroll.bottom / this.scroll.height)
+  }
+
+  get currentTime() {
+    return this.video.currentTime
+  }
+
+  get videoPercent() {
+    return this.percent(this.video.currentTime / this.video.duration)
   }
 }
 
@@ -106,6 +115,10 @@ export function initPageInfo({tab, position, selection}) {
       top:     page.scrollTop,
       height:  page.scrollHeight,
       percent: page.scrollPercent,
+    },
+    video:         {
+      currentTime: page.currentTime,
+      percent:     page.videoPercent,
     }
   }
 }
