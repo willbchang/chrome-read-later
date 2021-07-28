@@ -32,7 +32,7 @@ class ScrollPosition {
 class VideoPosition {
   constructor(played) {
     this.played = played
-    this.video = document.getElementsByTagName('video')[0]
+    this.video = document.getElementsByTagName('video')[0] || {}
   }
 
   setCurrentTime() {
@@ -40,11 +40,11 @@ class VideoPosition {
   }
 
   get currentTime() {
-    return this.video.currentTime
+    return this.video?.currentTime || 0
   }
 
   get duration () {
-    return this.video.duration
+    return this.video?.duration || 1
   }
 }
 
