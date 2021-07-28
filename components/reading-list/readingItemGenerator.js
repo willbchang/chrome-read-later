@@ -21,9 +21,9 @@ export function renderLiFrom(page) {
   }
 
   function getVideoPercent() {
-    return page.video.percent !== '0%'
-        ? `<span class="video">${page.video.percent}</span>`
-        : ''
+    return ['0%', undefined].includes(page.video?.percent)
+        ? ''
+        : `<span class="video">${page.video?.percent}</span>`
   }
 
   function getScrollPercent() {
