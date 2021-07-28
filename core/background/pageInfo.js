@@ -117,7 +117,6 @@ export function initPageInfo({tab, position, selection}) {
         title:         page.title,
         hasTitle:      page.hasTitle,
         favIconUrl:    page.favIconUrl,
-        hasFavIconUrl: page.hasFavIconUrl,
         date:          page.date,
         scroll:        {
             top:     page.scrollTop,
