@@ -8,7 +8,7 @@ const getLocalStorageKey = () => window.isHistory ? 'deletedLocalUrls' : 'delete
 export const open = ({currentTab = false, active = true}) => {
     if (window.isHidingLi) return // prevents open same instant multiple times
     if (!window.isHistory) dele()
-    extension.sendMessage({url: activeUrl(), currentTab, active, isHistory})
+    extension.sendMessage({url: activeUrl(), currentTab, active, isHistory: window.isHistory})
     if (currentTab) window.close()
 }
 
