@@ -30,7 +30,7 @@ class Storage {
     return Object.values(pages).sort((a, b) => b.date - a.date)
   }
 
-  async getScrollPosition(url) {
+  async getPosition(url) {
     const pages = await this.get()
     const page = pages[url]
     return {
@@ -38,6 +38,9 @@ class Storage {
         top:    page.scroll.top,
         height: page.scroll.height,
       },
+      video: {
+        currentTime: page.video.currentTime,
+      }
     }
   }
 }

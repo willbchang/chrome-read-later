@@ -44,6 +44,14 @@
     cursor: default;
 }
 
+#reading-list .video {
+    font-size: 12px;
+    font-weight: 500;
+    color: #0969da;
+    padding-left: 5px;
+    cursor: default;
+}
+
 @media screen and (prefers-color-scheme: dark) {
     #reading-list li.active {
         background-color: #444547;
