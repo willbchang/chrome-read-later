@@ -36,18 +36,6 @@
     cursor: pointer;
 }
 
-/* Set a fallback on img error */
-/* https://stackoverflow.com/a/980948/9984029 */
-#reading-list img:before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    height: 16px;
-    width: 16px;
-    background-image: url("../../assets/icons/logo-black32x32.png");
-    background-size: 16px 16px;
-}
-
 #reading-list .position {
     font-size: 12px;
     font-weight: 500;
