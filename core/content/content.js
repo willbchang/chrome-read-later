@@ -1,16 +1,16 @@
 // https://developer.chrome.com/apps/runtime#event-onMessage
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  (async () => {
-    const page = await dynamicImport('core/content/pagePosition.js')
-    if (message.info === 'get position') sendResponse(page.getPosition())
-    if (message.info === 'set position') page.setPosition(message)
-  })()
+    (async () => {
+        const page = await dynamicImport('core/content/pagePosition.js')
+        if (message.info === 'get position') sendResponse(page.getPosition())
+        if (message.info === 'set position') page.setPosition(message)
+    })()
 
-  // Return true in onMessage will wait the async function.
-  return true
+    // Return true in onMessage will wait the async function.
+    return true
 })
 
 async function dynamicImport(url) {
-  const src = chrome.runtime.getURL(url)
-  return await import(src)
+    const src = chrome.runtime.getURL(url)
+    return await import(src)
 }

@@ -6,11 +6,11 @@ import * as runtime from '../../modules/chrome/runtime.mjs'
 
 
 $(async () => {
-  window.isHistory = false
-  window.isHidingLi = false
-  window.lastKey = ''
-  window.port = runtime.connect()
-  await readingList.setup()
-  statusBar.setup()
+    window.isHistory = false
+    window.isHidingLi = false
+    window.lastKey = ''
+    window.port = runtime.connect()
+    await readingList.setup()
+    statusBar.setup()
 })
 

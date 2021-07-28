@@ -4,13 +4,13 @@ import * as runtime from '../../modules/chrome/runtime.mjs'
 
 
 export function setup() {
-  init()
-  updateCountNumber()
-  changeStatusOnClick()
+    init()
+    updateCountNumber()
+    changeStatusOnClick()
 }
 
 function init() {
-  $('#status-bar').append(`
+    $('#status-bar').append(`
      <li id="count" title="Row Number: Total Count">
         <span id="row">0</span>:<span id="total">0</span>
      </li>
@@ -26,21 +26,21 @@ function init() {
 }
 
 function updateCountNumber() {
-  action.updateRowNumber()
-  action.updateTotalNumber()
+    action.updateRowNumber()
+    action.updateTotalNumber()
 }
 
 function changeStatusOnClick() {
-  const history = $('#history img')
-  history.on('click', async () => {
-    window.isHistory = !window.isHistory
-    window.lastKey = ''
-    window.port.disconnect()
-    window.port = runtime.connect()
-    await readingList.setup()
-    updateCountNumber()
-    window.isHistory
-        ? history.addClass('highlight')
-        : history.removeClass('highlight')
-  })
+    const history = $('#history img')
+    history.on('click', async () => {
+        window.isHistory = !window.isHistory
+        window.lastKey = ''
+        window.port.disconnect()
+        window.port = runtime.connect()
+        await readingList.setup()
+        updateCountNumber()
+        window.isHistory
+            ? history.addClass('highlight')
+            : history.removeClass('highlight')
+    })
 }
