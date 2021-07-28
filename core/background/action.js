@@ -30,7 +30,7 @@ export async function savePage() {
 
 export async function openPage({url, currentTab, active, isHistory}) {
   const tab = currentTab ? await tabs.update(url) : await tabs.create(url, active)
-  const position = window.isHistory
+  const position = isHistory
       ? await storage.local.getScrollPosition(url)
       : await storage.sync.getScrollPosition(url)
   const tabId = await tabs.onComplete(tab)
