@@ -45,6 +45,14 @@ class PageInfo {
   get scrollHeight() {
     return 0
   }
+
+  get currentTime() {
+    return 0
+  }
+
+  get videoPercent() {
+    return this.percent(0)
+  }
 }
 
 class PositionInfo extends PageInfo {
