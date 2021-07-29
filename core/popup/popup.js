@@ -1,9 +1,9 @@
 import '../../modules/prototypes/Object.mjs'
 import '../../modules/prototypes/localStorage.mjs'
-import * as readingList from '../../components/reading-list/readingList.js'
-import * as statusBar from '../../components/status-bar/statusBar.js'
+import * as readingList from './reading-list/readingList.js'
+import * as statusBar from './status-bar/statusBar.js'
 import * as runtime from '../../modules/chrome/runtime.mjs'
-import * as action from '../../components/reading-list/action.js'
+import * as action from './reading-list/action.js'
 
 
 $(async () => {

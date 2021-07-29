@@ -1,6 +1,6 @@
-@import "../../components/header/header.css";
-@import "../../components/reading-list/reading-list.css";
-@import "../../components/status-bar/status-bar.css";
+@import "header/header.css";
+@import "reading-list/reading-list.css";
+@import "status-bar/status-bar.css";
 
 * {
     margin: 0;

@@ -1,4 +1,4 @@
-import * as runtime from '../../modules/chrome/runtime.mjs'
+import * as runtime from '../../../modules/chrome/runtime.mjs'
 
 const activeLi = () => $('.active')
 const activeUrl = () => activeLi().find('a').attr('href')
