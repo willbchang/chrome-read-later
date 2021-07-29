@@ -89,7 +89,7 @@ function doActionOnBodyKeyDown() {
 
 function showDeleteIcon(event) {
     localStorage.setItem('src', event.target.src)
-    event.target.src = isDarkMode() ? '../../assets/icons/delete-white32x32.png' : '../../assets/icons/delete-black32x32.png'
+    event.target.src = isDarkMode() ? '../../icons/delete-white32x32.png' : '../../icons/delete-black32x32.png'
 }
 
 function isDarkMode() {

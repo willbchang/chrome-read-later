@@ -4,7 +4,7 @@
     "page": "background/background.html"
   },
   "browser_action": {
-    "default_icon": "assets/icons/logo-orange48x48.png",
+    "default_icon": "icons/logo-orange48x48.png",
     "default_popup": "popup/popup.html",
     "default_title": "Read Later"
   },
@@ -37,10 +37,10 @@
   },
   "description": "A temporary bookmark focuses on reading later, rather than closing and removing, with several Vim keybindings!",
   "icons": {
-    "128": "assets/icons/logo-orange128x128.png",
-    "16": "assets/icons/logo-orange16x16.png",
-    "32": "assets/icons/logo-orange32x32.png",
-    "48": "assets/icons/logo-orange48x48.png"
+    "128": "icons/logo-orange128x128.png",
+    "16": "icons/logo-orange16x16.png",
+    "32": "icons/logo-orange32x32.png",
+    "48": "icons/logo-orange48x48.png"
   },
   "manifest_version": 2,
   "name": "Read Later",
