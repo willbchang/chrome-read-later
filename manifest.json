@@ -1,11 +1,11 @@
 {
   "background": {
     "persistent": true,
-    "page": "core/background/background.html"
+    "page": "background/background.html"
   },
   "browser_action": {
     "default_icon": "assets/icons/logo-orange48x48.png",
-    "default_popup": "core/popup/popup.html",
+    "default_popup": "popup/popup.html",
     "default_title": "Read Later"
   },
   "content_scripts": [
@@ -14,13 +14,13 @@
         "<all_urls>"
       ],
       "js": [
-        "core/content/content.js"
+        "content/content.js"
       ],
       "run_at": "document_start"
     }
   ],
   "web_accessible_resources": [
-    "core/content/pagePosition.js"
+    "content/pagePosition.js"
   ],
   "commands": {
     "chrome-read-later.willbc.cn": {

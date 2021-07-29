@@ -1,4 +1,4 @@
-import '../../modules/libraries/jquery.min.js'
+import '../modules/libraries/jquery.min.js'
 
 export async function getTitle(url) {
     try {

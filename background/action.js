@@ -1,6 +1,6 @@
 import * as data from './pageInfo.js'
-import * as storage from '../../modules/chrome/storage.mjs'
-import * as tabs from '../../modules/chrome/tabs.mjs'
+import * as storage from '../modules/chrome/storage.mjs'
+import * as tabs from '../modules/chrome/tabs.mjs'
 
 
 export async function saveSelection(tab, selection) {
