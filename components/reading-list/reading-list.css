@@ -29,10 +29,8 @@
 #reading-list img {
     margin-right: 8px;
     padding: 1px;
-    min-width: 16px;
-    max-width: 16px;
-    min-height: 16px;
-    max-height: 16px;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
 }
 
