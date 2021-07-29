@@ -3,7 +3,8 @@ import * as action from '../action.js'
 
 export function setup() {
     init()
-    updateCountNumber()
+    action.updateRowNumber()
+    action.updateTotalNumber()
 }
 
 function init() {
@@ -21,9 +22,3 @@ function init() {
      </li>
   `)
 }
-
-function updateCountNumber() {
-    action.updateRowNumber()
-    action.updateTotalNumber()
-}
-
