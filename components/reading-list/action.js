@@ -1,4 +1,4 @@
-import * as extension from '../../modules/chrome/runtime.mjs'
+import * as runtime from '../../modules/chrome/runtime.mjs'
 
 const activeLi = () => $('.active')
 const activeUrl = () => activeLi().find('a').attr('href')
@@ -6,9 +6,9 @@ const visibleLis = () => $('#reading-list li:visible')
 const getLocalStorageKey = () => window.isHistory ? 'deletedLocalUrls' : 'deletedSyncUrls'
 
 export const open = ({currentTab = false, active = true}) => {
-    if (window.isHidingLi) return // prevents open same instant multiple times
+    if (window.isHidingLi) return // prevents open same instance multiple times
     if (!window.isHistory) dele()
-    extension.sendMessage({url: activeUrl(), currentTab, active, isHistory: window.isHistory})
+    runtime.sendMessage({url: activeUrl(), currentTab, active, isHistory: window.isHistory})
     if (currentTab) window.close()
 }
 
