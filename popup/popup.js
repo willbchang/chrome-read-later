@@ -3,7 +3,7 @@ import '../modules/prototypes/localStorage.mjs'
 import * as readingList from './reading-list/readingList.js'
 import * as statusBar from './status-bar/statusBar.js'
 import * as runtime from '../modules/chrome/runtime.mjs'
-import * as action from './reading-list/action.js'
+import * as action from './action.js'
 
 
 $(async () => {

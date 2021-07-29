@@ -1,4 +1,4 @@
-import * as action from '../reading-list/action.js'
+import * as action from '../action.js'
 
 
 export function setup() {

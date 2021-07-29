@@ -1,7 +1,7 @@
 import * as storage from '../../modules/chrome/storage.mjs'
 import * as generator from './readingItemGenerator.js'
-import * as action from './action.js'
-import * as filter from './filter.js'
+import * as action from '../action.js'
+import * as filter from '../filter.js'
 
 const readingList = $('#reading-list')
 
