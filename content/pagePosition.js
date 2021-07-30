@@ -48,9 +48,30 @@ class VideoPosition {
     }
 }
 
+class PDFPosition {
+    constructor(read) {
+        this.read = read
+        this.pdf = document.getElementById('pageNumber') || {}
+    }
+
+    get currentPageNumber() {
+        return this.pdf.value || 0
+    }
+
+    get totalPageNumber() {
+        return this.pdf.max || 1
+    }
+
+    setCurrentPage() {
+        PDFViewerApplication.pdfViewer.currentPageNumber = this.read.currentPageNumber
+    }
+}
+
 export function getPosition() {
     const scroll = new ScrollPosition({})
     const video = new VideoPosition({})
+    const pdf = new PDFPosition({})
+    console.log(pdf)
     return {
         scroll: {
             top:    scroll.top,
@@ -60,6 +81,10 @@ export function getPosition() {
         video: {
             currentTime: video.currentTime,
             duration:    video.duration,
+        },
+        pdf: {
+            currentPageNumber: pdf.currentPageNumber,
+            totalPageNumber:   pdf.totalPageNumber,
         }
     }
 }

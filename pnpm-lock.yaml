@@ -1,12 +1,12 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@types/chrome': 0.0.147
+  '@types/chrome': 0.0.149
   '@types/jquery': ^3.5.5
   eslint: 7.31.0
 
 devDependencies:
-  '@types/chrome': 0.0.147
+  '@types/chrome': 0.0.149
   '@types/jquery': 3.5.5
   eslint: 7.31.0
 
@@ -62,25 +62,25 @@ packages:
     resolution: {integrity: sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==}
     dev: true
 
-  /@types/chrome/0.0.147:
-    resolution: {integrity: sha512-HR9GdW3Waz+XC8xdPapv3RdSBvoJ1692cFLNnJ1kygEXeVy24aUw7zx4r5wC9JKepwy9SehI+8bNhQo0qDW6ew==}
+  /@types/chrome/0.0.149:
+    resolution: {integrity: sha512-JDhaXtMXqkRAzXbj4pOTciZytHSXmIOvlDDVLQdb++UdGP8fKCN4OZ0HgAq+ycFeIxzUiwlRaGmFD9mSiZRMnA==}
     dependencies:
-      '@types/filesystem': 0.0.29
-      '@types/har-format': 1.2.5
+      '@types/filesystem': 0.0.32
+      '@types/har-format': 1.2.7
     dev: true
 
-  /@types/filesystem/0.0.29:
-    resolution: {integrity: sha512-85/1KfRedmfPGsbK8YzeaQUyV1FQAvMPMTuWFQ5EkLd2w7szhNO96bk3Rh/SKmOfd9co2rCLf0Voy4o7ECBOvw==}
+  /@types/filesystem/0.0.32:
+    resolution: {integrity: sha512-Yuf4jR5YYMR2DVgwuCiP11s0xuVRyPKmz8vo6HBY3CGdeMj8af93CFZX+T82+VD1+UqHOxTq31lO7MI7lepBtQ==}
     dependencies:
-      '@types/filewriter': 0.0.28
+      '@types/filewriter': 0.0.29
     dev: true
 
-  /@types/filewriter/0.0.28:
-    resolution: {integrity: sha1-wFTor02d11205jq8dviFFocU1LM=}
+  /@types/filewriter/0.0.29:
+    resolution: {integrity: sha512-BsPXH/irW0ht0Ji6iw/jJaK8Lj3FJemon2gvEqHKpCdDCeemHa+rI3WBGq5z7cDMZgoLjY40oninGxqk+8NzNQ==}
     dev: true
 
-  /@types/har-format/1.2.5:
-    resolution: {integrity: sha512-IG8AE1m2pWtPqQ7wXhFhy6Q59bwwnLwO36v5Rit2FrbXCIp8Sk8E2PfUCreyrdo17STwFSKDAkitVuVYbpEHvQ==}
+  /@types/har-format/1.2.7:
+    resolution: {integrity: sha512-/TPzUG0tJn5x1TUcVLlDx2LqbE58hyOzDVAc9kf8SpOEmguHjU6bKUyfqb211AdqLOmU/SNyXvLKPNP5qTlfRw==}
     dev: true
 
   /@types/jquery/3.5.5:
