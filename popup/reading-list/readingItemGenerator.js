@@ -21,7 +21,7 @@ export function renderLiFrom(page) {
     }
 
     function getVideoPercent() {
-        return ['0%', undefined].includes(page.video?.percent)
+        return ['0%', '100%', undefined].includes(page.video?.percent)
             ? ''
             : `<span class="percent video">${page.video?.percent}</span>`
     }
