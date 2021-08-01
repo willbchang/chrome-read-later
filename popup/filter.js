@@ -74,6 +74,7 @@ export const getClickAction = (clickType) => {
         'Alt + Click':  () => action.open({}),
         'delete':       () => action.dele(),
         'history':      () => action.history(),
+        'question':     () => action.question(),
         'none':         () => {},
     }[clickType]
 }
