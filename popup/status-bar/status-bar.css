@@ -43,7 +43,7 @@
     filter: invert(48%) sepia(88%) saturate(387%) hue-rotate(84deg) brightness(90%) contrast(83%);
 }
 
-#status-bar #info {
+#status-bar #question {
     margin-right: 10px;
 }
 

@@ -21,10 +21,8 @@ function init() {
      <li title="Reading List History">
         <img id="history" src="../../icons/history.svg">
      </li>
-     <li id="info" title="Info">
-        <a href="https://github.com/willbchang/chrome-read-later#readme" target="_blank">
-            <img src="../../icons/info.svg"> 
-        </a>
+     <li title="Have any question? Click to get document and send feedback">
+        <img id="question" src="../../icons/question.svg"> 
      </li>
   `)
 }
