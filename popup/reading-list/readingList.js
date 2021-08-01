@@ -65,8 +65,8 @@ function doActionOnMouseClick() {
         event.preventDefault()
 
         try {
-            const modifiedClick = filter.getModifiedClick(event)
-            const clickAction = filter.getClickAction(modifiedClick, event.target.tagName)
+            const clickType = filter.getClickType(event)
+            const clickAction = filter.getClickAction(clickType)
             clickAction()
         } catch (e) {
             console.log('Catch click action error: ', e, event.target.tagName)

@@ -13,8 +13,8 @@ function init() {
      <li id="count" title="Row Number: Total Count">
         <span id="row">0</span>:<span id="total">0</span>
      </li>
-     <li id="history" title="Reading List History">
-        <img src="../../icons/history.svg">
+     <li title="Reading List History">
+        <img id="history" src="../../icons/history.svg">
      </li>
      <li id="info" title="Info">
         <a href="https://github.com/willbchang/chrome-read-later#readme" target="_blank">

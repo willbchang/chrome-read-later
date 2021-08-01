@@ -37,7 +37,7 @@
     width: 16px;
 }
 
-#status-bar #history .highlight {
+#status-bar #history.highlight {
     /* https://codepen.io/sosuke/pen/Pjoqqp */
     /* #30a14e */
     filter: invert(48%) sepia(88%) saturate(387%) hue-rotate(84deg) brightness(90%) contrast(83%);
@@ -65,7 +65,7 @@
         filter: invert(78%) sepia(17%) saturate(217%) hue-rotate(169deg) brightness(92%) contrast(89%);
     }
 
-    #status-bar #history .highlight {
+    #status-bar #history.highlight {
         /* #39d353 */
         filter: invert(57%) sepia(68%) saturate(394%) hue-rotate(79deg) brightness(98%) contrast(118%);
     }

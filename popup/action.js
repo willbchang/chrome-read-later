@@ -90,7 +90,7 @@ const moveToPreviousOrNext = li => {
 }
 
 export async function history() {
-    const history = $('#history img')
+    const history = $('#history')
     window.isHistory = !window.isHistory
     window.lastKey = ''
     window.port.disconnect()
