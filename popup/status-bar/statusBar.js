@@ -9,7 +9,7 @@ export function setup() {
     $('#status-bar').on('click', event => {
         const clickType = filter.getClickType(event, 'statusBar')
         const clickAction = filter.getClickAction(clickType)
-        clickAction()
+        clickAction && clickAction()
     }) 
 }
 
