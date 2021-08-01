@@ -54,15 +54,26 @@ export const getKeyAction = keyBinding => {
 }
 
 
-export const getModifiedClick = ({metaKey, altKey}) =>
-    metaKey ? 'Meta + Click' : altKey ? 'Alt + Click' : 'Click'
+export const getClickType = (event, area) => {
+    if (area === 'statusBar') {
+        return event.target.id || 'none'
+    }
+
+    if (area === 'readingList') {
+        const clickType = event.metaKey
+            ? 'Meta + Click' : event.altKey ? 'Alt + Click' : 'Click'
+        return event.target.tagName === 'IMG' ? 'delete' : clickType
+    }
+}
 
 
-export const getClickAction = (modifiedClick, tagName) => {
-    if (tagName === 'IMG') return action.dele()
+export const getClickAction = (clickType) => {
     return {
         Click:          () => action.open({currentTab: true}),
         'Meta + Click': () => action.open({active: false}),
         'Alt + Click':  () => action.open({}),
-    }[modifiedClick]
+        'delete':       () => action.dele(),
+        'history':      () => action.history(),
+        'none':         () => {},
+    }[clickType]
 }

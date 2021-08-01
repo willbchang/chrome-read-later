@@ -65,7 +65,7 @@ function doActionOnMouseClick() {
         event.preventDefault()
 
         try {
-            const clickType = filter.getClickType(event)
+            const clickType = filter.getClickType(event, 'readingList')
             const clickAction = filter.getClickAction(clickType)
             clickAction()
         } catch (e) {

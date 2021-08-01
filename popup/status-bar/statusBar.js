@@ -1,11 +1,16 @@
 import * as action from '../action.js'
+import * as filter from '../filter.js'
 
 
 export function setup() {
     init()
     action.updateRowNumber()
     action.updateTotalNumber()
-    $('#history img').on('click', () => action.history())
+    $('#status-bar').on('click', event => {
+        const clickType = filter.getClickType(event, 'statusBar')
+        const clickAction = filter.getClickAction(clickType)
+        clickAction()
+    }) 
 }
 
 function init() {
