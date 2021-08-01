@@ -1,4 +1,5 @@
 import * as runtime from '../modules/chrome/runtime.mjs'
+import * as readingList from './reading-list/readingList.js'
 
 const activeLi = () => $('.active')
 const activeUrl = () => activeLi().find('a').attr('href')
@@ -86,5 +87,19 @@ const moveToPreviousOrNext = li => {
     //  is the last li.
     const isLastLi = li.attr('id') < visibleLis().last().attr('id')
     isLastLi ? moveTo('previous') : moveTo('next')
+}
+
+export async function history() {
+    const history = $('#history img')
+    window.isHistory = !window.isHistory
+    window.lastKey = ''
+    window.port.disconnect()
+    window.port = runtime.connect()
+    await readingList.setup()
+    updateRowNumber()
+    updateTotalNumber()
+    window.isHistory
+        ? history.addClass('highlight')
+        : history.removeClass('highlight')
 }
 

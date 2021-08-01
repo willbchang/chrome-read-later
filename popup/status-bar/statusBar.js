@@ -5,6 +5,7 @@ export function setup() {
     init()
     action.updateRowNumber()
     action.updateTotalNumber()
+    $('#history img').on('click', () => action.history())
 }
 
 function init() {
