@@ -39,7 +39,8 @@ class Storage {
                 height: page.scroll.height,
             },
             video: {
-                currentTime: page.video.currentTime,
+                currentTime:  page.video.currentTime,
+                playbackRate: page.video.playbackRate,
             }
         }
     }

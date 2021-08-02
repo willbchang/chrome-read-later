@@ -49,6 +49,10 @@ class PageInfo {
     get currentTime() {
         return 0
     }
+    
+    get playbackRate() {
+        return 1
+    }
 
     get videoPercent() {
         return this.percent(0)
@@ -76,6 +80,10 @@ class PositionInfo extends PageInfo {
 
     get currentTime() {
         return this.video.currentTime
+    }
+    
+    get playbackRate() {
+        return this.video.playbackRate
     }
 
     get videoPercent() {
@@ -124,8 +132,9 @@ export function initPageInfo({tab, position, selection}) {
             percent: page.scrollPercent,
         },
         video:         {
-            currentTime: page.currentTime,
-            percent:     page.videoPercent,
+            currentTime:  page.currentTime,
+            playbackRate: page.playbackRate,
+            percent:      page.videoPercent,
         }
     }
 }

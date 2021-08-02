@@ -46,6 +46,14 @@ class VideoPosition {
     get duration () {
         return this.video?.duration || 1
     }
+
+    get playbackRate() {
+        return this.video.playbackRate || 1
+    }
+
+    setPlaybackRate() {
+        this.video.playbackRate = this.played.playbackRate
+    }
 }
 
 export function getPosition() {
@@ -58,8 +66,9 @@ export function getPosition() {
             height: scroll.height,
         },
         video: {
-            currentTime: video.currentTime,
-            duration:    video.duration,
+            currentTime:  video.currentTime,
+            duration:     video.duration,
+            playbackRate: video.playbackRate,
         },
     }
 }
@@ -69,4 +78,5 @@ export function setPosition(position) {
     const video = new VideoPosition(position.video)
     scroll.setTop()
     video.setCurrentTime()
+    video.setPlaybackRate()
 }
