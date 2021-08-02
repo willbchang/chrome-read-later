@@ -24,7 +24,7 @@ export const getKeyBinding = event => {
     }
 
     window.lastKey = keyBindings[key]
-    return keyBindings[key]
+    return keyBindings[key] || 'none'
 }
 
 
@@ -50,6 +50,7 @@ export const getKeyAction = keyBinding => {
         yy:                 () => action.copyUrl(),
         H:                  () => action.history(),
         '?':                () => action.question(),
+        none:               () => {},
     }[keyBinding]
 }
 
@@ -72,9 +73,9 @@ export const getClickAction = (clickType) => {
         Click:          () => action.open({currentTab: true}),
         'Meta + Click': () => action.open({active: false}),
         'Alt + Click':  () => action.open({}),
-        'delete':       () => action.dele(),
-        'history':      () => action.history(),
-        'question':     () => action.question(),
-        'none':         () => {},
+        delete:         () => action.dele(),
+        history:        () => action.history(),
+        question:       () => action.question(),
+        none:           () => {},
     }[clickType]
 }
