@@ -1,14 +1,14 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@types/chrome': 0.0.149
+  '@types/chrome': 0.0.154
   '@types/jquery': ^3.5.5
-  eslint: 7.31.0
+  eslint: 7.32.0
 
 devDependencies:
-  '@types/chrome': 0.0.149
+  '@types/chrome': 0.0.154
   '@types/jquery': 3.5.5
-  eslint: 7.31.0
+  eslint: 7.32.0
 
 packages:
 
@@ -62,8 +62,8 @@ packages:
     resolution: {integrity: sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==}
     dev: true
 
-  /@types/chrome/0.0.149:
-    resolution: {integrity: sha512-JDhaXtMXqkRAzXbj4pOTciZytHSXmIOvlDDVLQdb++UdGP8fKCN4OZ0HgAq+ycFeIxzUiwlRaGmFD9mSiZRMnA==}
+  /@types/chrome/0.0.154:
+    resolution: {integrity: sha512-6QmP744MeMUZUIUHED4d4L2la5dIF1e6bcrkGF4yGQTyO94ER+r++Ss165wkzA5cAGUYt8kToDa6L9xtNqVMxg==}
     dependencies:
       '@types/filesystem': 0.0.32
       '@types/har-format': 1.2.7
@@ -296,8 +296,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint/7.31.0:
-    resolution: {integrity: sha512-vafgJpSh2ia8tnTkNUkwxGmnumgckLh5aAbLa1xRmIn9+owi8qBNGKL+B881kNKNTy7FFqTEkpNkUvmw0n6PkA==}
+  /eslint/7.32.0:
+    resolution: {integrity: sha512-VHZ8gX+EDfz+97jGcgyGCyRia/dPOd6Xh9yPv8Bl1+SoaIwD+a/vlrOmGRUyOYu7MwUhc7CxqeaDZU13S4+EpA==}
     engines: {node: ^10.12.0 || >=12.0.0}
     hasBin: true
     dependencies:
