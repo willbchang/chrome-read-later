@@ -4,19 +4,8 @@
   A temporary bookmark focuses on reading later, rather than closing and removing.
 </p>
 
-![Chrome Read Later 1168x309=2560x1600](images/sample-white.png)
 
-<p align="center">  
-  <a href="https://youtu.be/fnaFiMabPq8">
-    <img src="images/youtube-logo.png" width="200px" alt="youtube-logo">
-  </a>
 
-  <a href="https://www.bilibili.com/video/BV1Ag411M7W1">
-    <img src="images/bilibili-logo.png" width="200px" alt="bilibili-logo">
-  </a>
-</p>
-
-Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/) or star it on github if you like it. Your encouragement will help me make it better, thanks!
 
 ## Installation
 **Click the image** below to install:
@@ -25,14 +14,23 @@ Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/f
   <img src="images/chrome-store-logo.png" width="250px" alt="chrome-store-logo">
 </a>
 
-**Manual Installation**:
+Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/fbmfcfkokefgbmfcjahdmomlifclekib/) or star it on github if you like it. Your encouragement will help me make it better, thanks!
+
+<details>
+<summary>Manual Installation</summary>
+
 1. Download [chrome-read-later.zip](https://github.com/willbchang/chrome-read-later/releases/latest).
 2. Unzip it and move it to the safe path(you won't delete it accidentally).
 3. Go to `chrome://extensions/`
 4. Open `Developer mode`.
 5. Drag the folder to chrome or Click `Load unpacked` and select the folder.
 
+</details>
+
 ## Features
+
+![Chrome Read Later 1168x309=2560x1600](images/sample-white.png)
+
 ### Reading List
 - **Reading Progress**: It gets and sets the reading progress of current page.
 - **Video Progress**: It gets and sets the current time and the playback rate of the frist video.
@@ -45,6 +43,17 @@ Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/f
 - **Question Icon**: Click to open the documentation & feedback page.
 
 ## Usages
+
+<p align="center">  
+  <a href="https://youtu.be/fnaFiMabPq8">
+    <img src="images/youtube-logo.png" width="200px" alt="youtube-logo">
+  </a>
+
+  <a href="https://www.bilibili.com/video/BV1Ag411M7W1">
+    <img src="images/bilibili-logo.png" width="200px" alt="bilibili-logo">
+  </a>
+</p>
+
 **Windows and Mac Keyboard Differences**
 
 | Mac Key  | Windows Key |
