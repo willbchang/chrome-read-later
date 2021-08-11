@@ -32,8 +32,8 @@ Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/f
 ![Chrome Read Later 1168x309=2560x1600](images/sample-white.png)
 
 ### Reading List
-- **Reading Progress**: It gets and sets the reading progress of current page.
-- **Video Progress**: It gets and sets the current time and the playback rate of the frist video.
+- **Reading Progress**(Orange %): It gets and sets the scroll position of current page.
+- **Video Progress**(Blue %): It gets and sets the current time and the playback rate of the frist video.
 - **Sync in Cloud**: Sync across Chrome browsers with one google account.
 - **Local History**: Save the reading list history locally.
 
@@ -76,26 +76,27 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 
 ### Popup
 
-| Features                                  | Mouse                        | Keyboard                                         | VIM                           |
-|-------------------------------------------|------------------------------|--------------------------------------------------|-------------------------------|
-| Close reading list                        | `Click` extension icon       | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>z</kbd> | <kbd>Esc</kbd>                |
-| Open in Current tab                       | `Click`                      | <kbd>Enter</kbd>                                 | <kbd>o</kbd>                  |
-| Open in a New tab and Stay in Current tab | <kbd>Command</kbd> + `Click` | <kbd>Command</kbd> + <kbd>Enter</kbd>            | <kbd>O</kbd>                  |
-| Open in a New tab                         | <kbd>Alt</kbd> + `Click`     | <kbd>Alt</kbd> + <kbd>Enter</kbd>                | <kbd>alt</kbd> + <kbd>o</kbd> |
-| Delete                                    | `Hover` favicon and `Click`  | <kbd>Delete</kbd>                                | <kbd>dd</kbd>                 |
-| Move to Next                              | Move Down                    | <kbd>↓</kbd>                                     | <kbd>j</kbd>                  |
-| Move to Previous                          | Move Up                      | <kbd>↑</kbd>                                     | <kbd>k</kbd>                  |
-| Move to Top                               | Scroll to Top                | <kbd>Command</kbd> + <kbd>↑</kbd>                | <kbd>gg</kbd>                 |
-| Move to Bottom                            | Scroll to End                | <kbd>Command</kbd> + <kbd>↓</kbd>                | <kbd>G</kbd>                  |
-| Restore a deletion                        | \                            | <kbd>Command</kbd> + <kbd>z</kbd>                | <kbd>u</kbd>                  |
-| Copy link address                         | \                            | \                                                | <kbd>yy</kbd>                 |
-| on/off history mode                       | Click History icon           | \                                                | <kbd>H</kbd>                  |
-| Open documentation & feedback site        | Click Question icon          | \                                                | <kbd>?</kbd>                  |
-| Show full title and link                  | `Hover` text                 | \                                                | \                             |
+| Features                                  | Mouse                                      | Keyboard                                         | VIM                           |
+|-------------------------------------------|--------------------------------------------|--------------------------------------------------|-------------------------------|
+| Close reading list                        | `Click` extension icon                     | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>z</kbd> | <kbd>Esc</kbd>                |
+| Open in Current tab                       | `Click`                                    | <kbd>Enter</kbd>                                 | <kbd>o</kbd>                  |
+| Open in a New tab and Stay in Current tab | <kbd>Command</kbd> + `Click`               | <kbd>Command</kbd> + <kbd>Enter</kbd>            | <kbd>O</kbd>                  |
+| Open in a New tab                         | <kbd>Alt</kbd> + `Click`                   | <kbd>Alt</kbd> + <kbd>Enter</kbd>                | <kbd>alt</kbd> + <kbd>o</kbd> |
+| Delete                                    | `Hover` favicon and `Click`                | <kbd>Delete</kbd>                                | <kbd>dd</kbd>                 |
+| Move to Next                              | Move Down                                  | <kbd>↓</kbd>                                     | <kbd>j</kbd>                  |
+| Move to Previous                          | Move Up                                    | <kbd>↑</kbd>                                     | <kbd>k</kbd>                  |
+| Move to Top                               | Scroll to Top                              | <kbd>Command</kbd> + <kbd>↑</kbd>                | <kbd>gg</kbd>                 |
+| Move to Bottom                            | Scroll to End                              | <kbd>Command</kbd> + <kbd>↓</kbd>                | <kbd>G</kbd>                  |
+| Restore a deletion                        | \                                          | <kbd>Command</kbd> + <kbd>z</kbd>                | <kbd>u</kbd>                  |
+| Copy link address                         | `Right Click` and select copy link address | \                                                | <kbd>yy</kbd>                 |
+| On/Off history mode                       | Click History icon                         | \                                                | <kbd>H</kbd>                  |
+| Open documentation & feedback site        | Click Question icon                        | \                                                | <kbd>?</kbd>                  |
+| Show full title and link                  | `Hover` text                               | \                                                | \                             |
 
 
 ## Note
-- Save reading progress works on most pages(I'm improving it).
+- Get/Set reading progress works on most pages, it may change base on current window size.
+- Only get/set the first HTML video's information.
 - Remove the extension will delete the reading list in the cloud, **it cannot be restored**.
 - The maximum reading list in cloud is up to 250 items, due to google's limits.
 - It may be slow if the reading list in history is near to 10,000 items.
@@ -108,13 +109,15 @@ Any suggestions / PR are welcome, if you feel like there is room to improve. Ple
 - New Features
 
 ### TODO
+- [ ] Get/Set PDF page number(with pdf.js extension).
+- [ ] Integrate with vimium(C), use <kbd>s</kbd> and <kbd>S</kbd>.
 - [ ] Cache the reading list to instantly open.
 - [ ] Improve the vim code logic(more dynamic).
 
 
 ## Credits
 - Logo is designed by [Yasujizr](https://github.com/Yasujizr).
-- Delete icon is made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>.
+- Delete icon is made by [Freepik](https://www.flaticon.com/authors/freepik)
 - Icons in status bar are [Octicons](https://primer.style/octicons/).
 - I use [RubyMine](https://www.jetbrains.com/ruby/) to make this extension, it improves my productivity a lot!
 - Special thanks to my girl friend YangYang, she gave me a lot of helpful suggestions, feedback and encouragement.
