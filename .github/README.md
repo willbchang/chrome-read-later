@@ -78,6 +78,7 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 
 | Features                                  | Mouse                                      | Keyboard                                         | VIM                           |
 |-------------------------------------------|--------------------------------------------|--------------------------------------------------|-------------------------------|
+| Open reading list                         | `Click` extension icon                     | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>z</kbd> | \                             |
 | Close reading list                        | `Click` extension icon                     | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>z</kbd> | <kbd>Esc</kbd>                |
 | Open in Current tab                       | `Click`                                    | <kbd>Enter</kbd>                                 | <kbd>o</kbd>                  |
 | Open in a New tab and Stay in Current tab | <kbd>Command</kbd> + `Click`               | <kbd>Command</kbd> + <kbd>Enter</kbd>            | <kbd>O</kbd>                  |
@@ -102,11 +103,12 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - It may be slow if the reading list in history is near to 10,000 items.
 
 ## Contribution
-Any suggestions / PR are welcome, if you feel like there is room to improve. Please open an issue to discussion first.
+Suggestion & PR are welcome. Please open an issue to discussion first.
 - UI
 - UX
 - Refactoring / Code Quality
 - New Features
+- Documentation
 
 ### TODO
 - [ ] Get/Set PDF page number(with pdf.js extension).
