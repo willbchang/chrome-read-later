@@ -64,8 +64,8 @@ Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/f
 | Delete   | Backspace   |
 
 ### Website
-- `Right Click` *current page* and select **Save to Read Later** in context menus to save page info and close current tab.
 - `Right Click` a *link* and select **Save to Read Later** in context menus to save the target link info.
+- `Right Click` *current page* and select **Save to Read Later** in context menus to save page info and close current tab.
 - `Click` the read later icon to open the **Reading List**(Popup Window).
 - <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>: **Save** to reading list.
 - <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>: **Zoom In/Out** reading list.
@@ -76,7 +76,7 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 
 ### Popup
 
-| Features                                  | Mouse                                      | Keyboard                                         | VIM                           |
+| Actions                                  | Mouse                                      | Keyboard                                         | VIM                           |
 |-------------------------------------------|--------------------------------------------|--------------------------------------------------|-------------------------------|
 | Open reading list                         | `Click` extension icon                     | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>z</kbd> | \                             |
 | Close reading list                        | `Click` extension icon                     | <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>z</kbd> | <kbd>Esc</kbd>                |
