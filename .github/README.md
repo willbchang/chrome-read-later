@@ -1,6 +1,6 @@
 <p align="center">
   <img src="images/logotype.png" alt="Read Later Logo" height="150px"><br>
-  <sub>Dedicated to my good friend <a href="https://github.com/evestorm">@evestorm</a></sub><br>
+  <sub>Dedicated to my fiancee Yang Yang</a></sub><br>
   A temporary bookmark focuses on reading later, rather than closing and removing.
 </p>
 
