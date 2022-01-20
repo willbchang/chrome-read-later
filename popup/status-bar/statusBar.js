@@ -10,7 +10,7 @@ export function setup() {
         const clickType = filter.getClickType(event, 'statusBar')
         const clickAction = filter.getClickAction(clickType)
         clickAction && clickAction()
-    }) 
+    })
 }
 
 function init() {
@@ -20,6 +20,9 @@ function init() {
      </li>
      <li title="Reading List History">
         <img id="history" src="../../icons/history.svg">
+     </li>
+     <li title="Click to open option page">
+        <img id="setting" src="../../icons/setting.svg">
      </li>
      <li title="Have any question? Click to get document and send feedback">
         <img id="question" src="../../icons/question.svg"> 
