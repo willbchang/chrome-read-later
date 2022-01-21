@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+    font: 16px system-ui, sans-serif;
+}
+
+#inputs {
+    display: inline-block;
+    text-align: left;
+}
+
+input {
+    vertical-align: -2px; /* Vertical align with label */
+    margin: 10px;
+}

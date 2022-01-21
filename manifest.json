@@ -19,6 +19,7 @@
       "run_at": "document_start"
     }
   ],
+  "options_page": "options/options.html",
   "web_accessible_resources": [
     "content/pagePosition.js"
   ],
