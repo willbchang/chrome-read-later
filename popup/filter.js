@@ -21,6 +21,7 @@ export const getKeyBinding = event => {
         y:         window.lastKey === 'y' ? 'yy' : 'y',
         p:         'p',
         H:         'H',
+        ',':       ',',
         '?':       '?',
     }
 
@@ -51,6 +52,7 @@ export const getKeyAction = keyBinding => {
         u:                  () => action.undo(),
         yy:                 () => action.copyUrl(),
         H:                  () => action.history(),
+        ',':                () => action.options(),
         '?':                () => action.question(),
         none:               () => {},
     }[keyBinding]
@@ -77,6 +79,7 @@ export const getClickAction = (clickType) => {
         'Alt + Click':  () => action.open({}),
         delete:         () => action.dele(),
         history:        () => action.history(),
+        options:        () => action.options(),
         question:       () => action.question(),
         none:           () => {},
     }[clickType]

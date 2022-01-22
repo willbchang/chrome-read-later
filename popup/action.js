@@ -103,3 +103,6 @@ export async function history() {
         : history.removeClass('highlight')
 }
 
+export function options() {
+    chrome.runtime.openOptionsPage()
+}
