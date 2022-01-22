@@ -28,7 +28,9 @@ class Storage {
     // NOTICE: This returns an Array of objects.
     async sortByLatest() {
         const pages = await this.get()
-        return Object.values(pages).sort((a, b) => b.date - a.date)
+        return Object.values(pages)
+            .filter(page => !page.isOptions)
+            .sort((a, b) => b.date - a.date)
     }
 
     async getPosition(url) {
