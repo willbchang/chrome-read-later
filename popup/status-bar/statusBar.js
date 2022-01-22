@@ -22,7 +22,7 @@ function init() {
         <img id="history" src="../../icons/history.svg">
      </li>
      <li title="Click to open option page">
-        <img id="setting" src="../../icons/setting.svg">
+        <img id="options" src="../../icons/options.svg">
      </li>
      <li title="Have any question? Click to get document and send feedback">
         <img id="question" src="../../icons/question.svg"> 
