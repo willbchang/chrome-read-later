@@ -6,8 +6,8 @@ class Storage {
         this.storage = chrome.storage[where]
     }
 
-    get() {
-        return new Promise(resolve => this.storage.get(resolve))
+    get(key) {
+        return new Promise(resolve => this.storage.get(key, resolve))
     }
 
     set(page) {
