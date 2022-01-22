@@ -11,9 +11,10 @@ class Storage {
     }
 
     set(page) {
-        return new Promise(resolve =>
-            this.storage.set({[page.url]: page}, resolve)
-        )
+        return new Promise(resolve =>{
+            const data = page.url ? {[page.url]: page} : page
+            this.storage.set(data, resolve)
+        })
     }
 
     remove(url) {
