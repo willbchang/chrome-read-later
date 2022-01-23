@@ -1,14 +1,18 @@
 body {
-    text-align: center;
     font: 14px system-ui, sans-serif;
 }
 
-#inputs {
-    display: inline-block;
-    text-align: left;
+.inputs {
+    display: flex;
+    margin: 15px 0;
 }
 
 input {
-    vertical-align: -2px; /* Vertical align with label */
-    margin: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+small {
+    display: block;
+    color: gray;
 }
