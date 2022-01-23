@@ -11,6 +11,5 @@ $('#itemNewTab').on('change', async function () {
         itemNewTab: $(this).prop('checked'),
         isOptions:  true,
     }
-    await chrome.storage.sync.set({options})
-
+    await storage.sync.set({options})
 })
