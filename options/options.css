@@ -2,6 +2,10 @@ body {
     font: 14px system-ui, sans-serif;
 }
 
+#features {
+    margin-left: 10px;
+}
+
 .inputs {
     display: flex;
     margin: 15px 0;
