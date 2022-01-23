@@ -32,9 +32,9 @@ export const getKeyBinding = event => {
 
 export const getKeyAction = keyBinding => {
     return {
-        Enter:              () => action.open({currentTab: !window.options.itemNewTab}),
+        Enter:              () => action.open({currentTab: !window.options?.itemNewTab}),
         'Meta + Enter':     () => action.open({active: false}),
-        'Alt + Enter':      () => action.open({currentTab: window.options.itemNewTab}),
+        'Alt + Enter':      () => action.open({currentTab: window.options?.itemNewTab}),
         Backspace:          () => action.dele(),
         'Meta + z':         () => action.undo(),
         'Meta + ArrowUp':   () => action.moveTo('top'),
@@ -43,9 +43,9 @@ export const getKeyAction = keyBinding => {
         ArrowDown:          () => action.moveTo('next'),
         j:                  () => action.moveTo('next'),
         k:                  () => action.moveTo('previous'),
-        o:                  () => action.open({currentTab: !window.options.itemNewTab}),
+        o:                  () => action.open({currentTab: !window.options?.itemNewTab}),
         O:                  () => action.open({active: false}),
-        'Alt + o':          () => action.open({currentTab: window.options.itemNewTab}),
+        'Alt + o':          () => action.open({currentTab: window.options?.itemNewTab}),
         gg:                 () => action.moveTo('top'),
         G:                  () => action.moveTo('bottom'),
         dd:                 () => action.dele(),
@@ -74,9 +74,9 @@ export const getClickType = (event, area) => {
 
 export const getClickAction = (clickType) => {
     return {
-        Click:          () => action.open({currentTab: !window.options.itemNewTab}),
+        Click:          () => action.open({currentTab: !window.options?.itemNewTab}),
         'Meta + Click': () => action.open({active: false}),
-        'Alt + Click':  () => action.open({currentTab: window.options.itemNewTab}),
+        'Alt + Click':  () => action.open({currentTab: window.options?.itemNewTab}),
         delete:         () => action.dele(),
         history:        () => action.history(),
         options:        () => action.options(),
