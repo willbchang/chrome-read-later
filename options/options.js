@@ -2,9 +2,9 @@ import * as storage from '../modules/chrome/storage.mjs'
 
 
 $(async function () {
-    const {options: {itemNewTab, keepSavedTab}} = await storage.sync.get('options')
-    $('#itemNewTab').prop('checked', itemNewTab)
-    $('#keepSavedTab').prop('checked', keepSavedTab)
+    const {options} = await storage.sync.get('options')
+    $('#itemNewTab').prop('checked', options?.itemNewTab)
+    $('#keepSavedTab').prop('checked', options?.keepSavedTab)
 })
 
 $('input[type=checkbox]').on('change', async function () {
