@@ -23,7 +23,16 @@ async function updateStorage({tab, position = {}, selection = {}}) {
 export async function savePage() {
     const tab = await tabs.queryCurrent()
     const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-    await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
+    const {options: {keepSavedTab}} = await storage.sync.get('options')
+
+    if (keepSavedTab) {
+        chrome.browserAction.setBadgeText ( { text: 'done' } )
+        setTimeout(() => chrome.browserAction.setBadgeText( { text: '' } ), 1500)
+    }
+
+    if (!keepSavedTab)
+        await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
+
     await updateStorage({tab, position})
 }
 
