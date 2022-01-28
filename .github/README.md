@@ -29,7 +29,8 @@ Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/f
 
 ## Features
 
-![Chrome Read Later 1168x309=2560x1600](images/sample-white.png)
+![Chrome Read Later 1168x364=2560x1600](images/sample-white.png#gh-light-mode-only)
+![Chrome Read Later 1168x364=2560x1600](images/sample-dark.png#gh-dark-mode-only)
 
 ### Reading List
 - **Reading Progress**(Orange %): It gets and sets the scroll position of current page.
@@ -40,6 +41,7 @@ Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/f
 ### Status Bar
 - **Row Number : Total Count**
 - **History Icon**: Click to on/off history mode.
+- **Options Icon**: Click to open options page.
 - **Question Icon**: Click to open the documentation & feedback page.
 
 ## Usages
@@ -91,6 +93,7 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 | Restore a deletion                        | \                                          | <kbd>Command</kbd> + <kbd>z</kbd>                | <kbd>u</kbd>                  |
 | Copy link address                         | `Right Click` and select copy link address | \                                                | <kbd>yy</kbd>                 |
 | On/Off history mode                       | Click History icon                         | \                                                | <kbd>H</kbd>                  |
+| Open setting page        | Click Setting icon                        | \                                                | <kbd>,</kbd>                  |
 | Open documentation & feedback site        | Click Question icon                        | \                                                | <kbd>?</kbd>                  |
 | Show full title and link                  | `Hover` text                               | \                                                | \                             |
 
