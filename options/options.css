@@ -26,8 +26,11 @@ small {
         background-color: #292a2d;
     }
 
-    #features,
-    label {
+    #features {
         color: #e8eaed;
+    }
+
+    label {
+        color: #abb2bf;
     }
 }
