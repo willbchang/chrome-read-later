@@ -20,3 +20,14 @@ small {
     display: block;
     color: gray;
 }
+
+@media screen and (prefers-color-scheme: dark) {
+    html {
+        background-color: #292a2d;
+    }
+
+    #features,
+    label {
+        color: #e8eaed;
+    }
+}
