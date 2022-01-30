@@ -28,10 +28,9 @@ export async function savePage() {
     if (options?.keepSavedTab) {
         chrome.browserAction.setBadgeText ( { text: 'done' } )
         setTimeout(() => chrome.browserAction.setBadgeText( { text: '' } ), 1500)
-    }
-
-    if (!keepSavedTab)
+    } else {
         await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
+    }
 
     await updateStorage({tab, position})
 }
