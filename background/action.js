@@ -23,9 +23,9 @@ async function updateStorage({tab, position = {}, selection = {}}) {
 export async function savePage() {
     const tab = await tabs.queryCurrent()
     const position = await tabs.sendMessage(tab.id, {info: 'get position'})
-    const {options: {keepSavedTab}} = await storage.sync.get('options')
+    const {options} = await storage.sync.get('options')
 
-    if (keepSavedTab) {
+    if (options?.keepSavedTab) {
         chrome.browserAction.setBadgeText ( { text: 'done' } )
         setTimeout(() => chrome.browserAction.setBadgeText( { text: '' } ), 1500)
     }
