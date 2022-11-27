@@ -42,11 +42,11 @@ export async function openPage ({ url, currentTab, active, isHistory }) {
     await tabs.sendMessage(tabId, { ...position, info: 'set position' })
 }
 
-export async function removeDeletePages () {
+export function removeDeletePages () {
     storage.session.getArray('deletedLocalUrls').
-        forEach(url => storage.local.remove(url))
+        then(data => data.forEach(url => storage.local.remove(url)))
     storage.session.getArray('deletedSyncUrls').
-        forEach(url => storage.sync.remove(url))
+        then(data => data.forEach(url => storage.sync.remove(url)))
     storage.session.remove('deletedLocalUrls')
     storage.session.remove('deletedSyncUrls')
 }

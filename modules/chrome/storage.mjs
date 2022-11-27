@@ -68,7 +68,7 @@ class SessionStorage extends Storage {
 
     async getArray (key) {
         const data = await this.get(key)
-        return data || []
+        return (typeof data === 'object') ? [] : data
     }
 
     async setArray (key, value) {
