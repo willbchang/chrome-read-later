@@ -17,8 +17,8 @@ class Storage {
         })
     }
 
-    remove (url) {
-        return this.storage.remove(url)
+    remove (key) {
+        return this.storage.remove(key)
     }
 
     clear () {
