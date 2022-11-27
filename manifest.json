@@ -24,7 +24,14 @@
         "open_in_tab": false
     },
     "web_accessible_resources": [
-        "content/pagePosition.js"
+        {
+            "resources": [
+                "content/pagePosition.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
     ],
     "commands": {
         "chrome-read-later.willbc.cn": {
