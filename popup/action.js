@@ -4,7 +4,7 @@ import * as readingList from './reading-list/readingList.js'
 const activeLi = () => $('.active')
 const activeUrl = () => activeLi().find('a').attr('href')
 const visibleLis = () => $('#reading-list li:visible')
-const getLocalStorageKey = () => window.isHistory
+const getSessionKey = () => window.isHistory
     ? 'deletedLocalUrls'
     : 'deletedSyncUrls'
 
@@ -26,11 +26,11 @@ export const dele = () => {
         moveToPreviousOrNext(li)
         window.isHidingLi = false
     })
-    localStorage.setArray(getLocalStorageKey(), activeUrl())
+    localStorage.setArray(getSessionKey(), activeUrl())
 }
 
 export const undo = () => {
-    const url = localStorage.popArray(getLocalStorageKey())
+    const url = localStorage.popArray(getSessionKey())
     const li = $(`a[href="${url}"]`).parent().fadeIn()
 
     if (li.html()) {
