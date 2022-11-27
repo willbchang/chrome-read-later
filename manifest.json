@@ -59,7 +59,7 @@
         "tabs",
         "storage",
         "contextMenus",
-        "chrome://favicon/"
+        "favicon"
     ],
     "version": "8.0.0"
 }
