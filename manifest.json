@@ -3,7 +3,7 @@
         "service_worker": "background/background.js",
         "type": "module"
     },
-    "browser_action": {
+    "action": {
         "default_icon": "icons/logo-orange48x48.png",
         "default_popup": "popup/popup.html",
         "default_title": "Read Later"
