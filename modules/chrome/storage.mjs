@@ -74,13 +74,13 @@ class SessionStorage extends Storage {
     async setArray (key, value) {
         const data = await this.getArray(key)
         data.push(value)
-        await this.storage.set(key, value)
+        await this.storage.set({ key, data })
     }
 
     async popArray (key) {
         const data = await this.getArray(key)
         const result = data.pop()
-        await this.storage.set(key, data)
+        await this.storage.set({ key, data })
         return result
     }
 }
