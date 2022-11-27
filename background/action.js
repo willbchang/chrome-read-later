@@ -47,8 +47,7 @@ export function removeDeletePages () {
         then(data => data.forEach(url => storage.local.remove(url)))
     storage.session.getArray('deletedSyncUrls').
         then(data => data.forEach(url => storage.sync.remove(url)))
-    storage.session.remove('deletedLocalUrls')
-    storage.session.remove('deletedSyncUrls')
+    storage.session.initSessionKeys()
 }
 
 export async function migrateStorage () {
