@@ -20,10 +20,9 @@ class PageInfo {
             && this.url !== this.tab.pendingUrl
     }
 
-    // https://www.google.com/search?q=test => https://www.google.com
     get favIconUrl () {
         const origin = new URL(this.url).origin
-        return `chrome://favicon/size/16@2x/${origin}`
+        return `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${origin}&size=32`
     }
 
     get date () {
