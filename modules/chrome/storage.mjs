@@ -51,3 +51,4 @@ class Storage {
 
 export const sync = new Storage('sync')
 export const local = new Storage('local')
+export const session = new Storage('session')
