@@ -25,24 +25,6 @@ class Storage {
         return this.storage.clear()
     }
 
-    async getArray (key) {
-        const data = await this.get(key)
-        return data || []
-    }
-
-    async setArray (key, value) {
-        const data = await this.getArray(key)
-        data.push(value)
-        await this.storage.set(key, value)
-    }
-
-    async popArray (key) {
-        const data = await this.getArray(key)
-        const result = data.pop()
-        await this.storage.set(key, data)
-        return result
-    }
-
     // NOTICE: This returns an Array of objects.
     async sortByLatest () {
         const pages = await this.get()
@@ -67,6 +49,42 @@ class Storage {
     }
 }
 
-export const sync = new Storage('sync')
-export const local = new Storage('local')
-export const session = new Storage('session')
+class SyncStorage extends Storage {
+    constructor () {
+        super('sync')
+    }
+}
+
+class LocalStorage extends Storage {
+    constructor () {
+        super('local')
+    }
+}
+
+class SessionStorage extends Storage {
+    constructor () {
+        super('session')
+    }
+
+    async getArray (key) {
+        const data = await this.get(key)
+        return data || []
+    }
+
+    async setArray (key, value) {
+        const data = await this.getArray(key)
+        data.push(value)
+        await this.storage.set(key, value)
+    }
+
+    async popArray (key) {
+        const data = await this.getArray(key)
+        const result = data.pop()
+        await this.storage.set(key, data)
+        return result
+    }
+}
+
+export const sync = new SyncStorage()
+export const local = new LocalStorage()
+export const session = new SessionStorage()
