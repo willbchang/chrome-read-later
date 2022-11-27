@@ -1,5 +1,6 @@
 import * as runtime from '../modules/chrome/runtime.mjs'
 import * as readingList from './reading-list/readingList.js'
+import * as storage from '../modules/chrome/storage.mjs'
 
 const activeLi = () => $('.active')
 const activeUrl = () => activeLi().find('a').attr('href')
@@ -26,11 +27,12 @@ export const dele = () => {
         moveToPreviousOrNext(li)
         window.isHidingLi = false
     })
-    localStorage.setArray(getSessionKey(), activeUrl())
+
+    storage.session.setArray(getSessionKey(), activeUrl())
 }
 
 export const undo = () => {
-    const url = localStorage.popArray(getSessionKey())
+    const url = storage.session.popArray(getSessionKey())
     const li = $(`a[href="${url}"]`).parent().fadeIn()
 
     if (li.html()) {

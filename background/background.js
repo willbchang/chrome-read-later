@@ -1,4 +1,3 @@
-import '../modules/prototypes/localStorage.mjs'
 import * as commands from '../modules/chrome/commands.mjs'
 import * as contextMenus from '../modules/chrome/contextMenus.mjs'
 import * as runtime from '../modules/chrome/runtime.mjs'

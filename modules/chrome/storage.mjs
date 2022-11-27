@@ -25,6 +25,24 @@ class Storage {
         return this.storage.clear()
     }
 
+    async getArray (key) {
+        const data = await this.get(key)
+        return data || []
+    }
+
+    async setArray (key, value) {
+        const data = await this.getArray(key)
+        data.push(value)
+        await this.storage.set(key, value)
+    }
+
+    async popArray (key) {
+        const data = await this.getArray(key)
+        const result = data.pop()
+        await this.storage.set(key, data)
+        return result
+    }
+
     // NOTICE: This returns an Array of objects.
     async sortByLatest () {
         const pages = await this.get()
