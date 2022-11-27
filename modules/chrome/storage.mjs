@@ -68,20 +68,25 @@ class SessionStorage extends Storage {
 
     async getArray (key) {
         const data = await this.get(key)
-        return (typeof data === 'object') ? [] : data
+        return data[key]
     }
 
     async setArray (key, value) {
         const data = await this.getArray(key)
         data.push(value)
-        await this.storage.set({ key, data })
+        await this.set({ [key]: data })
     }
 
     async popArray (key) {
         const data = await this.getArray(key)
         const result = data.pop()
-        await this.storage.set({ key, data })
+        await this.storage.set({ [key]: data })
         return result
+    }
+
+    async initSessionKeys () {
+        await this.set({ deletedSyncUrls: [] })
+        await this.set({ deletedLocalUrls: [] })
     }
 }
 

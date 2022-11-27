@@ -32,16 +32,17 @@ export const dele = () => {
 }
 
 export const undo = () => {
-    const url = storage.session.popArray(getSessionKey())
-    const li = $(`a[href="${url}"]`).parent().fadeIn()
+    storage.session.popArray(getSessionKey()).then(url => {
+        const li = $(`a[href="${url}"]`).parent().fadeIn()
 
-    if (li.html()) {
-        reactive(li)
-        scrollTo(li)
-    }
+        if (li.html()) {
+            reactive(li)
+            scrollTo(li)
+        }
 
-    updateRowNumber()
-    updateTotalNumber()
+        updateRowNumber()
+        updateTotalNumber()
+    })
 }
 
 export const moveTo = direction => {

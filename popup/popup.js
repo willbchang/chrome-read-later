@@ -9,6 +9,7 @@ $(async () => {
     window.isHidingLi = false
     window.lastKey = ''
     const { options } = await storage.sync.get('options')
+    await storage.session.initSessionKeys()
     window.options = options
     window.port = runtime.connect()
     await readingList.setup()
