@@ -2,38 +2,38 @@
 // https://developer.chrome.com/extensions/storage
 
 class Storage {
-    constructor(where) {
+    constructor (where) {
         this.storage = chrome.storage[where]
     }
 
-    get(key) {
+    get (key) {
         return new Promise(resolve => this.storage.get(key, resolve))
     }
 
-    set(page) {
-        return new Promise(resolve =>{
-            const data = page.url ? {[page.url]: page} : page
+    set (page) {
+        return new Promise(resolve => {
+            const data = page.url ? { [page.url]: page } : page
             this.storage.set(data, resolve)
         })
     }
 
-    remove(url) {
+    remove (url) {
         return this.storage.remove(url)
     }
 
-    clear() {
+    clear () {
         return this.storage.clear()
     }
 
     // NOTICE: This returns an Array of objects.
-    async sortByLatest() {
+    async sortByLatest () {
         const pages = await this.get()
-        return Object.values(pages)
-            .filter(page => !page.isOptions)
-            .sort((a, b) => b.date - a.date)
+        return Object.values(pages).
+            filter(page => !page.isOptions).
+            sort((a, b) => b.date - a.date)
     }
 
-    async getPosition(url) {
+    async getPosition (url) {
         const pages = await this.get()
         const page = pages[url]
         return {
@@ -41,10 +41,10 @@ class Storage {
                 top:    page.scroll.top,
                 height: page.scroll.height,
             },
-            video: {
+            video:  {
                 currentTime:  page.video.currentTime,
                 playbackRate: page.video.playbackRate,
-            }
+            },
         }
     }
 }

@@ -1,8 +1,7 @@
 import * as action from '../action.js'
 import * as filter from '../filter.js'
 
-
-export function setup() {
+export function setup () {
     init()
     action.updateRowNumber()
     action.updateTotalNumber()
@@ -13,7 +12,7 @@ export function setup() {
     })
 }
 
-function init() {
+function init () {
     $('#status-bar').append(`
      <li id="count" title="Row Number: Total Count">
         <span id="row">0</span>:<span id="total">0</span>

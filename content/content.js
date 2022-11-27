@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true
 })
 
-async function dynamicImport(url) {
+async function dynamicImport (url) {
     const src = chrome.runtime.getURL(url)
     return await import(src)
 }

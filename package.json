@@ -1,27 +1,27 @@
 {
-  "name": "chrome-read-later",
-  "version": "8.0.0",
-  "description": "A temporary bookmark focuses on reading later, rather than closing and removing, with several Vim keybindings!",
-  "main": "popup.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/willbchang/chrome-read-later.git"
-  },
-  "keywords": [
-    "chrome-extension"
-  ],
-  "author": "Will B Chang",
-  "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/willbchang/chrome-read-later/issues"
-  },
-  "homepage": "https://github.com/willbchang/chrome-read-later#readme",
-  "devDependencies": {
-    "@types/chrome": "0.0.154",
-    "@types/jquery": "^3.5.5",
-    "eslint": "7.32.0"
-  }
+    "name": "chrome-read-later",
+    "version": "8.0.0",
+    "description": "A temporary bookmark focuses on reading later, rather than closing and removing, with several Vim keybindings!",
+    "main": "popup.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/willbchang/chrome-read-later.git"
+    },
+    "keywords": [
+        "chrome-extension"
+    ],
+    "author": "Will B Chang",
+    "license": "AGPL-3.0",
+    "bugs": {
+        "url": "https://github.com/willbchang/chrome-read-later/issues"
+    },
+    "homepage": "https://github.com/willbchang/chrome-read-later#readme",
+    "devDependencies": {
+        "@types/chrome": "0.0.154",
+        "@types/jquery": "^3.5.5",
+        "eslint": "7.32.0"
+    }
 }
