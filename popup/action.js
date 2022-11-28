@@ -1,15 +1,19 @@
 import * as runtime from '../modules/chrome/runtime.mjs'
 import * as readingList from './reading-list/readingList.js'
+import * as localStore from '../modules/localStore/localStore.js'
 
 const activeLi = () => $('.active')
 const activeUrl = () => activeLi().find('a').attr('href')
 const visibleLis = () => $('#reading-list li:visible')
-const getLocalStorageKey = () => window.isHistory ? 'deletedLocalUrls' : 'deletedSyncUrls'
+const getSessionKey = () => window.isHistory
+    ? 'deletedLocalUrls'
+    : 'deletedSyncUrls'
 
 export const open = ({currentTab = false, active = true}) => {
     if (window.isHidingLi) return // prevents open same instance multiple times
     if (!window.isHistory) dele()
-    runtime.sendMessage({url: activeUrl(), currentTab, active, isHistory: window.isHistory})
+    runtime.sendMessage(
+        {url: activeUrl(), currentTab, active, isHistory: window.isHistory})
     if (currentTab) window.close()
 }
 
@@ -23,20 +27,22 @@ export const dele = () => {
         moveToPreviousOrNext(li)
         window.isHidingLi = false
     })
-    localStorage.setArray(getLocalStorageKey(), activeUrl())
+
+    localStore.pushToArray(getSessionKey(), activeUrl())
 }
 
 export const undo = () => {
-    const url = localStorage.popArray(getLocalStorageKey())
-    const li = $(`a[href="${url}"]`).parent().fadeIn()
+    localStore.popArray(getSessionKey()).then(url => {
+        const li = $(`a[href="${url}"]`).parent().fadeIn()
 
-    if (li.html()) {
-        reactive(li)
-        scrollTo(li)
-    }
+        if (li.html()) {
+            reactive(li)
+            scrollTo(li)
+        }
 
-    updateRowNumber()
-    updateTotalNumber()
+        updateRowNumber()
+        updateTotalNumber()
+    })
 }
 
 export const moveTo = direction => {
@@ -60,7 +66,8 @@ export const copyUrl = async () => {
     await navigator.clipboard.writeText(activeUrl())
 }
 
-export const question = () => window.open('https://github.com/willbchang/chrome-read-later#readme')
+export const question = () => window.open(
+    'https://github.com/willbchang/chrome-read-later#readme')
 
 export const reactive = li => {
     activeLi().removeClass('active')

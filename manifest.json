@@ -1,58 +1,65 @@
 {
-  "background": {
-    "persistent": true,
-    "page": "background/background.html"
-  },
-  "browser_action": {
-    "default_icon": "icons/logo-orange48x48.png",
-    "default_popup": "popup/popup.html",
-    "default_title": "Read Later"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "content/content.js"
-      ],
-      "run_at": "document_start"
-    }
-  ],
-  "options_ui": {
-    "page": "options/options.html",
-    "open_in_tab": false
-  },
-  "web_accessible_resources": [
-    "content/pagePosition.js"
-  ],
-  "commands": {
-    "chrome-read-later.willbc.cn": {
-      "description": "Save to reading list",
-      "suggested_key": {
-        "default": "Alt+Shift+S"
-      }
+    "background": {
+        "service_worker": "background/background.js",
+        "type": "module"
     },
-    "_execute_browser_action": {
-      "suggested_key": {
-        "default": "Alt+Shift+Z"
-      }
-    }
-  },
-  "description": "A temporary bookmark focuses on reading later, rather than closing and removing, with several Vim keybindings!",
-  "icons": {
-    "128": "icons/logo-orange128x128.png",
-    "16": "icons/logo-orange16x16.png",
-    "32": "icons/logo-orange32x32.png",
-    "48": "icons/logo-orange48x48.png"
-  },
-  "manifest_version": 2,
-  "name": "Read Later",
-  "permissions": [
-    "tabs",
-    "storage",
-    "contextMenus",
-    "chrome://favicon/"
-  ],
-  "version": "8.0.0"
+    "action": {
+        "default_icon": "icons/logo-orange48x48.png",
+        "default_popup": "popup/popup.html",
+        "default_title": "Read Later"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content/content.js"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "options_ui": {
+        "page": "options/options.html",
+        "open_in_tab": false
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "content/pagePosition.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "commands": {
+        "chrome-read-later.willbc.cn": {
+            "description": "Save to reading list",
+            "suggested_key": {
+                "default": "Alt+Shift+S"
+            }
+        },
+        "_execute_action": {
+            "suggested_key": {
+                "default": "Alt+Shift+Z"
+            }
+        }
+    },
+    "description": "A temporary bookmark focuses on reading later, rather than closing and removing, with several Vim keybindings!",
+    "icons": {
+        "128": "icons/logo-orange128x128.png",
+        "16": "icons/logo-orange16x16.png",
+        "32": "icons/logo-orange32x32.png",
+        "48": "icons/logo-orange48x48.png"
+    },
+    "manifest_version": 3,
+    "name": "Read Later",
+    "permissions": [
+        "tabs",
+        "storage",
+        "contextMenus",
+        "favicon"
+    ],
+    "version": "8.0.0"
 }

@@ -1,4 +1,4 @@
-export function renderLiFrom(page) {
+export function renderLiFrom (page) {
     return `
       <li id=${page.date}>
         <img src="${page.favIconUrl}" alt="">
@@ -7,26 +7,28 @@ export function renderLiFrom(page) {
       </li>
     `
 
-    function getTitleAttribute() {
-        return page.title === page.url ? page.url : `${encodeInnerText()}\n\n${page.url}`
+    function getTitleAttribute () {
+        return page.title === page.url
+            ? page.url
+            : `${encodeInnerText()}\n\n${page.url}`
     }
 
-    function getInnerTextColor() {
+    function getInnerTextColor () {
         return page.url === page.title ? 'style="color: gray"' : ''
     }
 
-    function encodeInnerText() {
+    function encodeInnerText () {
         // eslint-disable-next-line no-undef
         return he.encode(page.title)
     }
 
-    function getVideoPercent() {
+    function getVideoPercent () {
         return ['0%', '100%', undefined].includes(page.video?.percent)
             ? ''
             : `<span class="percent video">${page.video?.percent}</span>`
     }
 
-    function getScrollPercent() {
+    function getScrollPercent () {
         return page.scroll.top
             ? `<span class="percent scroll">${page.scroll.percent}</span>`
             : ''
