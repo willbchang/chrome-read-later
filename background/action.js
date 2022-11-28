@@ -1,6 +1,7 @@
 import * as data from './pageInfo.js'
 import * as storage from '../modules/chrome/storage.mjs'
 import * as tabs from '../modules/chrome/tabs.mjs'
+import * as localStore from '../modules/localStore/localStore.js'
 
 export async function saveSelection (tab, selection) {
     await updateStorage({ tab, selection })
@@ -43,11 +44,11 @@ export async function openPage ({ url, currentTab, active, isHistory }) {
 }
 
 export function removeDeletePages () {
-    storage.session.getArray('deletedLocalUrls').
-        then(data => data.forEach(url => storage.local.remove(url)))
-    storage.session.getArray('deletedSyncUrls').
-        then(data => data.forEach(url => storage.sync.remove(url)))
-    storage.session.initSessionKeys()
+    localStore.getArray('deletedLocalUrls')
+        .then(data => data.map(url => storage.local.remove(url)))
+    localStore.getArray('deletedSyncUrls')
+        .then(data => data.map(url => storage.sync.remove(url)))
+    localStore.clear()
 }
 
 export async function migrateStorage () {

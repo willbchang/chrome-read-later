@@ -1,6 +1,6 @@
 import * as runtime from '../modules/chrome/runtime.mjs'
 import * as readingList from './reading-list/readingList.js'
-import * as storage from '../modules/chrome/storage.mjs'
+import * as localStore from '../modules/localStore/localStore.js'
 
 const activeLi = () => $('.active')
 const activeUrl = () => activeLi().find('a').attr('href')
@@ -9,11 +9,11 @@ const getSessionKey = () => window.isHistory
     ? 'deletedLocalUrls'
     : 'deletedSyncUrls'
 
-export const open = ({ currentTab = false, active = true }) => {
+export const open = ({currentTab = false, active = true}) => {
     if (window.isHidingLi) return // prevents open same instance multiple times
     if (!window.isHistory) dele()
     runtime.sendMessage(
-        { url: activeUrl(), currentTab, active, isHistory: window.isHistory })
+        {url: activeUrl(), currentTab, active, isHistory: window.isHistory})
     if (currentTab) window.close()
 }
 
@@ -28,11 +28,11 @@ export const dele = () => {
         window.isHidingLi = false
     })
 
-    storage.session.setArray(getSessionKey(), activeUrl())
+    localStore.pushToArray(getSessionKey(), activeUrl())
 }
 
 export const undo = () => {
-    storage.session.popArray(getSessionKey()).then(url => {
+    localStore.popArray(getSessionKey()).then(url => {
         const li = $(`a[href="${url}"]`).parent().fadeIn()
 
         if (li.html()) {
@@ -75,7 +75,7 @@ export const reactive = li => {
 }
 
 export const scrollTo = (li) => {
-    li[0].scrollIntoView({ block: 'nearest' })
+    li[0].scrollIntoView({block: 'nearest'})
 }
 
 export const updateTotalNumber = () => {
@@ -96,7 +96,7 @@ const moveToPreviousOrNext = li => {
     isLastLi ? moveTo('previous') : moveTo('next')
 }
 
-export async function history () {
+export async function history() {
     const history = $('#history')
     window.isHistory = !window.isHistory
     window.lastKey = ''
@@ -110,6 +110,6 @@ export async function history () {
         : history.removeClass('highlight')
 }
 
-export function options () {
+export function options() {
     chrome.runtime.openOptionsPage()
 }
