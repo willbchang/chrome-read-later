@@ -65,7 +65,7 @@ export async function migrateStorage () {
     async function upgradeStorage (key) {
         const pages = await storage[key].get()
         for (const page of Object.values(pages)) {
-            page.faviconUrl = upgradeFaviconUrl(page.faviconUrl)
+            page.favIconUrl = upgradeFaviconUrl(page.favIconUrl)
             await storage[key].set(page)
         }
     }
