@@ -58,7 +58,7 @@ export async function migrateStorage () {
 
     function upgradeFaviconUrl (url) {
         const oldPrefix = 'chrome://favicon/size/16@2x/'
-        const newPrefix = 'chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl='
+        const newPrefix = `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=`
         return url.replace(oldPrefix, newPrefix) + '&size=32'
     }
 
