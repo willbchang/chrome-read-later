@@ -24,7 +24,7 @@ export async function savePage () {
     const { options } = await storage.sync.get('options')
 
     if (options?.keepSavedTab) {
-        chrome.action.setBadgeText({ text: 'done' })
+        await chrome.action.setBadgeText({ text: 'done' })
         setTimeout(() => chrome.action.setBadgeText({ text: '' }), 1500)
     } else {
         await tabs.isFinalTab() ? tabs.empty() : tabs.remove(tab)
