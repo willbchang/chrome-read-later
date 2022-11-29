@@ -53,9 +53,20 @@ export function removeDeletePages () {
 }
 
 export async function migrateStorage () {
-    storage.local.clear()
-    const pages = await storage.sync.get()
-    for (const url of Object.keys(pages)) {
-        await storage.local.set(pages[url])
+    await upgradeStorage('sync')
+    await upgradeStorage('local')
+
+    function upgradeFaviconUrl (url) {
+        const oldPrefix = 'chrome://favicon/size/16@2x/'
+        const newPrefix = 'chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl='
+        return url.replace(oldPrefix, newPrefix) + '&size=32'
+    }
+
+    async function upgradeStorage (key) {
+        const pages = await storage[key].get()
+        for (const page of Object.values(pages)) {
+            page.faviconUrl = upgradeFaviconUrl(page.faviconUrl)
+            await storage[key].set(page)
+        }
     }
 }

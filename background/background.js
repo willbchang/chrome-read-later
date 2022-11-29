@@ -25,8 +25,8 @@ runtime.onInstall(async () => {
 })
 
 runtime.onUpdate(async details => {
-    if (details.previousVersion[0] < '5' && runtime.getCurrentVersion() >
-        '5.0.0') {
+    if (details.previousVersion[0] < '9' && runtime.getCurrentVersion() >
+        '8.0.0') {
         await action.migrateStorage()
     }
 })
