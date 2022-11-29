@@ -46,9 +46,10 @@ export async function openPage ({ url, currentTab, active, isHistory }) {
 export function removeDeletePages () {
     localStore.getArray('deletedLocalUrls')
         .then(data => data.map(url => storage.local.remove(url)))
-    localStore.getArray('deletedSyncUrls')
+        .then(() => localStore.getArray('deletedSyncUrls'))
         .then(data => data.map(url => storage.sync.remove(url)))
-    localStore.clear()
+        .then(localStore.clear)
+
 }
 
 export async function migrateStorage () {
