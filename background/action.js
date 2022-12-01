@@ -1,7 +1,7 @@
 import * as data from './pageInfo.js'
 import * as storage from '../modules/chrome/storage.mjs'
 import * as tabs from '../modules/chrome/tabs.mjs'
-import * as localStore from '../modules/localStore/localStore.js'
+import * as localStore from '../modules/localStore/localStore.mjs'
 
 export async function saveSelection (tab, selection) {
     await updateStorage({ tab, selection })

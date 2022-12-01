@@ -1,6 +1,6 @@
 import * as runtime from '../modules/chrome/runtime.mjs'
+import * as localStore from '../modules/localStore/localStore.mjs'
 import * as readingList from './reading-list/readingList.js'
-import * as localStore from '../modules/localStore/localStore.js'
 
 const activeLi = () => $('.active')
 const activeUrl = () => activeLi().find('a').attr('href')
