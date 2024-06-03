@@ -127,5 +127,8 @@ Suggestion & PR are welcome. Please open an issue to discussion first.
 - I use [RubyMine](https://www.jetbrains.com/ruby/) to make this extension, it improves my productivity a lot!
 - Special thanks to my girl friend YangYang, she gave me a lot of helpful suggestions, feedback and encouragement.
 
+## Policy Privacy
+[policy-privacy.md]
+
 ## LICENSE
 [AGPL-3.0](LICENSE)
