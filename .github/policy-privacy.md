@@ -36,7 +36,7 @@ We may update this Privacy Policy from time to time. Any changes will be posted 
 
 **6. Contact Us**
 
-If you have any questions or concerns about this Privacy Policy or the Read Later extension, please contact us at [Your Contact Information].
+If you have any questions or concerns about this Privacy Policy or the Read Later extension, please contact us at [will.b.chang@gmail.com](mailto:will.b.chang@gmail.com).
 
 ---
 
