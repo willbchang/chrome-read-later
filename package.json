@@ -20,8 +20,8 @@
     },
     "homepage": "https://github.com/willbchang/chrome-read-later#readme",
     "devDependencies": {
-        "@types/chrome": "0.0.154",
-        "@types/jquery": "^3.5.5",
-        "eslint": "7.32.0"
+        "@types/chrome": "0.0.268",
+        "@types/jquery": "^3.5.30",
+        "eslint": "9.4.0"
     }
 }
