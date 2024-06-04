@@ -57,15 +57,13 @@ export async function migrateStorage () {
     await upgradeStorage('local')
 
     function upgradeFaviconUrl (url) {
-        const oldPrefix = 'chrome://favicon/size/16@2x/'
-        const newPrefix = `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=`
-        return url.replace(oldPrefix, newPrefix) + '&size=32'
+        return `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(url)}&size=32`
     }
 
     async function upgradeStorage (key) {
         const pages = await storage[key].get()
         for (const page of Object.values(pages)) {
-            page.favIconUrl = upgradeFaviconUrl(page.favIconUrl)
+            page.favIconUrl = upgradeFaviconUrl(page.url)
             await storage[key].set(page)
         }
     }
