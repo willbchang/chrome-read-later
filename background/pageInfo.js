@@ -21,8 +21,7 @@ class PageInfo {
     }
 
     get favIconUrl () {
-        const origin = new URL(this.url).origin
-        return `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${origin}&size=32`
+        return `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(this.url)}&size=32`
     }
 
     get date () {
