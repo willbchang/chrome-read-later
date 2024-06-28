@@ -18,8 +18,13 @@ export function renderLiFrom (page) {
     }
 
     function encodeInnerText () {
-        // eslint-disable-next-line no-undef
-        return he.encode(page.title)
+        try {
+            // eslint-disable-next-line no-undef
+            return he.encode(page.title)
+        } catch (e) {
+            console.log(e, page)
+            return page.title
+        }
     }
 
     function getVideoPercent () {
