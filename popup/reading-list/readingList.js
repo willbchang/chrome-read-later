@@ -27,9 +27,8 @@ async function initDomFromStorage () {
         : await storage.sync.sortByLatest()
     const oldReadingItemsLength = readingList.children().length
 
-    pages.map(page => readingList.append(
-        generator.renderLiFrom(page),
-    ))
+    pages.filter(x => x)
+        .map(page => readingList.append(generator.renderLiFrom(page)))
 
     // This way improve the UX, readingList.empty() will flash the screen.
     readingList.children().slice(0, oldReadingItemsLength).remove()
