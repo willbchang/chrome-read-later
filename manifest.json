@@ -34,7 +34,7 @@
         }
     ],
     "commands": {
-        "chrome-read-later.willbc.cn": {
+        "chrome-read-later.willbc.com": {
             "description": "Save to reading list",
             "suggested_key": {
                 "default": "Alt+Shift+S"
