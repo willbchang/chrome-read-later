@@ -12,8 +12,15 @@ const getSessionKey = () => window.isHistory
 export const open = ({ currentTab = false, active = true }) => {
     if (window.isHidingLi) return // prevents open same instance multiple times
     if (!window.isHistory) dele()
-    runtime.sendMessage(
-        { url: activeUrl(), currentTab, active, isHistory: window.isHistory })
+    runtime.sendMessage({
+        message: 'open',
+        data:    {
+            url:       activeUrl(),
+            currentTab,
+            active,
+            isHistory: window.isHistory
+        }
+    })
     if (currentTab) window.close()
 }
 
@@ -28,7 +35,13 @@ export const dele = () => {
         window.isHidingLi = false
     })
 
-    localStore.pushToArray(getSessionKey(), activeUrl())
+    runtime.sendMessage({
+        message: 'dele',
+        data:    {
+            key: getSessionKey(),
+            url: activeUrl(),
+        }
+    })
 }
 
 export const undo = () => {
