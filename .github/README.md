@@ -1,7 +1,7 @@
 <p align="center">
   <img src="images/logotype.png" alt="Read Later Logo" height="150px"><br>
   <sub>Dedicated to my fiancee Yang Yang</a></sub><br>
-  A temporary bookmark focuses on reading later, rather than closing and removing.
+  A temporary bookmark focused on reading later, rather than closing and removing.
 </p>
 
 
@@ -34,13 +34,13 @@ Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/f
 
 ### Reading List
 - **Reading Progress**(Orange %): It gets and sets the scroll position of current page.
-- **Video Progress**(Blue %): It gets and sets the current time and the playback rate of the frist video.
+- **Video Progress**(Blue %): It gets and sets the current time and the playback rate of the first video.
 - **Sync in Cloud**: Sync across Chrome browsers with one google account.
 - **Local History**: Save the reading list history locally.
 
 ### Status Bar
 - **Row Number : Total Count**
-- **History Icon**: Click to on/off history mode.
+- **History Icon**: Click to toggle(on/off) history mode.
 - **Options Icon**: Click to open options page.
 - **Question Icon**: Click to open the documentation & feedback page.
 
@@ -93,17 +93,17 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 | Restore a deletion                        | \                                          | <kbd>Command</kbd> + <kbd>z</kbd>                | <kbd>u</kbd>                  |
 | Copy link address                         | `Right Click` and select copy link address | \                                                | <kbd>yy</kbd>                 |
 | On/Off history mode                       | Click History icon                         | \                                                | <kbd>H</kbd>                  |
-| Open setting page        | Click Setting icon                        | \                                                | <kbd>,</kbd>                  |
+| Open settings page        | Click Settings icon                        | \                                                | <kbd>,</kbd>                  |
 | Open documentation & feedback site        | Click Question icon                        | \                                                | <kbd>?</kbd>                  |
 | Show full title and link                  | `Hover` text                               | \                                                | \                             |
 
 
 ## Note
-- Get/Set reading progress works on most pages, it may change base on current window size.
+- Get/Set reading progress works on most pages, it may change based on current window size.
 - Only get/set the first HTML video's information.
-- Remove the extension will delete the reading list in the cloud, **it cannot be restored**.
+- Removing the extension will delete the reading list in the cloud, **it cannot be restored**.
 - The maximum reading list in cloud is up to 250 items, due to google's limits.
-- It may be slow if the reading list in history is near to 10,000 items.
+- It may be slow if the reading list in history is near 10,000 items.
 
 ## Contribution
 Suggestion & PR are welcome. Please open an issue to discussion first.
@@ -125,7 +125,7 @@ Suggestion & PR are welcome. Please open an issue to discussion first.
 - Delete icon is made by [Freepik](https://www.flaticon.com/authors/freepik)
 - Icons in status bar are [Octicons](https://primer.style/octicons/).
 - I use [RubyMine](https://www.jetbrains.com/ruby/) to make this extension, it improves my productivity a lot!
-- Special thanks to my girl friend YangYang, she gave me a lot of helpful suggestions, feedback and encouragement.
+- Special thanks to my fiancee YangYang, she gave me a lot of helpful suggestions, feedback and encouragement.
 
 ## Policy Privacy
 [policy-privacy.md]
