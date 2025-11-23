@@ -20,6 +20,12 @@ function init () {
      <li title="Reading List History">
         <img id="history" src="../../icons/history.svg">
      </li>
+     <li title="Export">
+        <img id="export" src="../../icons/export.svg">
+     </li>
+     <li title="Import">
+        <img id="import" src="../../icons/import.svg">
+     </li>
      <li title="Click to open option page">
         <img id="options" src="../../icons/options.svg">
      </li>

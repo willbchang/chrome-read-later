@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    padding: 20px;
+    background-color: #ffffff;
+    color: #202124;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dadce0;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#importStatus {
+    font-size: 14px;
+}
+
+.status-success {
+    color: #1e8e3e;
+}
+
+.status-warning {
+    color: #f9ab00;
+}
+
+.status-error {
+    color: #d93025;
+}
+
+button {
+    padding: 10px 20px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    background-color: #1a73e8;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+button:hover:not(:disabled) {
+    background-color: #1765cc;
+}
+
+button:disabled {
+    background-color: #dadce0;
+    color: #80868b;
+    cursor: not-allowed;
+}
+
+/* Export page */
+#json-output {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    overflow: auto;
+    max-height: calc(100vh - 120px);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Import page */
+.upload-section {
+    margin-bottom: 20px;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1a73e8;
+    color: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.file-label:hover {
+    background-color: #1765cc;
+}
+
+.file-label input[type="file"] {
+    display: none;
+}
+
+#fileName {
+    margin-left: 15px;
+    color: #5f6368;
+    font-size: 14px;
+}
+
+#jsonlInput {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+    padding: 15px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    body {
+        background-color: #202124;
+        color: #e8eaed;
+    }
+
+    header {
+        border-bottom-color: #5f6368;
+    }
+
+    button {
+        background-color: #8ab4f8;
+        color: #202124;
+        border-color: #5f6368;
+    }
+
+    button:hover:not(:disabled) {
+        background-color: #aecbfa;
+    }
+
+    button:disabled {
+        background-color: #3c4043;
+        color: #5f6368;
+    }
+
+    #json-output {
+        background-color: #303134;
+        color: #e8eaed;
+        border-color: #5f6368;
+    }
+
+    .file-label {
+        background-color: #8ab4f8;
+        color: #202124;
+    }
+
+    .file-label:hover {
+        background-color: #aecbfa;
+    }
+
+    #fileName {
+        color: #9aa0a6;
+    }
+
+    #jsonlInput {
+        background-color: #303134;
+        color: #e8eaed;
+        border-color: #5f6368;
+    }
+
+    .status-success {
+        color: #81c995;
+    }
+
+    .status-warning {
+        color: #fdd663;
+    }
+
+    .status-error {
+        color: #f28b82;
+    }
+}
