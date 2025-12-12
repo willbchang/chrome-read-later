@@ -41,6 +41,8 @@ Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/f
 ### Status Bar
 - **Row Number : Total Count**
 - **History Icon**: Click to toggle(on/off) history mode.
+- **Export Icon**: Click to export reading list to JSONL text/file.
+- **Import Icon**: Click to import reading list from JSONL text/file.
 - **Options Icon**: Click to open options page.
 - **Question Icon**: Click to open the documentation & feedback page.
 
