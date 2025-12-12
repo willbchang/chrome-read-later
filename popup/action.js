@@ -126,3 +126,13 @@ export async function history () {
 export function options () {
     chrome.runtime.openOptionsPage()
 }
+
+export function exportList () {
+    const exportUrl = chrome.runtime.getURL('pages/export.html')
+    window.open(exportUrl)
+}
+
+export function importList () {
+    const importUrl = chrome.runtime.getURL('pages/import.html')
+    window.open(importUrl)
+}

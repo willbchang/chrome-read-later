@@ -82,6 +82,8 @@ export const getClickAction = (clickType) => {
             { currentTab: window.options?.itemNewTab }),
         delete:         () => action.dele(),
         history:        () => action.history(),
+        export:         () => action.exportList(),
+        import:         () => action.importList(),
         options:        () => action.options(),
         question:       () => action.question(),
         none:           () => {},
