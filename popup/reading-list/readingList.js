@@ -2,14 +2,16 @@ import * as storage from '../../modules/chrome/storage.mjs'
 import * as generator from './readingItemGenerator.js'
 import * as action from '../action.js'
 import * as filter from '../filter.js'
+import { applyFaviconFallback } from '../../modules/favicon.mjs'
 
 const readingList = $('#reading-list')
 
 export async function setup () {
     resetEventListeners()
     await initDomFromStorage()
+    setupFaviconFallbacks()
+    setupItemHoverBehavior()
     activeFirstLi()
-    changeIconOnMouseEnterLeave()
     updateStateOnMouseMove()
     doActionOnMouseClick()
     doActionOnBodyKeyDown()
@@ -22,20 +24,32 @@ function resetEventListeners () {
 }
 
 async function initDomFromStorage () {
-    const pages = window.isHistory
-        ? await storage.local.sortByLatest()
-        : await storage.sortSavedByLatest()
+    const pages = await storage.sortSavedByLatest()
     const oldReadingItemsLength = readingList.children().length
 
     pages.filter(page => page.url)
         .map(page => readingList.append(generator.renderLiFrom(page, {
-            isLocalOverflow: !window.isHistory
-                && window.localOverflowUrls?.has(page.url),
-            showPopover: window.options?.itemPopover,
+            isLocalOverflow: window.localOverflowUrls?.has(page.url),
+            hoverMode:       window.options?.itemHoverMode,
         })))
 
     // This way improve the UX, readingList.empty() will flash the screen.
     readingList.children().slice(0, oldReadingItemsLength).remove()
+}
+
+function setupFaviconFallbacks () {
+    readingList.find('img').on('error', ({ currentTarget }) => {
+        applyFaviconFallback(currentTarget)
+    })
+}
+
+function setupItemHoverBehavior () {
+    readingList.find('a.scroll-title').each((_, anchor) => {
+        generator.setupTitleScroll(anchor)
+    })
+    readingList.find('a.mixed-hover').each((_, anchor) => {
+        generator.setupMixedHover(anchor)
+    })
 }
 
 function activeFirstLi () {
@@ -43,22 +57,15 @@ function activeFirstLi () {
     const hasReadingItem = li.length !== 0
 
     if (hasReadingItem) {
-        action.reactive(li)
+        action.reactive(li, 'initial')
         action.scrollTo(li)
     }
 }
 
-function changeIconOnMouseEnterLeave () {
-    readingList.on({
-        mouseenter: showDeleteIcon,
-        mouseleave: showFavIcon,
-    }, 'img')
-}
-
 function updateStateOnMouseMove () {
-    readingList.on('mousemove', 'li', ({ target }) => {
-        const li = target.tagName === 'LI' ? $(target) : $(target.parentNode)
-        action.reactive(li)
+    readingList.on('mousemove', 'li', ({ currentTarget }) => {
+        const li = $(currentTarget)
+        action.reactive(li, 'mouse')
         action.updateRowNumber()
     })
 }
@@ -84,20 +91,4 @@ function doActionOnBodyKeyDown () {
         const keyAction = filter.getKeyAction(keyBinding)
         keyAction && keyAction()
     })
-}
-
-function showDeleteIcon (event) {
-    localStorage.setItem('src', event.target.src)
-    event.target.src = isDarkMode()
-        ? '../../icons/delete-white32x32.png'
-        : '../../icons/delete-black32x32.png'
-}
-
-function isDarkMode () {
-    return window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-}
-
-function showFavIcon (event) {
-    event.target.src = localStorage.getItem('src')
 }

@@ -1,8 +1,20 @@
 import { describe, expect, test } from 'bun:test'
-import { calculateTooltipPosition } from './tooltip.mjs'
+import { calculateTooltipPosition, getTooltipDelay } from './tooltip.mjs'
 
 const tooltip = { width: 120, height: 40 }
 const viewport = { width: 400, height: 300 }
+
+describe('tooltip delay', () => {
+    test('uses the shared delay by default', () => {
+        expect(getTooltipDelay({ dataset: {} })).toBe(400)
+    })
+
+    test('supports a longer delay for item details', () => {
+        expect(getTooltipDelay({
+            dataset: { tooltipDelay: '800' },
+        })).toBe(800)
+    })
+})
 
 describe('tooltip positioning', () => {
     test('uses the top when it has room', () => {

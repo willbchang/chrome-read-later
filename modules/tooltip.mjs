@@ -53,7 +53,14 @@ function showTooltip (trigger, immediately = false) {
     tooltip.textContent = trigger.dataset.tooltip
     trigger.setAttribute('aria-describedby', TOOLTIP_ID)
     showTimer = setTimeout(() => positionTooltip(trigger),
-        immediately ? 0 : HOVER_DELAY)
+        immediately ? 0 : getTooltipDelay(trigger))
+}
+
+export function getTooltipDelay (trigger) {
+    const requestedDelay = Number(trigger.dataset.tooltipDelay)
+    return Number.isFinite(requestedDelay) && requestedDelay >= 0
+        ? requestedDelay
+        : HOVER_DELAY
 }
 
 function positionTooltip (trigger) {
@@ -114,11 +121,15 @@ export function calculateTooltipPosition (
     return { top, left, placement }
 }
 
-function hideTooltip () {
+export function hideTooltip () {
     clearTimeout(showTimer)
     tooltip?.classList.remove('visible')
     if (activeTrigger?.getAttribute('aria-describedby') === TOOLTIP_ID) {
         activeTrigger.removeAttribute('aria-describedby')
     }
     activeTrigger = undefined
+}
+
+export function hideTooltipWithin (container) {
+    if (activeTrigger && container?.contains(activeTrigger)) hideTooltip()
 }
