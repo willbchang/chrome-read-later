@@ -117,6 +117,22 @@ beforeEach(async () => {
 })
 
 describe('hybrid reading list storage', () => {
+    test('enables item popovers and history by default', async () => {
+        const options = await storage.getOptions()
+
+        expect(options.itemPopover).toBe(true)
+        expect(options.historyMode).toBe(true)
+    })
+
+    test('does not record new history when history mode is disabled', async () => {
+        await storage.setOptions({ historyMode: false })
+
+        await storage.setSavedPage(page('https://no-history.example', 1))
+
+        expect(await storage.sync.sortByLatest()).toHaveLength(1)
+        expect(await storage.local.sortByLatest()).toHaveLength(0)
+    })
+
     test('shows the union of synced and local overflow items', async () => {
         await storage.sync.set(page('https://synced.example', 2))
         await storage.local.set(page('https://history.example', 1))

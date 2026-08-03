@@ -36,4 +36,10 @@ describe('reading item storage styling', () => {
         expect(html).toContain('data-tooltip=')
         expect(html).not.toContain(' title=')
     })
+
+    test('can disable item popovers', () => {
+        const html = renderLiFrom(page, { showPopover: false })
+
+        expect(html).not.toContain('data-tooltip=')
+    })
 })
