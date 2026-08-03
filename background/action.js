@@ -9,19 +9,21 @@ export async function saveSelection (tab, selection) {
 
 async function updateStorage ({ tab, position = {}, selection = {} }) {
     let page = data.initPageInfo({ tab, position, selection })
-    await storage.sync.set(page)
-    await storage.local.set(page)
+    await savePageToStorage(page)
 
     if (!page.url.isHttp()) return
     page = await data.completePageInfo(page)
-    await storage.sync.set(page)
-    await storage.local.set(page)
+    await savePageToStorage(page)
+}
+
+async function savePageToStorage (page) {
+    await storage.setSavedPage(page)
 }
 
 export async function savePage () {
     const tab = await tabs.queryCurrent()
     const position = await tabs.sendMessage(tab.id, { info: 'get position' })
-    const { options } = await storage.sync.get('options')
+    const options = await storage.getOptions()
 
     if (options?.keepSavedTab) {
         await chrome.action.setBadgeText({ text: 'done' })
@@ -38,18 +40,22 @@ export async function openPage ({ url, currentTab, active, isHistory }) {
         active)
     const position = isHistory
         ? await storage.local.getPosition(url)
-        : await storage.sync.getPosition(url)
+        : await storage.getSavedPosition(url)
     const tabId = await tabs.onComplete(tab)
     await tabs.sendMessage(tabId, { ...position, info: 'set position' })
 }
 
-export function removeDeletePages () {
-    localStore.getArray('deletedSyncUrls')
-        .then(data => data.map(url => storage.sync.remove(url)))
-        .then(() => localStore.getArray('deletedLocalUrls'))
-        .then(data => data.map(url => storage.local.remove(url)))
-        .then(localStore.clear)
+export async function removeDeletePages () {
+    const deletedSyncUrls = await localStore.getArray('deletedSyncUrls')
+    await Promise.all(
+        deletedSyncUrls.map(url => storage.removeHybridSavedPage(url))
+    )
 
+    const deletedLocalUrls = await localStore.getArray('deletedLocalUrls')
+    await Promise.all(deletedLocalUrls.map(url => storage.local.remove(url)))
+
+    await storage.rebalanceHybridStorage()
+    await localStore.clear()
 }
 
 export async function migrateStorage () {

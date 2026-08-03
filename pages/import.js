@@ -35,17 +35,20 @@ $(async () => {
 
         try {
             const results = await importItems(content)
-            if (results.failed === 0) {
+            if (results.failed === 0 && !results.usedLocalFallback) {
                 $('#importStatus').html(`<span class="status-success">\u2713 Imported ${results.success} items</span>`)
             } else {
+                const syncWarning = results.usedLocalFallback
+                    ? ' Chrome Sync filled up, so overflow items were stored locally on this computer.'
+                    : ''
                 $('#importStatus').html(
                     `<span class="status-warning">Imported ${results.success} items. ` +
-                    `${results.failed} failed - check browser console for details.</span>`
+                    `${results.failed} failed.${syncWarning} Check browser console for details.</span>`
                 )
             }
         } catch (error) {
             console.error('Import error:', error.message)
-            $('#importStatus').html(`<span class="status-error">Import failed - check browser console for details.</span>`)
+            $('#importStatus').html('<span class="status-error">Import failed - check browser console for details.</span>')
         } finally {
             updateButtonState()
         }
@@ -55,8 +58,9 @@ $(async () => {
 async function importItems(jsonlContent) {
     const lines = jsonlContent.split('\n')
     const results = {
-        success: 0,
-        failed: 0
+        success:           0,
+        failed:            0,
+        usedLocalFallback: false
     }
 
     for (let i = 0; i < lines.length; i++) {
@@ -71,17 +75,16 @@ async function importItems(jsonlContent) {
 
             // Reconstruct item
             const page = {
-                url: imported.url,
-                title: imported.title || imported.url,
+                url:        imported.url,
+                title:      imported.title || imported.url,
                 favIconUrl: `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(imported.url)}&size=32`,
-                date: imported.timestamp ? new Date(imported.timestamp).getTime() : Date.now(),
-                scroll: imported.scroll || { top: 0, height: 0, percent: '0%' },
-                video: imported.video || { currentTime: 0, playbackRate: 1, percent: '0%' }
+                date:       imported.timestamp ? new Date(imported.timestamp).getTime() : Date.now(),
+                scroll:     imported.scroll || { top: 0, height: 0, percent: '0%' },
+                video:      imported.video || { currentTime: 0, playbackRate: 1, percent: '0%' }
             }
 
-            // Save to both storages (like normal save behavior)
-            await storage.sync.set(page)
-            await storage.local.set(page)
+            const result = await storage.setSavedPage(page)
+            if (result.error) results.usedLocalFallback = true
             results.success++
 
         } catch (error) {

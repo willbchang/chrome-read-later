@@ -1,14 +1,21 @@
 #status-bar {
     display: flex;
+    align-items: center;
+    gap: 8px;
+    box-sizing: border-box;
     list-style-type: none;
-    padding: 5px 0;
-    height: 15px;
+    padding: 6px 12px;
+    height: 32px;
     background-color: white;
     width: 100%;
 }
 
 #status-bar li {
-    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    padding: 0;
     color: gray;
     font-size: 12px;
 }
@@ -25,7 +32,6 @@
 }
 
 #status-bar #count {
-    margin-left: 15px;
     color: #f05f00cc;
     cursor: default;
     letter-spacing: 1px;
@@ -33,8 +39,10 @@
 }
 
 #status-bar img {
+    display: block;
     cursor: pointer;
     width: 16px;
+    height: 16px;
 }
 
 #status-bar #history.highlight {
@@ -44,7 +52,7 @@
 }
 
 #status-bar #question {
-    margin-right: 10px;
+    margin-right: 0;
 }
 
 @media screen and (prefers-color-scheme: dark) {

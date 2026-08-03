@@ -29,6 +29,7 @@ export const dele = () => {
     if (window.isHidingLi) return // prevents hold d key and the deletion will jump around.
     window.isHidingLi = true
     const li = activeLi()
+    const url = activeUrl()
     li.fadeOut('normal', () => {
         updateTotalNumber()
         moveToPreviousOrNext(li)
@@ -39,14 +40,14 @@ export const dele = () => {
         message: 'dele',
         data:    {
             key: getSessionKey(),
-            url: activeUrl(),
+            url,
         }
     })
 }
 
 export const undo = () => {
     localStore.popArray(getSessionKey()).then(url => {
-        const li = $(`a[href="${url}"]`).parent().fadeIn()
+        const li = $(`a[href="${url}"]`).parent().fadeIn('normal')
 
         if (li.html()) {
             reactive(li)

@@ -4,6 +4,7 @@ import * as runtime from '../modules/chrome/runtime.mjs'
 import * as tabs from '../modules/chrome/tabs.mjs'
 import * as action from './action.js'
 import * as localStore from '../modules/localStore/localStore.mjs'
+import * as storage from '../modules/chrome/storage.mjs'
 
 commands.onCommand(action.savePage)
 runtime.onMessage(({ message, data }) => {
@@ -15,6 +16,8 @@ runtime.onMessage(({ message, data }) => {
     func && func()
 })
 runtime.onPopupDisconnect(action.removeDeletePages)
+runtime.onStartup(storage.rebalanceHybridStorage)
+storage.onSyncChanged(storage.rebalanceHybridStorage)
 
 contextMenus.onClicked(async (selection, tab) => {
     selection.linkUrl

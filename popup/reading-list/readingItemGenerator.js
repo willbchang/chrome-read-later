@@ -1,8 +1,8 @@
-export function renderLiFrom (page) {
+export function renderLiFrom (page, { isLocalOverflow = false } = {}) {
     return `
-      <li id=${page.date}>
+      <li id=${page.date}${isLocalOverflow ? ' class="local-overflow"' : ''}>
         <img src="${page.favIconUrl}" alt="">
-        <a href="${page.url}" title="${getTitleAttribute()}" ${getInnerTextColor()} tabindex="-1">${encodeInnerText()}</a>
+        <a href="${page.url}" title="${getTitleAttribute()}" class="${getTextClass()}" tabindex="-1">${encodeInnerText()}</a>
         ${getVideoPercent() || getScrollPercent()}
       </li>
     `
@@ -13,8 +13,8 @@ export function renderLiFrom (page) {
             : `${encodeInnerText()}\n\n${page.url}`
     }
 
-    function getInnerTextColor () {
-        return page.url === page.title ? 'style="color: gray"' : ''
+    function getTextClass () {
+        return page.url === page.title ? 'url-only' : ''
     }
 
     function encodeInnerText () {

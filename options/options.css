@@ -21,6 +21,14 @@ small {
     color: gray;
 }
 
+#storageStatus.error {
+    color: #d93025;
+}
+
+#storageStatus.warning {
+    color: #a14200;
+}
+
 @media screen and (prefers-color-scheme: dark) {
     html {
         background-color: #292a2d;
@@ -32,5 +40,13 @@ small {
 
     label {
         color: #abb2bf;
+    }
+
+    #storageStatus.error {
+        color: #f28b82;
+    }
+
+    #storageStatus.warning {
+        color: #fdd663;
     }
 }

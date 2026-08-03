@@ -1,14 +1,14 @@
 import * as storage from '../modules/chrome/storage.mjs'
 
 $(async () => {
-    const pages = await storage.sync.sortByLatest()
+    const pages = await storage.sortSavedByLatest()
 
     // Simplify the data: timestamp (ISO format), title, URL, scroll, and video
     const simplifiedPages = pages.map(page => {
         const result = {
             timestamp: new Date(page.date).toISOString(),
-            title: page.title,
-            url: page.url
+            title:     page.title,
+            url:       page.url
         }
 
         // Only include scroll if non-default

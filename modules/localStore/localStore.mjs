@@ -8,8 +8,31 @@ db.version(1).stores({
     deletedLocalUrls: '++id, &url',
 })
 
+db.version(2).stores({
+    deletedSyncUrls:       '++id, &url',
+    deletedLocalUrls:      '++id, &url',
+    deletedLocalSavedUrls: '++id, &url',
+})
+
+db.version(3).stores({
+    deletedSyncUrls:       '++id, &url',
+    deletedLocalUrls:      '++id, &url',
+    deletedHybridUrls:     '++id, &url',
+    deletedLocalSavedUrls: null,
+})
+
+db.version(4).stores({
+    deletedSyncUrls:       '++id, &url',
+    deletedLocalUrls:      '++id, &url',
+    deletedHybridUrls:     null,
+    deletedLocalSavedUrls: null,
+})
+
 export function pushToArray (key, url) {
-    db[key].add({ url })
+    const table = key === 'deletedHybridUrls'
+        ? db.deletedSyncUrls
+        : db[key]
+    table.add({ url })
 }
 
 export function getArray (key) {
@@ -28,7 +51,9 @@ export async function popArray (key) {
     return url
 }
 
-export function clear () {
-    db.deletedSyncUrls.clear()
-    db.deletedLocalUrls.clear()
+export async function clear () {
+    await Promise.all([
+        db.deletedSyncUrls.clear(),
+        db.deletedLocalUrls.clear(),
+    ])
 }

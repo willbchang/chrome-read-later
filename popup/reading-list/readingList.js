@@ -24,11 +24,14 @@ function resetEventListeners () {
 async function initDomFromStorage () {
     const pages = window.isHistory
         ? await storage.local.sortByLatest()
-        : await storage.sync.sortByLatest()
+        : await storage.sortSavedByLatest()
     const oldReadingItemsLength = readingList.children().length
 
     pages.filter(page => page.url)
-        .map(page => readingList.append(generator.renderLiFrom(page)))
+        .map(page => readingList.append(generator.renderLiFrom(page, {
+            isLocalOverflow: !window.isHistory
+                && window.localOverflowUrls?.has(page.url),
+        })))
 
     // This way improve the UX, readingList.empty() will flash the screen.
     readingList.children().slice(0, oldReadingItemsLength).remove()

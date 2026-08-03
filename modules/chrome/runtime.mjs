@@ -27,6 +27,10 @@ export function onInstalled (callback) {
     chrome.runtime.onInstalled.addListener(callback)
 }
 
+export function onStartup (callback) {
+    chrome.runtime.onStartup.addListener(callback)
+}
+
 export function onInstall (callback) {
     onInstalled(details => {
         if (details.reason === 'install') callback()

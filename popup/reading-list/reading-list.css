@@ -26,6 +26,14 @@
     cursor: default;
 }
 
+#reading-list a.url-only {
+    color: gray;
+}
+
+#reading-list li.local-overflow a {
+    color: #a14200;
+}
+
 #reading-list img {
     margin-right: 8px;
     padding: 1px;
@@ -56,6 +64,10 @@
 
     #reading-list a {
         color: #abb2bf;
+    }
+
+    #reading-list li.local-overflow a {
+        color: #fdd663;
     }
 
     #reading-list .scroll {
