@@ -1,4 +1,7 @@
 import * as storage from '../modules/chrome/storage.mjs'
+import { setupTooltips } from '../modules/tooltip.mjs'
+
+setupTooltips()
 
 $(async () => {
     const pages = await storage.sortSavedByLatest()

@@ -1,3 +1,4 @@
+@import "../modules/styles/tooltip.css";
 @import "header/header.css";
 @import "reading-list/reading-list.css";
 @import "status-bar/status-bar.css";

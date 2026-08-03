@@ -14,22 +14,27 @@ export function setup () {
 
 function init () {
     $('#status-bar').append(`
-     <li id="count" title="Row Number: Total Count">
+     <li id="count" tabindex="0" aria-label="Reading list count">
         <span id="row">0</span>:<span id="total">0</span>
      </li>
-     <li title="Reading List History">
+     <li tabindex="0" data-tooltip="Reading list history"
+         aria-label="Reading list history">
         <img id="history" src="../../icons/history.svg">
      </li>
-     <li title="Export">
+     <li tabindex="0" data-tooltip="Export reading list"
+         aria-label="Export reading list">
         <img id="export" src="../../icons/export.svg">
      </li>
-     <li title="Import">
+     <li tabindex="0" data-tooltip="Import reading list"
+         aria-label="Import reading list">
         <img id="import" src="../../icons/import.svg">
      </li>
-     <li title="Click to open option page">
+     <li tabindex="0" data-tooltip="Options"
+         aria-label="Options">
         <img id="options" src="../../icons/options.svg">
      </li>
-     <li title="Have any question? Click to get document and send feedback">
+     <li tabindex="0"
+         data-tooltip="Help and feedback" aria-label="Help and feedback">
         <img id="question" src="../../icons/question.svg"> 
      </li>
   `)

@@ -95,11 +95,32 @@ export const scrollTo = (li) => {
 export const updateTotalNumber = () => {
     const ul = visibleLis()
     $('#total').text(ul.length)
+    updateCountTooltip()
 }
 
 export const updateRowNumber = () => {
     const rowNumber = visibleLis().index(activeLi()) + 1
     $('#row').text(rowNumber)
+    updateCountTooltip()
+}
+
+const updateCountTooltip = () => {
+    const items = visibleLis()
+    const row = items.index(activeLi()) + 1
+    const total = items.length
+    const current = `${row}:${total}`
+    const count = $('#count')
+
+    if (window.isHistory) {
+        const text = `${current} · reading list history`
+        count.attr({ 'aria-label': text, 'data-tooltip': text })
+        return
+    }
+
+    const local = items.filter('.local-overflow').length
+    const synced = total - local
+    const text = `${current} (${synced} synced + ${local} local)`
+    count.attr({ 'aria-label': text, 'data-tooltip': text })
 }
 
 const moveToPreviousOrNext = li => {
