@@ -2,7 +2,7 @@
 // https://developer.chrome.com/extensions/storage
 
 const LOCAL_SAVED_PREFIX = 'saved:'
-export const HISTORY_ITEM_LIMIT = 10000
+export const ARCHIVE_ITEM_LIMIT = 10000
 const DAY_IN_MILLISECONDS = 24 * 60 * 60 * 1000
 const SYNC_RETRY_DELAY = 60000
 let rebalancePromise
@@ -191,7 +191,6 @@ class SessionStorage extends Storage {
 
     async initSessionKeys () {
         await this.set({ deletedSyncUrls: [] })
-        await this.set({ deletedLocalUrls: [] })
     }
 }
 
@@ -203,27 +202,42 @@ export const session = new SessionStorage()
 export async function getOptions () {
     const { options: localOptions } = await local.get('options')
     const { options: syncOptions } = await sync.get('options')
+    const legacyItemPopover = localOptions?.itemPopover
+        ?? syncOptions?.itemPopover
+    const legacyHistoryMode = localOptions?.historyMode
+        ?? syncOptions?.historyMode
+    const legacyHistoryRetentionDays = localOptions?.historyRetentionDays
+        ?? syncOptions?.historyRetentionDays
     const options = {
         ...localOptions,
         ...syncOptions,
-        itemPopover: localOptions?.itemPopover
-            ?? syncOptions?.itemPopover ?? true,
-        historyMode: localOptions?.historyMode
-            ?? syncOptions?.historyMode ?? true,
-        historyRetentionDays: localOptions?.historyRetentionDays
-            ?? syncOptions?.historyRetentionDays ?? 0,
+        itemHoverMode: localOptions?.itemHoverMode
+            ?? syncOptions?.itemHoverMode
+            ?? (legacyItemPopover === false ? 'never' : 'details'),
+        selectedItemIconMode: localOptions?.selectedItemIconMode
+            ?? syncOptions?.selectedItemIconMode
+            ?? 'always',
+        archiveMode: localOptions?.archiveMode
+            ?? syncOptions?.archiveMode
+            ?? legacyHistoryMode ?? true,
+        archiveRetentionDays: localOptions?.archiveRetentionDays
+            ?? syncOptions?.archiveRetentionDays
+            ?? legacyHistoryRetentionDays ?? 0,
         hybrid:      localOptions?.hybrid ?? localOptions?.localOnly ?? false,
     }
     delete options.localOnly
+    delete options.itemPopover
+    delete options.historyMode
+    delete options.historyRetentionDays
     return options
 }
 
 export async function setOptions (options) {
     const previousOptions = await getOptions()
     const nextOptions = { ...previousOptions, ...options }
-    nextOptions.historyRetentionDays = Math.max(
+    nextOptions.archiveRetentionDays = Math.max(
         0,
-        Number(nextOptions.historyRetentionDays) || 0
+        Number(nextOptions.archiveRetentionDays) || 0
     )
     let modeError
 
@@ -238,13 +252,17 @@ export async function setOptions (options) {
 
     const savedOptions = { ...nextOptions, isOptions: true }
     delete savedOptions.localOnly
+    delete savedOptions.itemPopover
+    delete savedOptions.historyMode
+    delete savedOptions.historyRetentionDays
     await local.set({ options: savedOptions })
 
     const syncOptions = { ...savedOptions }
     delete syncOptions.hybrid
-    delete syncOptions.itemPopover
-    delete syncOptions.historyMode
-    delete syncOptions.historyRetentionDays
+    delete syncOptions.itemHoverMode
+    delete syncOptions.selectedItemIconMode
+    delete syncOptions.archiveMode
+    delete syncOptions.archiveRetentionDays
     let syncError
 
     try {
@@ -254,9 +272,9 @@ export async function setOptions (options) {
         console.warn('Read Later: options saved locally only.', error)
     }
 
-    if (savedOptions.historyMode) {
-        await cleanupHistory({
-            retentionDays: savedOptions.historyRetentionDays,
+    if (savedOptions.archiveMode) {
+        await cleanupArchive({
+            retentionDays: savedOptions.archiveRetentionDays,
         })
     }
 
@@ -292,8 +310,8 @@ export async function getSavedPosition (url) {
 
 export async function setSavedPage (page) {
     const options = await getOptions()
-    if (options.historyMode) {
-        await setHistoryPage(page, options.historyRetentionDays)
+    if (options.archiveMode) {
+        await setArchivePage(page, options.archiveRetentionDays)
     }
 
     if (options.hybrid && !canRetrySync()) {
@@ -328,20 +346,20 @@ export async function setSavedPage (page) {
     }
 }
 
-async function setHistoryPage (page, retentionDays) {
+async function setArchivePage (page, retentionDays) {
     const existingPage = await local.get(page.url)
-    const limitBeforeSave = HISTORY_ITEM_LIMIT - (existingPage[page.url] ? 0 : 1)
-    await cleanupHistory({ limit: limitBeforeSave, retentionDays })
+    const limitBeforeSave = ARCHIVE_ITEM_LIMIT - (existingPage[page.url] ? 0 : 1)
+    await cleanupArchive({ limit: limitBeforeSave, retentionDays })
     await local.set(page)
 }
 
-export async function cleanupHistory ({
-    limit = HISTORY_ITEM_LIMIT,
+export async function cleanupArchive ({
+    limit = ARCHIVE_ITEM_LIMIT,
     retentionDays,
     now = Date.now(),
 } = {}) {
     if (retentionDays === undefined) {
-        retentionDays = (await getOptions()).historyRetentionDays
+        retentionDays = (await getOptions()).archiveRetentionDays
     }
 
     const cutoff = retentionDays > 0

@@ -117,78 +117,118 @@ beforeEach(async () => {
 })
 
 describe('hybrid reading list storage', () => {
-    test('enables item popovers and history by default', async () => {
+    test('shows item details and enables the archive by default', async () => {
         const options = await storage.getOptions()
 
-        expect(options.itemPopover).toBe(true)
-        expect(options.historyMode).toBe(true)
-        expect(options.historyRetentionDays).toBe(0)
+        expect(options.itemHoverMode).toBe('details')
+        expect(options.selectedItemIconMode).toBe('always')
+        expect(options.archiveMode).toBe(true)
+        expect(options.archiveRetentionDays).toBe(0)
     })
 
-    test('does not record new history when history mode is disabled', async () => {
-        await storage.setOptions({ historyMode: false })
+    test('migrates the disabled item popover to no hover behavior', async () => {
+        await storage.local.set({
+            options: {
+                itemPopover: false,
+                isOptions:   true,
+            },
+        })
 
-        await storage.setSavedPage(page('https://no-history.example', 1))
+        const options = await storage.getOptions()
+
+        expect(options.itemHoverMode).toBe('never')
+        expect(options.itemPopover).toBeUndefined()
+    })
+
+    test('reads legacy history settings as archive settings', async () => {
+        await storage.local.set({
+            options: {
+                historyMode:          false,
+                historyRetentionDays: 30,
+                isOptions:            true,
+            },
+        })
+
+        const options = await storage.getOptions()
+
+        expect(options.archiveMode).toBe(false)
+        expect(options.archiveRetentionDays).toBe(30)
+        expect(options.historyMode).toBeUndefined()
+        expect(options.historyRetentionDays).toBeUndefined()
+
+        await storage.setOptions({ archiveMode: true })
+        const savedOptions = (await storage.local.get('options')).options
+
+        expect(savedOptions.archiveMode).toBe(true)
+        expect(savedOptions.archiveRetentionDays).toBe(30)
+        expect(savedOptions.historyMode).toBeUndefined()
+        expect(savedOptions.historyRetentionDays).toBeUndefined()
+    })
+
+    test('does not archive new items when archive mode is disabled', async () => {
+        await storage.setOptions({ archiveMode: false })
+
+        await storage.setSavedPage(page('https://no-archive.example', 1))
 
         expect(await storage.sync.sortByLatest()).toHaveLength(1)
         expect(await storage.local.sortByLatest()).toHaveLength(0)
     })
 
-    test('keeps only the latest history items', async () => {
-        const historyPages = Object.fromEntries(
-            Array.from({ length: storage.HISTORY_ITEM_LIMIT }, (_, index) => {
-                const savedPage = page(`https://history-${index}.example`, index)
+    test('keeps only the latest archived items', async () => {
+        const archivePages = Object.fromEntries(
+            Array.from({ length: storage.ARCHIVE_ITEM_LIMIT }, (_, index) => {
+                const savedPage = page(`https://archive-${index}.example`, index)
                 return [savedPage.url, savedPage]
             })
         )
-        await storage.local.set(historyPages)
+        await storage.local.set(archivePages)
 
         await storage.setSavedPage(page(
-            'https://new-history.example',
-            storage.HISTORY_ITEM_LIMIT + 1
+            'https://new-archive.example',
+            storage.ARCHIVE_ITEM_LIMIT + 1
         ))
 
-        const history = await storage.local.sortByLatest()
-        expect(history).toHaveLength(storage.HISTORY_ITEM_LIMIT)
-        expect(history[0].url).toBe('https://new-history.example')
+        const archive = await storage.local.sortByLatest()
+        expect(archive).toHaveLength(storage.ARCHIVE_ITEM_LIMIT)
+        expect(archive[0].url).toBe('https://new-archive.example')
         expect(
-            history.some(item => item.url === 'https://history-0.example')
+            archive.some(item => item.url === 'https://archive-0.example')
         ).toBe(false)
     })
 
-    test('updates existing history without removing another item', async () => {
-        const historyPages = Object.fromEntries(
-            Array.from({ length: storage.HISTORY_ITEM_LIMIT }, (_, index) => {
-                const savedPage = page(`https://history-${index}.example`, index)
+    test('updates an archived item without removing another item', async () => {
+        const archivePages = Object.fromEntries(
+            Array.from({ length: storage.ARCHIVE_ITEM_LIMIT }, (_, index) => {
+                const savedPage = page(`https://archive-${index}.example`, index)
                 return [savedPage.url, savedPage]
             })
         )
-        await storage.local.set(historyPages)
+        await storage.local.set(archivePages)
 
         await storage.setSavedPage(page(
-            'https://history-0.example',
-            storage.HISTORY_ITEM_LIMIT + 1
+            'https://archive-0.example',
+            storage.ARCHIVE_ITEM_LIMIT + 1
         ))
 
-        const history = await storage.local.sortByLatest()
-        expect(history).toHaveLength(storage.HISTORY_ITEM_LIMIT)
-        expect(history[0].url).toBe('https://history-0.example')
+        const archive = await storage.local.sortByLatest()
+        expect(archive).toHaveLength(storage.ARCHIVE_ITEM_LIMIT)
+        expect(archive[0].url).toBe('https://archive-0.example')
     })
 
-    test('cleans up excess history without removing local overflow', async () => {
+    test('cleans up excess archive items without removing local overflow', async () => {
         const pages = Object.fromEntries(
-            Array.from({ length: storage.HISTORY_ITEM_LIMIT + 1 }, (_, index) => {
-                const savedPage = page(`https://history-${index}.example`, index)
+            Array.from({ length: storage.ARCHIVE_ITEM_LIMIT + 1 }, (_, index) => {
+                const savedPage = page(`https://archive-${index}.example`, index)
                 return [savedPage.url, savedPage]
             })
         )
         await storage.local.set(pages)
         await storage.localSaved.set(page('https://overflow.example', 1000))
 
-        expect(await storage.cleanupHistory()).toBe(1)
+        expect(await storage.cleanupArchive()).toBe(1)
 
         expect(await storage.local.sortByLatest()).toHaveLength(
-            storage.HISTORY_ITEM_LIMIT
+            storage.ARCHIVE_ITEM_LIMIT
         )
         expect(await storage.localSaved.sortByLatest()).toHaveLength(1)
     })
@@ -196,38 +236,49 @@ describe('hybrid reading list storage', () => {
     test('applies a selected time range immediately and locally', async () => {
         const now = Date.now()
         const day = 24 * 60 * 60 * 1000
-        await storage.local.set(page('https://old-history.example', now - 31 * day))
-        await storage.local.set(page('https://recent-history.example', now - 29 * day))
+        await storage.local.set(page('https://old-archive.example', now - 31 * day))
+        await storage.local.set(page('https://recent-archive.example', now - 29 * day))
 
-        await storage.setOptions({ historyRetentionDays: 30 })
+        await storage.setOptions({ archiveRetentionDays: 30 })
 
         expect((await storage.local.sortByLatest()).map(item => item.url)).toEqual([
-            'https://recent-history.example',
+            'https://recent-archive.example',
         ])
-        expect((await storage.local.get('options')).options.historyRetentionDays).toBe(30)
+        expect((await storage.local.get('options')).options.archiveRetentionDays).toBe(30)
         expect(
-            (await storage.sync.get('options')).options.historyRetentionDays
+            (await storage.sync.get('options')).options.archiveRetentionDays
         ).toBeUndefined()
     })
 
-    test('applies the time range before saving new history', async () => {
+    test('keeps the selected item icon mode local', async () => {
+        await storage.setOptions({ selectedItemIconMode: 'mixed' })
+
+        expect(
+            (await storage.local.get('options')).options.selectedItemIconMode
+        ).toBe('mixed')
+        expect(
+            (await storage.sync.get('options')).options.selectedItemIconMode
+        ).toBeUndefined()
+    })
+
+    test('applies the time range before archiving a new item', async () => {
         const day = 24 * 60 * 60 * 1000
-        await storage.setOptions({ historyRetentionDays: 7 })
+        await storage.setOptions({ archiveRetentionDays: 7 })
         await storage.local.set(page(
-            'https://old-history.example',
+            'https://old-archive.example',
             Date.now() - 8 * day
         ))
 
-        await storage.setSavedPage(page('https://new-history.example', Date.now()))
+        await storage.setSavedPage(page('https://new-archive.example', Date.now()))
 
         expect((await storage.local.sortByLatest()).map(item => item.url)).toEqual([
-            'https://new-history.example',
+            'https://new-archive.example',
         ])
     })
 
     test('shows the union of synced and local overflow items', async () => {
         await storage.sync.set(page('https://synced.example', 2))
-        await storage.local.set(page('https://history.example', 1))
+        await storage.local.set(page('https://archive.example', 1))
         await storage.localSaved.set(page('https://local.example', 3))
 
         const result = await storage.setOptions({ hybrid: true })
@@ -238,7 +289,7 @@ describe('hybrid reading list storage', () => {
             'https://synced.example',
         ])
         expect((await storage.local.sortByLatest()).map(item => item.url)).toEqual([
-            'https://history.example',
+            'https://archive.example',
         ])
     })
 

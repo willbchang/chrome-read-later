@@ -13,10 +13,10 @@ export function setup () {
 }
 
 function init () {
-    const history = window.options?.historyMode
-        ? `<li tabindex="0" data-tooltip="Reading list history"
-               aria-label="Reading list history">
-              <img id="history" src="../../icons/history.svg">
+    const archive = window.options?.archiveMode
+        ? `<li tabindex="0" data-tooltip="Open reading list archive"
+               aria-label="Open reading list archive">
+              <img id="archive" src="../../icons/archive.svg">
            </li>`
         : ''
 
@@ -24,15 +24,7 @@ function init () {
      <li id="count" tabindex="0" aria-label="Reading list count">
         <span id="row">0</span>:<span id="total">0</span>
      </li>
-     ${history}
-     <li tabindex="0" data-tooltip="Export reading list"
-         aria-label="Export reading list">
-        <img id="export" src="../../icons/export.svg">
-     </li>
-     <li tabindex="0" data-tooltip="Import reading list"
-         aria-label="Import reading list">
-        <img id="import" src="../../icons/import.svg">
-     </li>
+     ${archive}
      <li tabindex="0" data-tooltip="Options"
          aria-label="Options">
         <img id="options" src="../../icons/options.svg">

@@ -7,7 +7,6 @@ import { setupTooltips } from '../modules/tooltip.mjs'
 
 $(async () => {
     setupTooltips()
-    window.isHistory = false
     window.isHidingLi = false
     window.lastKey = ''
     const options = await storage.getOptions()

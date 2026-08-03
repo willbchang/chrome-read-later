@@ -18,7 +18,7 @@ runtime.onMessage(({ message, data }) => {
 runtime.onPopupDisconnect(action.removeDeletePages)
 runtime.onStartup(async () => {
     await Promise.all([
-        storage.cleanupHistory(),
+        storage.cleanupArchive(),
         storage.rebalanceHybridStorage(),
     ])
 })

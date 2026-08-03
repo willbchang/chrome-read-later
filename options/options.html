@@ -2,62 +2,209 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Read Later Options</title>
     <link href="options.css" rel="stylesheet">
     <script crossorigin="anonymous" src="../modules/libraries/jquery.min.js"></script>
     <script src="options.js" type="module"></script>
 </head>
 <body>
+<div class="settings-app">
+    <aside class="sidebar">
+        <a class="brand" href="#general" aria-label="Read Later options">
+            <img src="../icons/logo-orange48x48.png" alt="">
+            <span>
+                <strong>Read Later</strong>
+                <small>Options</small>
+            </span>
+        </a>
 
-<b id="features">Options</b>
-<div class="inputs">
-    <input id="itemNewTab" name="itemNewTab" type="checkbox">
-    <label for="itemNewTab">Open reading list item in <b>new tab</b> by default.
-        <small>Swap default open and <kbd>Alt</kbd> + open.</small>
-    </label>
-</div>
+        <nav class="sidebar-nav" aria-label="Options sections">
+            <a class="sidebar-link active" href="#general" aria-current="page">
+                <span>General</span>
+            </a>
+            <a class="sidebar-link" href="#archive">
+                <span>Archive</span>
+            </a>
+            <a class="sidebar-link" href="#storage">
+                <span>Storage</span>
+            </a>
+            <a class="sidebar-link" href="#import">
+                <span>Import</span>
+            </a>
+            <a class="sidebar-link" href="#export">
+                <span>Export</span>
+            </a>
+        </nav>
 
-<div class="inputs">
-    <input id="keepSavedTab" name="keepSavedTab" type="checkbox">
-    <label for="keepSavedTab">Do not close tab when saving it.
-        <small>A "done" text will temporarily show in the bottom of the icon.</small>
-    </label>
-</div>
+        <p class="sidebar-note">
+            <span class="status-dot" aria-hidden="true"></span>
+            Changes save automatically
+        </p>
+    </aside>
 
-<div class="inputs">
-    <input id="itemPopover" name="itemPopover" type="checkbox">
-    <label for="itemPopover">Show item details on hover.
-        <small>Displays the page title and URL in a popover.</small>
-    </label>
-</div>
+    <main class="content">
+        <header class="content-header">
+            <div>
+                <h1>Options</h1>
+            </div>
+            <span id="optionsStatus" class="status-text" role="status" aria-live="polite"></span>
+        </header>
 
-<div class="inputs">
-    <input id="historyMode" name="historyMode" type="checkbox">
-    <label for="historyMode">Keep reading list history.
-        <small>Keeps saved items locally for the History view.</small>
-    </label>
-</div>
+        <section id="general" class="settings-section" aria-labelledby="general-title">
+            <header class="section-heading">
+                <div>
+                    <h2 id="general-title">General</h2>
+                </div>
+            </header>
 
-<div class="inputs history-retention">
-    <label for="historyRetentionDays">Delete history older than
-        <small>At most 10,000 recent items are kept.</small>
-    </label>
-    <select id="historyRetentionDays" name="historyRetentionDays">
-        <option value="0">Never</option>
-        <option value="7">1 week</option>
-        <option value="30">1 month</option>
-        <option value="90">3 months</option>
-        <option value="180">6 months</option>
-        <option value="365">1 year</option>
-    </select>
-</div>
+            <div class="option-list">
+                <label class="option-row" for="itemNewTab">
+                    <input class="option-control" id="itemNewTab" name="itemNewTab" type="checkbox">
+                    <span>
+                        <strong>Open reading list items in a new tab</strong>
+                        <small>Hold <kbd>Alt</kbd> to open in the current tab.</small>
+                    </span>
+                </label>
 
-<div class="inputs">
-    <input id="hybrid" name="hybrid" type="checkbox">
-    <label for="hybrid">Store overflow items locally.
-        <small>Chrome Sync keeps syncing until it is full; additional items stay on this computer.</small>
-        <small id="storageStatus" role="status"></small>
-    </label>
+                <label class="option-row" for="keepSavedTab">
+                    <input class="option-control" id="keepSavedTab" name="keepSavedTab" type="checkbox">
+                    <span>
+                        <strong>Keep the tab open after saving</strong>
+                        <small>Shows “done” after saving.</small>
+                    </span>
+                </label>
+
+                <div class="select-row top-level">
+                    <label for="itemHoverMode">
+                        <strong>When hovering a reading-list item</strong>
+                        <small>Automatic keeps one-line titles still, scrolls two-line titles at 40 px/s, and shows details for titles needing three or more lines.</small>
+                    </label>
+                    <select class="option-control" id="itemHoverMode" name="itemHoverMode">
+                        <option value="mixed">Automatic by title length</option>
+                        <option value="details">Show title and URL</option>
+                        <option value="title">Scroll title in place</option>
+                        <option value="never">No hover effect</option>
+                    </select>
+                </div>
+
+                <div class="select-row top-level">
+                    <label for="selectedItemIconMode">
+                        <strong>Delete icon for selected item</strong>
+                        <small>Choose when the selected item's favicon becomes a delete button.</small>
+                    </label>
+                    <select class="option-control" id="selectedItemIconMode" name="selectedItemIconMode">
+                        <option value="always">Enabled — mouse and keyboard</option>
+                        <option value="never">Disabled — keep favicon</option>
+                        <option value="mixed">Mixed — mouse only</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section id="archive" class="settings-section" aria-labelledby="archive-title">
+            <header class="section-heading">
+                <div>
+                    <h2 id="archive-title">Archive</h2>
+                    <p>Archived items are stored on this computer.</p>
+                </div>
+            </header>
+
+            <div class="option-list">
+                <label class="option-row" for="archiveMode">
+                    <input class="option-control" id="archiveMode" name="archiveMode" type="checkbox">
+                    <span>
+                        <strong>Keep a reading list archive</strong>
+                        <small>Saved items remain available in Archive.</small>
+                    </span>
+                </label>
+
+                <div class="select-row">
+                    <label for="archiveRetentionDays">
+                        <strong>Delete archived items older than</strong>
+                        <small>Maximum 10,000 items.</small>
+                    </label>
+                    <select class="option-control" id="archiveRetentionDays" name="archiveRetentionDays">
+                        <option value="0">Never</option>
+                        <option value="7">1 week</option>
+                        <option value="30">1 month</option>
+                        <option value="90">3 months</option>
+                        <option value="180">6 months</option>
+                        <option value="365">1 year</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section id="storage" class="settings-section" aria-labelledby="storage-title">
+            <header class="section-heading">
+                <div>
+                    <h2 id="storage-title">Storage</h2>
+                    <p>Use Chrome Sync first, then local storage when it is full.</p>
+                </div>
+            </header>
+
+            <div class="option-list">
+                <label class="option-row" for="hybrid">
+                    <input class="option-control" id="hybrid" name="hybrid" type="checkbox">
+                    <span>
+                        <strong>Store overflow items locally</strong>
+                        <small>New items stay on this computer when Chrome Sync is full.</small>
+                        <small id="storageStatus" class="status-text inline-status" role="status" aria-live="polite"></small>
+                    </span>
+                </label>
+            </div>
+        </section>
+
+        <section id="import" class="settings-section" aria-labelledby="import-title">
+            <header class="section-heading">
+                <div>
+                    <h2 id="import-title">Import</h2>
+                    <p>Import JSON or JSONL. Matching URLs are updated.</p>
+                </div>
+            </header>
+
+            <div class="upload-row">
+                <label for="fileInput" class="button secondary-button">
+                    Choose file
+                    <input type="file" id="fileInput" accept=".json,.jsonl,.ndjson,.txt">
+                </label>
+                <span id="fileName" class="muted-text">No file selected</span>
+            </div>
+
+            <label class="field-label" for="jsonInput">JSON or JSONL</label>
+            <textarea id="jsonInput" spellcheck="false" placeholder="[{&quot;title&quot;:&quot;Example&quot;,&quot;url&quot;:&quot;https://example.com/&quot;}]"></textarea>
+
+            <div class="action-row">
+                <button id="importButton" type="button" disabled>Import reading list</button>
+                <span id="importStatus" class="status-text" role="status" aria-live="polite"></span>
+            </div>
+        </section>
+
+        <section id="export" class="settings-section" aria-labelledby="export-title">
+            <header class="section-heading export-heading">
+                <div class="section-title-group">
+                    <div>
+                        <h2 id="export-title">Export</h2>
+                        <p>Export the active reading list as JSON or JSONL.</p>
+                        <p id="exportSummary" class="section-summary">Loading reading list…</p>
+                    </div>
+                </div>
+                <div class="export-actions">
+                    <label for="exportFormat">Format</label>
+                    <select id="exportFormat">
+                        <option value="json" selected>JSON</option>
+                        <option value="jsonl">JSONL</option>
+                    </select>
+                    <button id="copy" class="secondary-button" type="button">Copy</button>
+                    <button id="download" type="button">Download JSON</button>
+                </div>
+            </header>
+
+            <pre id="json-output" tabindex="0" aria-label="Export preview"></pre>
+            <span id="exportStatus" class="status-text" role="status" aria-live="polite"></span>
+        </section>
+    </main>
 </div>
 </body>
 </html>

@@ -36,10 +36,10 @@ export async function savePage () {
     await updateStorage({ tab, position })
 }
 
-export async function openPage ({ url, currentTab, active, isHistory }) {
+export async function openPage ({ url, currentTab, active, isArchive }) {
     const tab = currentTab ? await tabs.update(url) : await tabs.create(url,
         active)
-    const position = isHistory
+    const position = isArchive
         ? await storage.local.getPosition(url)
         : await storage.getSavedPosition(url)
     const tabId = await tabs.onComplete(tab)
@@ -51,9 +51,6 @@ export async function removeDeletePages () {
     await Promise.all(
         deletedSyncUrls.map(url => storage.removeHybridSavedPage(url))
     )
-
-    const deletedLocalUrls = await localStore.getArray('deletedLocalUrls')
-    await Promise.all(deletedLocalUrls.map(url => storage.local.remove(url)))
 
     await storage.rebalanceHybridStorage()
     await localStore.clear()

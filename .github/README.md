@@ -36,14 +36,12 @@ Please rate it on [chrome web store](https://chrome.google.com/webstore/detail/f
 - **Reading Progress**(Orange %): It gets and sets the scroll position of current page.
 - **Video Progress**(Blue %): It gets and sets the current time and the playback rate of the first video.
 - **Sync in Cloud**: Sync across Chrome browsers with one google account.
-- **Local History**: Save the reading list history locally.
+- **Local Archive**: Keep an archive of reading list items locally.
 
 ### Status Bar
 - **Row Number : Total Count**
-- **History Icon**: Click to toggle(on/off) history mode.
-- **Export Icon**: Click to export reading list to JSONL text/file.
-- **Import Icon**: Click to import reading list from JSONL text/file.
-- **Options Icon**: Click to open options page.
+- **Archive Icon**: Open the full-page reading list archive.
+- **Options Icon**: Open the unified options page.
 - **Question Icon**: Click to open the documentation & feedback page.
 
 ## Usages
@@ -94,10 +92,10 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 | Move to Bottom                            | Scroll to End                              | <kbd>Command</kbd> + <kbd>↓</kbd>                | <kbd>G</kbd>                  |
 | Restore a deletion                        | \                                          | <kbd>Command</kbd> + <kbd>z</kbd>                | <kbd>u</kbd>                  |
 | Copy link address                         | `Right Click` and select copy link address | \                                                | <kbd>yy</kbd>                 |
-| On/Off history mode                       | Click History icon                         | \                                                | <kbd>H</kbd>                  |
+| Open archive                              | Click Archive icon                         | \                                                | <kbd>A</kbd>                  |
 | Open settings page        | Click Settings icon                        | \                                                | <kbd>,</kbd>                  |
 | Open documentation & feedback site        | Click Question icon                        | \                                                | <kbd>?</kbd>                  |
-| Show full title and link                  | `Hover` text                               | \                                                | \                             |
+| Run the configured item hover behavior   | `Hover` text                               | \                                                | \                             |
 
 
 ## Note
@@ -105,7 +103,7 @@ Find **Read Later** and set the shortcuts(resolve the keyboard shortcuts conflic
 - Only get/set the first HTML video's information.
 - Removing the extension will delete the reading list in the cloud, **it cannot be restored**.
 - The maximum reading list in cloud is up to 250 items, due to google's limits.
-- It may be slow if the reading list in history is near 10,000 items.
+- At most 10,000 reading list items are kept in the archive.
 
 ## Contribution
 Suggestion & PR are welcome. Please open an issue to discussion first.
