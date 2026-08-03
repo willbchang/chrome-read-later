@@ -9,25 +9,27 @@ $(async function () {
     $('#keepSavedTab').prop('checked', options?.keepSavedTab)
     $('#itemPopover').prop('checked', options.itemPopover)
     $('#historyMode').prop('checked', options.historyMode)
+    $('#historyRetentionDays').val(String(options.historyRetentionDays))
     await updateStorageControl(options)
 })
 
-$('input[type=checkbox]').on('change', async function () {
-    const $inputs = $('input[type=checkbox]')
+$('input[type=checkbox], select').on('change', async function () {
+    const $controls = $('input[type=checkbox], select')
     const $storageStatus = $('#storageStatus')
     const options = {
-        itemNewTab:   $('#itemNewTab').prop('checked'),
-        keepSavedTab: $('#keepSavedTab').prop('checked'),
-        itemPopover:  $('#itemPopover').prop('checked'),
-        historyMode:  $('#historyMode').prop('checked'),
-        hybrid:       $('#hybrid').prop('checked'),
-        isOptions:    true,
+        itemNewTab:           $('#itemNewTab').prop('checked'),
+        keepSavedTab:         $('#keepSavedTab').prop('checked'),
+        itemPopover:          $('#itemPopover').prop('checked'),
+        historyMode:          $('#historyMode').prop('checked'),
+        historyRetentionDays: Number($('#historyRetentionDays').val()),
+        hybrid:               $('#hybrid').prop('checked'),
+        isOptions:            true,
     }
     const previousHybrid = this.id === 'hybrid'
         ? !options.hybrid
         : options.hybrid
 
-    $inputs.prop('disabled', true)
+    $controls.prop('disabled', true)
     $storageStatus.removeClass('error warning').text('Checking storage...')
 
     try {
@@ -51,10 +53,14 @@ $('input[type=checkbox]').on('change', async function () {
         $('#hybrid').prop('checked', previousHybrid)
         $storageStatus.addClass('error').text('Could not save these options.')
     } finally {
-        $inputs.prop('disabled', false)
+        $controls.prop('disabled', false)
         $('#hybrid').prop(
             'disabled',
             $('#hybrid').data('syncUnavailable') === true
+        )
+        $('#historyRetentionDays').prop(
+            'disabled',
+            !$('#historyMode').prop('checked')
         )
     }
 })
@@ -62,6 +68,11 @@ $('input[type=checkbox]').on('change', async function () {
 async function updateStorageControl (options, syncUnavailable = false) {
     const $hybrid = $('#hybrid')
     const $storageStatus = $('#storageStatus')
+
+    $('#historyMode').prop('checked', options.historyMode)
+    $('#historyRetentionDays')
+        .val(String(options.historyRetentionDays))
+        .prop('disabled', !options.historyMode)
 
     if (options.hybrid && !syncUnavailable) {
         try {

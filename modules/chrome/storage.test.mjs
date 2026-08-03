@@ -122,6 +122,7 @@ describe('hybrid reading list storage', () => {
 
         expect(options.itemPopover).toBe(true)
         expect(options.historyMode).toBe(true)
+        expect(options.historyRetentionDays).toBe(0)
     })
 
     test('does not record new history when history mode is disabled', async () => {
@@ -131,6 +132,97 @@ describe('hybrid reading list storage', () => {
 
         expect(await storage.sync.sortByLatest()).toHaveLength(1)
         expect(await storage.local.sortByLatest()).toHaveLength(0)
+    })
+
+    test('keeps only the latest history items', async () => {
+        const historyPages = Object.fromEntries(
+            Array.from({ length: storage.HISTORY_ITEM_LIMIT }, (_, index) => {
+                const savedPage = page(`https://history-${index}.example`, index)
+                return [savedPage.url, savedPage]
+            })
+        )
+        await storage.local.set(historyPages)
+
+        await storage.setSavedPage(page(
+            'https://new-history.example',
+            storage.HISTORY_ITEM_LIMIT + 1
+        ))
+
+        const history = await storage.local.sortByLatest()
+        expect(history).toHaveLength(storage.HISTORY_ITEM_LIMIT)
+        expect(history[0].url).toBe('https://new-history.example')
+        expect(
+            history.some(item => item.url === 'https://history-0.example')
+        ).toBe(false)
+    })
+
+    test('updates existing history without removing another item', async () => {
+        const historyPages = Object.fromEntries(
+            Array.from({ length: storage.HISTORY_ITEM_LIMIT }, (_, index) => {
+                const savedPage = page(`https://history-${index}.example`, index)
+                return [savedPage.url, savedPage]
+            })
+        )
+        await storage.local.set(historyPages)
+
+        await storage.setSavedPage(page(
+            'https://history-0.example',
+            storage.HISTORY_ITEM_LIMIT + 1
+        ))
+
+        const history = await storage.local.sortByLatest()
+        expect(history).toHaveLength(storage.HISTORY_ITEM_LIMIT)
+        expect(history[0].url).toBe('https://history-0.example')
+    })
+
+    test('cleans up excess history without removing local overflow', async () => {
+        const pages = Object.fromEntries(
+            Array.from({ length: storage.HISTORY_ITEM_LIMIT + 1 }, (_, index) => {
+                const savedPage = page(`https://history-${index}.example`, index)
+                return [savedPage.url, savedPage]
+            })
+        )
+        await storage.local.set(pages)
+        await storage.localSaved.set(page('https://overflow.example', 1000))
+
+        expect(await storage.cleanupHistory()).toBe(1)
+
+        expect(await storage.local.sortByLatest()).toHaveLength(
+            storage.HISTORY_ITEM_LIMIT
+        )
+        expect(await storage.localSaved.sortByLatest()).toHaveLength(1)
+    })
+
+    test('applies a selected time range immediately and locally', async () => {
+        const now = Date.now()
+        const day = 24 * 60 * 60 * 1000
+        await storage.local.set(page('https://old-history.example', now - 31 * day))
+        await storage.local.set(page('https://recent-history.example', now - 29 * day))
+
+        await storage.setOptions({ historyRetentionDays: 30 })
+
+        expect((await storage.local.sortByLatest()).map(item => item.url)).toEqual([
+            'https://recent-history.example',
+        ])
+        expect((await storage.local.get('options')).options.historyRetentionDays).toBe(30)
+        expect(
+            (await storage.sync.get('options')).options.historyRetentionDays
+        ).toBeUndefined()
+    })
+
+    test('applies the time range before saving new history', async () => {
+        const day = 24 * 60 * 60 * 1000
+        await storage.setOptions({ historyRetentionDays: 7 })
+        await storage.local.set(page(
+            'https://old-history.example',
+            Date.now() - 8 * day
+        ))
+
+        await storage.setSavedPage(page('https://new-history.example', Date.now()))
+
+        expect((await storage.local.sortByLatest()).map(item => item.url)).toEqual([
+            'https://new-history.example',
+        ])
     })
 
     test('shows the union of synced and local overflow items', async () => {

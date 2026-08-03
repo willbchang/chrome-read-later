@@ -16,7 +16,12 @@ runtime.onMessage(({ message, data }) => {
     func && func()
 })
 runtime.onPopupDisconnect(action.removeDeletePages)
-runtime.onStartup(storage.rebalanceHybridStorage)
+runtime.onStartup(async () => {
+    await Promise.all([
+        storage.cleanupHistory(),
+        storage.rebalanceHybridStorage(),
+    ])
+})
 storage.onSyncChanged(storage.rebalanceHybridStorage)
 
 contextMenus.onClicked(async (selection, tab) => {

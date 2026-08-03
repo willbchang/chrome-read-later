@@ -18,6 +18,16 @@ input {
     margin-right: 10px;
 }
 
+.history-retention {
+    align-items: center;
+    gap: 10px;
+    margin-left: 34px;
+}
+
+.history-retention select {
+    font: inherit;
+}
+
 small {
     display: block;
     color: gray;
