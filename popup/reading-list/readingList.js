@@ -31,6 +31,7 @@ async function initDomFromStorage () {
         .map(page => readingList.append(generator.renderLiFrom(page, {
             isLocalOverflow: !window.isHistory
                 && window.localOverflowUrls?.has(page.url),
+            showPopover: window.options?.itemPopover,
         })))
 
     // This way improve the UX, readingList.empty() will flash the screen.

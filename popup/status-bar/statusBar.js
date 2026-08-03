@@ -13,14 +13,18 @@ export function setup () {
 }
 
 function init () {
+    const history = window.options?.historyMode
+        ? `<li tabindex="0" data-tooltip="Reading list history"
+               aria-label="Reading list history">
+              <img id="history" src="../../icons/history.svg">
+           </li>`
+        : ''
+
     $('#status-bar').append(`
      <li id="count" tabindex="0" aria-label="Reading list count">
         <span id="row">0</span>:<span id="total">0</span>
      </li>
-     <li tabindex="0" data-tooltip="Reading list history"
-         aria-label="Reading list history">
-        <img id="history" src="../../icons/history.svg">
-     </li>
+     ${history}
      <li tabindex="0" data-tooltip="Export reading list"
          aria-label="Export reading list">
         <img id="export" src="../../icons/export.svg">

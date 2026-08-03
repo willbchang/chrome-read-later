@@ -132,6 +132,7 @@ const moveToPreviousOrNext = li => {
 }
 
 export async function history () {
+    if (!window.options?.historyMode) return
     const history = $('#history')
     window.isHistory = !window.isHistory
     window.lastKey = ''

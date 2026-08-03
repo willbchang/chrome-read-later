@@ -204,7 +204,11 @@ export async function getOptions () {
     const options = {
         ...localOptions,
         ...syncOptions,
-        hybrid: localOptions?.hybrid ?? localOptions?.localOnly ?? false,
+        itemPopover: localOptions?.itemPopover
+            ?? syncOptions?.itemPopover ?? true,
+        historyMode: localOptions?.historyMode
+            ?? syncOptions?.historyMode ?? true,
+        hybrid:      localOptions?.hybrid ?? localOptions?.localOnly ?? false,
     }
     delete options.localOnly
     return options
@@ -212,7 +216,7 @@ export async function getOptions () {
 
 export async function setOptions (options) {
     const previousOptions = await getOptions()
-    const nextOptions = { ...options }
+    const nextOptions = { ...previousOptions, ...options }
     let modeError
 
     if (nextOptions.hybrid !== previousOptions.hybrid) {
@@ -230,6 +234,8 @@ export async function setOptions (options) {
 
     const syncOptions = { ...savedOptions }
     delete syncOptions.hybrid
+    delete syncOptions.itemPopover
+    delete syncOptions.historyMode
     let syncError
 
     try {
@@ -270,9 +276,9 @@ export async function getSavedPosition (url) {
 }
 
 export async function setSavedPage (page) {
-    await local.set(page)
-
     const options = await getOptions()
+    if (options.historyMode) await local.set(page)
+
     if (options.hybrid && !canRetrySync()) {
         await localSaved.set(page)
         return { syncSaved: false, hybrid: true, deferred: true }

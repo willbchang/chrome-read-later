@@ -7,6 +7,8 @@ $(async function () {
     const options = await storage.getOptions()
     $('#itemNewTab').prop('checked', options?.itemNewTab)
     $('#keepSavedTab').prop('checked', options?.keepSavedTab)
+    $('#itemPopover').prop('checked', options.itemPopover)
+    $('#historyMode').prop('checked', options.historyMode)
     await updateStorageControl(options)
 })
 
@@ -16,6 +18,8 @@ $('input[type=checkbox]').on('change', async function () {
     const options = {
         itemNewTab:   $('#itemNewTab').prop('checked'),
         keepSavedTab: $('#keepSavedTab').prop('checked'),
+        itemPopover:  $('#itemPopover').prop('checked'),
+        historyMode:  $('#historyMode').prop('checked'),
         hybrid:       $('#hybrid').prop('checked'),
         isOptions:    true,
     }

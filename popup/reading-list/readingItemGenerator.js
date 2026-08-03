@@ -1,18 +1,22 @@
-export function renderLiFrom (page, { isLocalOverflow = false } = {}) {
+export function renderLiFrom (page, {
+    isLocalOverflow = false,
+    showPopover = true,
+} = {}) {
     return `
       <li id=${page.date}${isLocalOverflow ? ' class="local-overflow"' : ''}>
         <img src="${page.favIconUrl}" alt="">
-        <a href="${page.url}" data-tooltip="${getTooltipAttribute()}" class="${getTextClass()}" tabindex="-1">${encodeInnerText()}</a>
+        <a href="${page.url}"${getTooltipAttribute()} class="${getTextClass()}" tabindex="-1">${encodeInnerText()}</a>
         ${getVideoPercent() || getScrollPercent()}
       </li>
     `
 
     function getTooltipAttribute () {
+        if (!showPopover) return ''
         const text = page.title === page.url
             ? page.url
             : `${page.title}\n\n${page.url}`
         // eslint-disable-next-line no-undef
-        return he.encode(text)
+        return ` data-tooltip="${he.encode(text)}"`
     }
 
     function getTextClass () {
