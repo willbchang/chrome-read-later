@@ -1,10 +1,12 @@
+import { getSiteFaviconUrl } from '../../modules/favicon.mjs'
+
 export function renderLiFrom (page, {
     isLocalOverflow = false,
     showPopover = true,
 } = {}) {
     return `
       <li id=${page.date}${isLocalOverflow ? ' class="local-overflow"' : ''}>
-        <img src="${page.favIconUrl}" alt="">
+        <img src="${getSiteFaviconUrl(page.url) || page.favIconUrl}" alt="">
         <a href="${page.url}"${getTooltipAttribute()} class="${getTextClass()}" tabindex="-1">${encodeInnerText()}</a>
         ${getVideoPercent() || getScrollPercent()}
       </li>

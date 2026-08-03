@@ -2,6 +2,7 @@ import * as data from './pageInfo.js'
 import * as storage from '../modules/chrome/storage.mjs'
 import * as tabs from '../modules/chrome/tabs.mjs'
 import * as localStore from '../modules/localStore/localStore.mjs'
+import { getSiteFaviconUrl } from '../modules/favicon.mjs'
 
 export async function saveSelection (tab, selection) {
     await updateStorage({ tab, selection })
@@ -63,7 +64,8 @@ export async function migrateStorage () {
     await upgradeStorage('local')
 
     function upgradeFaviconUrl (url) {
-        return `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(url)}&size=32`
+        return getSiteFaviconUrl(url)
+            || `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(url)}&size=32`
     }
 
     async function upgradeStorage (key) {

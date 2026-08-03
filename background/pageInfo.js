@@ -1,5 +1,6 @@
 import '../modules/prototypes/Object.mjs'
 import '../modules/prototypes/String.mjs'
+import { getSiteFaviconUrl } from '../modules/favicon.mjs'
 import * as request from './request.js'
 
 class PageInfo {
@@ -21,7 +22,8 @@ class PageInfo {
     }
 
     get favIconUrl () {
-        return `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(this.url)}&size=32`
+        return getSiteFaviconUrl(this.url)
+            || `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(this.url)}&size=32`
     }
 
     get date () {

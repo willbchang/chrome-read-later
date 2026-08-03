@@ -1,4 +1,5 @@
 import * as storage from '../modules/chrome/storage.mjs'
+import { getSiteFaviconUrl } from '../modules/favicon.mjs'
 import { setupTooltips } from '../modules/tooltip.mjs'
 import { parseReadingList } from './readingListFormat.mjs'
 
@@ -80,7 +81,8 @@ async function importItems(content) {
             const page = {
                 url:        imported.url,
                 title:      imported.title || imported.url,
-                favIconUrl: `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(imported.url)}&size=32`,
+                favIconUrl: getSiteFaviconUrl(imported.url)
+                    || `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(imported.url)}&size=32`,
                 date:       imported.timestamp ? new Date(imported.timestamp).getTime() : Date.now(),
                 scroll:     imported.scroll || { top: 0, height: 0, percent: '0%' },
                 video:      imported.video || { currentTime: 0, playbackRate: 1, percent: '0%' }
