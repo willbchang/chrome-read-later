@@ -2,7 +2,7 @@
 // https://developer.chrome.com/extensions/storage
 
 const LOCAL_SAVED_PREFIX = 'saved:'
-export const HISTORY_ITEM_LIMIT = 5000
+export const HISTORY_ITEM_LIMIT = 10000
 const DAY_IN_MILLISECONDS = 24 * 60 * 60 * 1000
 const SYNC_RETRY_DELAY = 60000
 let rebalancePromise
