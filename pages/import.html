@@ -16,13 +16,13 @@
 
 <div class="upload-section">
     <label for="fileInput" class="file-label">
-        <span class="file-label-text">Load JSONL file...</span>
-        <input type="file" id="fileInput" accept=".jsonl,.txt,.json">
+        <span class="file-label-text">Load JSON or JSONL file...</span>
+        <input type="file" id="fileInput" accept=".json,.jsonl,.ndjson,.txt">
     </label>
     <span id="fileName"></span>
 </div>
 
-<textarea id="jsonlInput" placeholder="{&quot;title&quot;:&quot;Google&quot;,&quot;url&quot;:&quot;https://www.google.com/&quot;}"></textarea>
+<textarea id="jsonInput" placeholder="[{&quot;title&quot;:&quot;Google&quot;,&quot;url&quot;:&quot;https://www.google.com/&quot;}]"></textarea>
 
 <div class="actions">
     <button id="importButton" disabled>Import Reading List</button>

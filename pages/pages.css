@@ -35,6 +35,20 @@ h1 {
     gap: 10px;
 }
 
+.format-label {
+    color: #5f6368;
+    font-size: 13px;
+}
+
+select {
+    padding: 9px 28px 9px 10px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #3c4043;
+    font-size: 14px;
+}
+
 #importStatus {
     font-size: 14px;
 }
@@ -117,7 +131,7 @@ button:disabled {
     font-size: 14px;
 }
 
-#jsonlInput {
+#jsonInput {
     width: 100%;
     height: 300px;
     margin-bottom: 20px;
@@ -156,6 +170,16 @@ button:disabled {
         color: #5f6368;
     }
 
+    .format-label {
+        color: #9aa0a6;
+    }
+
+    select {
+        border-color: #5f6368;
+        background-color: #303134;
+        color: #e8eaed;
+    }
+
     #json-output {
         background-color: #303134;
         color: #e8eaed;
@@ -175,7 +199,7 @@ button:disabled {
         color: #9aa0a6;
     }
 
-    #jsonlInput {
+    #jsonInput {
         background-color: #303134;
         color: #e8eaed;
         border-color: #5f6368;

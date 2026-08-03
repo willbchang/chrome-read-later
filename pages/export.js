@@ -1,5 +1,6 @@
 import * as storage from '../modules/chrome/storage.mjs'
 import { setupTooltips } from '../modules/tooltip.mjs'
+import { serializeReadingList } from './readingListFormat.mjs'
 
 setupTooltips()
 
@@ -33,13 +34,25 @@ $(async () => {
         return result
     })
 
-    // Export as JSONL (JSON Lines) - one object per line
-    const jsonl = simplifiedPages.map(page => JSON.stringify(page)).join('\n')
-    $('#json-output').text(jsonl)
+    const $format = $('#exportFormat')
+    const $download = $('#download')
+    const getFormat = () => $format.val()
+    const getOutput = () => serializeReadingList(
+        simplifiedPages,
+        getFormat()
+    )
+    const renderOutput = () => {
+        const format = getFormat()
+        $('#json-output').text(getOutput())
+        $download.text(`Download ${format.toUpperCase()}`)
+    }
+
+    renderOutput()
+    $format.on('change', renderOutput)
 
     // Copy to clipboard handler
     $('#copy').on('click', async () => {
-        await navigator.clipboard.writeText(jsonl)
+        await navigator.clipboard.writeText(getOutput())
         const $btn = $('#copy')
         const originalText = $btn.text()
         $btn.text('Copied!')
@@ -48,11 +61,15 @@ $(async () => {
 
     // Download handler
     $('#download').on('click', () => {
-        const blob = new Blob([jsonl], { type: 'application/x-ndjson' })
+        const format = getFormat()
+        const mimeType = format === 'json'
+            ? 'application/json'
+            : 'application/x-ndjson'
+        const blob = new Blob([getOutput()], { type: mimeType })
         const url = URL.createObjectURL(blob)
         const a = document.createElement('a')
         a.href = url
-        a.download = `reading-list-${new Date().toISOString().split('T')[0]}.jsonl`
+        a.download = `reading-list-${new Date().toISOString().split('T')[0]}.${format}`
         a.click()
         URL.revokeObjectURL(url)
     })

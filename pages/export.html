@@ -13,8 +13,13 @@
 <header>
     <h1>Export Reading List</h1>
     <div class="actions">
+        <label for="exportFormat" class="format-label">Format</label>
+        <select id="exportFormat">
+            <option value="json" selected>JSON</option>
+            <option value="jsonl">JSONL</option>
+        </select>
         <button id="copy">Copy to Clipboard</button>
-        <button id="download">Download JSONL</button>
+        <button id="download">Download JSON</button>
     </div>
 </header>
 <pre id="json-output"></pre>

@@ -1,10 +1,11 @@
 import * as storage from '../modules/chrome/storage.mjs'
 import { setupTooltips } from '../modules/tooltip.mjs'
+import { parseReadingList } from './readingListFormat.mjs'
 
 setupTooltips()
 
 $(async () => {
-    const $textarea = $('#jsonlInput')
+    const $textarea = $('#jsonInput')
     const $importButton = $('#importButton')
 
     // Enable/disable import button based on textarea content
@@ -58,21 +59,20 @@ $(async () => {
     })
 })
 
-async function importItems(jsonlContent) {
-    const lines = jsonlContent.split('\n')
+async function importItems(content) {
+    const entries = parseReadingList(content)
     const results = {
         success:           0,
         failed:            0,
         usedLocalFallback: false
     }
 
-    for (let i = 0; i < lines.length; i++) {
-        if (!lines[i].trim()) { continue }
-
+    for (const entry of entries) {
         try {
-            const imported = JSON.parse(lines[i])
+            if (entry.error) throw entry.error
+            const imported = entry.item
 
-            if (!imported.url || !imported.title) {
+            if (!imported?.url || !imported?.title) {
                 throw new Error('Missing required field: url or title')
             }
 
@@ -92,7 +92,12 @@ async function importItems(jsonlContent) {
 
         } catch (error) {
             results.failed++
-            console.error(`Import error on line ${1 + i}:`, error.message, '\nContent:', lines[i].substring(0, 100))
+            console.error(
+                `Import error at ${entry.location}:`,
+                error.message,
+                '\nContent:',
+                entry.source.substring(0, 100)
+            )
         }
     }
 
