@@ -1,24 +1,24 @@
 import * as runtime from '../modules/chrome/runtime.mjs'
 import * as localStore from '../modules/localStore/localStore.mjs'
-import * as readingList from './reading-list/readingList.js'
+import * as tabs from '../modules/chrome/tabs.mjs'
+import { hideTooltipWithin } from '../modules/tooltip.mjs'
+import { shouldShowDeleteIcon } from './selectionIcon.mjs'
 
 const activeLi = () => $('.active')
 const activeUrl = () => activeLi().find('a').attr('href')
 const visibleLis = () => $('#reading-list li:visible')
-const getSessionKey = () => window.isHistory
-    ? 'deletedLocalUrls'
-    : 'deletedSyncUrls'
+const getSessionKey = () => 'deletedSyncUrls'
+let lastSelectionInputType = 'initial'
 
 export const open = ({ currentTab = false, active = true }) => {
     if (window.isHidingLi) return // prevents open same instance multiple times
-    if (!window.isHistory) dele()
+    dele()
     runtime.sendMessage({
         message: 'open',
         data:    {
             url:       activeUrl(),
             currentTab,
             active,
-            isHistory: window.isHistory
         }
     })
     if (currentTab) window.close()
@@ -50,7 +50,7 @@ export const undo = () => {
         const li = $(`a[href="${url}"]`).parent().fadeIn('normal')
 
         if (li.html()) {
-            reactive(li)
+            reactive(li, 'keyboard')
             scrollTo(li)
         }
 
@@ -59,7 +59,7 @@ export const undo = () => {
     })
 }
 
-export const moveTo = direction => {
+export const moveTo = (direction, inputType = 'keyboard') => {
     const li = {
         previous: () => activeLi().prevAll(':visible').first(),
         next:     () => activeLi().nextAll(':visible').first(),
@@ -68,7 +68,7 @@ export const moveTo = direction => {
     }[direction]()
 
     if (li.html()) {
-        reactive(li)
+        reactive(li, inputType)
         scrollTo(li)
     }
 
@@ -83,10 +83,48 @@ export const copyUrl = async () => {
 export const question = () => window.open(
     'https://github.com/willbchang/chrome-read-later#readme')
 
-export const reactive = li => {
-    activeLi().removeClass('active')
-    li.addClass('active')
+export const reactive = (li, inputType = 'initial') => {
+    const previousLi = activeLi()
+    if (!previousLi.is(li)) {
+        hideTooltipWithin(previousLi[0])
+        restoreFavicon(previousLi)
+        previousLi.removeClass('active')
+        li.addClass('active')
+    }
+
+    lastSelectionInputType = inputType
+    updateSelectedIcon(li, inputType)
 }
+
+const restoreFavicon = li => {
+    const image = li.find('img')[0]
+    if (!image) return
+
+    if (image.dataset.faviconSrc) image.src = image.dataset.faviconSrc
+    delete image.dataset.deleteAction
+}
+
+const updateSelectedIcon = (li, inputType) => {
+    restoreFavicon(li)
+    if (shouldShowDeleteIcon(
+        window.options?.selectedItemIconMode ?? 'always',
+        inputType
+    )) showDeleteIcon(li)
+}
+
+const showDeleteIcon = li => {
+    const image = li.find('img')[0]
+    if (!image) return
+
+    if (!image.dataset.faviconSrc) image.dataset.faviconSrc = image.src
+    image.dataset.deleteAction = 'true'
+    image.src = isDarkMode()
+        ? '../icons/delete-white.svg'
+        : '../icons/delete-black.svg'
+}
+
+const isDarkMode = () => window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
 
 export const scrollTo = (li) => {
     li[0].scrollIntoView({ block: 'nearest' })
@@ -111,12 +149,6 @@ const updateCountTooltip = () => {
     const current = `${row}:${total}`
     const count = $('#count')
 
-    if (window.isHistory) {
-        const text = `${current} · reading list history`
-        count.attr({ 'aria-label': text, 'data-tooltip': text })
-        return
-    }
-
     const local = items.filter('.local-overflow').length
     const synced = total - local
     const text = `${current} (${synced} synced + ${local} local)`
@@ -128,34 +160,19 @@ const moveToPreviousOrNext = li => {
     //  so the current id should be larger than last li, otherwise itself
     //  is the last li.
     const isLastLi = li.attr('id') < visibleLis().last().attr('id')
-    isLastLi ? moveTo('previous') : moveTo('next')
+    isLastLi
+        ? moveTo('previous', lastSelectionInputType)
+        : moveTo('next', lastSelectionInputType)
 }
 
-export async function history () {
-    if (!window.options?.historyMode) return
-    const history = $('#history')
-    window.isHistory = !window.isHistory
-    window.lastKey = ''
-    window.port.disconnect()
-    window.port = runtime.connect()
-    await readingList.setup()
-    updateRowNumber()
-    updateTotalNumber()
-    window.isHistory
-        ? history.addClass('highlight')
-        : history.removeClass('highlight')
+export async function archive () {
+    if (!window.options?.archiveMode) return
+    const archiveUrl = chrome.runtime.getURL('archive/archive.html')
+    await tabs.create(archiveUrl, true)
+    window.close()
 }
 
 export function options () {
-    chrome.runtime.openOptionsPage()
-}
-
-export function exportList () {
-    const exportUrl = chrome.runtime.getURL('pages/export.html')
-    window.open(exportUrl)
-}
-
-export function importList () {
-    const importUrl = chrome.runtime.getURL('pages/import.html')
-    window.open(importUrl)
+    const optionsUrl = chrome.runtime.getURL('options/options.html')
+    tabs.create(optionsUrl, true)
 }

@@ -20,6 +20,7 @@ export const getKeyBinding = event => {
         u:         'u',
         y:         window.lastKey === 'y' ? 'yy' : 'y',
         p:         'p',
+        A:         'A',
         H:         'H',
         ',':       ',',
         '?':       '?',
@@ -54,7 +55,8 @@ export const getKeyAction = keyBinding => {
         dd:                 () => action.dele(),
         u:                  () => action.undo(),
         yy:                 () => action.copyUrl(),
-        H:                  () => action.history(),
+        A:                  () => action.archive(),
+        H:                  () => action.archive(),
         ',':                () => action.options(),
         '?':                () => action.question(),
         none:               () => {},
@@ -69,7 +71,7 @@ export const getClickType = (event, area) => {
     if (area === 'readingList') {
         const clickType = event.metaKey
             ? 'Meta + Click' : event.altKey ? 'Alt + Click' : 'Click'
-        return event.target.tagName === 'IMG' ? 'delete' : clickType
+        return event.target.dataset?.deleteAction ? 'delete' : clickType
     }
 }
 
@@ -81,9 +83,7 @@ export const getClickAction = (clickType) => {
         'Alt + Click':  () => action.open(
             { currentTab: window.options?.itemNewTab }),
         delete:         () => action.dele(),
-        history:        () => action.history(),
-        export:         () => action.exportList(),
-        import:         () => action.importList(),
+        archive:        () => action.archive(),
         options:        () => action.options(),
         question:       () => action.question(),
         none:           () => {},
