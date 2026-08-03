@@ -29,4 +29,11 @@ describe('reading item storage styling', () => {
         expect(renderLiFrom(page))
             .not.toContain('local-overflow')
     })
+
+    test('uses the shared tooltip instead of a native title', () => {
+        const html = renderLiFrom(page)
+
+        expect(html).toContain('data-tooltip=')
+        expect(html).not.toContain(' title=')
+    })
 })
