@@ -11,8 +11,11 @@ let syncRetryAfter = 0
 const isSyncLimitError = error =>
     /quota|MAX_WRITE_OPERATIONS/i.test(error?.message)
 
+const isSyncItemLimitError = error =>
+    /QUOTA_BYTES_PER_ITEM/i.test(error?.message)
+
 function deferSyncRetry (error) {
-    if (isSyncLimitError(error)) {
+    if (isSyncLimitError(error) && !isSyncItemLimitError(error)) {
         syncRetryAfter = Date.now() + SYNC_RETRY_DELAY
     }
 }
@@ -211,6 +214,8 @@ export async function getOptions () {
     const options = {
         ...localOptions,
         ...syncOptions,
+        // Failed sync writes must still take effect on this computer.
+        ...(localOptions?.syncPending ? localOptions : {}),
         itemHoverMode: localOptions?.itemHoverMode
             ?? syncOptions?.itemHoverMode
             ?? (legacyItemPopover === false ? 'never' : 'details'),
@@ -229,6 +234,7 @@ export async function getOptions () {
     delete options.itemPopover
     delete options.historyMode
     delete options.historyRetentionDays
+    delete options.syncPending
     return options
 }
 
@@ -255,7 +261,8 @@ export async function setOptions (options) {
     delete savedOptions.itemPopover
     delete savedOptions.historyMode
     delete savedOptions.historyRetentionDays
-    await local.set({ options: savedOptions })
+    delete savedOptions.syncPending
+    await local.set({ options: { ...savedOptions, syncPending: true } })
 
     const syncOptions = { ...savedOptions }
     delete syncOptions.hybrid
@@ -271,6 +278,8 @@ export async function setOptions (options) {
         syncError = error
         console.warn('Read Later: options saved locally only.', error)
     }
+
+    if (!syncError) await local.set({ options: savedOptions })
 
     if (savedOptions.archiveMode) {
         await cleanupArchive({
@@ -375,8 +384,10 @@ export async function cleanupArchive ({
 
 export async function useHybridStorage () {
     const options = await getOptions()
+    const { options: localOptions } = await local.get('options')
     await local.set({
         options: {
+            ...localOptions,
             ...options,
             hybrid:    true,
             isOptions: true,
@@ -472,6 +483,8 @@ async function promoteLocalOverflow () {
             syncRetryAfter = 0
             await localSaved.remove(page.url)
         } catch (error) {
+            // An oversized item cannot fit, but later items still might.
+            if (isSyncItemLimitError(error)) continue
             deferSyncRetry(error)
             if (!isSyncLimitError(error)) {
                 console.warn('Read Later: local overflow sync failed.', error)
